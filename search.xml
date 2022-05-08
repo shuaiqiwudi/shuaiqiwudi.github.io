@@ -17,6 +17,26 @@
       </tags>
   </entry>
   <entry>
+    <title>test01</title>
+    <url>/2022/05/08/test01/</url>
+    <content><![CDATA[<h4 id="test01"><a href="#test01" class="headerlink" title="test01"></a>test01</h4>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>双重检验锁</title>
+    <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
+    <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2022/04/14/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -33,13 +53,5 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>test01</title>
-    <url>/2022/05/08/test01/</url>
-    <content><![CDATA[<h4 id="test01"><a href="#test01" class="headerlink" title="test01"></a>test01</h4>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
   </entry>
 </search>
