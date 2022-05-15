@@ -324,7 +324,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-13 16:45:22" itemprop="dateModified" datetime="2022-05-13T16:45:22+08:00">2022-05-13</time>
+                <time title="Modified: 2022-05-15 20:15:06" itemprop="dateModified" datetime="2022-05-15T20:15:06+08:00">2022-05-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -371,7 +371,7 @@
 <p> 3）安全：和ArrayList一样 LinkedList是非线程安全的</p>
 <h3 id="3-Vertor"><a href="#3-Vertor" class="headerlink" title="3.Vertor"></a>3.Vertor</h3><p>vertor内部实现是类似于ArrayList</p>
 <h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>数据以键值对的形式进行存储</p>
-<p><img src="/..........%5Cimg%5C%E5%9B%BE%E7%89%871.png" alt="图片1"></p>
+<p><img src="E:\Blog\source\img\20180803184706534.png" alt="20180803184706534"></p>
 <h3 id="1-HashMap"><a href="#1-HashMap" class="headerlink" title="1.HashMap"></a>1.HashMap</h3><h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>HashMap 基于 Hash 算法实现的</p>
 <ol>
 <li><p>当我们往Hashmap中put元素时，利用key的hashCode重新hash计算出当前对象的元素在数组中的下标</p>
@@ -413,14 +413,30 @@
 <p>少，但是当我们的HashMap中存在大量数据时，加入我们某个 bucket下对应的链表有n个元素，那么遍</p>
 <p>历时间复杂度就为O(n)，为了针对这个问题，JDK1.8在HashMap中新增了红黑树的数据结构，进一步使</p>
 <p>得遍历复杂度降低至O(logn)。</p>
-<p>HashMap是如何解决哈希冲突的：</p>
+<p><strong>HashMap</strong> <strong>的长度为什么是2的幂次方</strong></p>
+<p>为了能让 HashMap 存取高效，尽量较少碰撞，也就是要尽量把数据分配均匀，每个链表&#x2F;红黑树长度大</p>
+<p>致相同。这个实现就是把数据存到哪个链表&#x2F;红黑树中的算法。</p>
+<p>这个算法应该如何设计呢？我们首先可能会想到采用%取余的操作来实现。但是，重点来了：“取余(%)操</p>
+<p>作中如果除数是2的幂次则等价于与其除数减一的与(&amp;)操作（也就是说</p>
+<p>hash%length&#x3D;&#x3D;hash&amp;(length-1)的前提是 length 是2的 n 次方；）。” 并且 采用二进制位操作 &amp;，相对</p>
+<p>于%能够提高运算效率，这就解释了 HashMap 的长度为什么是2的幂次方。那为什么是两次扰动呢？答：这样就是加大哈希值低位的随机性，使得分布更均匀，从而提高对应数组</p>
+<p>存储下标位置的随机性&amp;均匀性， 终减少Hash冲突，两次就够了，已经达到了高位低位同时参与运算</p>
+<p>的目的</p>
+<p><strong>HashMap是如何解决哈希冲突的：</strong></p>
 <ol>
-<li><p>使用链地址法（使用散列表）来链接拥有相同hash值的数据；</p>
-</li>
-<li><p>使用2次扰动函数（hash函数）来降低哈希冲突的概率，使得数据分布更平均；</p>
-</li>
-<li><p>引入红黑树进一步降低遍历的时间复杂度，使得遍历更快；</p>
-</li>
+<li>使用链地址法（使用散列表）来链接拥有相同hash值的数据；</li>
+<li>使用2次扰动函数（hash函数）来降低哈希冲突的概率，使得数据分布更平均；</li>
+<li>引入红黑树进一步降低遍历的时间复杂度，使得遍历更快；</li>
+</ol>
+<p><strong>HashMap的添加元素的过程：</strong></p>
+<p><strong>( 1.)第一种就是数组下标下内容为空：</strong><br>这种情况没什么好说的，为空据直接占有这个slot槽位就好了，然后把当前.put方法传进来的key和value包装成一个node对象,放到这个slot中就好了。</p>
+<p><strong>( 2.)第二种情况就是数组下标下内容不为空，但它引用的node还没有链化：</strong><br>这种情况下先要对比一下这个node对象的key与当前put对象的key是否完全.相等，如果完全相等的情况下，就行进行replace操作，把之前的槽位中node.下的value替换成新的value就可以了，否则的话这个put操作就是一个正儿.八经的hash冲突,这种情况在slot槽位后面追加一个node就可以了,用尾插法 ( 前面讲过，jdk7是把新增元素添加到头部节点，而jdk8则添加到尾部节点)。</p>
+<p><strong>( 3.)第三种就是该数组下标下内容已经被链化了：</strong><br>这种情况和第二种情况处理很相似，首先也是迭代查找node，看看链表上中元素的key，与当前传过来的key是否完全一致，如果完全一致的话还是repleace操作，用put过来的新value替换掉之前node中的value，否则的话就是一致迭代到链表尾节点也没有匹配到完全一致的node，就和之前的一样，把put进来数据包装成node追加到链表的尾部，再检查一下当前链表的长度，有没有达到树化阈值，如果达到了阈值就调用一个树化方法，树化操作都是在这个方法里完成的。</p>
+<p><strong>( 4.)第四种情况就是冲突很严重的情况下，这个链表已经转化成红黑树了：</strong><br>红黑树就比较复杂 要将清楚这个红黑树还得从TreeNode说起 TreeNode继承了Node结构，在Node基础上加了几个字段，分别是指向父节点parent字段，指向左子节点left字段，指向右子节点right字段，还有一个表示颜色的red字段，这就是TreeNode的基本结构，然后红黑树的插入操作，首先找到一个合适的插入点，就是找到插入节点的父节点，然后红黑树它又满足二叉树的所有特性，所以找这个父节点的操作和二叉树排序是完全一致的，然后说一下这个二叉树排序，其实就是二分查找算法映射出来的结构，就是一个倒立的二叉树，然后每个节点都可以有自己的子节点，本且左节点小于但前节点，右节点大于当前节点，然后每次向下查找一层就能那个排除掉一半的数据，查找效率非常的高效，当查找的过程中也是分情况的</p>
+<p><strong>HashMap的负载因子为什么是0.75？</strong></p>
+<ol>
+<li>阈值(threshold) &#x3D; 负载因子(loadFactor) x 容量(capacity) 根据HashMap的扩容机制，他会保证容量(capacity)的值永远都是2的幂 为了保证负载因子x容量的结果是一个整数，这个值是0.75(4&#x2F;3)比较合理，因为这个数和任何2的次幂乘积结果都是整数。</li>
+<li>理论上来讲，负载因子越大，导致哈希冲突的概率也就越大，负载因子越小，费的空间也就越大,这是一个无法避免的利弊关系，所以通过一个简单的数学推理，可以测算出这个数值在0.75左右是比较合理的</li>
 </ol>
 <p>Hashmap构造函数：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Constructs an empty &lt;tt&gt;HashMap&lt;/tt&gt; with the default initial capacity</span></span><br><span class="line"><span class="comment"> * (16) and the default load factor (0.75).</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">HashMap</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.loadFactor = DEFAULT_LOAD_FACTOR; <span class="comment">// all other fields defaulted</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
