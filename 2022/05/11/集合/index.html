@@ -32,11 +32,10 @@
 <meta property="og:image" content="http://example.com/%5Cimages%5C1166662(1).jpg">
 <meta property="og:image" content="http://example.com/%5Cimages%5C20180803184706534.png">
 <meta property="og:image" content="e:/Blog/source/img/20180803184706534.png">
-<meta property="og:image" content="e:/Blog/source_posts/集合.assets/image-20220516104703569.png">
-<meta property="og:image" content="e:/Blog/source_posts/集合.assets/image-20220516110334299.png">
-<meta property="og:image" content="e:/Blog/source_posts/集合.assets/R-C.61349e96fc8aab5721f4a32502e92758">
+<meta property="og:image" content="http://example.com/%5Cimages%5Cimage-20220516104703569-165269033930110.png">
+<meta property="og:image" content="http://example.com/%5Cimages%5Cimage-20220516110334299.png">
 <meta property="article:published_time" content="2022-05-11T02:06:47.000Z">
-<meta property="article:modified_time" content="2022-05-16T08:23:24.049Z">
+<meta property="article:modified_time" content="2022-05-16T08:42:02.133Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -248,7 +247,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-16 16:23:24" itemprop="dateModified" datetime="2022-05-16T16:23:24+08:00">2022-05-16</time>
+                <time title="Modified: 2022-05-16 16:42:02" itemprop="dateModified" datetime="2022-05-16T16:42:02+08:00">2022-05-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -378,13 +377,13 @@
 <p>组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每</p>
 <p>个 Segment 守护着一个 HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先</p>
 <p>获得对应的 Segment的锁。</p>
-<p><img src="E:\Blog\source_posts\集合.assets\image-20220516104703569.png" alt="image-20220516104703569"></p>
+<p><img src="/%5Cimages%5Cimage-20220516104703569-165269033930110.png" alt="image-20220516104703569"></p>
 <p>1.8</p>
 <p>在JDK1.8中，放弃了Segment臃肿的设计，取而代之的是采用<strong>Node + CAS + Synchronized</strong>来保证并发</p>
 <p>安全进行实现，synchronized只锁定当前链表或红黑二叉树的首节点，这样只要hash不冲突，就不会产</p>
 <p>生并发，效率又提升N 倍。</p>
 <p>每一个结点为node  而红黑树的结点为TreeNode</p>
-<p><img src="E:\Blog\source_posts\集合.assets\image-20220516110334299.png" alt="image-20220516110334299"></p>
+<p><img src="/%5Cimages%5Cimage-20220516110334299.png" alt="image-20220516110334299"></p>
 <p>使用CAS的部分 添加元素</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">    tab = initTable();</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (casTabAt(tab, i, <span class="literal">null</span>,</span><br><span class="line">                 <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(hash, key, value, <span class="literal">null</span>)))</span><br><span class="line">        <span class="keyword">break</span>;                   <span class="comment">// no lock when adding to empty bin</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -412,7 +411,6 @@
 <p>②HashTable如果指定了大小 则会初始化为指定大小 而HashMap则会在指定大小的基础上 扩充为2的幂次方</p>
 <p>5.使用场景 ：HashTable如果是单线程使用 则推荐使用HashMap 如果是多线程使用 则推荐ConcurrentHashMap</p>
 <p>​						因为HashTable是将整个表都锁 减少了并发的效率</p>
-<p><img src="E:\Blog\source_posts\集合.assets\R-C.61349e96fc8aab5721f4a32502e92758" alt="查看源图像"></p>
 <h3 id="5-LinkedListMap"><a href="#5-LinkedListMap" class="headerlink" title="5.LinkedListMap"></a>5.LinkedListMap</h3><h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>不允许重复的元素存在 </p>
 <p>只允许一个元素为null </p>
 <p> 非线程安全</p>

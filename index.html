@@ -233,7 +233,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-05-16 15:09:04 / Modified: 16:00:09" itemprop="dateCreated datePublished" datetime="2022-05-16T15:09:04+08:00">2022-05-16</time>
+              <time title="Created: 2022-05-16 15:09:04 / Modified: 16:42:33" itemprop="dateCreated datePublished" datetime="2022-05-16T15:09:04+08:00">2022-05-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +256,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="/image-20220516150930144.png" alt="image-20220516150930144"></h1><ul>
+          <h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="/%5Cimages%5Cimage-20220516150930144.png" alt="image-20220516150930144"></h1><ul>
 <li>workspace：工作区</li>
 <li>staging area：暂存区&#x2F;缓存区</li>
 <li>local repository：版本库或本地仓库</li>
@@ -322,7 +322,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-05-16 14:46:22 / Modified: 16:00:41" itemprop="dateCreated datePublished" datetime="2022-05-16T14:46:22+08:00">2022-05-16</time>
+              <time title="Created: 2022-05-16 14:46:22 / Modified: 16:42:22" itemprop="dateCreated datePublished" datetime="2022-05-16T14:46:22+08:00">2022-05-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -357,7 +357,7 @@
 <p>Java Development Kit是提供给Java开发人员使用的，其中包含了Java的开发 工具，也包括了JRE。所以</p>
 <p>安装了JDK，就无需再单独安装JRE了。其中的开发工 具：编译工具(javac.exe)，打包工具(jar.exe)等</p>
 <p>从包含关系来讲：JDK&gt;JRE&gt;JVM</p>
-<p><img src="/image-20220516150612535.png" alt="image-20220516150612535"></p>
+<p><img src="/%5Cimages%5Cimage-20220516150612535.png" alt="image-20220516150612535"></p>
 <p>既然谈到了JVM 众所周知 JVM是java语言的灵魂 那么JVM给java带来了什么？</p>
 <p>跨平台性：</p>
 <p>所谓跨平台性，是指java语言编写的程序，一次编译后，可以在多个系统平台上 运行。</p>
@@ -382,7 +382,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Java源代码(.java文件)----&gt;编译器----&gt;jvm可执行的Java字节码(.class文件)----&gt;jvm----&gt;jvm中的解释器-----&gt; 机器可执行的二进制机器码----&gt;程序运行。</span><br></pre></td></tr></table></figure>
 
 <p>接下来看一下JVM内部结构：</p>
-<p><img src="/image-20220516154322660.png" alt="image-20220516154322660"></p>
+<p><img src="/%5Cimages%5Cimage-20220516154322660.png" alt="image-20220516154322660"></p>
 <p>可以分为两组件 两子系统：</p>
 <p>两个子系统：1.Class loader(类装载)  2. Execution engine(执行引擎)</p>
 <p>两个组件：1.Runtime data area(运行时数据区）2.Native Interface(本地接口)。</p>
@@ -533,7 +533,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-16 16:23:24" itemprop="dateModified" datetime="2022-05-16T16:23:24+08:00">2022-05-16</time>
+                <time title="Modified: 2022-05-16 16:42:02" itemprop="dateModified" datetime="2022-05-16T16:42:02+08:00">2022-05-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -663,13 +663,13 @@
 <p>组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每</p>
 <p>个 Segment 守护着一个 HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先</p>
 <p>获得对应的 Segment的锁。</p>
-<p><img src="E:\Blog\source_posts\集合.assets\image-20220516104703569.png" alt="image-20220516104703569"></p>
+<p><img src="/%5Cimages%5Cimage-20220516104703569-165269033930110.png" alt="image-20220516104703569"></p>
 <p>1.8</p>
 <p>在JDK1.8中，放弃了Segment臃肿的设计，取而代之的是采用<strong>Node + CAS + Synchronized</strong>来保证并发</p>
 <p>安全进行实现，synchronized只锁定当前链表或红黑二叉树的首节点，这样只要hash不冲突，就不会产</p>
 <p>生并发，效率又提升N 倍。</p>
 <p>每一个结点为node  而红黑树的结点为TreeNode</p>
-<p><img src="E:\Blog\source_posts\集合.assets\image-20220516110334299.png" alt="image-20220516110334299"></p>
+<p><img src="/%5Cimages%5Cimage-20220516110334299.png" alt="image-20220516110334299"></p>
 <p>使用CAS的部分 添加元素</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">    tab = initTable();</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (casTabAt(tab, i, <span class="literal">null</span>,</span><br><span class="line">                 <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(hash, key, value, <span class="literal">null</span>)))</span><br><span class="line">        <span class="keyword">break</span>;                   <span class="comment">// no lock when adding to empty bin</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -697,7 +697,6 @@
 <p>②HashTable如果指定了大小 则会初始化为指定大小 而HashMap则会在指定大小的基础上 扩充为2的幂次方</p>
 <p>5.使用场景 ：HashTable如果是单线程使用 则推荐使用HashMap 如果是多线程使用 则推荐ConcurrentHashMap</p>
 <p>​						因为HashTable是将整个表都锁 减少了并发的效率</p>
-<p><img src="E:\Blog\source_posts\集合.assets\R-C.61349e96fc8aab5721f4a32502e92758" alt="查看源图像"></p>
 <h3 id="5-LinkedListMap"><a href="#5-LinkedListMap" class="headerlink" title="5.LinkedListMap"></a>5.LinkedListMap</h3><h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>不允许重复的元素存在 </p>
 <p>只允许一个元素为null </p>
 <p> 非线程安全</p>
