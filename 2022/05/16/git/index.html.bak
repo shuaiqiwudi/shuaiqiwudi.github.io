@@ -260,7 +260,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="image-20220516150930144.png" alt="image-20220516150930144"></h1><ul>
+        <h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="/%5Cimages%5Cimage-20220516150930144.png" alt="image-20220516150930144"></h1><ul>
 <li>workspace：工作区</li>
 <li>staging area：暂存区&#x2F;缓存区</li>
 <li>local repository：版本库或本地仓库</li>

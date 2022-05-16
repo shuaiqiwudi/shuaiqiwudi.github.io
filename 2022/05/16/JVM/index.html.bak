@@ -22,22 +22,23 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="GIT workspace：工作区 staging area：暂存区&#x2F;缓存区 local repository：版本库或本地仓库 remote repository：远程仓库  合作开发第一个项目的时候 就感觉到git的强大 同时也被git上了一课 多版本的来回混合 以及多个操作 搞得有点乱 从空间和操作命令上来结合了解以下git到底如何使用 执行命令后哪里的代码跑到哪里了？ 首先要初始">
+  <meta name="description" content="JVM什么是JVM？ Java Virtual Machine是Java虚拟机，Java程序需要运行在虚拟机上，不同的平 台有自己的虚拟机，因此 Java语言可以实现跨平台。 提到JVM 就不得不提到他的另两个兄弟 :JDK, JRE JRE Java Runtime Environment包括Java虚拟机和Java程序所需的核心类库等。核 心类库主要是java.lang 包：包含了运行Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git">
-<meta property="og:url" content="http://example.com/2022/05/16/git/index.html">
+<meta property="og:title" content="JVM">
+<meta property="og:url" content="http://example.com/2022/05/16/JVM/index.html">
 <meta property="og:site_name" content="shuaiqiwudi blog">
-<meta property="og:description" content="GIT workspace：工作区 staging area：暂存区&#x2F;缓存区 local repository：版本库或本地仓库 remote repository：远程仓库  合作开发第一个项目的时候 就感觉到git的强大 同时也被git上了一课 多版本的来回混合 以及多个操作 搞得有点乱 从空间和操作命令上来结合了解以下git到底如何使用 执行命令后哪里的代码跑到哪里了？ 首先要初始">
+<meta property="og:description" content="JVM什么是JVM？ Java Virtual Machine是Java虚拟机，Java程序需要运行在虚拟机上，不同的平 台有自己的虚拟机，因此 Java语言可以实现跨平台。 提到JVM 就不得不提到他的另两个兄弟 :JDK, JRE JRE Java Runtime Environment包括Java虚拟机和Java程序所需的核心类库等。核 心类库主要是java.lang 包：包含了运行Java">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="image-20220516150930144.png">
-<meta property="article:published_time" content="2022-05-16T07:09:04.000Z">
-<meta property="article:modified_time" content="2022-05-16T08:42:33.754Z">
+<meta property="og:image" content="http://example.com/%5Cimages%5Cimage-20220516150612535-16526908200071.png">
+<meta property="og:image" content="http://example.com/%5Cimages%5Cimage-20220516154322660-16526908428712.png">
+<meta property="article:published_time" content="2022-05-16T06:46:22.000Z">
+<meta property="article:modified_time" content="2022-05-16T08:47:29.355Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="image-20220516150930144.png">
+<meta name="twitter:image" content="http://example.com/%5Cimages%5Cimage-20220516150612535-16526908200071.png">
 
-<link rel="canonical" href="http://example.com/2022/05/16/git/">
+<link rel="canonical" href="http://example.com/2022/05/16/JVM/">
 
 
 <script id="page-configurations">
@@ -50,7 +51,7 @@
   };
 </script>
 
-  <title>git | shuaiqiwudi blog</title>
+  <title>JVM | shuaiqiwudi blog</title>
   
 
 
@@ -213,7 +214,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/16/git/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/16/JVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -226,7 +227,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          git
+          JVM
         </h1>
 
         <div class="post-meta">
@@ -237,7 +238,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-05-16 15:09:04 / Modified: 16:42:33" itemprop="dateCreated datePublished" datetime="2022-05-16T15:09:04+08:00">2022-05-16</time>
+              <time title="Created: 2022-05-16 14:46:22 / Modified: 16:47:29" itemprop="dateCreated datePublished" datetime="2022-05-16T14:46:22+08:00">2022-05-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,28 +261,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="image-20220516150930144.png" alt="image-20220516150930144"></h1><ul>
-<li>workspace：工作区</li>
-<li>staging area：暂存区&#x2F;缓存区</li>
-<li>local repository：版本库或本地仓库</li>
-<li>remote repository：远程仓库</li>
-</ul>
-<p>合作开发第一个项目的时候 就感觉到git的强大 同时也被git上了一课 多版本的来回混合 以及多个操作 搞得有点乱 从空间和操作命令上来结合了解以下git到底如何使用 执行命令后哪里的代码跑到哪里了？</p>
-<p>首先要初始化一个仓库：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git init    </span><br><span class="line">$ git add .    </span><br><span class="line">$ git commit  </span><br></pre></td></tr></table></figure>
+        <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>什么是JVM？</p>
+<p><strong>J</strong>ava <strong>V</strong>irtual <strong>M</strong>achine是Java虚拟机，Java程序需要运行在虚拟机上，不同的平 台有自己的虚拟机，因此</p>
+<p>Java语言可以实现跨平台。</p>
+<p>提到JVM 就不得不提到他的另两个兄弟 :JDK, JRE</p>
+<p>JRE</p>
+<p>Java Runtime Environment包括Java虚拟机和Java程序所需的核心类库等。核 心类库主要是java.lang</p>
+<p>包：包含了运行Java程序必不可少的系统类，如基本数 据类型、基本数学函数、字符串处理、线程、异</p>
+<p>常处理类等，系统缺省加载这个包。如果想要运行一个开发好的Java程序，计算机中只需要安装JRE即可。</p>
+<p>JDK</p>
+<p>Java Development Kit是提供给Java开发人员使用的，其中包含了Java的开发 工具，也包括了JRE。所以</p>
+<p>安装了JDK，就无需再单独安装JRE了。其中的开发工 具：编译工具(javac.exe)，打包工具(jar.exe)等</p>
+<p>从包含关系来讲：JDK&gt;JRE&gt;JVM</p>
+<p><img src="image-20220516150612535-16526908200071.png" alt="image-20220516150612535"></p>
+<p>既然谈到了JVM 众所周知 JVM是java语言的灵魂 那么JVM给java带来了什么？</p>
+<p>跨平台性：</p>
+<p>所谓跨平台性，是指java语言编写的程序，一次编译后，可以在多个系统平台上 运行。</p>
+<p>实现原理：Java程序是通过java虚拟机在系统平台上运行的，只要该系统可以安 装相应的java虚拟机，</p>
+<p>该系统就可以运行java程序。</p>
+<p>又众所周知 java运行的流程如下：</p>
+<p>.java文件 由开发人员编写 经过编译后 生成.class文件 ——即字节码文件</p>
+<p>该.class文件不面向任何机器 只面向虚拟机</p>
+<p><strong>采用字节码的好处：</strong></p>
+<p>Java语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的 问题，同时又保留了解</p>
+<p>释型语言可移植的特点。所以Java程序运行时比较高效， 而且，由于字节码并不专对一种特定的机器，</p>
+<p>因此，Java程序无须重新编译便可 在多种不同的计算机上运行。<strong>一次编译 到处运行</strong></p>
+<p>作为高级语言 就得有解释 编译 将语言转化为二进制 这两个步骤 Java是怎么实现的呢？</p>
+<p><strong>java中的编译器和解释器：</strong></p>
+<p>也可以直接看下面</p>
+<p>Java中引入了虚拟机的概念，即在机器和编译程序之间加入了一层抽象的虚拟机 器。这台虚拟的机器在</p>
+<p>任何平台上都提供给编译程序一个的共同的接口。编译程 序只需要面向虚拟机，生成虚拟机能够理解的</p>
+<p>代码，然后由解释器来将虚拟机代 码转换为特定系统的机器码执行。在Java中，这种供虚拟机理解的代</p>
+<p>码叫做字节 码（即扩展为.class的文件），它不面向任何特定的处理器，只面向虚拟机。每 一种平台的解释器是不同的，但是实现的虚拟机是相同的。Java源程序经过编译 器编译后变成字节码，字节码由虚</p>
+<p>拟机解释执行，虚拟机将每一条要执行的字节 码送给解释器，解释器将其翻译成特定机器上的机器码，</p>
+<p>然后在特定的机器上运 行，这就是上面提到的Java的特点的编译与解释并存的解释。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Java源代码(.java文件)----&gt;编译器----&gt;jvm可执行的Java字节码(.class文件)----&gt;jvm----&gt;jvm中的解释器-----&gt; 机器可执行的二进制机器码----&gt;程序运行。</span><br></pre></td></tr></table></figure>
 
-<p>创建分支命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch (branchname) //不加名字 为查看分支</span><br></pre></td></tr></table></figure>
-
-<p>切换分支命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout (branchname)</span><br></pre></td></tr></table></figure>
-
-<p>合并分支：</p>
-<p>需要先切换到主分支下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge (想要合并的分支)</span><br></pre></td></tr></table></figure>
-
+<p>接下来看一下JVM内部结构：</p>
+<p><img src="/%5Cimages%5Cimage-20220516154322660-16526908428712.png" alt="image-20220516154322660"></p>
+<p>可以分为两组件 两子系统：</p>
+<p>两个子系统：1.Class loader(类装载)  2. Execution engine(执行引擎)</p>
+<p>两个组件：1.Runtime data area(运行时数据区）2.Native Interface(本地接口)。</p>
+<blockquote>
+<p>Class loader(类装载)：根据给定的全限定名类名(如： java.lang.Object)来装载class文件到Runtime data area中的method area。</p>
+</blockquote>
+<blockquote>
+<p>Native Interface(本地接口)：与native libraries交互，是其它编程语 言交互的接口。</p>
+</blockquote>
+<blockquote>
+<p>Runtime data area(运行时数据区域)：这就是我们常说的JVM的内 存。</p>
+</blockquote>
+<blockquote>
+<p>Execution engine（执行引擎）：执行classes中的指令。</p>
+</blockquote>
 
     </div>
 
@@ -297,10 +329,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/05/16/JVM/" rel="prev" title="JVM">
-      <i class="fa fa-chevron-left"></i> JVM
+    <a href="/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/" rel="prev" title="equals()与HashCode()的爱恨情仇">
+      <i class="fa fa-chevron-left"></i> equals()与HashCode()的爱恨情仇
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/16/git/" rel="next" title="git">
+      git <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -359,7 +394,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT"><span class="nav-number">1.</span> <span class="nav-text">GIT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text"></span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM"><span class="nav-number">1.</span> <span class="nav-text">JVM</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
