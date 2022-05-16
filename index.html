@@ -324,7 +324,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-15 20:15:06" itemprop="dateModified" datetime="2022-05-15T20:15:06+08:00">2022-05-15</time>
+                <time title="Modified: 2022-05-16 11:23:34" itemprop="dateModified" datetime="2022-05-16T11:23:34+08:00">2022-05-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -413,21 +413,21 @@
 <p>少，但是当我们的HashMap中存在大量数据时，加入我们某个 bucket下对应的链表有n个元素，那么遍</p>
 <p>历时间复杂度就为O(n)，为了针对这个问题，JDK1.8在HashMap中新增了红黑树的数据结构，进一步使</p>
 <p>得遍历复杂度降低至O(logn)。</p>
-<p><strong>HashMap</strong> <strong>的长度为什么是2的幂次方</strong></p>
-<p>为了能让 HashMap 存取高效，尽量较少碰撞，也就是要尽量把数据分配均匀，每个链表&#x2F;红黑树长度大</p>
-<p>致相同。这个实现就是把数据存到哪个链表&#x2F;红黑树中的算法。</p>
-<p>这个算法应该如何设计呢？我们首先可能会想到采用%取余的操作来实现。但是，重点来了：“取余(%)操</p>
-<p>作中如果除数是2的幂次则等价于与其除数减一的与(&amp;)操作（也就是说</p>
-<p>hash%length&#x3D;&#x3D;hash&amp;(length-1)的前提是 length 是2的 n 次方；）。” 并且 采用二进制位操作 &amp;，相对</p>
-<p>于%能够提高运算效率，这就解释了 HashMap 的长度为什么是2的幂次方。那为什么是两次扰动呢？答：这样就是加大哈希值低位的随机性，使得分布更均匀，从而提高对应数组</p>
-<p>存储下标位置的随机性&amp;均匀性， 终减少Hash冲突，两次就够了，已经达到了高位低位同时参与运算</p>
-<p>的目的</p>
 <p><strong>HashMap是如何解决哈希冲突的：</strong></p>
 <ol>
-<li>使用链地址法（使用散列表）来链接拥有相同hash值的数据；</li>
-<li>使用2次扰动函数（hash函数）来降低哈希冲突的概率，使得数据分布更平均；</li>
-<li>引入红黑树进一步降低遍历的时间复杂度，使得遍历更快；</li>
+<li><p>使用链地址法（使用散列表）来链接拥有相同hash值的数据；</p>
+</li>
+<li><p>使用2次扰动函数（hash函数）来降低哈希冲突的概率，使得数据分布更平均；</p>
+</li>
+<li><p>引入红黑树进一步降低遍历的时间复杂度，使得遍历更快。（是当我们的HashMap中存在大量数据时，加入我们某个 bucket下对应的链表有n个元素，那么遍历时间复杂度就为O(n)，为了针对这个问题，JDK1.8在HashMap中新增了红黑树的数据结构，进一步使</p>
+<p>得遍历复杂度降低至O(logn)）。</p>
+</li>
 </ol>
+<p><strong>HashMap</strong> <strong>的长度为什么是2的幂次方</strong></p>
+<p>为了能让 HashMap 存取高效，尽量较少碰撞，也就是要尽量把数据分配均匀，每个链表&#x2F;红黑树长度大</p>
+<p>致相同。这个实现就是把数据存到哪个链表&#x2F;红黑树中的算法。我们首先可能会想到采用%取余的操作来实现。但是，重点来了：“取余(%)操作中如果除数是2的幂次则等价于与其除数减一的与(&amp;)操作（也就是说hash%length&#x3D;&#x3D;hash&amp;(length-1)的前提是 length 是2的 n 次方；）。” 并且 采用二进制位操作 &amp;，相对于%能够提高运算效率，这就解释了 HashMap 的长度为什么是2的幂次方。</p>
+<p>那为什么是两次扰动呢？答：这样就是加大哈希值低位的随机性，使得分布更均匀，从而提高对应数组</p>
+<p>存储下标位置的随机性&amp;均匀性， 终减少Hash冲突，两次就够了，已经达到了高位低位同时参与运算的目的</p>
 <p><strong>HashMap的添加元素的过程：</strong></p>
 <p><strong>( 1.)第一种就是数组下标下内容为空：</strong><br>这种情况没什么好说的，为空据直接占有这个slot槽位就好了，然后把当前.put方法传进来的key和value包装成一个node对象,放到这个slot中就好了。</p>
 <p><strong>( 2.)第二种情况就是数组下标下内容不为空，但它引用的node还没有链化：</strong><br>这种情况下先要对比一下这个node对象的key与当前put对象的key是否完全.相等，如果完全相等的情况下，就行进行replace操作，把之前的槽位中node.下的value替换成新的value就可以了，否则的话这个put操作就是一个正儿.八经的hash冲突,这种情况在slot槽位后面追加一个node就可以了,用尾插法 ( 前面讲过，jdk7是把新增元素添加到头部节点，而jdk8则添加到尾部节点)。</p>
@@ -438,8 +438,31 @@
 <li>阈值(threshold) &#x3D; 负载因子(loadFactor) x 容量(capacity) 根据HashMap的扩容机制，他会保证容量(capacity)的值永远都是2的幂 为了保证负载因子x容量的结果是一个整数，这个值是0.75(4&#x2F;3)比较合理，因为这个数和任何2的次幂乘积结果都是整数。</li>
 <li>理论上来讲，负载因子越大，导致哈希冲突的概率也就越大，负载因子越小，费的空间也就越大,这是一个无法避免的利弊关系，所以通过一个简单的数学推理，可以测算出这个数值在0.75左右是比较合理的</li>
 </ol>
-<p>Hashmap构造函数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Constructs an empty &lt;tt&gt;HashMap&lt;/tt&gt; with the default initial capacity</span></span><br><span class="line"><span class="comment"> * (16) and the default load factor (0.75).</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">HashMap</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.loadFactor = DEFAULT_LOAD_FACTOR; <span class="comment">// all other fields defaulted</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>HashMap使用String作为key  有什么好处</strong></p>
+<p>String作为hashMap的key HashMap是使用hashCode值作为参数 存放key的位置 而String对象是不可变的 在创建的时候 就已经缓存Hash Code值 所以存储对象更快</p>
+<p><strong>HashMap 链表转化为红黑树，以及红黑树转化为链表的条件</strong></p>
+<p>链表转化为红黑树：hashMap并不是在链表元素个数大于8就一定会转换为红黑树，而是先考虑扩容，扩容达到默认限制后才转换。</p>
+<p>红黑树转化为链表：hashMap的红黑树不一定小于6的时候才会转换为链表，而是只有在resize的时候才会根据 UNTREEIFY_THRESHOLD 进行转换。</p>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h3><p>ConcurrentHashMap的内部实现对整个桶分组进行了分段分割Segment 每一把锁值锁住一部分数据 不会出现资源的恶行竞争 提高效率</p>
+<p>（默认分配16个Segment，从效率上来讲 比HashMap高16倍）。</p>
+<p>**ConcurrentHashMap 和HashMap的不同 **</p>
+<p>ConcurrentHashMap是实现线程安全的ConcurrentHashMap对整个桶数组进行了分割分段(Segment)，然后在每一个分段上都用lock锁行保护，相对于HashTable的synchronized 锁的粒度更精细了一些，并发性能更好，而HashMap没有锁机制，不是线程安全的。（JDK1.8之后ConcurrentHashMap启了一种全新的方式实现,利用CAS算法。） </p>
+<p>所以ConcurrentHashMap也分为1.7和1.8两个jdk版本的不同</p>
+<p>1.7</p>
+<p>首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。在JDK1.7中，ConcurrentHashMap采用Segment + HashEntry的方式进行实现。</p>
+<p>一个 ConcurrentHashMap 里包含一个 Segment 数组。Segment 的结构和 HashMap类似，是一种数</p>
+<p>组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每</p>
+<p>个 Segment 守护着一个 HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先</p>
+<p>获得对应的 Segment的锁。</p>
+<p><img src="E:\Blog\source_posts\集合.assets\image-20220516104703569.png" alt="image-20220516104703569"></p>
+<p>1.8</p>
+<p>在JDK1.8中，放弃了Segment臃肿的设计，取而代之的是采用<strong>Node + CAS + Synchronized</strong>来保证并发</p>
+<p>安全进行实现，synchronized只锁定当前链表或红黑二叉树的首节点，这样只要hash不冲突，就不会产</p>
+<p>生并发，效率又提升N 倍。</p>
+<p>每一个结点为node  而红黑树的结点为TreeNode</p>
+<p><img src="E:\Blog\source_posts\集合.assets\image-20220516110334299.png" alt="image-20220516110334299"></p>
+<p>使用CAS的部分 添加元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">    tab = initTable();</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (casTabAt(tab, i, <span class="literal">null</span>,</span><br><span class="line">                 <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(hash, key, value, <span class="literal">null</span>)))</span><br><span class="line">        <span class="keyword">break</span>;                   <span class="comment">// no lock when adding to empty bin</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-TreeMap"><a href="#2-TreeMap" class="headerlink" title="2.TreeMap"></a>2.TreeMap</h3><p>根据保存的key进行排序（默认排序，可自己定义），默认是按照升序排序的 ，并且不允许key的值为null <strong>非线程同步</strong></p>
 <p>排序是SortedMap定义的方法实现</p>
@@ -447,7 +470,24 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TreeMap&lt;Integer,Integer&gt; map= <span class="keyword">new</span> <span class="title class_">TreeMap</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;()&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * int compare(Object o1, Object o2) 返回一个基本类型的整型，</span></span><br><span class="line"><span class="comment">     * 返回负数表示：o1 小于o2，</span></span><br><span class="line"><span class="comment">     * 返回0 表示：o1和o2相等，</span></span><br><span class="line"><span class="comment">     * 返回正数表示：o1大于o2。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer a,Integer b)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> b-a;<span class="comment">//倒序排序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-Hashtable"><a href="#3-Hashtable" class="headerlink" title="3.Hashtable"></a>3.Hashtable</h3><p>和hashmap类似 但不允许key或value为null 支持线程同步 级只允许一条线程同时操作HashTable <strong>线程同步</strong></p>
+<p><strong>如何决定使用</strong> <strong>HashMap</strong> <strong>还是</strong>TreeMap <strong>？</strong></p>
+<p>对于在Map中插入、删除和查询元素这类操作，HashMap是 好的选择。</p>
+<p>然而，假如你需要对一个有序的key集合进行遍历，TreeMap是更好的选择。基于你的collection的大小，</p>
+<p>也许向HashMap中添加元素会更快，将map换为TreeMap进行有序key的遍历</p>
+<h3 id="3-Hashtable"><a href="#3-Hashtable" class="headerlink" title="3.Hashtable"></a>3.Hashtable</h3><p>和hashmap类似 但不允许key或value为null 支持线程同步 只允许一条线程同时操作HashTable <strong>线程同步</strong></p>
+<p>HashTable基本被淘汰</p>
+<p><strong>与HashMap的区别</strong></p>
+<p>1.线程安全; HashMap是非线程安全的 HashTable是线程安全的 HashTable的内部方法基本都经过synchronized修饰</p>
+<p>（但是如果想要保证线程安全的话 请使用ConcurrentHashMap吧）</p>
+<p>2.效率： 众所周知 鱼和熊掌不可兼得 保证了安全性 那一定会牺牲效率 </p>
+<p>3.对null的支持： HashMap中 null可以作为键 但是只能有一个 对应的value可以多个为null </p>
+<p>​								HashTable中 null如果添加 不论是key or value 则直接抛空指针异常NullPointerException。</p>
+<p>4.初始容量大小的不同：</p>
+<p>①如果不指定容量 HashTable的大小是11  每次扩容为2n+1</p>
+<p>​	而hashMap的默认初始化大小是16	扩容为两倍（左移一位）</p>
+<p>②HashTable如果指定了大小 则会初始化为指定大小 而HashMap则会在指定大小的基础上 扩充为2的幂次方</p>
+<p>5.使用场景 ：HashTable如果是单线程使用 则推荐使用HashMap 如果是多线程使用 则推荐ConcurrentHashMap</p>
+<p>​			</p>
 <h3 id="4-LinkedListMap"><a href="#4-LinkedListMap" class="headerlink" title="4.LinkedListMap"></a>4.LinkedListMap</h3><h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>不允许重复的元素存在 </p>
 <p>只允许一个元素为null </p>
 <p> 非线程安全</p>
