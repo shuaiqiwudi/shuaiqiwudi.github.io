@@ -377,13 +377,13 @@
 <p>组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每</p>
 <p>个 Segment 守护着一个 HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先</p>
 <p>获得对应的 Segment的锁。</p>
-<p><img src="20220516104703569-165269033930110.png" alt="image-20220516104703569"></p>
+<p><img src="image-20220516104703569-165269033930110.png" alt="image-20220516104703569"></p>
 <p>1.8</p>
 <p>在JDK1.8中，放弃了Segment臃肿的设计，取而代之的是采用<strong>Node + CAS + Synchronized</strong>来保证并发</p>
 <p>安全进行实现，synchronized只锁定当前链表或红黑二叉树的首节点，这样只要hash不冲突，就不会产</p>
 <p>生并发，效率又提升N 倍。</p>
 <p>每一个结点为node  而红黑树的结点为TreeNode</p>
-<p><img src="/%5Cimages%5Cimage-20220516110334299.png" alt="image-20220516110334299"></p>
+<p><img src="image-20220516110334299.png" alt="image-20220516110334299"></p>
 <p>使用CAS的部分 添加元素</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">    tab = initTable();</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (casTabAt(tab, i, <span class="literal">null</span>,</span><br><span class="line">                 <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(hash, key, value, <span class="literal">null</span>)))</span><br><span class="line">        <span class="keyword">break</span>;                   <span class="comment">// no lock when adding to empty bin</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
