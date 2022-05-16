@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JVM</title>
+    <url>/2022/05/16/JVM/</url>
+    <content><![CDATA[<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>什么是JVM？</p>
+<p>Java Virtual Machine是Java虚拟机，Java程序需要运行在虚拟机上，不同的平 台有自己的虚拟机，因此</p>
+<p>Java语言可以实现跨平台。</p>
+<p>提到JVM 就不得不提到他的另两个兄弟 :JDK, JRE</p>
+<p>JRE</p>
+<p>Java Runtime Environment包括Java虚拟机和Java程序所需的核心类库等。核 心类库主要是java.lang</p>
+<p>包：包含了运行Java程序必不可少的系统类，如基本数 据类型、基本数学函数、字符串处理、线程、异</p>
+<p>常处理类等，系统缺省加载这个包。如果想要运行一个开发好的Java程序，计算机中只需要安装JRE即可。</p>
+<p>JDK</p>
+<p>Java Development Kit是提供给Java开发人员使用的，其中包含了Java的开发 工具，也包括了JRE。所以</p>
+<p>安装了JDK，就无需再单独安装JRE了。其中的开发工 具：编译工具(javac.exe)，打包工具(jar.exe)等</p>
+<p>从包含关系来讲：JDK&gt;JRE&gt;JVM</p>
+<p><img src="/image-20220516150612535.png" alt="image-20220516150612535"></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Write blog using markdown01</title>
     <url>/2022/05/07/Write-blog-using-markdown01/</url>
     <content><![CDATA[<h4 id="预览界面"><a href="#预览界面" class="headerlink" title="预览界面"></a>预览界面</h4><p><strong>hexo g</strong><br><strong>hexo s</strong></p>
@@ -82,7 +103,7 @@
   </entry>
   <entry>
     <title>集合</title>
-    <url>/2022/05/11/%E9%9B%86%E5%90%88.assets/%E9%9B%86%E5%90%88/</url>
+    <url>/2022/05/11/%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<p><img src="/image-20220516140132818.png" alt="image-20220516140132818"></p>
 <h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/20180803184706534-16526810281761.png" alt="20180803184706534"></p>
 <p>1.List:  元素可重复 可以多个元素为null </p>
