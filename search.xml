@@ -61,6 +61,14 @@
 ]]></content>
   </entry>
   <entry>
+    <title>test01</title>
+    <url>/2022/05/08/test01/</url>
+    <content><![CDATA[<h4 id="test01"><a href="#test01" class="headerlink" title="test01"></a>test01</h4>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>双重检验锁</title>
     <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
     <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -73,16 +81,8 @@
       </categories>
   </entry>
   <entry>
-    <title>test01</title>
-    <url>/2022/05/08/test01/</url>
-    <content><![CDATA[<h4 id="test01"><a href="#test01" class="headerlink" title="test01"></a>test01</h4>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>集合</title>
-    <url>/2022/05/11/%E9%9B%86%E5%90%88/</url>
+    <url>/2022/05/11/%E9%9B%86%E5%90%88.assets/%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<p><img src="/image-20220516140132818.png" alt="image-20220516140132818"></p>
 <h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/20180803184706534-16526810281761.png" alt="20180803184706534"></p>
 <p>1.List:  元素可重复 可以多个元素为null </p>
