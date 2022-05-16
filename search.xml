@@ -17,24 +17,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/04/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>equals()与HashCode()的爱恨情仇</title>
     <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
     <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
@@ -61,12 +43,22 @@
       </categories>
   </entry>
   <entry>
-    <title>test01</title>
-    <url>/2022/05/08/test01/</url>
-    <content><![CDATA[<h4 id="test01"><a href="#test01" class="headerlink" title="test01"></a>test01</h4>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
+    <title>Hello World</title>
+    <url>/2022/04/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>双重检验锁</title>
@@ -81,10 +73,18 @@
       </categories>
   </entry>
   <entry>
+    <title>test01</title>
+    <url>/2022/05/08/test01/</url>
+    <content><![CDATA[<h4 id="test01"><a href="#test01" class="headerlink" title="test01"></a>test01</h4>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>集合</title>
     <url>/2022/05/11/%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<p><img src="/%E9%9B%86%E5%90%88.assets/1166662(1).jpg" alt="1166662(1)"></p>
-<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/20180803184706534-16524304705235.png" alt="20180803184706534"></p>
+    <content><![CDATA[<p><img src="/image-20220516140132818.png" alt="image-20220516140132818"></p>
+<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/20180803184706534-16526810281761.png" alt="20180803184706534"></p>
 <p>1.List:  元素可重复 可以多个元素为null </p>
 <p>2.Set:  添加的元素不可重复</p>
 <h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="1-ArrayList："><a href="#1-ArrayList：" class="headerlink" title="1.ArrayList："></a>1.ArrayList：</h3><p>​	底层使用数组实现 </p>
@@ -179,7 +179,7 @@
 <p><strong>HashMap 链表转化为红黑树，以及红黑树转化为链表的条件</strong></p>
 <p>链表转化为红黑树：hashMap并不是在链表元素个数大于8就一定会转换为红黑树，而是先考虑扩容，扩容达到默认限制后才转换。</p>
 <p>红黑树转化为链表：hashMap的红黑树不一定小于6的时候才会转换为链表，而是只有在resize的时候才会根据 UNTREEIFY_THRESHOLD 进行转换。</p>
-<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a><strong>ConcurrentHashMap</strong></h3><p>ConcurrentHashMap的内部实现对整个桶分组进行了分段分割Segment 每一把锁值锁住一部分数据 不会出现资源的恶行竞争 提高效率</p>
+<h3 id="2-ConcurrentHashMap"><a href="#2-ConcurrentHashMap" class="headerlink" title="2.ConcurrentHashMap"></a><strong>2.ConcurrentHashMap</strong></h3><p>ConcurrentHashMap的内部实现对整个桶分组进行了分段分割Segment 每一把锁值锁住一部分数据 不会出现资源的恶行竞争 提高效率</p>
 <p>（默认分配16个Segment，从效率上来讲 比HashMap高16倍）。</p>
 <p>**ConcurrentHashMap 和HashMap的不同 **</p>
 <p>ConcurrentHashMap是实现线程安全的ConcurrentHashMap对整个桶数组进行了分割分段(Segment)，然后在每一个分段上都用lock锁行保护，相对于HashTable的synchronized 锁的粒度更精细了一些，并发性能更好，而HashMap没有锁机制，不是线程安全的。（JDK1.8之后ConcurrentHashMap启了一种全新的方式实现,利用CAS算法。） </p>
@@ -200,7 +200,7 @@
 <p>使用CAS的部分 添加元素</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">    tab = initTable();</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (casTabAt(tab, i, <span class="literal">null</span>,</span><br><span class="line">                 <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(hash, key, value, <span class="literal">null</span>)))</span><br><span class="line">        <span class="keyword">break</span>;                   <span class="comment">// no lock when adding to empty bin</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-TreeMap"><a href="#2-TreeMap" class="headerlink" title="2.TreeMap"></a>2.TreeMap</h3><p>根据保存的key进行排序（默认排序，可自己定义），默认是按照升序排序的 ，并且不允许key的值为null <strong>非线程同步</strong></p>
+<h3 id="3-TreeMap"><a href="#3-TreeMap" class="headerlink" title="3.TreeMap"></a>3.TreeMap</h3><p>根据保存的key进行排序（默认排序，可自己定义），默认是按照升序排序的 ，并且不允许key的值为null <strong>非线程同步</strong></p>
 <p>排序是SortedMap定义的方法实现</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SortedMap</span>&lt;K,V&gt; <span class="keyword">extends</span> <span class="title class_">Map</span>&lt;K,V&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//返回元素比较器。如果是自然顺序，则返回null；</span></span><br><span class="line">    Comparator&lt;? <span class="built_in">super</span> K&gt; comparator();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//返回从fromKey到toKey的集合：含头不含尾</span></span><br><span class="line">    java.util.SortedMap&lt;K,V&gt; <span class="title function_">subMap</span><span class="params">(K fromKey, K toKey)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回从头到toKey的集合：不包含toKey</span></span><br><span class="line">    java.util.SortedMap&lt;K,V&gt; <span class="title function_">headMap</span><span class="params">(K toKey)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回从fromKey到结尾的集合：包含fromKey</span></span><br><span class="line">    java.util.SortedMap&lt;K,V&gt; <span class="title function_">tailMap</span><span class="params">(K fromKey)</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -210,7 +210,7 @@
 <p>对于在Map中插入、删除和查询元素这类操作，HashMap是 好的选择。</p>
 <p>然而，假如你需要对一个有序的key集合进行遍历，TreeMap是更好的选择。基于你的collection的大小，</p>
 <p>也许向HashMap中添加元素会更快，将map换为TreeMap进行有序key的遍历</p>
-<h3 id="3-Hashtable"><a href="#3-Hashtable" class="headerlink" title="3.Hashtable"></a>3.Hashtable</h3><p>和hashmap类似 但不允许key或value为null 支持线程同步 只允许一条线程同时操作HashTable <strong>线程同步</strong></p>
+<h3 id="4-HashTable"><a href="#4-HashTable" class="headerlink" title="4.HashTable"></a>4.HashTable</h3><p>和hashmap类似 但不允许key或value为null 支持线程同步 只允许一条线程同时操作HashTable <strong>线程同步</strong></p>
 <p>HashTable基本被淘汰</p>
 <p><strong>与HashMap的区别</strong></p>
 <p>1.线程安全; HashMap是非线程安全的 HashTable是线程安全的 HashTable的内部方法基本都经过synchronized修饰</p>
@@ -223,8 +223,9 @@
 <p>​	而hashMap的默认初始化大小是16	扩容为两倍（左移一位）</p>
 <p>②HashTable如果指定了大小 则会初始化为指定大小 而HashMap则会在指定大小的基础上 扩充为2的幂次方</p>
 <p>5.使用场景 ：HashTable如果是单线程使用 则推荐使用HashMap 如果是多线程使用 则推荐ConcurrentHashMap</p>
-<p>​			</p>
-<h3 id="4-LinkedListMap"><a href="#4-LinkedListMap" class="headerlink" title="4.LinkedListMap"></a>4.LinkedListMap</h3><h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>不允许重复的元素存在 </p>
+<p>​						因为HashTable是将整个表都锁 减少了并发的效率</p>
+<p><img src="E:\Blog\source_posts\集合.assets\R-C.61349e96fc8aab5721f4a32502e92758" alt="查看源图像"></p>
+<h3 id="5-LinkedListMap"><a href="#5-LinkedListMap" class="headerlink" title="5.LinkedListMap"></a>5.LinkedListMap</h3><h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>不允许重复的元素存在 </p>
 <p>只允许一个元素为null </p>
 <p> 非线程安全</p>
 <h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><p>元素是无序的</p>
