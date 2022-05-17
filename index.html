@@ -208,6 +208,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/17/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zh-CN">
+      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shuaiqiwudi blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/17/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/" class="post-title-link" itemprop="url">乐观锁和悲观锁</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-05-17 21:49:40 / Modified: 21:55:25" itemprop="dateCreated datePublished" datetime="2022-05-17T21:49:40+08:00">2022-05-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h1><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>乐观锁是一种乐观思想，即认为读多写少，遇到并发写的可能性低，每次去拿数据的时候都认为别人不</p>
+<p>会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，采取在写</p>
+<p>时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），如果失败则要重复</p>
+<p>读-比较-写的操作。</p>
+<p>java 中的乐观锁基本都是通过 CAS 操作实现的，CAS 是一种更新的原子操作，比较当前值跟传入值是否</p>
+<p>一样，一样则更新，否则失败。</p>
+<h3 id="CAS（Compare-And-Swap）"><a href="#CAS（Compare-And-Swap）" class="headerlink" title="CAS（Compare And Swap）"></a>CAS（Compare And Swap）</h3><p>CAS操作包括了3个操作数：</p>
+<ul>
+<li>需要读写的内存位置(V)</li>
+<li>进行比较的预期值(A)</li>
+<li>拟写入的新值(B)</li>
+</ul>
+<p>CAS操作逻辑如下：如果内存位置V的值等于预期的A值，则将该位置更新为新值B，否则不进行任何操作。许多CAS的操作是自旋的：如果操作不成功，会一直重试，直到操作成功为止。</p>
+<p>这里引出一个新的问题，既然CAS包含了Compare和Swap两个操作，它又如何保证原子性呢？答案是：CAS是由CPU支持的原子操作，其原子性是在硬件层面进行保证的。</p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a><strong>悲观锁</strong></h3><p>悲观锁是就是悲观思想，即认为写多，遇到并发写的可能性高，每次去拿数据的时候都认为别人会修</p>
+<p>改，所以每次在读写数据的时候都会上锁，这样别人想读写这个数据就会block直到拿到锁。 java中的悲</p>
+<p>观锁就是Synchronized,AQS框架下的锁则是先尝试cas乐观锁去获取锁，获取不到，才会转换为悲观</p>
+<p>锁，如 RetreenLock。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/16/%E9%9D%A2%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -613,7 +698,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-16 17:06:59" itemprop="dateModified" datetime="2022-05-16T17:06:59+08:00">2022-05-16</time>
+                <time title="Modified: 2022-05-17 09:13:36" itemprop="dateModified" datetime="2022-05-17T09:13:36+08:00">2022-05-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -637,7 +722,7 @@
 
       
           <p><img src="/%E9%9B%86%E5%90%88%5C1166662(1).jpg" alt="1166662(1)"></p>
-<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/20180803184706534.png" alt="20180803184706534"></p>
+<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/%E9%9B%86%E5%90%88%5C20180803184706534.png" alt="20180803184706534"></p>
 <p>1.List:  元素可重复 可以多个元素为null </p>
 <p>2.Set:  添加的元素不可重复</p>
 <h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="1-ArrayList："><a href="#1-ArrayList：" class="headerlink" title="1.ArrayList："></a>1.ArrayList：</h3><p>​	底层使用数组实现 </p>
@@ -1171,7 +1256,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

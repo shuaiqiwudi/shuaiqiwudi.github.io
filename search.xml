@@ -78,6 +78,37 @@
       </categories>
   </entry>
   <entry>
+    <title>git</title>
+    <url>/2022/05/16/git/</url>
+    <content><![CDATA[<h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><p><img src="/image-20220516150930144.png" alt="image-20220516150930144"></p>
+<ul>
+<li>workspace：工作区</li>
+<li>staging area：暂存区&#x2F;缓存区</li>
+<li>local repository：版本库或本地仓库</li>
+<li>remote repository：远程仓库</li>
+</ul>
+<p>合作开发第一个项目的时候 就感觉到git的强大 同时也被git上了一课 多版本的来回混合 以及多个操作 搞得有点乱 从空间和操作命令上来结合了解以下git到底如何使用 执行命令后哪里的代码跑到哪里了？</p>
+<p>首先要初始化一个仓库：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git init    </span><br><span class="line">$ git add .    </span><br><span class="line">$ git commit  </span><br></pre></td></tr></table></figure>
+
+<p>创建分支命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch (branchname) //不加名字 为查看分支</span><br></pre></td></tr></table></figure>
+
+<p>切换分支命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout (branchname)</span><br></pre></td></tr></table></figure>
+
+<p>合并分支：</p>
+<p>需要先切换到主分支下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git merge (想要合并的分支)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>equals()与HashCode()的爱恨情仇</title>
     <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
     <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
@@ -122,31 +153,26 @@
 ]]></content>
   </entry>
   <entry>
-    <title>git</title>
-    <url>/2022/05/16/git/</url>
-    <content><![CDATA[<h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><p><img src="/image-20220516150930144.png" alt="image-20220516150930144"></p>
+    <title>乐观锁和悲观锁</title>
+    <url>/2022/05/17/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/</url>
+    <content><![CDATA[<h1 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h1><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>乐观锁是一种乐观思想，即认为读多写少，遇到并发写的可能性低，每次去拿数据的时候都认为别人不</p>
+<p>会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，采取在写</p>
+<p>时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），如果失败则要重复</p>
+<p>读-比较-写的操作。</p>
+<p>java 中的乐观锁基本都是通过 CAS 操作实现的，CAS 是一种更新的原子操作，比较当前值跟传入值是否</p>
+<p>一样，一样则更新，否则失败。</p>
+<h3 id="CAS（Compare-And-Swap）"><a href="#CAS（Compare-And-Swap）" class="headerlink" title="CAS（Compare And Swap）"></a>CAS（Compare And Swap）</h3><p>CAS操作包括了3个操作数：</p>
 <ul>
-<li>workspace：工作区</li>
-<li>staging area：暂存区&#x2F;缓存区</li>
-<li>local repository：版本库或本地仓库</li>
-<li>remote repository：远程仓库</li>
+<li>需要读写的内存位置(V)</li>
+<li>进行比较的预期值(A)</li>
+<li>拟写入的新值(B)</li>
 </ul>
-<p>合作开发第一个项目的时候 就感觉到git的强大 同时也被git上了一课 多版本的来回混合 以及多个操作 搞得有点乱 从空间和操作命令上来结合了解以下git到底如何使用 执行命令后哪里的代码跑到哪里了？</p>
-<p>首先要初始化一个仓库：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git init    </span><br><span class="line">$ git add .    </span><br><span class="line">$ git commit  </span><br></pre></td></tr></table></figure>
-
-<p>创建分支命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch (branchname) //不加名字 为查看分支</span><br></pre></td></tr></table></figure>
-
-<p>切换分支命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout (branchname)</span><br></pre></td></tr></table></figure>
-
-<p>合并分支：</p>
-<p>需要先切换到主分支下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git merge (想要合并的分支)</span><br></pre></td></tr></table></figure>
-
+<p>CAS操作逻辑如下：如果内存位置V的值等于预期的A值，则将该位置更新为新值B，否则不进行任何操作。许多CAS的操作是自旋的：如果操作不成功，会一直重试，直到操作成功为止。</p>
+<p>这里引出一个新的问题，既然CAS包含了Compare和Swap两个操作，它又如何保证原子性呢？答案是：CAS是由CPU支持的原子操作，其原子性是在硬件层面进行保证的。</p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a><strong>悲观锁</strong></h3><p>悲观锁是就是悲观思想，即认为写多，遇到并发写的可能性高，每次去拿数据的时候都认为别人会修</p>
+<p>改，所以每次在读写数据的时候都会上锁，这样别人想读写这个数据就会block直到拿到锁。 java中的悲</p>
+<p>观锁就是Synchronized,AQS框架下的锁则是先尝试cas乐观锁去获取锁，获取不到，才会转换为悲观</p>
+<p>锁，如 RetreenLock。</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -161,10 +187,36 @@
       </categories>
   </entry>
   <entry>
+    <title>双重检验锁</title>
+    <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
+    <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>面试</title>
+    <url>/2022/05/16/%E9%9D%A2%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
+<p>内存泄露怎么解决：</p>
+<p>线程的生命周期：</p>
+<p><img src="/%E9%9D%A2%E8%AF%95/image-20220517082401082.png" alt="image-20220517082401082"></p>
+<p>缓存穿透、缓存击穿、缓存雪崩：</p>
+<p>回文子串：</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>集合</title>
     <url>/2022/05/11/%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<p><img src="/%E9%9B%86%E5%90%88%5C1166662(1).jpg" alt="1166662(1)"></p>
-<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/20180803184706534.png" alt="20180803184706534"></p>
+<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/%E9%9B%86%E5%90%88%5C20180803184706534.png" alt="20180803184706534"></p>
 <p>1.List:  元素可重复 可以多个元素为null </p>
 <p>2.Set:  添加的元素不可重复</p>
 <h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="1-ArrayList："><a href="#1-ArrayList：" class="headerlink" title="1.ArrayList："></a>1.ArrayList：</h3><p>​	底层使用数组实现 </p>
@@ -332,32 +384,6 @@
 </ol>
 <p>​	</p>
 <p>​	</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>双重检验锁</title>
-    <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
-    <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>面试</title>
-    <url>/2022/05/16/%E9%9D%A2%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
-<p>内存泄露怎么解决：</p>
-<p>线程的生命周期：</p>
-<p><img src="/%E9%9D%A2%E8%AF%95/image-20220517082401082.png" alt="image-20220517082401082"></p>
-<p>缓存穿透、缓存击穿、缓存雪崩：</p>
-<p>回文子串：</p>
 ]]></content>
       <categories>
         <category>java</category>
