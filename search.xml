@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Write blog using markdown01</title>
-    <url>/2022/05/07/Write-blog-using-markdown01/</url>
-    <content><![CDATA[<h4 id="预览界面"><a href="#预览界面" class="headerlink" title="预览界面"></a>预览界面</h4><p><strong>hexo g</strong><br><strong>hexo s</strong></p>
-<h4 id="部署到网站"><a href="#部署到网站" class="headerlink" title="部署到网站"></a>部署到网站</h4><p><em>hexo clean</em><br><em>hexo g</em><br><em>hexo d</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.baidu.com/">https://www.baidu.com</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM</title>
     <url>/2022/05/16/JVM/</url>
     <content><![CDATA[<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>什么是JVM？</p>
@@ -80,6 +64,35 @@
       </categories>
   </entry>
   <entry>
+    <title>Write blog using markdown01</title>
+    <url>/2022/05/07/Write-blog-using-markdown01/</url>
+    <content><![CDATA[<h4 id="预览界面"><a href="#预览界面" class="headerlink" title="预览界面"></a>预览界面</h4><p><strong>hexo g</strong><br><strong>hexo s</strong></p>
+<h4 id="部署到网站"><a href="#部署到网站" class="headerlink" title="部署到网站"></a>部署到网站</h4><p><em>hexo clean</em><br><em>hexo g</em><br><em>hexo d</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.baidu.com/">https://www.baidu.com</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Server</title>
+    <url>/2022/05/18/Server/</url>
+    <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
+<p>提到Tomcat 就必须提到Server。</p>
+<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
+<p>扒开Tomcat 看看真面目：</p>
+<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>equals()与HashCode()的爱恨情仇</title>
     <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
     <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
@@ -104,6 +117,24 @@
       <categories>
         <category>java</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/04/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>git</title>
@@ -136,24 +167,6 @@
       <categories>
         <category>java</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/04/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>test01</title>
@@ -247,6 +260,21 @@
 
 
 
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>面试</title>
+    <url>/2022/05/16/%E9%9D%A2%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
+<p>内存泄露怎么解决：</p>
+<p>线程的生命周期：</p>
+<img src="/2022/05/16/%E9%9D%A2%E8%AF%95/image-20220517082401082.png" class="" title="image-20220517082401082">
+
+<p>缓存穿透、缓存击穿、缓存雪崩：</p>
+<p>回文子串：</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -429,21 +457,6 @@
 </ol>
 <p>​	</p>
 <p>​	</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>面试</title>
-    <url>/2022/05/16/%E9%9D%A2%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
-<p>内存泄露怎么解决：</p>
-<p>线程的生命周期：</p>
-<img src="/2022/05/16/%E9%9D%A2%E8%AF%95/image-20220517082401082.png" class="" title="image-20220517082401082">
-
-<p>缓存穿透、缓存击穿、缓存雪崩：</p>
-<p>回文子串：</p>
 ]]></content>
       <categories>
         <category>java</category>
