@@ -106,6 +106,24 @@
       </categories>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2022/04/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>git</title>
     <url>/2022/05/16/git/</url>
     <content><![CDATA[<h1 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h1><img src="/2022/05/16/git/image-20220516150930144.png" class="" title="image-20220516150930144">
@@ -133,6 +151,14 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git merge (想要合并的分支)</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>test01</title>
+    <url>/2022/05/08/test01/</url>
+    <content><![CDATA[<h4 id="test01"><a href="#test01" class="headerlink" title="test01"></a>test01</h4>]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -215,24 +241,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/04/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>双重检验锁</title>
     <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
     <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -245,18 +253,12 @@
       </categories>
   </entry>
   <entry>
-    <title>test01</title>
-    <url>/2022/05/08/test01/</url>
-    <content><![CDATA[<h4 id="test01"><a href="#test01" class="headerlink" title="test01"></a>test01</h4>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>集合</title>
     <url>/2022/05/11/%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<p><img src="/../1166662(1).jpg" alt="1166662(1)"></p>
-<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/../20180803184706534.png" alt="20180803184706534"></p>
+    <content><![CDATA[.jpg)
+
+<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><img src="/2022/05/11/%E9%9B%86%E5%90%88/20180803184706534.png" class="" width="20180803184706534">
+
 <p>1.List:  元素可重复 可以多个元素为null </p>
 <p>2.Set:  添加的元素不可重复</p>
 <h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="1-ArrayList："><a href="#1-ArrayList：" class="headerlink" title="1.ArrayList："></a>1.ArrayList：</h3><p>​	底层使用数组实现 </p>
@@ -279,7 +281,8 @@
 <p> 3）安全：和ArrayList一样 LinkedList是非线程安全的</p>
 <h3 id="3-Vertor"><a href="#3-Vertor" class="headerlink" title="3.Vertor"></a>3.Vertor</h3><p>vertor内部实现是类似于ArrayList</p>
 <h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>数据以键值对的形式进行存储</p>
-<p><img src="/../20180803184706534.png" alt="20180803184706534"></p>
+<img src="/2022/05/11/%E9%9B%86%E5%90%88/%E5%9B%BE%E7%89%871.png" class="" title="图片1">
+
 <h3 id="1-HashMap"><a href="#1-HashMap" class="headerlink" title="1.HashMap"></a>1.HashMap</h3><h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>HashMap 基于 Hash 算法实现的</p>
 <ol>
 <li><p>当我们往Hashmap中put元素时，利用key的hashCode重新hash计算出当前对象的元素在数组中的下标</p>
@@ -362,13 +365,15 @@
 <p>组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每</p>
 <p>个 Segment 守护着一个 HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先</p>
 <p>获得对应的 Segment的锁。</p>
-<p><img src="/../image-20220516104703569.png" alt="image-20220516104703569"></p>
+<img src="/2022/05/11/%E9%9B%86%E5%90%88/image-20220516104703569.png" class="" title="image-20220516104703569">
+
 <p>1.8</p>
 <p>在JDK1.8中，放弃了Segment臃肿的设计，取而代之的是采用<strong>Node + CAS + Synchronized</strong>来保证并发</p>
 <p>安全进行实现，synchronized只锁定当前链表或红黑二叉树的首节点，这样只要hash不冲突，就不会产</p>
 <p>生并发，效率又提升N 倍。</p>
 <p>每一个结点为node  而红黑树的结点为TreeNode</p>
-<p><img src="/../image-20220516110334299.png" alt="image-20220516110334299"></p>
+<img src="/2022/05/11/%E9%9B%86%E5%90%88/image-20220516110334299.png" class="" title="image-20220516110334299">
+
 <p>使用CAS的部分 添加元素</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">    tab = initTable();</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((f = tabAt(tab, i = (n - <span class="number">1</span>) &amp; hash)) == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (casTabAt(tab, i, <span class="literal">null</span>,</span><br><span class="line">                 <span class="keyword">new</span> <span class="title class_">Node</span>&lt;K,V&gt;(hash, key, value, <span class="literal">null</span>)))</span><br><span class="line">        <span class="keyword">break</span>;                   <span class="comment">// no lock when adding to empty bin</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -435,7 +440,8 @@
     <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
 <p>内存泄露怎么解决：</p>
 <p>线程的生命周期：</p>
-<p><img src="/../image-20220517082401082.png" alt="image-20220517082401082"></p>
+<img src="/2022/05/16/%E9%9D%A2%E8%AF%95/image-20220517082401082.png" class="" title="image-20220517082401082">
+
 <p>缓存穿透、缓存击穿、缓存雪崩：</p>
 <p>回文子串：</p>
 ]]></content>
