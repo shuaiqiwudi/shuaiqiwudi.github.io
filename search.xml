@@ -31,7 +31,7 @@
 <p>Java Development Kit是提供给Java开发人员使用的，其中包含了Java的开发 工具，也包括了JRE。所以</p>
 <p>安装了JDK，就无需再单独安装JRE了。其中的开发工 具：编译工具(javac.exe)，打包工具(jar.exe)等</p>
 <p>从包含关系来讲：JDK&gt;JRE&gt;JVM</p>
-<p><img src="/image-20220516150612535-16526908200071.png" alt="image-20220516150612535"></p>
+<p><img src="/image-20220516150612535.png" alt="image-20220516150612535"></p>
 <p>既然谈到了JVM 众所周知 JVM是java语言的灵魂 那么JVM给java带来了什么？</p>
 <p>跨平台性：</p>
 <p>所谓跨平台性，是指java语言编写的程序，一次编译后，可以在多个系统平台上 运行。</p>
@@ -56,7 +56,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Java源代码(.java文件)----&gt;编译器----&gt;jvm可执行的Java字节码(.class文件)----&gt;jvm----&gt;jvm中的解释器-----&gt; 机器可执行的二进制机器码----&gt;程序运行。</span><br></pre></td></tr></table></figure>
 
 <p>接下来看一下JVM内部结构：</p>
-<p><img src="/image-20220516154322660-16526908428712.png" alt="image-20220516154322660"></p>
+<p><img src="/image-20220516154322660.png" alt="image-20220516154322660"></p>
 <p>可以分为两组件 两子系统：</p>
 <p>两个子系统：1.Class loader(类装载)  2. Execution engine(执行引擎)</p>
 <p>两个组件：1.Runtime data area(运行时数据区）2.Native Interface(本地接口)。</p>
@@ -72,6 +72,32 @@
 <blockquote>
 <p>Execution engine（执行引擎）：执行classes中的指令。</p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>equals()与HashCode()的爱恨情仇</title>
+    <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
+    <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
+<p>对于基本数据类而言，可以直接使用“&#x3D;&#x3D;”运算符来比较其对应的值是否相等。但是对于引用类型：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s1=<span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line">String s2=<span class="keyword">new</span> <span class="title class_">String</span>();</span><br></pre></td></tr></table></figure>
+
+<p>此时的两个引用变量所对应内存中存储的数值就是对象占用的那块内存的首地址。如果要比较两个对象的是否是同一个对象，</p>
+<p>则可以使用”&#x3D;&#x3D;“，如果要比较两个对象的内容是否相同，则不可以使用”&#x3D;&#x3D;“实现了。</p>
+<p>equals是Object类提供的方法之一。每一个Java类都集成自Object类，所以每一个对象都具有equals这个方法。</p>
+<p>相比“&#x3D;&#x3D;”运算符，equals(Object)方法的特殊之处就在于它可以被覆盖，所以可以通过覆盖的方法让它不是比较引用而是比较数据内容。</p>
+<p>那么equals()是如何比较引用类型的内容的？</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Human</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"><span class="comment">//		generate生成的equals和hashcode</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">Human</span> <span class="variable">human</span> <span class="operator">=</span> (Human) o;</span><br><span class="line">            <span class="type">return</span> <span class="variable">age</span> <span class="operator">=</span>= human.age &amp;&amp;</span><br><span class="line">                    Objects.equals(name, human.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Objects.hash(age, name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HashCode和equals"><a href="#HashCode和equals" class="headerlink" title="HashCode和equals"></a>HashCode和equals</h4><p>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整 数。这个哈希码的作用是</p>
+<p>确定该对象在哈希表中的索引位置。hashCode() 定义 在JDK的Object.java中，这就意味着Java中的任何</p>
+<p>类都包含有hashCode()函数.</p>
+<h4 id="hashCode-与equals-的相关规定"><a href="#hashCode-与equals-的相关规定" class="headerlink" title="hashCode()与equals() 的相关规定"></a><strong>hashCode()<strong>与</strong>equals()</strong> <strong>的相关规定</strong></h4><p>如果两个对象相等，则hashcode一定也是相同的 两个对象相等，对两个对象分别调用equals方法都返</p>
+<p>回true 两个对象有相同的hashcode值，它们也不一定是相等的</p>
+<h4 id="两者的关系"><a href="#两者的关系" class="headerlink" title="两者的关系"></a>两者的关系</h4><p>第一种 不会创建“类对应的散列表”<br> 这里所说的“不会创建类对应的散列表”是说：我们不会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，不会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”没有关系。<br> 这种情况下，equals() 用来比较该类的两个对象是否相等。而hashCode() 则根本没有任何作用，所以，不用理会hashCode()。</p>
+<p>第二种 会创建“类对应的散列表”<br> 这里所说的“会创建类对应的散列表”是说：我们会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”是有关系的：<br> 1)、如果两个对象相等，那么它们的hashCode()值一定相同。<br> 这里的相等是指，通过equals()比较两个对象时返回true。<br> 2)、如果两个对象hashCode()相等，它们并不一定相等。<br> 因为在散列表中，hashCode()相等，即两个键值对的哈希值相等。然而哈希值相等，并不一定能得出键值对相等。<br> 此外，在这种情况下。若要判断两个对象是否相等，除了要覆盖equals()之外，也要覆盖hashCode()函数。否则，equals()无效。</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -109,32 +135,6 @@
       </categories>
   </entry>
   <entry>
-    <title>equals()与HashCode()的爱恨情仇</title>
-    <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
-    <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
-<p>对于基本数据类而言，可以直接使用“&#x3D;&#x3D;”运算符来比较其对应的值是否相等。但是对于引用类型：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s1=<span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line">String s2=<span class="keyword">new</span> <span class="title class_">String</span>();</span><br></pre></td></tr></table></figure>
-
-<p>此时的两个引用变量所对应内存中存储的数值就是对象占用的那块内存的首地址。如果要比较两个对象的是否是同一个对象，</p>
-<p>则可以使用”&#x3D;&#x3D;“，如果要比较两个对象的内容是否相同，则不可以使用”&#x3D;&#x3D;“实现了。</p>
-<p>equals是Object类提供的方法之一。每一个Java类都集成自Object类，所以每一个对象都具有equals这个方法。</p>
-<p>相比“&#x3D;&#x3D;”运算符，equals(Object)方法的特殊之处就在于它可以被覆盖，所以可以通过覆盖的方法让它不是比较引用而是比较数据内容。</p>
-<p>那么equals()是如何比较引用类型的内容的？</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Human</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"><span class="comment">//		generate生成的equals和hashcode</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">Human</span> <span class="variable">human</span> <span class="operator">=</span> (Human) o;</span><br><span class="line">            <span class="type">return</span> <span class="variable">age</span> <span class="operator">=</span>= human.age &amp;&amp;</span><br><span class="line">                    Objects.equals(name, human.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Objects.hash(age, name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="HashCode和equals"><a href="#HashCode和equals" class="headerlink" title="HashCode和equals"></a>HashCode和equals</h4><p>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整 数。这个哈希码的作用是</p>
-<p>确定该对象在哈希表中的索引位置。hashCode() 定义 在JDK的Object.java中，这就意味着Java中的任何</p>
-<p>类都包含有hashCode()函数.</p>
-<h4 id="hashCode-与equals-的相关规定"><a href="#hashCode-与equals-的相关规定" class="headerlink" title="hashCode()与equals() 的相关规定"></a><strong>hashCode()<strong>与</strong>equals()</strong> <strong>的相关规定</strong></h4><p>如果两个对象相等，则hashcode一定也是相同的 两个对象相等，对两个对象分别调用equals方法都返</p>
-<p>回true 两个对象有相同的hashcode值，它们也不一定是相等的</p>
-<h4 id="两者的关系"><a href="#两者的关系" class="headerlink" title="两者的关系"></a>两者的关系</h4><p>第一种 不会创建“类对应的散列表”<br> 这里所说的“不会创建类对应的散列表”是说：我们不会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，不会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”没有关系。<br> 这种情况下，equals() 用来比较该类的两个对象是否相等。而hashCode() 则根本没有任何作用，所以，不用理会hashCode()。</p>
-<p>第二种 会创建“类对应的散列表”<br> 这里所说的“会创建类对应的散列表”是说：我们会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”是有关系的：<br> 1)、如果两个对象相等，那么它们的hashCode()值一定相同。<br> 这里的相等是指，通过equals()比较两个对象时返回true。<br> 2)、如果两个对象hashCode()相等，它们并不一定相等。<br> 因为在散列表中，hashCode()相等，即两个键值对的哈希值相等。然而哈希值相等，并不一定能得出键值对相等。<br> 此外，在这种情况下。若要判断两个对象是否相等，除了要覆盖equals()之外，也要覆盖hashCode()函数。否则，equals()无效。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2022/04/14/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -151,32 +151,6 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>乐观锁和悲观锁</title>
-    <url>/2022/05/17/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/</url>
-    <content><![CDATA[<h1 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h1><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>乐观锁是一种乐观思想，即认为读多写少，遇到并发写的可能性低，每次去拿数据的时候都认为别人不</p>
-<p>会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，采取在写</p>
-<p>时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），如果失败则要重复</p>
-<p>读-比较-写的操作。</p>
-<p>java 中的乐观锁基本都是通过 CAS 操作实现的，CAS 是一种更新的原子操作，比较当前值跟传入值是否</p>
-<p>一样，一样则更新，否则失败。</p>
-<h3 id="CAS（Compare-And-Swap）"><a href="#CAS（Compare-And-Swap）" class="headerlink" title="CAS（Compare And Swap）"></a>CAS（Compare And Swap）</h3><p>CAS操作包括了3个操作数：</p>
-<ul>
-<li>需要读写的内存位置(V)</li>
-<li>进行比较的预期值(A)</li>
-<li>拟写入的新值(B)</li>
-</ul>
-<p>CAS操作逻辑如下：如果内存位置V的值等于预期的A值，则将该位置更新为新值B，否则不进行任何操作。许多CAS的操作是自旋的：如果操作不成功，会一直重试，直到操作成功为止。</p>
-<p>这里引出一个新的问题，既然CAS包含了Compare和Swap两个操作，它又如何保证原子性呢？答案是：CAS是由CPU支持的原子操作，其原子性是在硬件层面进行保证的。</p>
-<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a><strong>悲观锁</strong></h3><p>悲观锁是就是悲观思想，即认为写多，遇到并发写的可能性高，每次去拿数据的时候都认为别人会修</p>
-<p>改，所以每次在读写数据的时候都会上锁，这样别人想读写这个数据就会block直到拿到锁。 java中的悲</p>
-<p>观锁就是Synchronized,AQS框架下的锁则是先尝试cas乐观锁去获取锁，获取不到，才会转换为悲观</p>
-<p>锁，如 RetreenLock。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
   </entry>
   <entry>
     <title>test01</title>
@@ -199,14 +173,75 @@
       </categories>
   </entry>
   <entry>
-    <title>面试</title>
-    <url>/2022/05/16/%E9%9D%A2%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
-<p>内存泄露怎么解决：</p>
-<p>线程的生命周期：</p>
-<p><img src="/%E9%9D%A2%E8%AF%95/image-20220517082401082.png" alt="image-20220517082401082"></p>
-<p>缓存穿透、缓存击穿、缓存雪崩：</p>
-<p>回文子串：</p>
+    <title>乐观锁和悲观锁</title>
+    <url>/2022/05/17/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/</url>
+    <content><![CDATA[<h1 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h1><h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>乐观锁是一种乐观思想，即认为读多写少，遇到并发写的可能性低，每次去拿数据的时候都认为别人不</p>
+<p>会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，采取在写</p>
+<p>时先读出当前版本号，然后加锁操作（比较跟上一次的版本号，如果一样则更新），如果失败则要重复</p>
+<p>读-比较-写的操作。</p>
+<p>java 中的乐观锁基本都是通过 CAS 操作实现的，CAS 是一种更新的原子操作，比较当前值跟传入值是否</p>
+<p>一样，一样则更新，否则失败。</p>
+<p><strong>乐观锁测试</strong></p>
+<p>不使用乐观锁的情况</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test2</span> &#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    这个例子很简单：我们定义了一个变量a，初始值是0，然后使用5个线程去增加，每个线程增加10，</span></span><br><span class="line"><span class="comment">    按道理来说5个线程一共增加了50，但是运行一下就知道答案不到50，原因就在于里面那个加一操作：</span></span><br><span class="line"><span class="comment">    a++;</span></span><br><span class="line"><span class="comment">    对于a++的操作，其实可以分解为3个步骤。</span></span><br><span class="line"><span class="comment">    （1）从主存中读取a的值</span></span><br><span class="line"><span class="comment">    （2）对a进行加1操作</span></span><br><span class="line"><span class="comment">    （3）把a重新刷新到主存</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">//一个变量a</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Test</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test</span>();</span><br><span class="line">        Thread[] threads = <span class="keyword">new</span> <span class="title class_">Thread</span>[<span class="number">5</span>];</span><br><span class="line">        <span class="comment">//定义5个线程，每个线程加10</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            threads[i] = <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">                        System.out.println(a++);</span><br><span class="line">                        Thread.sleep(<span class="number">500</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            threads[i].start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    java并发机制中主要有三个特性需要我们去考虑，原子性、可见性和有序性。<br>​    AtomicInteger的作用就是为了保证原子性。如何保证原子性呢？我们使用案例说明。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test3</span> &#123;</span><br><span class="line">    <span class="comment">//使用AtomicInteger定义a</span></span><br><span class="line">    <span class="keyword">static</span> <span class="type">AtomicInteger</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Test3</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Test3</span>();</span><br><span class="line">        Thread[] threads = <span class="keyword">new</span> <span class="title class_">Thread</span>[<span class="number">5</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            threads[i] = <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">                        <span class="comment">//使用getAndIncrement函数进行自增操作</span></span><br><span class="line">                        System.out.println(a.incrementAndGet());</span><br><span class="line">                        Thread.sleep(<span class="number">500</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            threads[i].start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">incrementAndGet</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="built_in">this</span>, valueOffset, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">getAndAddInt</span><span class="params">(Object var1, <span class="type">long</span> var2, <span class="type">int</span> var4)</span> &#123;</span><br><span class="line">    <span class="type">int</span> var5;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        var5 = <span class="built_in">this</span>.getIntVolatile(var1, var2);</span><br><span class="line">    &#125; <span class="keyword">while</span>(!<span class="built_in">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4));</span><br><span class="line">    <span class="comment">//CAS</span></span><br><span class="line">    <span class="comment">//getAndIncrement()实现的自增操作是自旋CAS操作：在循环中进行compareAndSet，如果执行成功则退出，否则一直执行。</span></span><br><span class="line">    <span class="keyword">return</span> var5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>AtomicInteger是java.util.concurrent.atomic包提供的原子类，利用CPU提供的CAS操作来保证原子性；</p>
+<p>除了AtomicInteger外，还有AtomicBoolean、AtomicLong、AtomicReference等众多原子类。</p>
+<p>下面看一下AtomicInteger的源码，了解下它的自增操作getAndIncrement()是如何实现的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AtomicInteger</span> <span class="keyword">extends</span> <span class="title class_">Number</span> <span class="keyword">implements</span> <span class="title class_">java</span>.io.Serializable &#123;</span><br><span class="line">    <span class="comment">// setup to use Unsafe.compareAndSwapInt for updates</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Unsafe</span> <span class="variable">unsafe</span> <span class="operator">=</span> Unsafe.getUnsafe();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> valueOffset;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            valueOffset = unsafe.objectFieldOffset</span><br><span class="line">                (AtomicInteger.class.getDeclaredField(<span class="string">&quot;value&quot;</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception ex) &#123; <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(ex); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="type">boolean</span> <span class="title function_">compareAndSet</span><span class="params">(<span class="type">int</span> expect, <span class="type">int</span> update)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> unsafe.compareAndSwapInt(<span class="built_in">this</span>, valueOffset, expect, update);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Unsafe是用来帮助Java访问操作系统底层资源的类（如可以分配内存、释放内存,在netty中大量用到它,属于C++层面的native方法,我们一般使用反射获取），通过Unsafe，Java具有了底层操作能力，可以提升运行效率；</p>
+<p>valueOffset可以理解为value在内存中的偏移量，对应了CAS三个操作数(V&#x2F;A&#x2F;B)中的V；偏移量的获得也是通过Unsafe实现的。</p>
+<h3 id="CAS（Compare-And-Swap）"><a href="#CAS（Compare-And-Swap）" class="headerlink" title="CAS（Compare And Swap）"></a>CAS（Compare And Swap）</h3><p>CAS操作包括了3个操作数：</p>
+<ul>
+<li>需要读写的内存位置(V)</li>
+<li>进行比较的预期值(A)</li>
+<li>拟写入的新值(B)</li>
+</ul>
+<p>CAS操作逻辑如下：如果内存位置V的值等于预期的A值，则将该位置更新为新值B，否则不进行任何操作。许多CAS的操作是自旋的：如果操作不成功，会一直重试，直到操作成功为止。</p>
+<p>这里引出一个新的问题，既然CAS包含了Compare和Swap两个操作，它又如何保证原子性呢？</p>
+<p>答案是：CAS是由CPU支持的原子操作，其原子性是在硬件层面进行保证的。</p>
+<p>但是虽然保证将A值比较 然后转化为B值这一系列操作是原子性的 但是不能确定这个A值就是预期的A值 这就是ABA问题</p>
+<p>ABA问题：如果另一个线程修改V值假设原来是A，先修改成B，再修改回成A。当前线程的CAS操作无法分辨当前V值是否发生过变化。</p>
+<p>这时候就需要一个版本号来进行限制。Java并发包为了解决这个问题，提供了一个带有标记的原子引用类“AtomicStampedReference”，</p>
+<p>它可以通过控制变量值的版本来保证CAS的正确性。</p>
+<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>其实大多是的乐观锁是由CAS+版本号进行实现的 但是通过版本号也可以实现乐观锁</p>
+<p>和CAS大致思想相同 将想要更改的信息添加一个版本号 在对数据进行修改的时候 首先查询版本号 如果版本号相同 则</p>
+<p>继续操作 修改数据 之后再将版本号加1（或者加其他数值，总之是修改版本号）</p>
+<p><strong>乐观锁加锁了吗？</strong></p>
+<p>1.乐观锁本身是不加锁的，只是在修改数据的时候，判断一下是不是已经被其他线程更新了。</p>
+<p>2.有一些乐观锁是加锁合作的，为了保证整个查看版本修改数据然后修改版本的原子性操作，</p>
+<p>但这只是乐观锁与加锁操作合作的例子，不能改变“乐观锁本身不加锁”这一事实。</p>
+<p><strong>乐观锁带来的问题</strong></p>
+<p>1.首当其冲的是性能问题，当CAS操作自旋访问的时候，执行getAndAddInt方法时，如果CAS失败，会一直进行尝试。</p>
+<p>如果CAS长时间一直不成功，可能会给CPU带来很大的开销。</p>
+<p>2.安全问题，就是上述的ABA问题，”你以为身边的那么她还是她，其实她早变心了，已经不是以前的那个她了“。</p>
+<p>3.共享，当对一个共享变量执行操作时，我们可以使用循环CAS的方式来保证原子操作，但是对多个共享变量操作时，</p>
+<p>循环CAS就无法保证操作的原子性，这个时候就可以用锁来保证原子性。</p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a><strong>悲观锁</strong></h3><p>悲观锁是就是悲观思想，即认为写多，遇到并发写的可能性高，每次去拿数据的时候都认为别人会修</p>
+<p>改，所以每次在读写数据的时候都会上锁，这样别人想读写这个数据就会block直到拿到锁。 java中的悲</p>
+<p>观锁就是Synchronized,AQS框架下的锁则是先尝试cas乐观锁去获取锁，获取不到，才会转换为悲观</p>
+<p>锁，如 RetreenLock。</p>
+<p>数据库中就经常使用悲观锁以保证数据的安全，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。</p>
+<p>Java中<code>synchronized</code>和<code>ReentrantLock</code>等独占锁就是悲观锁思想的实现。</p>
+<h3 id="悲观锁和乐观锁的使用场景"><a href="#悲观锁和乐观锁的使用场景" class="headerlink" title="悲观锁和乐观锁的使用场景"></a>悲观锁和乐观锁的使用场景</h3><p>乐观锁和悲观锁并没有优劣之分，它们有各自适合的场景；下面从两个方面进行说明。</p>
+<ul>
+<li><strong>功能限制 与悲观锁相比，乐观锁适用的场景受到了更多的限制，无论是CAS还是版本号机制。</strong></li>
+</ul>
+<p>例如，CAS只能保证单个变量操作的原子性，当涉及到多个变量时，CAS是无能为力的，而synchronized则可以通过对整个代码块加锁来处理。</p>
+<p>再比如版本号机制，如果query的时候是针对表1，而update的时候是针对表2，也很难通过简单的版本号来实现乐观锁。</p>
+<ul>
+<li><strong>竞争激烈程度 如果悲观锁和乐观锁都可以使用，那么选择就要考虑竞争的激烈程度：</strong></li>
+</ul>
+<p>当竞争不激烈 (出现并发冲突的概率小)时，乐观锁更有优势，因为悲观锁会锁住代码块或数据，其他线程无法同时访问，影响并发，而且加锁和释放锁都需要消耗额外的资源。</p>
+<p>当竞争激烈(出现并发冲突的概率大)时，悲观锁更有优势，因为乐观锁在执行更新时频繁失败，需要不断重试，浪费CPU资源。</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -215,8 +250,8 @@
   <entry>
     <title>集合</title>
     <url>/2022/05/11/%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<p><img src="/%E9%9B%86%E5%90%88%5C1166662(1).jpg" alt="1166662(1)"></p>
-<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/%E9%9B%86%E5%90%88%5C20180803184706534.png" alt="20180803184706534"></p>
+    <content><![CDATA[<p><img src="/1166662(1).jpg" alt="1166662(1)"></p>
+<h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><p><img src="/20180803184706534.png" alt="20180803184706534"></p>
 <p>1.List:  元素可重复 可以多个元素为null </p>
 <p>2.Set:  添加的元素不可重复</p>
 <h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="1-ArrayList："><a href="#1-ArrayList：" class="headerlink" title="1.ArrayList："></a>1.ArrayList：</h3><p>​	底层使用数组实现 </p>
@@ -239,7 +274,7 @@
 <p> 3）安全：和ArrayList一样 LinkedList是非线程安全的</p>
 <h3 id="3-Vertor"><a href="#3-Vertor" class="headerlink" title="3.Vertor"></a>3.Vertor</h3><p>vertor内部实现是类似于ArrayList</p>
 <h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>数据以键值对的形式进行存储</p>
-<p><img src="E:\Blog\source\img\20180803184706534.png" alt="20180803184706534"></p>
+<p><img src="/20180803184706534.png" alt="20180803184706534"></p>
 <h3 id="1-HashMap"><a href="#1-HashMap" class="headerlink" title="1.HashMap"></a>1.HashMap</h3><h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>HashMap 基于 Hash 算法实现的</p>
 <ol>
 <li><p>当我们往Hashmap中put元素时，利用key的hashCode重新hash计算出当前对象的元素在数组中的下标</p>
@@ -322,7 +357,7 @@
 <p>组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每</p>
 <p>个 Segment 守护着一个 HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先</p>
 <p>获得对应的 Segment的锁。</p>
-<p><img src="/%5Cimages%5Cimage-20220516104703569-165269033930110.png" alt="image-20220516104703569"></p>
+<p><img src="/image-20220516104703569.png" alt="image-20220516104703569"></p>
 <p>1.8</p>
 <p>在JDK1.8中，放弃了Segment臃肿的设计，取而代之的是采用<strong>Node + CAS + Synchronized</strong>来保证并发</p>
 <p>安全进行实现，synchronized只锁定当前链表或红黑二叉树的首节点，这样只要hash不冲突，就不会产</p>
@@ -384,6 +419,20 @@
 </ol>
 <p>​	</p>
 <p>​	</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>面试</title>
+    <url>/2022/05/16/%E9%9D%A2%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
+<p>内存泄露怎么解决：</p>
+<p>线程的生命周期：</p>
+<p><img src="/image-20220517082401082.png" alt="image-20220517082401082"></p>
+<p>缓存穿透、缓存击穿、缓存雪崩：</p>
+<p>回文子串：</p>
 ]]></content>
       <categories>
         <category>java</category>
