@@ -30,7 +30,7 @@
 <meta property="og:description" content="‘&#x3D;&#x3D;’和equals“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。 对于基本数据类而言，可以直接使用“&#x3D;&#x3D;”运算符来比较其对应的值是否相等。但是对于引用类型： 12String s1&#x3D;new String();String s2&#x3D;new String();  此时的两个引用变">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-12T00:36:08.000Z">
-<meta property="article:modified_time" content="2022-05-12T01:23:20.551Z">
+<meta property="article:modified_time" content="2022-05-20T02:37:10.241Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -233,10 +233,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-05-12 08:36:08 / Modified: 09:23:20" itemprop="dateCreated datePublished" datetime="2022-05-12T08:36:08+08:00">2022-05-12</time>
+              <time title="Created: 2022-05-12 08:36:08" itemprop="dateCreated datePublished" datetime="2022-05-12T08:36:08+08:00">2022-05-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-05-20 10:37:10" itemprop="dateModified" datetime="2022-05-20T10:37:10+08:00">2022-05-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -267,6 +273,8 @@
 <p>equals是Object类提供的方法之一。每一个Java类都集成自Object类，所以每一个对象都具有equals这个方法。</p>
 <p>相比“&#x3D;&#x3D;”运算符，equals(Object)方法的特殊之处就在于它可以被覆盖，所以可以通过覆盖的方法让它不是比较引用而是比较数据内容。</p>
 <p>那么equals()是如何比较引用类型的内容的？</p>
+<span id="more"></span>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Human</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"><span class="comment">//		generate生成的equals和hashcode</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">Human</span> <span class="variable">human</span> <span class="operator">=</span> (Human) o;</span><br><span class="line">            <span class="type">return</span> <span class="variable">age</span> <span class="operator">=</span>= human.age &amp;&amp;</span><br><span class="line">                    Objects.equals(name, human.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Objects.hash(age, name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="HashCode和equals"><a href="#HashCode和equals" class="headerlink" title="HashCode和equals"></a>HashCode和equals</h4><p>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整 数。这个哈希码的作用是</p>
@@ -370,7 +378,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
