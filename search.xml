@@ -18,6 +18,25 @@
       </categories>
   </entry>
   <entry>
+    <title>Server</title>
+    <url>/2022/05/18/Server/</url>
+    <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
+<p>提到Tomcat 就必须提到Server。</p>
+<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
+<p>扒开Tomcat 看看真面目：</p>
+<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
+
+<span id="more"></span>
+
+
+
+<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>JVM</title>
     <url>/2022/05/16/JVM/</url>
     <content><![CDATA[<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>什么是JVM？</p>
@@ -211,25 +230,6 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       </categories>
   </entry>
   <entry>
-    <title>Server</title>
-    <url>/2022/05/18/Server/</url>
-    <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
-<p>提到Tomcat 就必须提到Server。</p>
-<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
-<p>扒开Tomcat 看看真面目：</p>
-<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
-
-<span id="more"></span>
-
-
-
-<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Write blog using markdown01</title>
     <url>/2022/05/07/Write-blog-using-markdown01/</url>
     <content><![CDATA[<h4 id="预览界面"><a href="#预览界面" class="headerlink" title="预览界面"></a>预览界面</h4><p><strong>hexo g</strong><br><strong>hexo s</strong></p>
@@ -244,6 +244,34 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
         <tag>markdown</tag>
         <tag>blog</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>equals()与HashCode()的爱恨情仇</title>
+    <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
+    <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
+<p>对于基本数据类而言，可以直接使用“&#x3D;&#x3D;”运算符来比较其对应的值是否相等。但是对于引用类型：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s1=<span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line">String s2=<span class="keyword">new</span> <span class="title class_">String</span>();</span><br></pre></td></tr></table></figure>
+
+<p>此时的两个引用变量所对应内存中存储的数值就是对象占用的那块内存的首地址。如果要比较两个对象的是否是同一个对象，</p>
+<p>则可以使用”&#x3D;&#x3D;“，如果要比较两个对象的内容是否相同，则不可以使用”&#x3D;&#x3D;“实现了。</p>
+<p>equals是Object类提供的方法之一。每一个Java类都集成自Object类，所以每一个对象都具有equals这个方法。</p>
+<p>相比“&#x3D;&#x3D;”运算符，equals(Object)方法的特殊之处就在于它可以被覆盖，所以可以通过覆盖的方法让它不是比较引用而是比较数据内容。</p>
+<p>那么equals()是如何比较引用类型的内容的？</p>
+<span id="more"></span>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Human</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"><span class="comment">//		generate生成的equals和hashcode</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">Human</span> <span class="variable">human</span> <span class="operator">=</span> (Human) o;</span><br><span class="line">            <span class="type">return</span> <span class="variable">age</span> <span class="operator">=</span>= human.age &amp;&amp;</span><br><span class="line">                    Objects.equals(name, human.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Objects.hash(age, name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HashCode和equals"><a href="#HashCode和equals" class="headerlink" title="HashCode和equals"></a>HashCode和equals</h4><p>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整 数。这个哈希码的作用是</p>
+<p>确定该对象在哈希表中的索引位置。hashCode() 定义 在JDK的Object.java中，这就意味着Java中的任何</p>
+<p>类都包含有hashCode()函数.</p>
+<h4 id="hashCode-与equals-的相关规定"><a href="#hashCode-与equals-的相关规定" class="headerlink" title="hashCode()与equals() 的相关规定"></a><strong>hashCode()<strong>与</strong>equals()</strong> <strong>的相关规定</strong></h4><p>如果两个对象相等，则hashcode一定也是相同的 两个对象相等，对两个对象分别调用equals方法都返</p>
+<p>回true 两个对象有相同的hashcode值，它们也不一定是相等的</p>
+<h4 id="两者的关系"><a href="#两者的关系" class="headerlink" title="两者的关系"></a>两者的关系</h4><p>第一种 不会创建“类对应的散列表”<br> 这里所说的“不会创建类对应的散列表”是说：我们不会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，不会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”没有关系。<br> 这种情况下，equals() 用来比较该类的两个对象是否相等。而hashCode() 则根本没有任何作用，所以，不用理会hashCode()。</p>
+<p>第二种 会创建“类对应的散列表”<br> 这里所说的“会创建类对应的散列表”是说：我们会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”是有关系的：<br> 1)、如果两个对象相等，那么它们的hashCode()值一定相同。<br> 这里的相等是指，通过equals()比较两个对象时返回true。<br> 2)、如果两个对象hashCode()相等，它们并不一定相等。<br> 因为在散列表中，hashCode()相等，即两个键值对的哈希值相等。然而哈希值相等，并不一定能得出键值对相等。<br> 此外，在这种情况下。若要判断两个对象是否相等，除了要覆盖equals()之外，也要覆盖hashCode()函数。否则，equals()无效。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
   </entry>
   <entry>
     <title>git</title>
@@ -282,34 +310,6 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       </categories>
   </entry>
   <entry>
-    <title>equals()与HashCode()的爱恨情仇</title>
-    <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
-    <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
-<p>对于基本数据类而言，可以直接使用“&#x3D;&#x3D;”运算符来比较其对应的值是否相等。但是对于引用类型：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s1=<span class="keyword">new</span> <span class="title class_">String</span>();</span><br><span class="line">String s2=<span class="keyword">new</span> <span class="title class_">String</span>();</span><br></pre></td></tr></table></figure>
-
-<p>此时的两个引用变量所对应内存中存储的数值就是对象占用的那块内存的首地址。如果要比较两个对象的是否是同一个对象，</p>
-<p>则可以使用”&#x3D;&#x3D;“，如果要比较两个对象的内容是否相同，则不可以使用”&#x3D;&#x3D;“实现了。</p>
-<p>equals是Object类提供的方法之一。每一个Java类都集成自Object类，所以每一个对象都具有equals这个方法。</p>
-<p>相比“&#x3D;&#x3D;”运算符，equals(Object)方法的特殊之处就在于它可以被覆盖，所以可以通过覆盖的方法让它不是比较引用而是比较数据内容。</p>
-<p>那么equals()是如何比较引用类型的内容的？</p>
-<span id="more"></span>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Human</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"><span class="comment">//		generate生成的equals和hashcode</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">Human</span> <span class="variable">human</span> <span class="operator">=</span> (Human) o;</span><br><span class="line">            <span class="type">return</span> <span class="variable">age</span> <span class="operator">=</span>= human.age &amp;&amp;</span><br><span class="line">                    Objects.equals(name, human.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Objects.hash(age, name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="HashCode和equals"><a href="#HashCode和equals" class="headerlink" title="HashCode和equals"></a>HashCode和equals</h4><p>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整 数。这个哈希码的作用是</p>
-<p>确定该对象在哈希表中的索引位置。hashCode() 定义 在JDK的Object.java中，这就意味着Java中的任何</p>
-<p>类都包含有hashCode()函数.</p>
-<h4 id="hashCode-与equals-的相关规定"><a href="#hashCode-与equals-的相关规定" class="headerlink" title="hashCode()与equals() 的相关规定"></a><strong>hashCode()<strong>与</strong>equals()</strong> <strong>的相关规定</strong></h4><p>如果两个对象相等，则hashcode一定也是相同的 两个对象相等，对两个对象分别调用equals方法都返</p>
-<p>回true 两个对象有相同的hashcode值，它们也不一定是相等的</p>
-<h4 id="两者的关系"><a href="#两者的关系" class="headerlink" title="两者的关系"></a>两者的关系</h4><p>第一种 不会创建“类对应的散列表”<br> 这里所说的“不会创建类对应的散列表”是说：我们不会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，不会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”没有关系。<br> 这种情况下，equals() 用来比较该类的两个对象是否相等。而hashCode() 则根本没有任何作用，所以，不用理会hashCode()。</p>
-<p>第二种 会创建“类对应的散列表”<br> 这里所说的“会创建类对应的散列表”是说：我们会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”是有关系的：<br> 1)、如果两个对象相等，那么它们的hashCode()值一定相同。<br> 这里的相等是指，通过equals()比较两个对象时返回true。<br> 2)、如果两个对象hashCode()相等，它们并不一定相等。<br> 因为在散列表中，hashCode()相等，即两个键值对的哈希值相等。然而哈希值相等，并不一定能得出键值对相等。<br> 此外，在这种情况下。若要判断两个对象是否相等，除了要覆盖equals()之外，也要覆盖hashCode()函数。否则，equals()无效。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2022/04/14/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -326,6 +326,23 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>mysql</title>
+    <url>/2022/05/20/mysql/</url>
+    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><p><strong>数据库三大范式是什么</strong></p>
+<p>第一范式：每个列都不可以再拆分。</p>
+<p>第二范式：在第一范式的基础上，非主键列完全依赖于主键，而不能是依赖于主键的一部分。</p>
+<p>第三范式：在第二范式的基础上，非主键列只依赖于主键，不依赖于其他非主键。</p>
+<p>在设计数据库结构的时候，要尽量遵守三范式，如果不遵守，必须有足够的理由。比如性能。事实上我</p>
+<p>们经常会为了性能而妥协数据库的设计。</p>
+<h3 id="两大存储引擎"><a href="#两大存储引擎" class="headerlink" title="两大存储引擎"></a>两大存储引擎</h3><img src="/2022/05/20/mysql/image-20220520170817159.png" class="" title="image-20220520170817159">
+
+<img src="/2022/05/20/mysql/image-20220520170840162.png" class="" title="image-20220520170840162">
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
   </entry>
   <entry>
     <title>乐观锁和悲观锁</title>
@@ -421,7 +438,7 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
   <entry>
     <title>集合</title>
     <url>/2022/05/11/%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[-16530238551151.jpg)
+    <content><![CDATA[.jpg)
 
 <h2 id="Collection："><a href="#Collection：" class="headerlink" title="Collection："></a>Collection：</h2><img src="/2022/05/11/%E9%9B%86%E5%90%88/20180803184706534.png" class="" width="20180803184706534">
 
