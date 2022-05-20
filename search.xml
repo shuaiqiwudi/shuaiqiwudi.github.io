@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>IOStream</title>
+    <url>/2022/05/18/IOStream/</url>
+    <content><![CDATA[<img src="/2022/05/18/IOStream/image-20220518162023270.png" class="" title="image-20220518162023270">
+
+<img src="/2022/05/18/IOStream/image-20220518162100236.png" class="" title="image-20220518162100236">
+
+<img src="/2022/05/18/IOStream/image-20220518162120508.png" class="" title="image-20220518162120508">
+
+<img src="/2022/05/18/IOStream/image-20220518162134464.png" class="" title="image-20220518162134464">
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>JVM</title>
     <url>/2022/05/16/JVM/</url>
     <content><![CDATA[<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>什么是JVM？</p>
@@ -16,6 +31,8 @@
 <p>安装了JDK，就无需再单独安装JRE了。其中的开发工 具：编译工具(javac.exe)，打包工具(jar.exe)等</p>
 <p>从包含关系来讲：JDK&gt;JRE&gt;JVM</p>
 <img src="/2022/05/16/JVM/image-20220516150612535.png" class="" title="image-20220516150612535">
+
+<span id="more"></span>
 
 <p>既然谈到了JVM 众所周知 JVM是java语言的灵魂 那么JVM给java带来了什么？</p>
 <p>跨平台性：</p>
@@ -58,6 +75,39 @@
 <blockquote>
 <p>Execution engine（执行引擎）：执行classes中的指令。</p>
 </blockquote>
+<h5 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h5><p>运行时数据区存在于内存 又称jvm内存模型 分别有五个部分</p>
+<blockquote>
+<p><strong>程序计数器</strong>:当前线程所执行的字节码的行号 指示器，字节码解析器的工作是通过改变这个计数器的值，来选取下一条需要执行的 字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能，都需要依赖这个 计数器来完成；</p>
+</blockquote>
+<blockquote>
+<p><strong>本地方法栈</strong>:类似虚拟机栈，是为虚拟机使用native本地方法而准备的。具体实现由虚拟机厂商来实现。HotSpot虚拟机中实现与虚拟机栈一致，同时超出大小抛StackOverFlowError。</p>
+</blockquote>
+<blockquote>
+<p><strong>虚拟机栈</strong>:每个线程私有的空间，由多个栈帧组成，一个方法对应一个栈帧，栈帧包括局部变量表、操作数栈、动态链接、方法返回地址、附加信息等。栈内存默认最大1M，超出跑出StackOverFlowError。</p>
+</blockquote>
+<blockquote>
+<p><strong>堆</strong>:所有线程都可以访问修改，存放的是对象实例，是数据区中占用空间最大的部分，在HotSpot虚拟机中分为新生代和老年代，新生代又分为Eden区和Survivor0区、Survivor1区。</p>
+</blockquote>
+<blockquote>
+<p><strong>方法区</strong>:JVM用来存储加载的类信息、常量、静态变量、编译后的代码等数据。不同虚拟机有不同的实现，oracle的HotSpot在Java7中方法区放在永久代，Java8中方法区放在元空间，并通过GC机制来管理。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Server</title>
+    <url>/2022/05/18/Server/</url>
+    <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
+<p>提到Tomcat 就必须提到Server。</p>
+<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
+<p>扒开Tomcat 看看真面目：</p>
+<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
+
+
+
+<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -78,19 +128,6 @@
         <tag>markdown</tag>
         <tag>blog</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Server</title>
-    <url>/2022/05/18/Server/</url>
-    <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
-<p>提到Tomcat 就必须提到Server。</p>
-<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
-<p>扒开Tomcat 看看真面目：</p>
-<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
   </entry>
   <entry>
     <title>equals()与HashCode()的爱恨情仇</title>
@@ -117,24 +154,6 @@
       <categories>
         <category>java</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/04/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>git</title>
@@ -167,6 +186,24 @@
       <categories>
         <category>java</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/04/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>test01</title>
@@ -248,33 +285,6 @@
 </ul>
 <p>当竞争不激烈 (出现并发冲突的概率小)时，乐观锁更有优势，因为悲观锁会锁住代码块或数据，其他线程无法同时访问，影响并发，而且加锁和释放锁都需要消耗额外的资源。</p>
 <p>当竞争激烈(出现并发冲突的概率大)时，悲观锁更有优势，因为乐观锁在执行更新时频繁失败，需要不断重试，浪费CPU资源。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>双重检验锁</title>
-    <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
-    <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>面试</title>
-    <url>/2022/05/16/%E9%9D%A2%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
-<p>内存泄露怎么解决：</p>
-<p>线程的生命周期：</p>
-<img src="/2022/05/16/%E9%9D%A2%E8%AF%95/image-20220517082401082.png" class="" title="image-20220517082401082">
-
-<p>缓存穿透、缓存击穿、缓存雪崩：</p>
-<p>回文子串：</p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -457,6 +467,33 @@
 </ol>
 <p>​	</p>
 <p>​	</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>双重检验锁</title>
+    <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
+    <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>面试</title>
+    <url>/2022/05/16/%E9%9D%A2%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
+<p>内存泄露怎么解决：</p>
+<p>线程的生命周期：</p>
+<img src="/2022/05/16/%E9%9D%A2%E8%AF%95/image-20220517082401082.png" class="" title="image-20220517082401082">
+
+<p>缓存穿透、缓存击穿、缓存雪崩：</p>
+<p>回文子串：</p>
 ]]></content>
       <categories>
         <category>java</category>

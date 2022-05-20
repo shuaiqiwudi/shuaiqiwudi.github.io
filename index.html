@@ -208,6 +208,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/18/IOStream/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zh-CN">
+      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shuaiqiwudi blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/18/IOStream/" class="post-title-link" itemprop="url">IOStream</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-05-18 16:19:57" itemprop="dateCreated datePublished" datetime="2022-05-18T16:19:57+08:00">2022-05-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-05-19 11:12:20" itemprop="dateModified" datetime="2022-05-19T11:12:20+08:00">2022-05-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <img src="/2022/05/18/IOStream/image-20220518162023270.png" class="" title="image-20220518162023270">
+
+<img src="/2022/05/18/IOStream/image-20220518162100236.png" class="" title="image-20220518162100236">
+
+<img src="/2022/05/18/IOStream/image-20220518162120508.png" class="" title="image-20220518162120508">
+
+<img src="/2022/05/18/IOStream/image-20220518162134464.png" class="" title="image-20220518162134464">
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/18/Server/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -233,7 +313,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-05-18 11:17:35 / Modified: 11:36:33" itemprop="dateCreated datePublished" datetime="2022-05-18T11:17:35+08:00">2022-05-18</time>
+              <time title="Created: 2022-05-18 11:17:35 / Modified: 14:07:56" itemprop="dateCreated datePublished" datetime="2022-05-18T11:17:35+08:00">2022-05-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -261,6 +341,10 @@
 <p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
 <p>扒开Tomcat 看看真面目：</p>
 <img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
+
+
+
+<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
 
       
     </div>
@@ -630,7 +714,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-18 11:01:45" itemprop="dateModified" datetime="2022-05-18T11:01:45+08:00">2022-05-18</time>
+                <time title="Modified: 2022-05-20 10:15:49" itemprop="dateModified" datetime="2022-05-20T10:15:49+08:00">2022-05-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -666,49 +750,14 @@
 <p>安装了JDK，就无需再单独安装JRE了。其中的开发工 具：编译工具(javac.exe)，打包工具(jar.exe)等</p>
 <p>从包含关系来讲：JDK&gt;JRE&gt;JVM</p>
 <img src="/2022/05/16/JVM/image-20220516150612535.png" class="" title="image-20220516150612535">
-
-<p>既然谈到了JVM 众所周知 JVM是java语言的灵魂 那么JVM给java带来了什么？</p>
-<p>跨平台性：</p>
-<p>所谓跨平台性，是指java语言编写的程序，一次编译后，可以在多个系统平台上 运行。</p>
-<p>实现原理：Java程序是通过java虚拟机在系统平台上运行的，只要该系统可以安 装相应的java虚拟机，</p>
-<p>该系统就可以运行java程序。</p>
-<p>又众所周知 java运行的流程如下：</p>
-<p>.java文件 由开发人员编写 经过编译后 生成.class文件 ——即字节码文件</p>
-<p>该.class文件不面向任何机器 只面向虚拟机</p>
-<p><strong>采用字节码的好处：</strong></p>
-<p>Java语言通过字节码的方式，在一定程度上解决了传统解释型语言执行效率低的 问题，同时又保留了解</p>
-<p>释型语言可移植的特点。所以Java程序运行时比较高效， 而且，由于字节码并不专对一种特定的机器，</p>
-<p>因此，Java程序无须重新编译便可 在多种不同的计算机上运行。<strong>一次编译 到处运行</strong></p>
-<p>作为高级语言 就得有解释 编译 将语言转化为二进制 这两个步骤 Java是怎么实现的呢？</p>
-<p><strong>java中的编译器和解释器：</strong></p>
-<p>也可以直接看下面</p>
-<p>Java中引入了虚拟机的概念，即在机器和编译程序之间加入了一层抽象的虚拟机 器。这台虚拟的机器在</p>
-<p>任何平台上都提供给编译程序一个的共同的接口。编译程 序只需要面向虚拟机，生成虚拟机能够理解的</p>
-<p>代码，然后由解释器来将虚拟机代 码转换为特定系统的机器码执行。在Java中，这种供虚拟机理解的代</p>
-<p>码叫做字节 码（即扩展为.class的文件），它不面向任何特定的处理器，只面向虚拟机。每 一种平台的解释器是不同的，但是实现的虚拟机是相同的。Java源程序经过编译 器编译后变成字节码，字节码由虚</p>
-<p>拟机解释执行，虚拟机将每一条要执行的字节 码送给解释器，解释器将其翻译成特定机器上的机器码，</p>
-<p>然后在特定的机器上运 行，这就是上面提到的Java的特点的编译与解释并存的解释。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Java源代码(.java文件)----&gt;编译器----&gt;jvm可执行的Java字节码(.class文件)----&gt;jvm----&gt;jvm中的解释器-----&gt; 机器可执行的二进制机器码----&gt;程序运行。</span><br></pre></td></tr></table></figure>
-
-<p>接下来看一下JVM内部结构：</p>
-<img src="/2022/05/16/JVM/image-20220516154322660.png" class="" title="image-20220516154322660">
-
-<p>可以分为两组件 两子系统：</p>
-<p>两个子系统：1.Class loader(类装载)  2. Execution engine(执行引擎)</p>
-<p>两个组件：1.Runtime data area(运行时数据区）2.Native Interface(本地接口)。</p>
-<blockquote>
-<p>Class loader(类装载)：根据给定的全限定名类名(如： java.lang.Object)来装载class文件到Runtime data area中的method area。</p>
-</blockquote>
-<blockquote>
-<p>Native Interface(本地接口)：与native libraries交互，是其它编程语 言交互的接口。</p>
-</blockquote>
-<blockquote>
-<p>Runtime data area(运行时数据区域)：这就是我们常说的JVM的内 存。</p>
-</blockquote>
-<blockquote>
-<p>Execution engine（执行引擎）：执行classes中的指令。</p>
-</blockquote>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/05/16/JVM/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1193,83 +1242,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/07/Write-blog-using-markdown01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zh-CN">
-      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shuaiqiwudi blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/07/Write-blog-using-markdown01/" class="post-title-link" itemprop="url">Write blog using markdown01</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-05-07 10:27:25" itemprop="dateCreated datePublished" datetime="2022-05-07T10:27:25+08:00">2022-05-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-08 13:45:20" itemprop="dateModified" datetime="2022-05-08T13:45:20+08:00">2022-05-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="预览界面"><a href="#预览界面" class="headerlink" title="预览界面"></a>预览界面</h4><p><strong>hexo g</strong><br><strong>hexo s</strong></p>
-<h4 id="部署到网站"><a href="#部署到网站" class="headerlink" title="部署到网站"></a>部署到网站</h4><p><em>hexo clean</em><br><em>hexo g</em><br><em>hexo d</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1339,7 +1311,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
