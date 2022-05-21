@@ -18,25 +18,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Server</title>
-    <url>/2022/05/18/Server/</url>
-    <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
-<p>提到Tomcat 就必须提到Server。</p>
-<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
-<p>扒开Tomcat 看看真面目：</p>
-<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
-
-<span id="more"></span>
-
-
-
-<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>JVM</title>
     <url>/2022/05/16/JVM/</url>
     <content><![CDATA[<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>什么是JVM？</p>
@@ -225,7 +206,10 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <p>触发条件：1）System.gc() 此方法的调用是建议JVM进行Full GC,虽然只是建议而非一定，但很多情况下它会触发 Full GC,从而增加Full GC的频率，也即增加了间歇性停顿的次数。强烈影响系建议能不使用此方法就别使用，让虚拟机自己去管理它的内存。</p>
 <p>​					2）旧生代空间不足。旧生代空间只有在新生代对象转入及创建为大对象、大数组时才会出现不足的现象，当执行Full GC后空间仍然不足，则抛出错误：java.lang.OutOfMemoryError: Java heap space 。为避免以上两种状况引起的FullGC，调优时应尽量做到让对象在Minor GC阶段被回收、让对象在新生代多存活一段时间及不要创建过大的对象及数组。</p>
 <p>​					3）通过Minor GC后进入年轻代的平均大小大于老年代的可用内存</p>
-<p>FullGC详解<a href="https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc">Minor GC vs Major GC vs Full GC | Plumbr – User Experience &amp; Application Performance Monitoring</a></p>
+<p>FullGC详解</p>
+<blockquote>
+<p><a href="https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc">Minor GC vs Major GC vs Full GC | Plumbr – User Experience &amp; Application Performance Monitoring</a></p>
+</blockquote>
 <h3 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h3><h3 id="对象从创建到消亡的历史过程"><a href="#对象从创建到消亡的历史过程" class="headerlink" title="对象从创建到消亡的历史过程"></a>对象从创建到消亡的历史过程</h3><h3 id="User-user-x3D-new-User-做了什么操作，申请了哪些内存？"><a href="#User-user-x3D-new-User-做了什么操作，申请了哪些内存？" class="headerlink" title="User user &#x3D; new User() 做了什么操作，申请了哪些内存？"></a><strong>User user &#x3D; new User()</strong> <strong>做了什么操作，申请了哪些内存？</strong></h3><h3 id="对象的内存分配位置"><a href="#对象的内存分配位置" class="headerlink" title="对象的内存分配位置"></a>对象的内存分配位置</h3><h3 id="JVM的性能调优"><a href="#JVM的性能调优" class="headerlink" title="JVM的性能调优"></a>JVM的性能调优</h3><h3 id="为什么jdk8用metaspace数据结构用来替代perm？"><a href="#为什么jdk8用metaspace数据结构用来替代perm？" class="headerlink" title="为什么jdk8用metaspace数据结构用来替代perm？"></a>为什么jdk8用metaspace数据结构用来替代perm？</h3><h3 id="GC算法，永久代对象如何GC，GC有环怎么处理"><a href="#GC算法，永久代对象如何GC，GC有环怎么处理" class="headerlink" title="GC算法，永久代对象如何GC，GC有环怎么处理"></a><strong>GC</strong>算法，永久代对象如何GC，GC有环怎么处理</h3><img src="/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png" class="" title="img">
 
 <h4 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h4><p>在讨论深拷贝和浅拷贝之前 首先要了解一下java的赋值机制——值传递</p>
@@ -257,40 +241,6 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       </categories>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/04/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Write blog using markdown01</title>
-    <url>/2022/05/07/Write-blog-using-markdown01/</url>
-    <content><![CDATA[<h4 id="预览界面"><a href="#预览界面" class="headerlink" title="预览界面"></a>预览界面</h4><p><strong>hexo g</strong><br><strong>hexo s</strong></p>
-<h4 id="部署到网站"><a href="#部署到网站" class="headerlink" title="部署到网站"></a>部署到网站</h4><p><em>hexo clean</em><br><em>hexo g</em><br><em>hexo d</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.baidu.com/">https://www.baidu.com</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>equals()与HashCode()的爱恨情仇</title>
     <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
     <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
@@ -317,6 +267,22 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       <categories>
         <category>java</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Write blog using markdown01</title>
+    <url>/2022/05/07/Write-blog-using-markdown01/</url>
+    <content><![CDATA[<h4 id="预览界面"><a href="#预览界面" class="headerlink" title="预览界面"></a>预览界面</h4><p><strong>hexo g</strong><br><strong>hexo s</strong></p>
+<h4 id="部署到网站"><a href="#部署到网站" class="headerlink" title="部署到网站"></a>部署到网站</h4><p><em>hexo clean</em><br><em>hexo g</em><br><em>hexo d</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.baidu.com/">https://www.baidu.com</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>blog</tag>
+      </tags>
   </entry>
   <entry>
     <title>git</title>
@@ -355,6 +321,43 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       </categories>
   </entry>
   <entry>
+    <title>Server</title>
+    <url>/2022/05/18/Server/</url>
+    <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
+<p>提到Tomcat 就必须提到Server。</p>
+<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
+<p>扒开Tomcat 看看真面目：</p>
+<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
+
+<span id="more"></span>
+
+
+
+<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/04/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>mysql</title>
     <url>/2022/05/20/mysql/</url>
     <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><p><strong>数据库三大范式是什么</strong></p>
@@ -366,18 +369,6 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <h3 id="两大存储引擎"><a href="#两大存储引擎" class="headerlink" title="两大存储引擎"></a>两大存储引擎</h3><img src="/2022/05/20/mysql/image-20220520170817159.png" class="" title="image-20220520170817159">
 
 <img src="/2022/05/20/mysql/image-20220520170840162.png" class="" title="image-20220520170840162">
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>双重检验锁</title>
-    <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
-    <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 ]]></content>
       <categories>
         <category>java</category>
@@ -457,6 +448,18 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 </ul>
 <p>当竞争不激烈 (出现并发冲突的概率小)时，乐观锁更有优势，因为悲观锁会锁住代码块或数据，其他线程无法同时访问，影响并发，而且加锁和释放锁都需要消耗额外的资源。</p>
 <p>当竞争激烈(出现并发冲突的概率大)时，悲观锁更有优势，因为乐观锁在执行更新时频繁失败，需要不断重试，浪费CPU资源。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>双重检验锁</title>
+    <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
+    <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 ]]></content>
       <categories>
         <category>java</category>

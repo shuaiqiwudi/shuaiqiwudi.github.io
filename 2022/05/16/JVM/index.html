@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220520140939077.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png">
 <meta property="article:published_time" content="2022-05-16T06:46:22.000Z">
-<meta property="article:modified_time" content="2022-05-21T02:28:44.944Z">
+<meta property="article:modified_time" content="2022-05-21T02:40:24.915Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -247,7 +247,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-21 10:28:44" itemprop="dateModified" datetime="2022-05-21T10:28:44+08:00">2022-05-21</time>
+                <time title="Modified: 2022-05-21 10:40:24" itemprop="dateModified" datetime="2022-05-21T10:40:24+08:00">2022-05-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -456,7 +456,10 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <p>触发条件：1）System.gc() 此方法的调用是建议JVM进行Full GC,虽然只是建议而非一定，但很多情况下它会触发 Full GC,从而增加Full GC的频率，也即增加了间歇性停顿的次数。强烈影响系建议能不使用此方法就别使用，让虚拟机自己去管理它的内存。</p>
 <p>​					2）旧生代空间不足。旧生代空间只有在新生代对象转入及创建为大对象、大数组时才会出现不足的现象，当执行Full GC后空间仍然不足，则抛出错误：java.lang.OutOfMemoryError: Java heap space 。为避免以上两种状况引起的FullGC，调优时应尽量做到让对象在Minor GC阶段被回收、让对象在新生代多存活一段时间及不要创建过大的对象及数组。</p>
 <p>​					3）通过Minor GC后进入年轻代的平均大小大于老年代的可用内存</p>
-<p>FullGC详解<a target="_blank" rel="noopener" href="https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc">Minor GC vs Major GC vs Full GC | Plumbr – User Experience &amp; Application Performance Monitoring</a></p>
+<p>FullGC详解</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc">Minor GC vs Major GC vs Full GC | Plumbr – User Experience &amp; Application Performance Monitoring</a></p>
+</blockquote>
 <h3 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h3><h3 id="对象从创建到消亡的历史过程"><a href="#对象从创建到消亡的历史过程" class="headerlink" title="对象从创建到消亡的历史过程"></a>对象从创建到消亡的历史过程</h3><h3 id="User-user-x3D-new-User-做了什么操作，申请了哪些内存？"><a href="#User-user-x3D-new-User-做了什么操作，申请了哪些内存？" class="headerlink" title="User user &#x3D; new User() 做了什么操作，申请了哪些内存？"></a><strong>User user &#x3D; new User()</strong> <strong>做了什么操作，申请了哪些内存？</strong></h3><h3 id="对象的内存分配位置"><a href="#对象的内存分配位置" class="headerlink" title="对象的内存分配位置"></a>对象的内存分配位置</h3><h3 id="JVM的性能调优"><a href="#JVM的性能调优" class="headerlink" title="JVM的性能调优"></a>JVM的性能调优</h3><h3 id="为什么jdk8用metaspace数据结构用来替代perm？"><a href="#为什么jdk8用metaspace数据结构用来替代perm？" class="headerlink" title="为什么jdk8用metaspace数据结构用来替代perm？"></a>为什么jdk8用metaspace数据结构用来替代perm？</h3><h3 id="GC算法，永久代对象如何GC，GC有环怎么处理"><a href="#GC算法，永久代对象如何GC，GC有环怎么处理" class="headerlink" title="GC算法，永久代对象如何GC，GC有环怎么处理"></a><strong>GC</strong>算法，永久代对象如何GC，GC有环怎么处理</h3><img src="/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png" class="" title="img">
 
 <h4 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h4><p>在讨论深拷贝和浅拷贝之前 首先要了解一下java的赋值机制——值传递</p>
