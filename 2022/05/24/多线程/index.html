@@ -22,22 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Tomcat作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。 提到Tomcat 就必须提到Server。 每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程">
+  <meta name="description" content="Java的多线程和并发java的尽头是服务端开发，既然是服务端开发，就需要为多个用户同时进行服务，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Server">
-<meta property="og:url" content="http://example.com/2022/05/18/Server/index.html">
+<meta property="og:title" content="多线程">
+<meta property="og:url" content="http://example.com/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="shuaiqiwudi blog">
-<meta property="og:description" content="Tomcat作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。 提到Tomcat 就必须提到Server。 每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程">
+<meta property="og:description" content="Java的多线程和并发java的尽头是服务端开发，既然是服务端开发，就需要为多个用户同时进行服务，">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/05/18/Server/20160816205332380.png">
-<meta property="article:published_time" content="2022-05-18T03:17:35.000Z">
-<meta property="article:modified_time" content="2022-05-20T02:38:00.562Z">
+<meta property="article:published_time" content="2022-05-24T01:45:44.000Z">
+<meta property="article:modified_time" content="2022-05-24T03:08:44.583Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/05/18/Server/20160816205332380.png">
 
-<link rel="canonical" href="http://example.com/2022/05/18/Server/">
+<link rel="canonical" href="http://example.com/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
 
 
 <script id="page-configurations">
@@ -50,7 +48,7 @@
   };
 </script>
 
-  <title>Server | shuaiqiwudi blog</title>
+  <title>多线程 | shuaiqiwudi blog</title>
   
 
 
@@ -213,7 +211,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/18/Server/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -226,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Server
+          多线程
         </h1>
 
         <div class="post-meta">
@@ -235,16 +233,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2022-05-18 11:17:35" itemprop="dateCreated datePublished" datetime="2022-05-18T11:17:35+08:00">2022-05-18</time>
+              <time title="Created: 2022-05-24 09:45:44 / Modified: 11:08:44" itemprop="dateCreated datePublished" datetime="2022-05-24T09:45:44+08:00">2022-05-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-20 10:38:00" itemprop="dateModified" datetime="2022-05-20T10:38:00+08:00">2022-05-20</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -273,17 +265,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
-<p>提到Tomcat 就必须提到Server。</p>
-<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
-<p>扒开Tomcat 看看真面目：</p>
-<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
-
-<span id="more"></span>
-
-
-
-<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
+        <h1 id="Java的多线程和并发"><a href="#Java的多线程和并发" class="headerlink" title="Java的多线程和并发"></a>Java的多线程和并发</h1><p>java的尽头是服务端开发，既然是服务端开发，就需要为多个用户同时进行服务，</p>
 
     </div>
 
@@ -299,13 +281,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/05/17/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/" rel="prev" title="乐观锁和悲观锁">
-      <i class="fa fa-chevron-left"></i> 乐观锁和悲观锁
+    <a href="/2022/05/20/mysql/" rel="prev" title="mysql">
+      <i class="fa fa-chevron-left"></i> mysql
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/05/18/IOStream/" rel="next" title="IOStream">
-      IOStream <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -364,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat"><span class="nav-number">1.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Server"><span class="nav-number">1.1.</span> <span class="nav-text">Server</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%B9%B6%E5%8F%91"><span class="nav-number">1.</span> <span class="nav-text">Java的多线程和并发</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
