@@ -17,17 +17,27 @@
   <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
+<script> 
+   (function(){
+          if(''){
+              if (prompt('请输入文章密码') !== ''){
+                  alert('密码错误！');
+                  history.back();
+              }
+          }
+      })();
+  </script>
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="[Spring官网]Spring | Home   前言什么是Spring框架 Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring同时也是开源轻量级框架，其核心包在文件容量上只有不到1">
+  <meta name="description" content="[Spring官网]Spring | Home   什么是Spring?Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring同时也是开源轻量级框架，其核心包在文件容量上只有不到1MB 的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring">
 <meta property="og:url" content="http://example.com/2022/05/26/Spring/index.html">
 <meta property="og:site_name" content="shuaiqiwudi blog">
-<meta property="og:description" content="[Spring官网]Spring | Home   前言什么是Spring框架 Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring同时也是开源轻量级框架，其核心包在文件容量上只有不到1">
+<meta property="og:description" content="[Spring官网]Spring | Home   什么是Spring?Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring同时也是开源轻量级框架，其核心包在文件容量上只有不到1MB 的">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/v2-f35943a6d87c5f9f10f45eee4941deb3_720w-16536637221882.jpg">
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/image-20220526175028291-16536637559683.png">
@@ -47,7 +57,7 @@
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/bean%E5%AF%B9%E8%B1%A1%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-16537349916045.png">
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/webp.webp">
 <meta property="article:published_time" content="2022-05-26T01:26:34.000Z">
-<meta property="article:modified_time" content="2022-05-28T11:12:28.352Z">
+<meta property="article:modified_time" content="2022-05-30T00:57:45.855Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -259,7 +269,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-28 19:12:28" itemprop="dateModified" datetime="2022-05-28T19:12:28+08:00">2022-05-28</time>
+                <time title="Modified: 2022-05-30 08:57:45" itemprop="dateModified" datetime="2022-05-30T08:57:45+08:00">2022-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -278,6 +288,20 @@
               </span>
               <span class="post-meta-item-text">Views: </span>
               <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>30k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>27 mins.</span>
             </span>
 
         </div>
@@ -292,7 +316,7 @@
         <p>[Spring官网]<a target="_blank" rel="noopener" href="https://spring.io/">Spring | Home</a></p>
 <img src="/2022/05/26/Spring/v2-f35943a6d87c5f9f10f45eee4941deb3_720w-16536637221882.jpg" class="" title="v2-f35943a6d87c5f9f10f45eee4941deb3_720w">
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>什么是Spring框架 Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring同时也是开源轻量级框架，其核心包在文件容量上只有不到1MB 的大小。	然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。Spring的核心是控制反转（IoC）和面向切面（AOP）。</p>
+<h1 id="什么是Spring"><a href="#什么是Spring" class="headerlink" title="什么是Spring?"></a>什么是Spring?</h1><p>Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。Spring同时也是开源轻量级框架，其核心包在文件容量上只有不到1MB 的大小。	然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。Spring的核心是控制反转（IoC）和面向切面（AOP）。</p>
 <p>​	<strong>简单来说，Spring是一个分层的JavaSE&#x2F;EE full-stack(一站式) 轻量级开源框架。</strong></p>
 <span id="more"></span>
 
@@ -845,6 +869,11 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 <p>原文链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/139f813fca80">Spring源码(七)-IOC中的那些设计模式 - 简书 (jianshu.com)</a></p>
 
     </div>
+    <div>  
+      
+          
+        
+    </div>
 
     
     
@@ -923,7 +952,7 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">Spring的核心组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E5%A4%A7%E8%87%B4%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">Spring大致加载流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E6%B5%85%E7%9C%8B"><span class="nav-number">4.</span> <span class="nav-text">Spring浅看</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringIOC-%E5%92%8C-Spring-AOP"><span class="nav-number">5.</span> <span class="nav-text">SpringIOC 和 Spring AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringIOC"><span class="nav-number">5.1.</span> <span class="nav-text">SpringIOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringAOP"><span class="nav-number">5.2.</span> <span class="nav-text">SpringAOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E4%B8%ADbeanFactory%E5%92%8CApplicationContext%E7%9A%84%E8%81%94%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB"><span class="nav-number">5.3.</span> <span class="nav-text">Spring中beanFactory和ApplicationContext的联系和区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.</span> <span class="nav-text">Spring用到的设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.1.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">5.4.1.0.1.</span> <span class="nav-text">设置延迟加载的方式：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.2.</span> <span class="nav-text">单例设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Bean%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">5.4.2.0.1.</span> <span class="nav-text">Bean对象的作用域</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.3.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.4.</span> <span class="nav-text">装饰器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.5.</span> <span class="nav-text">代理设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.6.</span> <span class="nav-text">模板方法设计模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bean%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">5.5.</span> <span class="nav-text">Bean对象的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="nav-number">5.5.1.</span> <span class="nav-text">Spring依赖注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">5.5.2.</span> <span class="nav-text">Spring事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E5%88%86%E7%B1%BB"><span class="nav-number">5.5.2.1.</span> <span class="nav-text">Spring事务分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E5%B1%9E%E6%80%A7"><span class="nav-number">5.5.2.2.</span> <span class="nav-text">Spring事务的传播属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">5.5.2.3.</span> <span class="nav-text">Spring事务注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4"><span class="nav-number">5.5.2.4.</span> <span class="nav-text">Spring事务超时时间</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSpring"><span class="nav-number">1.</span> <span class="nav-text">什么是Spring?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">Spring的核心组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E5%A4%A7%E8%87%B4%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">Spring大致加载流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E6%B5%85%E7%9C%8B"><span class="nav-number">4.</span> <span class="nav-text">Spring浅看</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringIOC-%E5%92%8C-Spring-AOP"><span class="nav-number">5.</span> <span class="nav-text">SpringIOC 和 Spring AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringIOC"><span class="nav-number">5.1.</span> <span class="nav-text">SpringIOC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringAOP"><span class="nav-number">5.2.</span> <span class="nav-text">SpringAOP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E4%B8%ADbeanFactory%E5%92%8CApplicationContext%E7%9A%84%E8%81%94%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB"><span class="nav-number">5.3.</span> <span class="nav-text">Spring中beanFactory和ApplicationContext的联系和区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring%E7%94%A8%E5%88%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.</span> <span class="nav-text">Spring用到的设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.1.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">5.4.1.0.1.</span> <span class="nav-text">设置延迟加载的方式：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.2.</span> <span class="nav-text">单例设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Bean%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">5.4.2.0.1.</span> <span class="nav-text">Bean对象的作用域</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.3.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.4.</span> <span class="nav-text">装饰器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.5.</span> <span class="nav-text">代理设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.6.</span> <span class="nav-text">模板方法设计模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bean%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">5.5.</span> <span class="nav-text">Bean对象的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="nav-number">5.5.1.</span> <span class="nav-text">Spring依赖注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">5.5.2.</span> <span class="nav-text">Spring事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E5%88%86%E7%B1%BB"><span class="nav-number">5.5.2.1.</span> <span class="nav-text">Spring事务分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E4%BC%A0%E6%92%AD%E5%B1%9E%E6%80%A7"><span class="nav-number">5.5.2.2.</span> <span class="nav-text">Spring事务的传播属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">5.5.2.3.</span> <span class="nav-text">Spring事务注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring%E4%BA%8B%E5%8A%A1%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4"><span class="nav-number">5.5.2.4.</span> <span class="nav-text">Spring事务超时时间</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -978,12 +1007,53 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">zh-CN</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">Symbols count total: </span>
+    <span title="Symbols count total">102k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">Reading time total &asymp;</span>
+    <span title="Reading time total">1:32</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
 
     <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+  </span>
+  <span id="busuanzi_container_site_pv">
+      &nbsp;本站访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  </div>
+  </div>
+
+
+  <script>
+      var now = new Date(); 
+      function createtime() { 
+          var grt= new Date("03/12/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("timeDate").innerHTML = "本站已上线  "+dnum+" 天 "; 
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+      } 
+  setInterval("createtime()",250);
+  </script>
         
 <div class="busuanzi-count">
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -1062,5 +1132,5 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"live2d-widget-model-shizuku"},"display":{"position":"right","width":70,"height":120},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
