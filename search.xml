@@ -629,135 +629,6 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       </categories>
   </entry>
   <entry>
-    <title>SpringMVC</title>
-    <url>/2022/05/28/SpringMVC/</url>
-    <content><![CDATA[<img src="/2022/05/28/SpringMVC/image-20220528102032212.png" class="" title="image-20220528102032212">
-
-<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1>]]></content>
-      <categories>
-        <category>SpringMVC</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>SpringBoot</title>
-    <url>/2022/05/28/SpringBoot/</url>
-    <content><![CDATA[<p>官网：<a href="https://spring.io/projects/spring-boot">Spring Boot</a></p>
-<img src="/2022/05/28/SpringBoot/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg" class="" title="查看源图像">
-
-<h1 id="什么是SpringBoot？"><a href="#什么是SpringBoot？" class="headerlink" title="什么是SpringBoot？"></a>什么是SpringBoot？</h1><p>Spring Boot 是 Pivotal 团队在 Spring 的基础上提供的一套全新的开源框架，其目的是为了简化 Spring 应用的搭建和开发过程。Spring Boot 去除了大量的 XML 配置文件，简化了复杂的依赖管理。</p>
-<p>Spring Boot 具有 Spring 一切优秀特性，Spring 能做的事，Spring Boot 都可以做，而且使用更加简单，功能更加丰富，性能更加稳定而健壮。随着近些年来微服务技术的流行，Spring Boot 也成了时下炙手可热的技术。</p>
-<p>Spring Boot 集成了大量常用的第三方库配置，Spring Boot 应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
-<span id="more"></span>
-
-<h1 id="SpringBoot自动装配原理"><a href="#SpringBoot自动装配原理" class="headerlink" title="SpringBoot自动装配原理"></a>SpringBoot自动装配原理</h1><p>Spring Boot 项目创建完成后，即使不进行任何的配置，也能够顺利地运行，这都要归功于 Spring Boot 的自动化配置。</p>
-<p>Spring Boot 默认使用 application.properties 或 application.yml 作为其全局配置文件，我们可以在该配置文件中对各种自动配置属性（server.port、logging.level.* 、spring.config.active.no-profile 等等）进行修改，并使之生效，那么您有没有想过这些属性是否有据可依呢？答案是肯定的。</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。本节为你揭开 SpringBoot 自动配置的神秘面纱。</p>
-<h2 id="Spring-Factories-机制"><a href="#Spring-Factories-机制" class="headerlink" title="Spring Factories 机制"></a>Spring Factories 机制</h2><p>Spring Boot 的自动配置是基于 Spring Factories 机制实现的。</p>
-<p>Spring Factories 机制是 Spring Boot 中的一种服务发现机制，这种扩展机制与 Java SPI 机制十分相似。Spring Boot 会自动扫描所有 Jar 包类路径下 META-INF&#x2F;spring.factories 文件，并读取其中的内容，进行实例化，这种机制也是 Spring Boot Starter 的基础。</p>
-<p><a href="https://www.jianshu.com/p/00e49c607fa1">Spring Factories - 简书 (jianshu.com)</a></p>
-<h3 id="spring-factories"><a href="#spring-factories" class="headerlink" title="spring.factories"></a>spring.factories</h3><p>spring.factories 文件本质上与 properties 文件相似，其中包含一组或多组键值对（key&#x3D;vlaue），其中，key 的取值为接口的完全限定名；value 的取值为接口实现类的完全限定名，一个接口可以设置多个实现类，不同实现类之间使用“，”隔开，例如：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">org.springframework.boot.autoconfigure.AutoConfigurationImportFilter</span>=<span class="string">\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnBeanCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnClassCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Spring-Factories-实现原理"><a href="#Spring-Factories-实现原理" class="headerlink" title="Spring Factories 实现原理"></a>Spring Factories 实现原理</h3><p>spring-core 包里定义了 SpringFactoriesLoader 类，这个类会扫描所有 Jar 包类路径下的 META-INF&#x2F;spring.factories 文件，并获取指定接口的配置。在 SpringFactoriesLoader 类中定义了两个对外的方法，如下表。</p>
-<table>
-<thead>
-<tr>
-<th>返回值</th>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><T> List<T></td>
-<td>loadFactories(Class<T> factoryType, @Nullable ClassLoader classLoader)</td>
-<td>静态方法； 根据接口获取其实现类的实例； 该方法返回的是实现类对象列表。</td>
-</tr>
-<tr>
-<td>List<String></td>
-<td>loadFactoryNames(Class&lt;?&gt; factoryType, @Nullable ClassLoader classLoader)</td>
-<td>公共静态方法； 根据接口l获取其实现类的名称； 该方法返回的是实现类的类名的列表</td>
-</tr>
-</tbody></table>
-<p>以上两个方法的关键都是从指定的 ClassLoader 中获取 spring.factories 文件，并解析得到类名列表。</p>
-<p>loadFactories() 方法能够获取指定接口的实现类对象</p>
-<p>loadFactoryNames() 方法能够根据接口获取其实现类类名的集合。</p>
-<h3 id="SpringBootApplication-注解"><a href="#SpringBootApplication-注解" class="headerlink" title="@SpringBootApplication 注解"></a>@SpringBootApplication 注解</h3><p>所有 Spring Boot 项目的主启动程序类上都使用了一个 @SpringBootApplication 注解，该注解是 Spring Boot 中最重要的注解之一 ，也是 Spring Boot 实现自动化配置的关键。 </p>
-<p>@SpringBootApplication 是一个组合元注解，其主要包含两个注解：@SpringBootConfiguration 和 @EnableAutoConfiguration，其中 @EnableAutoConfiguration 注解是 SpringBoot 自动化配置的核心所在。</p>
-<img src="/2022/05/28/SpringBoot/image-20220529152015019.png" class="" title="image-20220529152015019">
-
-<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@<strong>ComponentScan</strong></h3><p>@ComponentScan主要就是定义<strong>扫描的路径</strong>从中找出标识了<strong>需要装配</strong>的类自动装配到spring的bean容器中</p>
-<p>@Controller，@Service，@Repository注解，查看其源码你会发现，他们中有一个<strong>共同的注解@Component</strong></p>
-<img src="/2022/05/28/SpringBoot/image-20220529153202827.png" class="" title="image-20220529153202827">
-
-
-
-<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>@ConfigurationProperties 注解的作用，是将这个类的所有属性与配置文件中相关的配置进行绑定，以便于获取或修改配置，但是 @ConfigurationProperties 功能是由容器提供的，被它注解的类必须是容器中的一个组件，否则该功能就无法使用。而 @EnableConfigurationProperties 注解的作用正是将指定的类以组件的形式注入到 IOC 容器中，并开启其 @ConfigurationProperties 功能。因此，@ConfigurationProperties + @EnableConfigurationProperties 组合使用，便可以为 XxxProperties 类实现配置绑定功能。</p>
-<h2 id="自动配置的生效和修改"><a href="#自动配置的生效和修改" class="headerlink" title="自动配置的生效和修改"></a>自动配置的生效和修改</h2><p>spring.factories 文件中的所有自动配置类（xxxAutoConfiguration），都是必须在一定的条件下才会作为组件添加到容器中，配置的内容才会生效。这些限制条件在 Spring Boot 中以 @Conditional 派生注解的形式体现，如下表。</p>
-<table>
-<thead>
-<tr>
-<th>注解</th>
-<th>生效条件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@ConditionalOnJava</td>
-<td>应用使用指定的 Java 版本时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnBean</td>
-<td>容器中存在指定的 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnMissingBean</td>
-<td>容器中不存在指定的 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnExpression</td>
-<td>满足指定的 SpEL 表达式时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnClass</td>
-<td>存在指定的类时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnMissingClass</td>
-<td>不存在指定的类时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnSingleCandidate</td>
-<td>容器中只存在一个指定的 Bean 或这个 Bean 为首选 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnProperty</td>
-<td>系统中指定属性存在指定的值时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnResource</td>
-<td>类路径下存在指定的资源文件时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnWebApplication</td>
-<td>当前应用是 web 应用时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnNotWebApplication</td>
-<td>当前应用不是 web 应用生效</td>
-</tr>
-</tbody></table>
-<p><a href="http://c.biancheng.net/spring_boot/auto-config.html">Spring Boot自动配置原理 (biancheng.net)</a></p>
-<h1 id="Spring-boot-starter-web（Web启动器）"><a href="#Spring-boot-starter-web（Web启动器）" class="headerlink" title="Spring-boot-starter-web（Web启动器）"></a>Spring-boot-starter-web（Web启动器）</h1><p>Spring MVC 是 Spring 提供的一个基于 MVC 设计模式的轻量级 Web 开发框架，其本身就是 Spring 框架的一部分，可以与 Spring 无缝集成，性能方面具有先天的优越性，是当今业界最主流的 Web 开发框架之一。</p>
-<p>Spring Boot 是在 Spring 的基础上创建一款开源框架，它提供了 spring-boot-starter-web（Web 场景启动器） 来为 Web 开发予以支持。spring-boot-starter-web 为我们提供了嵌入的 Servlet 容器以及 SpringMVC 的依赖，并为 Spring MVC 提供了大量自动配置，可以适用于大多数 Web 开发场景。</p>
-<p>只要我们在 Spring Boot 项目中的 pom.xml 中引入了 spring-boot-starter-web ，即使不进行任何配置，也可以直接使用 Spring MVC 进行 Web 开发。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p>&#x2F;&#x2F;TODO</p>
-<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1>]]></content>
-      <categories>
-        <category>SpringBoot</category>
-      </categories>
-  </entry>
-  <entry>
     <title>spring</title>
     <url>/2022/05/26/Spring/</url>
     <content><![CDATA[<p>[Spring官网]<a href="https://spring.io/">Spring | Home</a></p>
@@ -1317,6 +1188,135 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 ]]></content>
       <categories>
         <category>Spring</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>SpringBoot</title>
+    <url>/2022/05/28/SpringBoot/</url>
+    <content><![CDATA[<p>官网：<a href="https://spring.io/projects/spring-boot">Spring Boot</a></p>
+<img src="/2022/05/28/SpringBoot/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg" class="" title="查看源图像">
+
+<h1 id="什么是SpringBoot？"><a href="#什么是SpringBoot？" class="headerlink" title="什么是SpringBoot？"></a>什么是SpringBoot？</h1><p>Spring Boot 是 Pivotal 团队在 Spring 的基础上提供的一套全新的开源框架，其目的是为了简化 Spring 应用的搭建和开发过程。Spring Boot 去除了大量的 XML 配置文件，简化了复杂的依赖管理。</p>
+<p>Spring Boot 具有 Spring 一切优秀特性，Spring 能做的事，Spring Boot 都可以做，而且使用更加简单，功能更加丰富，性能更加稳定而健壮。随着近些年来微服务技术的流行，Spring Boot 也成了时下炙手可热的技术。</p>
+<p>Spring Boot 集成了大量常用的第三方库配置，Spring Boot 应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
+<span id="more"></span>
+
+<h1 id="SpringBoot自动装配原理"><a href="#SpringBoot自动装配原理" class="headerlink" title="SpringBoot自动装配原理"></a>SpringBoot自动装配原理</h1><p>Spring Boot 项目创建完成后，即使不进行任何的配置，也能够顺利地运行，这都要归功于 Spring Boot 的自动化配置。</p>
+<p>Spring Boot 默认使用 application.properties 或 application.yml 作为其全局配置文件，我们可以在该配置文件中对各种自动配置属性（server.port、logging.level.* 、spring.config.active.no-profile 等等）进行修改，并使之生效，那么您有没有想过这些属性是否有据可依呢？答案是肯定的。</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。本节为你揭开 SpringBoot 自动配置的神秘面纱。</p>
+<h2 id="Spring-Factories-机制"><a href="#Spring-Factories-机制" class="headerlink" title="Spring Factories 机制"></a>Spring Factories 机制</h2><p>Spring Boot 的自动配置是基于 Spring Factories 机制实现的。</p>
+<p>Spring Factories 机制是 Spring Boot 中的一种服务发现机制，这种扩展机制与 Java SPI 机制十分相似。Spring Boot 会自动扫描所有 Jar 包类路径下 META-INF&#x2F;spring.factories 文件，并读取其中的内容，进行实例化，这种机制也是 Spring Boot Starter 的基础。</p>
+<p><a href="https://www.jianshu.com/p/00e49c607fa1">Spring Factories - 简书 (jianshu.com)</a></p>
+<h3 id="spring-factories"><a href="#spring-factories" class="headerlink" title="spring.factories"></a>spring.factories</h3><p>spring.factories 文件本质上与 properties 文件相似，其中包含一组或多组键值对（key&#x3D;vlaue），其中，key 的取值为接口的完全限定名；value 的取值为接口实现类的完全限定名，一个接口可以设置多个实现类，不同实现类之间使用“，”隔开，例如：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">org.springframework.boot.autoconfigure.AutoConfigurationImportFilter</span>=<span class="string">\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnBeanCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnClassCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-Factories-实现原理"><a href="#Spring-Factories-实现原理" class="headerlink" title="Spring Factories 实现原理"></a>Spring Factories 实现原理</h3><p>spring-core 包里定义了 SpringFactoriesLoader 类，这个类会扫描所有 Jar 包类路径下的 META-INF&#x2F;spring.factories 文件，并获取指定接口的配置。在 SpringFactoriesLoader 类中定义了两个对外的方法，如下表。</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><T> List<T></td>
+<td>loadFactories(Class<T> factoryType, @Nullable ClassLoader classLoader)</td>
+<td>静态方法； 根据接口获取其实现类的实例； 该方法返回的是实现类对象列表。</td>
+</tr>
+<tr>
+<td>List<String></td>
+<td>loadFactoryNames(Class&lt;?&gt; factoryType, @Nullable ClassLoader classLoader)</td>
+<td>公共静态方法； 根据接口l获取其实现类的名称； 该方法返回的是实现类的类名的列表</td>
+</tr>
+</tbody></table>
+<p>以上两个方法的关键都是从指定的 ClassLoader 中获取 spring.factories 文件，并解析得到类名列表。</p>
+<p>loadFactories() 方法能够获取指定接口的实现类对象</p>
+<p>loadFactoryNames() 方法能够根据接口获取其实现类类名的集合。</p>
+<h3 id="SpringBootApplication-注解"><a href="#SpringBootApplication-注解" class="headerlink" title="@SpringBootApplication 注解"></a>@SpringBootApplication 注解</h3><p>所有 Spring Boot 项目的主启动程序类上都使用了一个 @SpringBootApplication 注解，该注解是 Spring Boot 中最重要的注解之一 ，也是 Spring Boot 实现自动化配置的关键。 </p>
+<p>@SpringBootApplication 是一个组合元注解，其主要包含两个注解：@SpringBootConfiguration 和 @EnableAutoConfiguration，其中 @EnableAutoConfiguration 注解是 SpringBoot 自动化配置的核心所在。</p>
+<img src="/2022/05/28/SpringBoot/image-20220529152015019.png" class="" title="image-20220529152015019">
+
+<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@<strong>ComponentScan</strong></h3><p>@ComponentScan主要就是定义<strong>扫描的路径</strong>从中找出标识了<strong>需要装配</strong>的类自动装配到spring的bean容器中</p>
+<p>@Controller，@Service，@Repository注解，查看其源码你会发现，他们中有一个<strong>共同的注解@Component</strong></p>
+<img src="/2022/05/28/SpringBoot/image-20220529153202827.png" class="" title="image-20220529153202827">
+
+
+
+<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>@ConfigurationProperties 注解的作用，是将这个类的所有属性与配置文件中相关的配置进行绑定，以便于获取或修改配置，但是 @ConfigurationProperties 功能是由容器提供的，被它注解的类必须是容器中的一个组件，否则该功能就无法使用。而 @EnableConfigurationProperties 注解的作用正是将指定的类以组件的形式注入到 IOC 容器中，并开启其 @ConfigurationProperties 功能。因此，@ConfigurationProperties + @EnableConfigurationProperties 组合使用，便可以为 XxxProperties 类实现配置绑定功能。</p>
+<h2 id="自动配置的生效和修改"><a href="#自动配置的生效和修改" class="headerlink" title="自动配置的生效和修改"></a>自动配置的生效和修改</h2><p>spring.factories 文件中的所有自动配置类（xxxAutoConfiguration），都是必须在一定的条件下才会作为组件添加到容器中，配置的内容才会生效。这些限制条件在 Spring Boot 中以 @Conditional 派生注解的形式体现，如下表。</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>生效条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@ConditionalOnJava</td>
+<td>应用使用指定的 Java 版本时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnBean</td>
+<td>容器中存在指定的 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingBean</td>
+<td>容器中不存在指定的 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnExpression</td>
+<td>满足指定的 SpEL 表达式时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnClass</td>
+<td>存在指定的类时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingClass</td>
+<td>不存在指定的类时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnSingleCandidate</td>
+<td>容器中只存在一个指定的 Bean 或这个 Bean 为首选 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnProperty</td>
+<td>系统中指定属性存在指定的值时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnResource</td>
+<td>类路径下存在指定的资源文件时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnWebApplication</td>
+<td>当前应用是 web 应用时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnNotWebApplication</td>
+<td>当前应用不是 web 应用生效</td>
+</tr>
+</tbody></table>
+<p><a href="http://c.biancheng.net/spring_boot/auto-config.html">Spring Boot自动配置原理 (biancheng.net)</a></p>
+<h1 id="Spring-boot-starter-web（Web启动器）"><a href="#Spring-boot-starter-web（Web启动器）" class="headerlink" title="Spring-boot-starter-web（Web启动器）"></a>Spring-boot-starter-web（Web启动器）</h1><p>Spring MVC 是 Spring 提供的一个基于 MVC 设计模式的轻量级 Web 开发框架，其本身就是 Spring 框架的一部分，可以与 Spring 无缝集成，性能方面具有先天的优越性，是当今业界最主流的 Web 开发框架之一。</p>
+<p>Spring Boot 是在 Spring 的基础上创建一款开源框架，它提供了 spring-boot-starter-web（Web 场景启动器） 来为 Web 开发予以支持。spring-boot-starter-web 为我们提供了嵌入的 Servlet 容器以及 SpringMVC 的依赖，并为 Spring MVC 提供了大量自动配置，可以适用于大多数 Web 开发场景。</p>
+<p>只要我们在 Spring Boot 项目中的 pom.xml 中引入了 spring-boot-starter-web ，即使不进行任何配置，也可以直接使用 Spring MVC 进行 Web 开发。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p>&#x2F;&#x2F;TODO</p>
+<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1>]]></content>
+      <categories>
+        <category>SpringBoot</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>SpringMVC</title>
+    <url>/2022/05/28/SpringMVC/</url>
+    <content><![CDATA[<img src="/2022/05/28/SpringMVC/image-20220528102032212.png" class="" title="image-20220528102032212">
+
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1>]]></content>
+      <categories>
+        <category>SpringMVC</category>
       </categories>
   </entry>
   <entry>
