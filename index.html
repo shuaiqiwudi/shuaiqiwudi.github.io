@@ -231,10 +231,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-06-02 11:13:11 / Modified: 11:30:36" itemprop="dateCreated datePublished" datetime="2022-06-02T11:13:11+08:00">2022-06-02</time>
+              <time title="Created: 2022-06-02 11:13:11" itemprop="dateCreated datePublished" datetime="2022-06-02T11:13:11+08:00">2022-06-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-03 19:07:18" itemprop="dateModified" datetime="2022-06-03T19:07:18+08:00">2022-06-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,7 +257,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>842</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -270,36 +276,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p><strong>创建线程池有哪几个核心参数？ 如何合理配置线程池的大</strong></p>
-<p><strong>小？</strong></p>
-<ol>
-<li>核心参数</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ThreadPoolExecutor</span><span class="params">(<span class="type">int</span> corePoolSize, // 核心线程数量大小 </span></span><br><span class="line"><span class="params">                          <span class="type">int</span> maximumPoolSize, // 线程池最大容纳线程数 </span></span><br><span class="line"><span class="params">                          <span class="type">long</span> keepAliveTime, // 线程空闲后的存活时长 </span></span><br><span class="line"><span class="params">                          TimeUnit unit, //缓存异步任务的队列 //用来构造线程池里的worker线程 </span></span><br><span class="line"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue, </span></span><br><span class="line"><span class="params">                          ThreadFactory threadFactory, //线程池任务满载后采取的任务拒绝策略 </span></span><br><span class="line"><span class="params">                          RejectedExecutionHandler handler)</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>核心说明</li>
-</ol>
-<ol>
-<li>当线程池中线程数量小于 corePoolSize 则创建线程，并处理请求。</li>
-<li>当线程池中线程数量大于等于 corePoolSize 时，则把请求放入 workQueue 中,随着线程池 中的核心线程们不断执行任务，只要线程池中有空闲的核心线程，线程池就从 workQueue 中取 任务并处理。</li>
-<li>当 workQueue 已存满，放不下新任务时则新建非核心线程入池，并处理请求直到线程数目 达到maximumPoolSize（最大线程数量设置值）。</li>
-<li>如果线程池中线程数大于 maximumPoolSize 则使用 RejectedExecutionHandler 来进行任 务拒绝处理。</li>
-</ol>
-<ol start="3">
-<li>线程池大小分配</li>
-</ol>
-<p>线程池究竟设置多大要看你的线程池执行的什么任务了，CPU密集型、IO密集型、混合型，任 务类型不同，设置的方式也不一样。 </p>
-<p>任务一般分为：CPU密集型、IO密集型、混合型，对于不同类型的任务需要分配不同大小的线 程池。</p>
-<p>3.1）CPU密集型 </p>
-<p>尽量使用较小的线程池，一般Cpu核心数+1</p>
-<p>3.2）IO密集型 </p>
-<p>方法一：可以使用较大的线程池，一般CPU核心数 * 2 </p>
-<p>方法二：（线程等待时间与线程CPU时间之比 + 1）* CPU数目</p>
-<p>3.3）混合型 可以将任务分为CPU密集型和IO密集型，然后分别使用不同的线程池去处理，按情况而定</p>
-
+          <h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p><strong>什么是线程池？</strong></p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%BF%E7%A8%8B%E6%B1%A0/4745661">线程池_百度百科 (baidu.com)</a></p>
+<p>线程池是一种多线程处理形式，处理过程中将任务添加到队列，然后在创建线程后自动启动这些任务。线程池线程都是后台线程。每个线程都使用默认的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A0%86%E6%A0%88/1682032">堆栈</a>大小，以默认的优先级运行，并处于多线程单元中。如果某个线程在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81/2886980">托管代码</a>中空闲（如正在等待某个事件）,则线程池将插入另一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BE%85%E5%8A%A9%E7%BA%BF%E7%A8%8B/4746601">辅助线程</a>来使所有处理器保持繁忙。如果所有线程池线程都始终保持繁忙，但队列中包含挂起的工作，则线程池将在一段时间后创建另一个辅助线程但线程的数目永远不会超过最大值。超过最大值的线程可以排队，但他们要等到其他线程完成后才启动。</p>
+<p>说实话，百度的答案我没看懂。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/02/%E7%BA%BF%E7%A8%8B%E6%B1%A0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -728,7 +716,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-02 11:50:21" itemprop="dateModified" datetime="2022-06-02T11:50:21+08:00">2022-06-02</time>
+                <time title="Modified: 2022-06-03 20:47:48" itemprop="dateModified" datetime="2022-06-03T20:47:48+08:00">2022-06-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
