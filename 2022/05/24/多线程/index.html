@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/image-20220530172524328.png">
 <meta property="og:image" content="http://example.com/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/image-20220517082401082.png">
 <meta property="article:published_time" content="2022-05-24T01:45:44.000Z">
-<meta property="article:modified_time" content="2022-06-03T12:47:48.662Z">
+<meta property="article:modified_time" content="2022-06-11T13:52:16.668Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -244,7 +244,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-03 20:47:48" itemprop="dateModified" datetime="2022-06-03T20:47:48+08:00">2022-06-03</time>
+                <time title="Modified: 2022-06-11 21:52:16" itemprop="dateModified" datetime="2022-06-11T21:52:16+08:00">2022-06-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,14 +269,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>6.3k</span>
+              <span>8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>6 mins.</span>
+              <span>7 mins.</span>
             </span>
 
         </div>
@@ -345,12 +345,154 @@
 
 <p>Callable和Runnable类似，区别在于Runnable是没有返回值的，<strong>它们的本质都是定义线程要做的任务（call 或 run 方法里面的逻辑），而不是说他们本身就是线程</strong>。但无论有无返回值，它们都是需要被线程执行。</p>
 <p>Callable可以提交到线程池执行，通过 sumbit 方法提交。</p>
-<h3 id="创建线程方式总结："><a href="#创建线程方式总结：" class="headerlink" title="创建线程方式总结："></a>创建线程方式总结：</h3><p>这么多创建线程方式，实际上的创建线程只有一种方式，就是继承Thread类，而<strong>Runnable接口，实际上是定义了一个线程的任务阶段的执行内容，并不是创建了一个完整的线程的生命周期（从新建到死亡）</strong>，而</p>
+<h3 id="创建线程方式总结："><a href="#创建线程方式总结：" class="headerlink" title="创建线程方式总结："></a>创建线程方式总结：</h3><p>Thread类的run()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Runnable target;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (target != <span class="literal">null</span>) &#123;</span><br><span class="line">        target.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这么多创建线程方式，实际上的创建线程只有一种方式，就是继承Thread类，而<strong>Runnable接口，实际上是定义了一个线程的任务阶段的执行内容，并不是创建了一个完整的线程的生命周期（从新建到死亡）</strong>，而run()方法，就是执行的内容，可Runnable方式，它启动线程还是需要调用 start 方法（因为是 Native 方法我们看不到具体逻辑）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(Runnable target).start()</span><br></pre></td></tr></table></figure>
+
+<p>所以，当我们使用Thread类去重写run()方法的时候，才是创建一个线程的完整生命周期。</p>
 <h1 id="多线程并发问题"><a href="#多线程并发问题" class="headerlink" title="多线程并发问题"></a>多线程并发问题</h1><p>当多个线程进行并发执行时，为了资源相互之间的抢占和确保资源分配的可靠，就衍生出了很多解决问题的办法。那么如果想解决问题，就得知道问题是如何出现的，这样问题就解决了一半，那么并发问题是如何产生的呢？下面一个实例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestThreadStudy01</span> &#123;</span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">TestThreadStudy01</span> <span class="variable">testThreadStudy01</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestThreadStudy01</span>();</span><br><span class="line"></span><br><span class="line">        <span class="type">Th1</span> <span class="variable">th1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Th1</span>();</span><br><span class="line">        th1.start();</span><br><span class="line">        <span class="type">Th2</span> <span class="variable">th2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Th2</span>();</span><br><span class="line">        th2.start();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;结束&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;count=&quot;</span>+count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Th1</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (TestThreadStudy01.count&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                TestThreadStudy01.count--;</span><br><span class="line">                System.out.println(TestThreadStudy01.count);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Th2</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);<span class="comment">//模拟并发</span></span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (TestThreadStudy01.count&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                TestThreadStudy01.count--;</span><br><span class="line">                System.out.println(TestThreadStudy01.count);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<p>这里我们定义了一个静态变量为count，然后两个线程去共享消耗，然后模拟并发的场景，我们发现，会出现操作同一变量的情况。</p>
+<details>   
+    <summary>查看运行结果</summary>   
+    <pre>
+    <code>
+结束
+count=100
+99
+98
+97
+96
+95
+94
+93
+93
+92
+91
+90
+90
+89
+88
+87
+86
+85
+85
+84
+84
+83
+83
+82
+82
+80
+81
+79
+79
+78
+77
+76
+76
+75
+74
+73
+73
+72
+71
+70
+69
+68
+67
+66
+65
+64
+63
+61
+61
+59
+60
+58
+58
+57
+56
+54
+55
+53
+52
+51
+51
+50
+50
+49
+49
+48
+47
+46
+45
+44
+43
+42
+42
+41
+41
+40
+39
+38
+37
+36
+36
+35
+34
+33
+32
+31
+31
+30
+29
+28
+27
+26
+26
+25
+24
+23
+22
+21
+21
+20
+20
+19
+19
+18
+18
+17
+16
+15
+14
+13
+12
+11
+11
+10
+9
+8
+7
+6
+6
+5
+4
+3
+3
+1
+2
+0
+0  
+    </code>
+    </pre> 
+</details>
 
-
+<p>出现这样的问题是绝对不允许的，那么我们该如何解决呢？</p>
 <h1 id="线程安全问题"><a href="#线程安全问题" class="headerlink" title="线程安全问题"></a>线程安全问题</h1><p>线程安全 - 如果线程执行过程中不会产生共享资源的冲突，则线程安全。</p>
 <p>线程不安全 - 如果有多个线程同时在操作主内存中的变量，则线程不安全。</p>
 <h2 id="实现线程安全的几种方式"><a href="#实现线程安全的几种方式" class="headerlink" title="实现线程安全的几种方式"></a>实现线程安全的几种方式</h2><p><strong>1.互斥同步锁（悲观锁）</strong></p>
@@ -359,7 +501,7 @@
 <p>互斥同步锁也叫做阻塞同步锁，特征是会对没有获取锁的线程进行阻塞。要理解互斥同步锁，首选要明白什么是互斥什么是同步。简单的说互斥就是非你即我，同步就是顺序访问。互斥同步锁就是以互斥的手段达到顺序访问的目的。操作系统提供了很多互斥机制比如信号量，互斥量，临界区资源等来控制在某一个时刻只能有一个或者一组线程访问同一个资源。Java里面的互斥同步锁就是Synchorized和ReentrantLock，前者是由语言级别实现的互斥同步锁，理解和写法简单但是机制笨拙，在JDK6之后性能优化大幅提升，即使在竞争激烈的情况下也能保持一个和ReentrantLock相差不多的性能，所以JDK6之后的程序选择不应该再因为性能问题而放弃synchorized。</p>
 <p>ReentrantLock是API层面的互斥同步锁，需要程序自己打开并在finally中关闭锁，和synchorized相比更加的灵活，体现在三个方面：等待可中断，公平锁以及绑定多个条件。但是如果程序猿对ReentrantLock理解不够深刻，或者忘记释放lock，那么不仅不会提升性能反而会带来额外的问题。另外synchorized是JVM实现的，可以通过监控工具来监控锁的状态，遇到异常JVM会自动释放掉锁。而ReentrantLock必须由程序主动的释放锁。</p>
 <p>互斥同步锁都是可重入锁，好处是可以保证不会死锁。但是因为涉及到核心态和用户态的切换，因此比较消耗性能。JVM开发团队在JDK5-JDK6升级过程中采用很多锁优化机制来优化同步无竞争情况下锁的性能。比如：<strong>自旋锁和适应性自旋锁，轻量级锁，偏向锁，锁粗化和锁消除。</strong></p>
-<p><strong>2.非阻塞同步锁</strong></p>
+<p><strong>2.非阻塞同步锁（乐观锁）</strong></p>
 <ol>
 <li>原子类（CAS）</li>
 </ol>
@@ -374,6 +516,7 @@
 <p>线程本地的变量，每个线程获取一份共享变量的拷贝，单独进行处理。</p>
 <p>3）线程本地存储</p>
 <p>如果一个共享资源一定要被多线程共享，可以尽量让一个线程完成所有的处理操作，比如生产者消费者模式中，一般会让一个消费者完成对队列上资源的消费。典型的应用是基于请求-应答模式的web服务器的设计。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/263762343">Java并发编程——深入理解自旋锁 - 知乎 (zhihu.com)</a></p>
 <h1 id="LockSupport"><a href="#LockSupport" class="headerlink" title="LockSupport"></a>LockSupport</h1><h1 id="ReentrantLock不可打断模式与可打断模式"><a href="#ReentrantLock不可打断模式与可打断模式" class="headerlink" title="ReentrantLock不可打断模式与可打断模式"></a>ReentrantLock不可打断模式与可打断模式</h1><h1 id="ReentrantLock和Synchronized的区别"><a href="#ReentrantLock和Synchronized的区别" class="headerlink" title="ReentrantLock和Synchronized的区别"></a>ReentrantLock和Synchronized的区别</h1><h1 id="volatile、ThreadLocal的使用场景和原理"><a href="#volatile、ThreadLocal的使用场景和原理" class="headerlink" title="volatile、ThreadLocal的使用场景和原理"></a>volatile、ThreadLocal的使用场景和原理</h1><p>原文链接：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1684031">创建线程到底有多少种方式？ - 云+社区 - 腾讯云 (tencent.com)</a></p>
 
     </div>
@@ -469,12 +612,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
@@ -515,13 +658,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">108k</span>
+    <span title="Symbols count total">111k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">1:38</span>
+    <span title="Reading time total">1:40</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
