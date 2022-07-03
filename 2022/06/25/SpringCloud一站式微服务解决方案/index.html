@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://example.com/2022/06/25/SpringCloud%E4%B8%80%E7%AB%99%E5%BC%8F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20220629090424236.png">
 <meta property="og:image" content="http://example.com/2022/06/25/SpringCloud%E4%B8%80%E7%AB%99%E5%BC%8F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20220630092926542.png">
 <meta property="article:published_time" content="2022-06-25T13:05:11.000Z">
-<meta property="article:modified_time" content="2022-07-01T12:38:55.844Z">
+<meta property="article:modified_time" content="2022-07-02T01:43:00.895Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -249,7 +249,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-01 20:38:55" itemprop="dateModified" datetime="2022-07-01T20:38:55+08:00">2022-07-01</time>
+                <time title="Modified: 2022-07-02 09:43:00" itemprop="dateModified" datetime="2022-07-02T09:43:00+08:00">2022-07-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -446,8 +446,7 @@
 
 <h1 id="GateWay"><a href="#GateWay" class="headerlink" title="GateWay"></a>GateWay</h1><p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-gateway">Spring Cloud Gateway</a></p>
 <p>服务网关方面 我们有zull和gateway两种选择 选择gateway </p>
-<p>Spring WebFlux</p>
-<p>netty</p>
+<p>内部组件：Spring WebFlux+netty  &#x2F;&#x2F;TODO</p>
 <p>Gateway实现了负载均衡<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_25861361/article/details/89875942">(42条消息) GateWay负载均衡_神绮H亚里亚的博客-CSDN博客_gateway负载均衡</a></p>
 <img src="/2022/06/25/SpringCloud%E4%B8%80%E7%AB%99%E5%BC%8F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20220629090424236.png" class="" title="image-20220629090424236">
 
@@ -466,15 +465,13 @@
 <h2 id="路由routes"><a href="#路由routes" class="headerlink" title="路由routes:"></a>路由routes:</h2><h2 id="断言predicate"><a href="#断言predicate" class="headerlink" title="断言predicate"></a>断言predicate</h2><p>是一个针对http协议的封装使用 		</p>
 <h3 id="测试的curl命令"><a href="#测试的curl命令" class="headerlink" title="测试的curl命令"></a>测试的curl命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:9527/payment/lb --cookie &quot;username=zzyy&quot;//本次测试使用语句</span><br></pre></td></tr></table></figure>
 
-
-
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/07c4dddae43a">curl 命令详解 - 简书 (jianshu.com)</a></p>
 <p>如果不满足断言条件：返回编码404</p>
 <h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><p>虽然SpringCould提供了很多过滤器 但是通常我们都自己定义过滤器的业务逻辑</p>
 <p>创建filter业务类 实现GlobalFilter,Ordered接口</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyLogGateWayFilter</span> <span class="keyword">implements</span> <span class="title class_">GlobalFilter</span>,Ordered</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Mono&lt;Void&gt; <span class="title function_">filter</span><span class="params">(ServerWebExchange exchange, GatewayFilterChain chain)</span></span><br><span class="line">    &#123;</span><br><span class="line">        log.info(<span class="string">&quot;***********come in MyLogGateWayFilter:  &quot;</span>+<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line"><span class="comment">//      判断http请求是否带有uname的一个key 既是否带有这样的一个参数</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">uname</span> <span class="operator">=</span> exchange.getRequest().getQueryParams().getFirst(<span class="string">&quot;uname&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(uname == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            log.info(<span class="string">&quot;*******用户名为null，非法用户，o(╥﹏╥)o&quot;</span>);</span><br><span class="line"><span class="comment">//            设置为不可接受的http状态码</span></span><br><span class="line">            exchange.getResponse().setStatusCode(HttpStatus.NOT_ACCEPTABLE);</span><br><span class="line">            <span class="keyword">return</span> exchange.getResponse().setComplete();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> chain.filter(exchange);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 代表优先级</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getOrder</span><span class="params">()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>更多过滤条件通过ServerWebExchange的API获取</p>
+<p>更多过滤条件通过ServerWebExchange的API获取&#x2F;&#x2F;TODO</p>
 <h1 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h1><p>在分布式微服务系统中，几乎所有服务的运行都离不开配置文件的支持，这些配置文件通常由各个服务自行管理，以 properties 或 yml 格式保存在各个微服务的类路径下，例如 application.properties 或 application.yml 等。</p>
 <p>这种将配置文件散落在各个服务中的管理方式，存在以下问题：</p>
 <ul>

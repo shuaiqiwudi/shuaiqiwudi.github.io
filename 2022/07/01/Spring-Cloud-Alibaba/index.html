@@ -32,8 +32,13 @@
 <meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/image-20220701203534341.png">
 <meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/image-20220701145045797.png">
 <meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/image-20220701200647822.png">
+<meta property="og:image" content="https://nacos.io/img/deployDnsVipMode.jpg">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220702100327727.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9434884/43697219-3cb4ef3a-9975-11e8-9a9c-73f4f537442d.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/image-20220703105117104.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/image-20220703105210793.png">
 <meta property="article:published_time" content="2022-07-01T03:34:58.000Z">
-<meta property="article:modified_time" content="2022-07-01T12:36:03.865Z">
+<meta property="article:modified_time" content="2022-07-03T02:58:34.038Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -237,10 +242,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-07-01 11:34:58 / Modified: 20:36:03" itemprop="dateCreated datePublished" datetime="2022-07-01T11:34:58+08:00">2022-07-01</time>
+              <time title="Created: 2022-07-01 11:34:58" itemprop="dateCreated datePublished" datetime="2022-07-01T11:34:58+08:00">2022-07-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-07-03 10:58:34" itemprop="dateModified" datetime="2022-07-03T10:58:34+08:00">2022-07-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -264,14 +275,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.4k</span>
+              <span>4.1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -313,9 +324,13 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;spring.application.name&#125;-$&#123;spring.profile.active&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</span><br></pre></td></tr></table></figure>
 
 <p>创建一个微服务，cloudalibaba-config-nacos-client3377</p>
-<p>需要application.yaml 和 bootstrap.yaml两个配置文件 为了和SpringCloud平滑过渡</p>
+<p>需要<strong>application.yaml 和bootstrap.yam</strong>l两个配置文件 (为了能和SpringCloud平滑过渡）</p>
+<p>1.application.yaml</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span> <span class="comment"># 表示开发环境</span></span><br><span class="line"><span class="comment">#    active: test # 表示测试环境</span></span><br><span class="line">    <span class="comment">#active: info </span></span><br></pre></td></tr></table></figure>
 
+<ol start="2">
+<li>bootstrap.yaml</li>
+</ol>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nacos配置</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">3377</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-config-client</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#Nacos服务注册中心地址</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#Nacos作为配置中心地址</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment">#指定yaml格式的配置</span></span><br><span class="line"><span class="comment">#        group: DEV_GROUP</span></span><br><span class="line"><span class="comment">#        namespace: 7d8f0f5a-6a53-4785-9686-dd460158e5d4</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># $&#123;spring.application.name&#125;-$&#123;spring.profile.active&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</span></span><br><span class="line"><span class="comment"># nacos-config-client-dev.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># nacos-config-client-test.yaml   ----&gt; config.info</span></span><br></pre></td></tr></table></figure>
 
 
@@ -326,7 +341,32 @@
 <p>可以使用@Value注解自动填充配置文件里的信息。</p>
 <p>于是就可以获取的到文件了。</p>
 <p>之后切换环境就可以。</p>
-<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220701200647822.png" class="" title="image-20220701200647822">
+<h2 id="Group和Data-ID"><a href="#Group和Data-ID" class="headerlink" title="Group和Data ID"></a>Group和Data ID</h2><img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220701200647822.png" class="" title="image-20220701200647822">
+
+<p>所以，当我们需要制定某个配置文件的时候，就需要Group和Data Id配合使用 所以就需要application.yaml和bootstrap.yaml两个配置文件配合使用。</p>
+<h2 id="Nacos集群配置"><a href="#Nacos集群配置" class="headerlink" title="Nacos集群配置"></a>Nacos集群配置</h2><p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html">集群部署说明 (nacos.io)</a></p>
+<p>作为服务注册中心，为了保证其可用性以及出现宕机的意外情况，应该配置nacos集群以保证线上环境的稳定。</p>
+<p><img src="https://nacos.io/img/deployDnsVipMode.jpg" alt="deployDnsVipMode.jpg"></p>
+<p>SLB代表的是负载均衡的集群配置，此处使用的是nginx的一个集群配置。<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1803">SLB技术原理浅析-阿里云开发者社区 (aliyun.com)</a></p>
+<p>关于nacos的数据源使用高可用数据库，类似以下情况架构</p>
+<img src="Spring-Cloud-Alibaba/image-20220702100327727.png" alt="image-20220702100327727" style="zoom: 67%;" />
+
+<p>从github上的源码中查看nacos的pom依赖文件，derby是nacos自带的内置数据库，所以我们的配置文件才得以保存在nacos中，而当我们需要一个稳定的数据源的使用，就需要将这个<strong>derby数据库切换为mysql数据库</strong>（集群）</p>
+<p>切换步骤：（本机电脑未切换）</p>
+<p>nacos-server-1.1.3\nacos\conf\nacos-mysql.sql </p>
+<p>复制该sql脚本到本地数据库中，创建对应配置文件表。</p>
+<p>nacos-server-1.1.3\nacos\conf\application.properties</p>
+<p>修改该配置文件，在最后添加一段配置，指向本地mysql</p>
+<h1 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h1><p><a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/wiki/%E4%BB%8B%E7%BB%8D">介绍 · alibaba&#x2F;Sentinel Wiki (github.com)</a></p>
+<img src="https://user-images.githubusercontent.com/9434884/43697219-3cb4ef3a-9975-11e8-9a9c-73f4f537442d.png" alt="Sentinel Logo" style="zoom: 50%;" />
+
+<p>Sentinel单独组件，直接界面化的细粒度统一配置</p>
+<p>在官网下载jar包后，使用java -jar命令运行该项目，访问localhost:8080 即可进入</p>
+<h2 id="工程搭建"><a href="#工程搭建" class="headerlink" title="工程搭建"></a>工程搭建</h2><h2 id="流控"><a href="#流控" class="headerlink" title="流控"></a>流控</h2><img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220703105117104.png" class="" title="image-20220703105117104">
+
+<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220703105210793.png" class="" title="image-20220703105210793">
+
+<p>添加流控规则 可以在	簇点链路 ——&gt;列表视图 ——&gt;选择具体资源名  就可以继续宁流控限制。</p>
 
     </div>
 
@@ -404,7 +444,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nacos"><span class="nav-number">1.</span> <span class="nav-text">Nacos</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="nav-number">1.1.</span> <span class="nav-text">作为注册中心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nacos%E5%92%8C%E5%85%B6%E4%BB%96%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.</span> <span class="nav-text">Nacos和其他注册中心比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83Config"><span class="nav-number">1.3.</span> <span class="nav-text">作为配置中心Config</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nacos"><span class="nav-number">1.</span> <span class="nav-text">Nacos</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="nav-number">1.1.</span> <span class="nav-text">作为注册中心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nacos%E5%92%8C%E5%85%B6%E4%BB%96%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.</span> <span class="nav-text">Nacos和其他注册中心比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83Config"><span class="nav-number">1.3.</span> <span class="nav-text">作为配置中心Config</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Group%E5%92%8CData-ID"><span class="nav-number">1.4.</span> <span class="nav-text">Group和Data ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nacos%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE"><span class="nav-number">1.5.</span> <span class="nav-text">Nacos集群配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sentinel"><span class="nav-number">2.</span> <span class="nav-text">Sentinel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA"><span class="nav-number">2.1.</span> <span class="nav-text">工程搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E6%8E%A7"><span class="nav-number">2.2.</span> <span class="nav-text">流控</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
