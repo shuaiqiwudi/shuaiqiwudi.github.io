@@ -36,14 +36,14 @@
 <meta property="og:image" content="https://nacos.io/img/deployDnsVipMode.jpg">
 <meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220702100327727.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/9434884/43697219-3cb4ef3a-9975-11e8-9a9c-73f4f537442d.png">
-<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220706153537108.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220706153537108-16571011666094.png">
 <meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220703105117104.png">
 <meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220703105210793.png">
-<meta property="og:image" content="http://c.biancheng.net/uploads/allimg/211210/10252343H-15.png">
-<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220706104040702.png">
-<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/image-20220706151534201.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/10252343H-15.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220706104040702-16571011514152.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/image-20220706151534201-16571011567043.png">
 <meta property="article:published_time" content="2022-07-01T03:34:58.000Z">
-<meta property="article:modified_time" content="2022-07-06T08:03:57.770Z">
+<meta property="article:modified_time" content="2022-07-06T09:53:02.146Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -255,7 +255,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-06 16:03:57" itemprop="dateModified" datetime="2022-07-06T16:03:57+08:00">2022-07-06</time>
+                <time title="Modified: 2022-07-06 17:53:02" itemprop="dateModified" datetime="2022-07-06T17:53:02+08:00">2022-07-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -387,14 +387,18 @@
 <h2 id="流控"><a href="#流控" class="headerlink" title="流控"></a>流控</h2><h3 id="流控规则的规则意义"><a href="#流控规则的规则意义" class="headerlink" title="流控规则的规则意义"></a>流控规则的规则意义</h3><p>Sentinel 作为一种轻量级高可用流量控制组件，流量控制是它最主要的工作之一。</p>
 <p>我们可以针对资源定义流控规则，Sentinel 会根据这些规则对流量相关的各项指标进行监控。当这些指标当达到或超过流控规则规定的阈值时，Sentinel 会对请求的流量进行限制（即“限流”），以避免系统被瞬时的流量高峰冲垮，保障系统的高可用性。</p>
 <p><strong>同一个资源可以创建多条流控规则，Sentinel 会遍历这些规则，直到有规则触发限流或者所有规则遍历完毕为止。</strong></p>
-<h3 id="流控规则的具体实现"><a href="#流控规则的具体实现" class="headerlink" title="流控规则的具体实现"></a>流控规则的具体实现</h3><img src="Spring-Cloud-Alibaba/image-20220706153537108.png" alt="image-20220706153537108" style="zoom: 67%;" />
-<img src="Spring-Cloud-Alibaba/image-20220703105117104.png" alt="image-20220703105117104" style="zoom: 80%;" /><img src="Spring-Cloud-Alibaba/image-20220703105210793.png" alt="image-20220703105210793" style="zoom: 80%;" />
+<h3 id="流控规则的具体实现"><a href="#流控规则的具体实现" class="headerlink" title="流控规则的具体实现"></a>流控规则的具体实现</h3><img src="Spring-Cloud-Alibaba/image-20220706153537108-16571011666094.png" alt="image-20220706153537108" style="zoom: 67%;" />
+
+<img src="Spring-Cloud-Alibaba/image-20220703105117104.png" alt="image-20220703105117104" style="zoom: 80%;" />
+
+<img src="Spring-Cloud-Alibaba/image-20220703105210793.png" alt="image-20220703105210793" style="zoom: 80%;" />
 
 
 
 <p>添加流控规则添加：簇点链路 ——&gt;列表视图 ——&gt;选择具体资源名  就可以继续进行流控限制。</p>
 <h2 id="熔断降级"><a href="#熔断降级" class="headerlink" title="熔断降级"></a>熔断降级</h2><p>除了流量控制以外，对调用链路中不稳定的资源进行熔断降级也是保障高可用的重要措施之一。由于调用关系的复杂性，如果调用链路中的某个资源不稳定，最终会导致请求发生堆积。Sentinel <strong>熔断降级</strong>会在调用链路中某个资源出现不稳定状态时（例如调用超时或异常比例升高），对这个资源的调用进行限制，让请求快速失败，避免影响到其它的资源而导致级联错误。当资源被降级后，在接下来的降级时间窗口之内，对该资源的调用都自动熔断（默认行为是抛出 <code>DegradeException</code>）。</p>
-<p><img src="http://c.biancheng.net/uploads/allimg/211210/10252343H-15.png" alt="Sentinel 熔断状态转换"></p>
+<img src="/2022/07/01/Spring-Cloud-Alibaba/10252343H-15.png" class="" title="Sentinel 熔断状态转换">
+
 <h3 id="Sentinel-熔断策略"><a href="#Sentinel-熔断策略" class="headerlink" title="Sentinel 熔断策略"></a>Sentinel 熔断策略</h3><ol>
 <li><strong>平均响应时间 (<code>DEGRADE_GRADE_RT</code>)<strong>：当 1s 内持续进入 5 个请求（大于等于5），对应时刻的平均响应时间（秒级）均超过阈值（<code>count</code>，以 ms 为单位），那么在接下的时间窗口期（<code>DegradeRule</code> 中的 <code>timeWindow</code>，以 s 为单位）之内，对这个方法的调用都会自动地熔断（抛出 <code>DegradeException</code>）。注意 Sentinel 默认统计的 RT 上限是 4900 ms，</strong>超出此阈值的都会算作 4900 ms</strong>，若需要变更此上限可以通过启动配置项 <code>-Dcsp.sentinel.statistic.max.rt=xxx</code> 来配置。</li>
 <li>**异常比例 (<code>DEGRADE_GRADE_EXCEPTION_RATIO</code>)**：当资源的每秒请求量 &gt;&#x3D; 5，并且每秒异常总数占通过量的比值超过阈值（<code>DegradeRule</code> 中的 <code>count</code>）之后，资源进入降级状态，即在接下的时间窗口（<code>DegradeRule</code> 中的 <code>timeWindow</code>，以 s 为单位）之内，对这个方法的调用都会自动地返回。异常比率的阈值范围是 <code>[0.0, 1.0]</code>，代表 0% - 100%。</li>
@@ -435,7 +439,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/testHotKey&quot;)</span></span><br><span class="line">    <span class="meta">@SentinelResource(value = &quot;testHotKey&quot;,blockHandler = &quot;deal_testHotKey&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">testHotKey</span><span class="params">(<span class="meta">@RequestParam(value = &quot;p1&quot;,required = false)</span> String p1,</span></span><br><span class="line"><span class="params">                             <span class="meta">@RequestParam(value = &quot;p2&quot;,required = false)</span> String p2)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//int age = 10/0;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;------testHotKey&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">deal_testHotKey</span> <span class="params">(String p1, String p2, BlockException exception)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;------deal_testHotKey,o(╥﹏╥)o&quot;</span>;  <span class="comment">//sentinel系统默认的提示：Blocked by Sentinel (flow limiting)</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>新增热点规则：</p>
-<img src="Spring-Cloud-Alibaba/image-20220706104040702.png" alt="image-20220706104040702" style="zoom:50%;" />
+<img src="Spring-Cloud-Alibaba/image-20220706104040702-16571011514152.png" alt="image-20220706104040702" style="zoom:50%;" />
 
 <p>限流规则：仅支持QPS（线程数）</p>
 <p>参数索引：指定限制的热点参数的索引位置</p>
@@ -463,7 +467,7 @@
 <p>对于很多的方法类，如果都需要一个降级的blockHandler兜底方法，不能挨个配置，可以定义一个公共的降级方法提供给这些方法使用。</p>
 <p>所以我们可以解锁 @SentinelResource 的更多姿势：写一个公共类（本例中为CustomerBlockHandler），可以定义不同的静态blockHandler方法提供给其他方法，在具体方法上添加@SentinelResource注解，然后（blockHandlerClass ）指定处理异常的类，（blockHandler）再具体到这个类中的某个方法。</p>
 <p>配置参数和具体方法的对应位置：</p>
-<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706151534201.png" class="" title="image-20220706151534201">
+<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706151534201-16571011567043.png" class="" title="image-20220706151534201">
 
 
 
