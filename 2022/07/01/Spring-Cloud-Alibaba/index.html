@@ -36,14 +36,14 @@
 <meta property="og:image" content="https://nacos.io/img/deployDnsVipMode.jpg">
 <meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220702100327727.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/9434884/43697219-3cb4ef3a-9975-11e8-9a9c-73f4f537442d.png">
-<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220706153537108-16571011666094.png">
-<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220703105117104.png">
-<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220703105210793.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220706153537108-16571050619086.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220703105117104-16571050647617.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220703105210793-16571050683688.png">
 <meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/10252343H-15.png">
-<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220706104040702-16571011514152.png">
+<meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/Spring-Cloud-Alibaba/image-20220706104040702-16571050529875.png">
 <meta property="og:image" content="http://example.com/2022/07/01/Spring-Cloud-Alibaba/image-20220706151534201-16571011567043.png">
 <meta property="article:published_time" content="2022-07-01T03:34:58.000Z">
-<meta property="article:modified_time" content="2022-07-06T09:53:02.146Z">
+<meta property="article:modified_time" content="2022-07-06T10:57:52.680Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -255,7 +255,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-06 17:53:02" itemprop="dateModified" datetime="2022-07-06T17:53:02+08:00">2022-07-06</time>
+                <time title="Modified: 2022-07-06 18:57:52" itemprop="dateModified" datetime="2022-07-06T18:57:52+08:00">2022-07-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -387,11 +387,11 @@
 <h2 id="流控"><a href="#流控" class="headerlink" title="流控"></a>流控</h2><h3 id="流控规则的规则意义"><a href="#流控规则的规则意义" class="headerlink" title="流控规则的规则意义"></a>流控规则的规则意义</h3><p>Sentinel 作为一种轻量级高可用流量控制组件，流量控制是它最主要的工作之一。</p>
 <p>我们可以针对资源定义流控规则，Sentinel 会根据这些规则对流量相关的各项指标进行监控。当这些指标当达到或超过流控规则规定的阈值时，Sentinel 会对请求的流量进行限制（即“限流”），以避免系统被瞬时的流量高峰冲垮，保障系统的高可用性。</p>
 <p><strong>同一个资源可以创建多条流控规则，Sentinel 会遍历这些规则，直到有规则触发限流或者所有规则遍历完毕为止。</strong></p>
-<h3 id="流控规则的具体实现"><a href="#流控规则的具体实现" class="headerlink" title="流控规则的具体实现"></a>流控规则的具体实现</h3><img src="Spring-Cloud-Alibaba/image-20220706153537108-16571011666094.png" alt="image-20220706153537108" style="zoom: 67%;" />
+<h3 id="流控规则的具体实现"><a href="#流控规则的具体实现" class="headerlink" title="流控规则的具体实现"></a>流控规则的具体实现</h3><img src="Spring-Cloud-Alibaba/image-20220706153537108-16571050619086.png" alt="image-20220706153537108" style="zoom: 67%;" />
 
-<img src="Spring-Cloud-Alibaba/image-20220703105117104.png" alt="image-20220703105117104" style="zoom: 80%;" />
+<img src="Spring-Cloud-Alibaba/image-20220703105117104-16571050647617.png" alt="image-20220703105117104" style="zoom: 80%;" />
 
-<img src="Spring-Cloud-Alibaba/image-20220703105210793.png" alt="image-20220703105210793" style="zoom: 80%;" />
+<img src="Spring-Cloud-Alibaba/image-20220703105210793-16571050683688.png" alt="image-20220703105210793" style="zoom: 80%;" />
 
 
 
@@ -439,7 +439,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/testHotKey&quot;)</span></span><br><span class="line">    <span class="meta">@SentinelResource(value = &quot;testHotKey&quot;,blockHandler = &quot;deal_testHotKey&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">testHotKey</span><span class="params">(<span class="meta">@RequestParam(value = &quot;p1&quot;,required = false)</span> String p1,</span></span><br><span class="line"><span class="params">                             <span class="meta">@RequestParam(value = &quot;p2&quot;,required = false)</span> String p2)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//int age = 10/0;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;------testHotKey&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">deal_testHotKey</span> <span class="params">(String p1, String p2, BlockException exception)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;------deal_testHotKey,o(╥﹏╥)o&quot;</span>;  <span class="comment">//sentinel系统默认的提示：Blocked by Sentinel (flow limiting)</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>新增热点规则：</p>
-<img src="Spring-Cloud-Alibaba/image-20220706104040702-16571011514152.png" alt="image-20220706104040702" style="zoom:50%;" />
+<img src="Spring-Cloud-Alibaba/image-20220706104040702-16571050529875.png" alt="image-20220706104040702" style="zoom:50%;" />
 
 <p>限流规则：仅支持QPS（线程数）</p>
 <p>参数索引：指定限制的热点参数的索引位置</p>
