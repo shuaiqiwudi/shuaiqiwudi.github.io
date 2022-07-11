@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>IOStream</title>
+    <url>/2022/05/18/IOStream/</url>
+    <content><![CDATA[<h1 id="IO流的继承关系和分类"><a href="#IO流的继承关系和分类" class="headerlink" title="IO流的继承关系和分类"></a>IO流的继承关系和分类</h1><img src="/2022/05/18/IOStream/image-20220518162023270.png" class="" title="image-20220518162023270">
+
+<span id="more"></span>
+
+<img src="/2022/05/18/IOStream/image-20220518162100236.png" class="" title="image-20220518162100236">
+
+<img src="/2022/05/18/IOStream/image-20220518162120508.png" class="" title="image-20220518162120508">
+
+<img src="/2022/05/18/IOStream/image-20220518162134464.png" class="" title="image-20220518162134464">
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux</title>
+    <url>/2022/06/07/Linux/</url>
+    <content><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>另一种操作系统</p>
+<p>服务器操作系统</p>
+<p>针对CentOS7</p>
+<h2 id="Linux文件信息位置"><a href="#Linux文件信息位置" class="headerlink" title="Linux文件信息位置"></a>Linux文件信息位置</h2><h3 id="1-网卡信息存放位置"><a href="#1-网卡信息存放位置" class="headerlink" title="1.网卡信息存放位置"></a>1.网卡信息存放位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">/* 如果是dell的物理服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-em1或em2 ，em3，em4</span><br><span class="line">/* 如果是云服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-防火墙的开启和关闭"><a href="#2-防火墙的开启和关闭" class="headerlink" title="2.防火墙的开启和关闭"></a>2.防火墙的开启和关闭</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>启动防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start firewalld.service  		--启动firewall</span><br><span class="line">systemctl enable firewalld.service		--开机时启动firewall</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service    		--停止firewall</span><br><span class="line">systemctl disable firewalld.service		--禁止firewall开机启动</span><br></pre></td></tr></table></figure>
+
+<p>重启防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>查看防火墙是否开启自启</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled firewalld.service;echo $?</span><br></pre></td></tr></table></figure>
+
+<p>查看已启动的服务列表</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files|grep enabled</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux运维</category>
+      </categories>
+  </entry>
+  <entry>
     <title>JVM</title>
     <url>/2022/05/16/JVM/</url>
     <content><![CDATA[<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>什么是JVM？</p>
@@ -184,21 +231,21 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 </ul>
 <h4 id="字符串常量池的位置变化"><a href="#字符串常量池的位置变化" class="headerlink" title="字符串常量池的位置变化"></a>字符串常量池的位置变化</h4><p>运行时常量池存和字符串常量池的变化</p>
 <p>JDK1.7之前 ：<br>运行时常量池(包含字符串常量池 )存放在方法区，此时 hotspot 虚拟机对方法区的实现为永久代。</p>
-<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223822891-1286299930.png" alt="9.5_1"  />
+<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_1">
 
 
 
 
 
 <p>JDK1.7 ：<br>字符串常量池被从方法区拿到了堆中；<br>运行时常量池剩下的东西还在方法区, 也就是hotspot中的永久代。</p>
-<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223858262-125394764.png" alt="9.5_2"  />
+<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_2">
 
 
 
 
 
 <p>JDK1.8 ：<br>hotspot移除了永久代，用元空间(Metaspace) 取而代之。这时候，<br>字符串常量池还在堆,<br>运行时常量池还在方法区, 只不过方法区的实现从永久代变成元空间(Metaspace)。</p>
-<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223940541-1635130641.png" alt="9.5_3"  />
+<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_3">
 
 
 
@@ -286,33 +333,372 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       </categories>
   </entry>
   <entry>
-    <title>Linux</title>
-    <url>/2022/06/07/Linux/</url>
-    <content><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>另一种操作系统</p>
-<p>服务器操作系统</p>
-<p>针对CentOS7</p>
-<h2 id="Linux文件信息位置"><a href="#Linux文件信息位置" class="headerlink" title="Linux文件信息位置"></a>Linux文件信息位置</h2><h3 id="1-网卡信息存放位置"><a href="#1-网卡信息存放位置" class="headerlink" title="1.网卡信息存放位置"></a>1.网卡信息存放位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">/* 如果是dell的物理服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-em1或em2 ，em3，em4</span><br><span class="line">/* 如果是云服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
+    <title>Mybatis</title>
+    <url>/2022/05/29/Mybatis/</url>
+    <content><![CDATA[<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><img src="/2022/05/29/Mybatis/1502093784622523.png" class="" title="img">
 
-<h3 id="2-防火墙的开启和关闭"><a href="#2-防火墙的开启和关闭" class="headerlink" title="2.防火墙的开启和关闭"></a>2.防火墙的开启和关闭</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
+<h1 id="什么是Mybatis"><a href="#什么是Mybatis" class="headerlink" title="什么是Mybatis?"></a>什么是Mybatis?</h1><p>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
+<span id="more"></span>
 
-<p>启动防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start firewalld.service  		--启动firewall</span><br><span class="line">systemctl enable firewalld.service		--开机时启动firewall</span><br></pre></td></tr></table></figure>
+<h1 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h1><p>首先在pom.xml文件中添加依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>x.x.x<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>关闭防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service    		--停止firewall</span><br><span class="line">systemctl disable firewalld.service		--禁止firewall开机启动</span><br></pre></td></tr></table></figure>
+<h2 id="从-XML-中构建-SqlSessionFactory"><a href="#从-XML-中构建-SqlSessionFactory" class="headerlink" title="从 XML 中构建 SqlSessionFactory"></a>从 <a href="https://www.w3cschool.cn/xml/">XML</a> 中构建 SqlSessionFactory</h2><p>每个基于 MyBatis 的应用都是以一个 SqlSessionFactory 的实例为核心的。SqlSessionFactory 的实例可以通过 SqlSessionFactoryBuilder 获得。而 SqlSessionFactoryBuilder 则可以从 XML 配置文件或一个预先配置的 Configuration 实例来构建出 SqlSessionFactory 实例。</p>
+<p>从 XML 文件中构建 SqlSessionFactory 的实例非常简单，建议使用类路径下的资源文件进行配置。 但也可以使用任意的输入流（InputStream）实例，比如用文件路径字符串或 <code>file:// URL</code> 构造的输入流。MyBatis 包含一个名叫 Resources 的工具类，它包含一些实用方法，使得从类路径或其它位置加载资源文件更加容易。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;org/mybatis/example/mybatis-config.xml&quot;</span>;</span><br><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br></pre></td></tr></table></figure>
 
-<p>重启防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
+<p>XML 配置文件中包含了对 MyBatis 系统的核心设置，包括获取数据库连接实例的数据源（DataSource）以及决定事务作用域和控制方式的事务管理器（TransactionManager）。后面会再探讨 XML 配置文件的详细内容，这里先给出一个简单的示例：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">  <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/example/BlogMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>查看防火墙是否开启自启</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled firewalld.service;echo $?</span><br></pre></td></tr></table></figure>
+<p>当然，还有很多可以在 XML 文件中配置的选项，上面的示例仅罗列了最关键的部分。 注意 XML 头部的声明，它用来验证 XML 文档的正确性。environment 元素体中包含了事务管理和连接池的配置。mappers 元素则包含了一组映射器（<a href="https://www.w3cschool.cn/kzsow/kzsow-frbn2grj.html">mapper</a>），这些映射器的 XML 映射文件包含了 <a href="https://www.w3cschool.cn/sql/">SQL</a> 代码和映射定义信息。</p>
+<h1 id="MyBatis-XML配置"><a href="#MyBatis-XML配置" class="headerlink" title="MyBatis XML配置"></a>MyBatis XML配置</h1><p>mybatis-config.xml配置文件  <configuration> 标签中 各个标签的配置顺序</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--    此处易报错 注意错误返回的标签规则 将下面的标签顺序重新排列--&gt;</span><br><span class="line">&lt;!--    (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers?)&gt;--&gt;</span><br></pre></td></tr></table></figure>
 
-<p>查看已启动的服务列表</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files|grep enabled</span><br></pre></td></tr></table></figure>
+<h2 id="XML-映射配置文件"><a href="#XML-映射配置文件" class="headerlink" title="XML 映射配置文件"></a>XML 映射配置文件</h2><p>MyBatis 的配置文件包含了影响 MyBatis 行为甚深的设置（settings）和属性（properties）信息。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">&quot;db.properties&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="属性（properties）"><a href="#属性（properties）" class="headerlink" title="属性（properties）"></a>属性（properties）</h2><p>这些属性都是可外部配置且可动态替换的，既可以在典型的 Java 属性文件中配置，亦可通过 properties 元素的子元素来传递。例如：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/example/config.properties&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;dev_user&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;F2Fa3!33TYyg&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中的属性就可以在整个配置文件中使用来替换需要动态配置的属性值。比如:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver&#125;&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username&#125;&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个例子中的 username 和 password 将会由 properties 元素中设置的相应值来替换。 driver 和 url 属性将会由 config.properties 文件中对应的值来替换。这样就为配置提供了诸多灵活选择。</p>
+<p>属性也可以被传递到 SqlSessionBuilder.build()方法中。例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader, props);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ... or ...</span></span><br><span class="line"></span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader, environment, props);</span><br></pre></td></tr></table></figure>
+
+<p>如果属性在不只一个地方进行了配置，那么 MyBatis 将按照下面的<strong>顺序来加载</strong>：</p>
+<ul>
+<li>在 properties 元素体内指定的属性首先被读取。</li>
+<li>然后根据 properties 元素中的 resource 属性读取类路径下属性文件或根据 url 属性指定的路径读取属性文件，并覆盖已读取的同名属性。</li>
+<li>最后读取作为方法参数传递的属性，并覆盖已读取的同名属性。</li>
+</ul>
+<h2 id="配置环境（environments）"><a href="#配置环境（environments）" class="headerlink" title="配置环境（environments）"></a>配置环境（environments）</h2><p>MyBatis 可以配置成适应多种环境，这种机制有助于将 SQL 映射应用于多种数据库之中， 现实情况下有多种理由需要这么做。例如，开发、测试和生产环境需要有不同的配置；或者共享相同 Schema 的多个生产数据库， 想使用相同的 SQL 映射。许多类似的用例。</p>
+<p><strong>不过要记住：尽管可以配置多个环境，每个 SqlSessionFactory 实例只能选择其一。</strong></p>
+<p>所以，如果你想连接两个数据库，就需要创建两个 SqlSessionFactory 实例，每个数据库对应一个。而如果是三个数据库，就需要三个实例，依此类推，记起来很简单：</p>
+<ul>
+<li><strong>每个数据库对应一个 SqlSessionFactory 实例</strong></li>
+</ul>
+<p>为了指定创建哪种环境，只要将它作为可选的参数传递给 SqlSessionFactoryBuilder 即可。可以接受环境配置的两个方法签名是：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader, environment);</span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader, environment,properties);</span><br></pre></td></tr></table></figure>
+
+<p>如果忽略了环境参数，那么默认环境将会被加载，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader);</span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader,properties);</span><br></pre></td></tr></table></figure>
+
+<p>环境元素定义了如何配置环境。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 此处使用的是第一个环境变量 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;...&quot;</span> <span class="attr">value</span>=<span class="string">&quot;...&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 另一个环境 在&lt;environments default=&quot; &quot;&gt; 设置应该加载哪个--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development2&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;...&quot;</span> <span class="attr">value</span>=<span class="string">&quot;...&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver2&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url2&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username2&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password2&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意这里的关键点:</p>
+<ul>
+<li>默认的环境 ID（比如:default&#x3D;”development”）。</li>
+<li>每个 environment 元素定义的环境 ID（比如:id&#x3D;”development”）。</li>
+<li>事务管理器的配置（比如:type&#x3D;”JDBC”）。</li>
+<li>数据源的配置（比如:type&#x3D;”POOLED”）。</li>
+</ul>
+<p>默认的环境和环境 ID 是一目了然的。随你怎么命名，只要保证默认环境要匹配其中一个环境ID。</p>
+<h3 id="数据源（dataSource）"><a href="#数据源（dataSource）" class="headerlink" title="数据源（dataSource）"></a><strong>数据源（dataSource）</strong></h3><p>数据源<dataSource> 标签 属于  <environment> 在其中配置数据源</p>
+<p>dataSource 元素使用标准的 JDBC 数据源接口来配置 JDBC 连接对象的资源。</p>
+<ul>
+<li>许多 MyBatis 的应用程序将会按示例中的例子来配置数据源。然而它并不是必须的。要知道为了方便使用延迟加载，数据源才是必须的。</li>
+</ul>
+<p>有三种内建的数据源类型（也就是 type&#x3D;”[   UNPOOLED     |    POOLED    |    JNDI    ]”）：</p>
+<p><strong>UNPOOLED</strong>– 这个数据源的实现只是每次被请求时打开和关闭连接。虽然一点慢，它对在及时可用连接方面没有性能要求的简单应用程序是一个很好的选择。 不同的数据库在这方面表现也是不一样的，所以对某些数据库来说使用连接池并不重要，这个配置也是理想的。UNPOOLED 类型的数据源仅仅需要配置以下 5 种属性：</p>
+<ul>
+<li><code>driver</code> – 这是 JDBC 驱动的 Java 类的完全限定名（并不是JDBC驱动中可能包含的数据源类）。</li>
+<li><code>url</code> – 这是数据库的 JDBC URL 地址。</li>
+<li><code>username</code> – 登录数据库的用户名。</li>
+<li><code>password</code> – 登录数据库的密码。</li>
+<li><code>defaultTransactionIsolationLevel</code> – 默认的连接事务隔离级别。</li>
+</ul>
+<p>作为可选项，你也可以传递属性给数据库驱动。要这样做，属性的前缀为”driver.”，例如：</p>
+<ul>
+<li><code>driver.encoding=UTF8</code></li>
+</ul>
+<p>这将通过DriverManager.getConnection(url,driverProperties)方法传递值为 <code>UTF8</code> 的 <code>encoding</code> 属性给数据库驱动。</p>
+<p><strong>POOLED</strong>– 这种数据源的实现利用”池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间。 这是一种使得并发 Web 应用快速响应请求的流行处理方式。</p>
+<p>除了上述提到 UNPOOLED 下的属性外，会有更多属性用来配置 POOLED 的数据源：</p>
+<ul>
+<li><code>poolMaximumActiveConnections</code> – 在任意时间可以存在的活动（也就是正在使用）连接数量，默认值：10</li>
+<li><code>poolMaximumIdleConnections</code> – 任意时间可能存在的空闲连接数。</li>
+<li><code>poolMaximumCheckoutTime</code> – 在被强制返回之前，池中连接被检出（checked out）时间，默认值：20000 毫秒（即 20 秒）</li>
+<li><code>poolTimeToWait</code> – 这是一个底层设置，如果获取连接花费的相当长的时间，它会给连接池打印状态日志并重新尝试获取一个连接（避免在误配置的情况下一直安静的失败），默认值：20000 毫秒（即 20 秒）。</li>
+<li><code>poolPingQuery</code> – 发送到数据库的侦测查询，用来检验连接是否处在正常工作秩序中并准备接受请求。默认是”NO PING QUERY SET”，这会导致多数数据库驱动失败时带有一个恰当的错误消息。</li>
+<li><code>poolPingEnabled</code> – 是否启用侦测查询。若开启，也必须使用一个可执行的 SQL 语句设置 <code>poolPingQuery</code> 属性（最好是一个非常快的 SQL），默认值：false。</li>
+<li><code>poolPingConnectionsNotUsedFor</code> – 配置 poolPingQuery 的使用频度。这可以被设置成匹配具体的数据库连接超时时间，来避免不必要的侦测，默认值：0（即所有连接每一时刻都被侦测 — 当然仅当 poolPingEnabled 为 true 时适用）。</li>
+</ul>
+<p><strong>JNDI</strong>– 这个数据源的实现是为了能在如 EJB 或应用服务器这类容器中使用，容器可以集中或在外部配置数据源，然后放置一个 JNDI 上下文的引用。这种数据源配置只需要两个属性：</p>
+<ul>
+<li><code>initial_context</code> – 这个属性用来在 InitialContext 中寻找上下文（即，initialContext.lookup(initial_context)）。这是个可选属性，如果忽略，那么 data_source 属性将会直接从 InitialContext 中寻找。</li>
+<li><code>data_source</code> – 这是引用数据源实例位置的上下文的路径。提供了 initial_context 配置时会在其返回的上下文中进行查找，没有提供时则直接在 InitialContext 中查找。</li>
+</ul>
+<h2 id="映射器（mappers）"><a href="#映射器（mappers）" class="headerlink" title="映射器（mappers）"></a>映射器（mappers）</h2><p>既然 MyBatis 的行为已经由上述元素配置完了，我们现在就要定义 SQL 映射语句了。但是首先我们需要告诉 MyBatis 到哪里去找到这些语句。 Java 在自动查找这方面没有提供一个很好的方法，所以最佳的方式是告诉 MyBatis 到哪里去找映射文件。你可以使用相对于类路径的资源引用， 或完全限定资源定位符（包括 <code>file:///</code> 的 URL），或类名和包名等。例如：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Using classpath relative resources --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/builder/AuthorMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/builder/BlogMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/builder/PostMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Using mapper interface classes --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.builder.AuthorMapper&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.builder.BlogMapper&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.builder.PostMapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Using url fully qualified paths --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">url</span>=<span class="string">&quot;file:///var/mappers/AuthorMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">url</span>=<span class="string">&quot;file:///var/mappers/BlogMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">url</span>=<span class="string">&quot;file:///var/mappers/PostMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="编写XML映射文件"><a href="#编写XML映射文件" class="headerlink" title="编写XML映射文件"></a>编写XML映射文件</h1><p>SQL 映射文件有很少的几个顶级元素（按照它们应该被定义的顺序）：</p>
+<ul>
+<li><code>cache</code> – 给定命名空间的缓存配置。</li>
+<li><code>cache-ref</code> – 其他命名空间缓存配置的引用。</li>
+<li><code>resultMap</code> – 是最复杂也是最强大的元素，用来描述如何从数据库结果集中来加载对象。</li>
+<li><code>sql</code> – 可被其他语句引用的可重用语句块。</li>
+<li><code>insert</code> – 映射插入语句</li>
+<li><code>update</code> – 映射更新语句</li>
+<li><code>delete</code> – 映射删除语句</li>
+<li><code>select</code> – 映射查询语句</li>
+</ul>
+<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><p>查询语句是 MyBatis 中最常用的元素之一，光能把数据存到数据库中价值并不大，如果还能重新取出来才有用，多数应用也都是查询比修改要频繁。对每个插入、更新或删除操作，通常对应多个查询操作。这是 MyBatis 的基本原则之一，也是将焦点和努力放到查询和结果映射的原因。</p>
+<p>select 标签有很多属性允许你配置，来决定每条语句的作用细节。</p>
+<p><strong>Select Attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">id</td>
+<td align="left">在命名空间中唯一的标识符，可以被用来引用这条语句。</td>
+</tr>
+<tr>
+<td align="left">parameterType</td>
+<td align="left">将会传入这条语句的参数类的完全限定名或别名。这个属性是可选的，因为 MyBatis 可以通过 TypeHandler 推断出具体传入语句的参数，默认值为 unset。</td>
+</tr>
+<tr>
+<td align="left">resultType</td>
+<td align="left">从这条语句中返回的期望类型的类的完全限定名或别名。注意如果是集合情形，那应该是集合可以包含的类型，而不能是集合本身。使用 resultType 或 resultMap，但不能同时使用。</td>
+</tr>
+<tr>
+<td align="left">resultMap</td>
+<td align="left">外部 resultMap 的命名引用。结果集的映射是 MyBatis 最强大的特性，对其有一个很好的理解的话，许多复杂映射的情形都能迎刃而解。使用 resultMap 或 resultType，但不能同时使用。</td>
+</tr>
+<tr>
+<td align="left">flushCache</td>
+<td align="left">将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空，默认值：false。</td>
+</tr>
+<tr>
+<td align="left">useCache</td>
+<td align="left">将其设置为 true，将会导致本条语句的结果被二级缓存，默认值：对 select 元素为 true。</td>
+</tr>
+<tr>
+<td align="left">timeout</td>
+<td align="left">这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为 unset（依赖驱动）。</td>
+</tr>
+<tr>
+<td align="left">fetchSize</td>
+<td align="left">这是尝试影响驱动程序每次批量返回的结果行数和这个设置值相等。默认值为 unset（依赖驱动）。</td>
+</tr>
+<tr>
+<td align="left">statementType</td>
+<td align="left">STATEMENT，PREPARED 或 CALLABLE 的一个。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。</td>
+</tr>
+<tr>
+<td align="left">resultSetType</td>
+<td align="left">FORWARD_ONLY，SCROLL_SENSITIVE 或 SCROLL_INSENSITIVE 中的一个，默认值为 unset （依赖驱动）。</td>
+</tr>
+<tr>
+<td align="left">databaseId</td>
+<td align="left">如果配置了 databaseIdProvider，MyBatis 会加载所有的不带 databaseId 或匹配当前 databaseId 的语句；如果带或者不带的语句都有，则不带的会被忽略。</td>
+</tr>
+<tr>
+<td align="left">resultOrdered</td>
+<td align="left">这个设置仅针对嵌套结果 select 语句适用：如果为 true，就是假设包含了嵌套结果集或是分组了，这样的话当返回一个主结果行的时候，就不会发生有对前面结果集的引用的情况。这就使得在获取嵌套的结果集的时候不至于导致内存不够用。默认值：false。</td>
+</tr>
+<tr>
+<td align="left">resultSets</td>
+<td align="left">这个设置仅对多结果集的情况适用，它将列出语句执行后返回的结果集并每个结果集给一个名称，名称是逗号分隔的。</td>
+</tr>
+</tbody></table>
+<p>类似的 insert update delete 标签的属性</p>
+<p><strong>Insert Update Delete Attributes</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">id</td>
+<td align="left">命名空间中的唯一标识符，可被用来代表这条语句。</td>
+</tr>
+<tr>
+<td align="left">parameterType</td>
+<td align="left">将要传入语句的参数的完全限定类名或别名。这个属性是可选的，因为 MyBatis 可以通过 TypeHandler 推断出具体传入语句的参数，默认值为 unset。</td>
+</tr>
+<tr>
+<td align="left">flushCache</td>
+<td align="left">将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空，默认值：true（对应插入、更新和删除语句）。</td>
+</tr>
+<tr>
+<td align="left">timeout</td>
+<td align="left">这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为 unset（依赖驱动）。</td>
+</tr>
+<tr>
+<td align="left">statementType</td>
+<td align="left">STATEMENT，PREPARED 或 CALLABLE 的一个。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。</td>
+</tr>
+<tr>
+<td align="left">useGeneratedKeys</td>
+<td align="left">（仅对 insert 和 update 有用）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系数据库管理系统的自动递增字段），默认值：false。</td>
+</tr>
+<tr>
+<td align="left">keyProperty</td>
+<td align="left">（仅对 insert 和 update 有用）唯一标记一个属性，MyBatis 会通过 getGeneratedKeys 的返回值或者通过 insert 语句的 selectKey 子元素设置它的键值，默认：unset。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。</td>
+</tr>
+<tr>
+<td align="left">keyColumn</td>
+<td align="left">（仅对 insert 和 update 有用）通过生成的键值设置表中的列名，这个设置仅在某些数据库（像 PostgreSQL）是必须的，当主键列不是表中的第一列的时候需要设置。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。</td>
+</tr>
+<tr>
+<td align="left">databaseId</td>
+<td align="left">如果配置了 databaseIdProvider，MyBatis 会加载所有的不带 databaseId 或匹配当前 databaseId 的语句；如果带或者不带的语句都有，则不带的会被忽略。</td>
+</tr>
+</tbody></table>
+<p>&#x2F;&#x2F;TODO 一些其他的构造方法和参数</p>
+<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><p>动态 SQL 元素和使用 JSTL 或其他类似基于 XML 的文本处理器相似。在 MyBatis 之前的版本中,有很多的元素需要来了解。MyBatis 3 大大提升了它们,现在用不到原先一半的元素就可以了。MyBatis 采用功能强大的基于 OGNL 的表达式来消除其他元素。</p>
+<h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><p>根据条件进行判断：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findActiveBlogWithTitleLike&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  WHERE state = ‘ACTIVE’ </span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">    AND title like #&#123;title&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="choose-when-otherwise"><a href="#choose-when-otherwise" class="headerlink" title="choose, when, otherwise"></a>choose, when, otherwise</h2><p>有些时候，我们不想用到所有的条件语句，而只想从中择其一二。针对这种情况，MyBatis 提供了 choose 元素，它有点像 Java 中的 switch 语句。</p>
+<p>还是上面的例子，但是这次变为提供了”title”就按”title”查找，提供了”author”就按”author”查找，若两者都没有提供，就返回所有符合条件的BLOG（实际情况可能是由管理员按一定策略选出BLOG列表，而不是返回大量无意义的随机结果）。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findActiveBlogLike&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG WHERE state = ‘ACTIVE’</span><br><span class="line">  <span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">      AND title like #&#123;title&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;author != null and author.name != null&quot;</span>&gt;</span></span><br><span class="line">      AND author_name like #&#123;author.name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">      AND featured = 1</span><br><span class="line">    <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="trim-where-set"><a href="#trim-where-set" class="headerlink" title="trim, where, set"></a>trim, where, set</h2><p>首先看一个动态SQL：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findActiveBlogLike&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  WHERE </span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;state != null&quot;</span>&gt;</span></span><br><span class="line">    state = #&#123;state&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">    AND title like #&#123;title&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null and author.name != null&quot;</span>&gt;</span></span><br><span class="line">    AND author_name like #&#123;author.name&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>乍一看没什么问题 但是当每个条件都匹配不到时,这条SQL会变成这样：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> BLOG</span><br><span class="line"><span class="keyword">WHERE</span></span><br></pre></td></tr></table></figure>
+
+<p>如何解决这种条件不匹配的sql？MyBatis 有一个简单的处理，这在90%的情况下都会有用。而在不能使用的地方，你可以自定义处理方式来令其正常工作。一处简单的修改就能得到想要的效果：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findActiveBlogLike&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  <span class="tag">&lt;<span class="name">where</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;state != null&quot;</span>&gt;</span></span><br><span class="line">         state = #&#123;state&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">        AND title like #&#123;title&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null and author.name != null&quot;</span>&gt;</span></span><br><span class="line">        AND author_name like #&#123;author.name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>where 元素知道只有在一个以上的if条件有值的情况下才去插入”WHERE”子句。而且，若最后的内容是”AND”或”OR”开头的，where 元素也知道如何将他们去除。</p>
+<p>如果 where 元素没有按正常套路出牌，我们还是可以通过自定义 trim 元素来定制我们想要的功能。比如，和 where 元素等价的自定义 trim 元素为：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;WHERE&quot;</span> <span class="attr">prefixOverrides</span>=<span class="string">&quot;AND |OR &quot;</span>&gt;</span></span><br><span class="line">  ... </span><br><span class="line"><span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>prefixOverrides 属性会忽略通过管道分隔的文本序列（注意此例中的空格也是必要的）。它带来的结果就是所有在 prefixOverrides 属性中指定的内容将被移除，并且插入 prefix 属性中指定的内容。</p>
+<p>类似的用于动态更新语句的解决方案叫做 set。set 元素可以被用于动态包含需要更新的列，而舍去其他的。比如：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateAuthorIfNecessary&quot;</span>&gt;</span></span><br><span class="line">  update Author</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;username != null&quot;</span>&gt;</span>username=#&#123;username&#125;,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;password != null&quot;</span>&gt;</span>password=#&#123;password&#125;,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;email != null&quot;</span>&gt;</span>email=#&#123;email&#125;,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;bio != null&quot;</span>&gt;</span>bio=#&#123;bio&#125;<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">  where id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里，set 元素会动态前置 SET 关键字，同时也会消除无关的逗号，因为用了条件语句之后很可能就会在生成的赋值语句的后面留下这些逗号。</p>
+<p>若你对等价的自定义 trim 元素的样子感兴趣，那这就应该是它的真面目：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;SET&quot;</span> <span class="attr">suffixOverrides</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意这里我们忽略的是后缀中的值，而又一次附加了前缀中的值。</p>
+<h2 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h2><p>动态 SQL 的另外一个常用的必要操作是需要对一个集合进行遍历，通常是在构建 IN 条件语句的时候。比如：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectPostIn&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;domain.blog.Post&quot;</span>&gt;</span></span><br><span class="line">  SELECT *</span><br><span class="line">  FROM POST P</span><br><span class="line">  WHERE ID in</span><br><span class="line">  <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">        #&#123;item&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>foreach 元素的功能是非常强大的，它允许你指定一个集合，声明可以用在元素体内的集合项和索引变量。它也允许你指定开闭匹配的字符串以及在迭代中间放置分隔符。这个元素是很智能的，因此它不会偶然地附加多余的分隔符。</p>
+<h1 id="Mybatis-日志"><a href="#Mybatis-日志" class="headerlink" title="Mybatis 日志"></a>Mybatis 日志</h1><p>Mybatis内置的日志工厂提供日志功能，具体的日志实现有以下几种工具：</p>
+<ul>
+<li>SLF4J</li>
+<li>Apache Commons Logging</li>
+<li>Log4j 2</li>
+<li>Log4j</li>
+<li>JDK logging</li>
+</ul>
+<p>&#x2F;&#x2F;TODO</p>
+<h1 id="Mybatis-缓存"><a href="#Mybatis-缓存" class="headerlink" title="Mybatis 缓存"></a>Mybatis 缓存</h1><p>将用户经常查询的数据的结果的一个保存，保存到一个内存中（缓存就是内存中的一个对象），用户在查询的时候就不用到数据库文件中查询（磁盘），从而减少与数据库的交付次数提高了响应速度，解决了并发系统的性能问题。</p>
+<h2 id="缓存分类"><a href="#缓存分类" class="headerlink" title="缓存分类"></a>缓存分类</h2><p>MyBatis提供了一级缓存和二级缓存</p>
+<ul>
+<li>一级缓存：也称为本地缓存，用于保存用户在一次会话过程中查询的结果，用户一次会话中只能使用一个sqlSession，一级缓存是自动开启的，不允许关闭。</li>
+<li>二级缓存：也称为全局缓存，是mapper级别的缓存，是针对一个表的查结果的存储，可以共享给所有针对这张表的查询的用户。也就是说对于mapper级别的缓存不同的sqlsession是可以共享的。</li>
+</ul>
+<h2 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h2><p>在应用运行过程中，在一次数据库会话中，执行多次查询条件完全相同的SQL，会优先命中一级缓存，避免直接对数据库中直接查询。</p>
+<img src="/2022/05/29/Mybatis/webp.webp" class="" title="img">
+
+<p>每个SqlSession中都持有Excutor，每个Excutor中有一个LocalCache。当用户发起询问时，MyBatis根据当前执行的语句生成MappedStatement，在Local Cache进行查询，如果缓存命中的话，直接返回结果给用户，如果缓存没有命中的话，查询数据库，结果写入Local Cache，最后返回结果给用户。</p>
+<img src="/2022/05/29/Mybatis/webp-16538306997353.webp" class="" title="img">
+
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p><strong>SqlSession：</strong> 对外提供了用户和数据库之间交互需要的所有方法，隐藏了底层的细节。默认实现类是DefaultSqlSession。<br> <strong>Executor：</strong> SqlSession向用户提供操作数据库的方法，但和数据库操作有关的职责都会委托给Executor。Executor有两个实现类，和一级缓存关联的是BaseExecutor。<br> <strong>BaseExecutor：</strong> BaseExecutor是一个实现了Executor接口的抽象类，定义若干抽象方法，在执行的时候，把具体的操作委托给子类进行执行。<br> <strong>PerpetualCache：</strong>对Cache接口最基本实现，内部持有HashMap，对一级缓存的操作实则是对HashMap的操作。</p>
+<p>SqlSession初始化时会创建Executor的实例，Mybatis默认使用的是SimpleExecutor，初始化代码如下所示:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Executor <span class="title function_">newExecutor</span><span class="params">(Transaction transaction, ExecutorType executorType)</span> &#123;</span><br><span class="line">    executorType = executorType == <span class="literal">null</span> ? defaultExecutorType : executorType;</span><br><span class="line">    executorType = executorType == <span class="literal">null</span> ? ExecutorType.SIMPLE : executorType;</span><br><span class="line">    Executor executor;</span><br><span class="line">    <span class="keyword">if</span> (ExecutorType.BATCH == executorType) &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> <span class="title class_">BatchExecutor</span>(<span class="built_in">this</span>, transaction);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ExecutorType.REUSE == executorType) &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> <span class="title class_">ReuseExecutor</span>(<span class="built_in">this</span>, transaction);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> <span class="title class_">SimpleExecutor</span>(<span class="built_in">this</span>, transaction);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">//如果启用二级缓存，使用CahingExecutor装饰类</span></span><br><span class="line">    <span class="keyword">if</span> (cacheEnabled) &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> <span class="title class_">CachingExecutor</span>(executor);</span><br><span class="line">    &#125;</span><br><span class="line">    executor = (Executor) interceptorChain.pluginAll(executor);</span><br><span class="line">    <span class="keyword">return</span> executor;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>SqlSession在提交的时候会清空本地缓存，因为commit操作一般对应插入、更新或者删除操作，清空缓存防止读取脏数据。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">commit</span><span class="params">(<span class="type">boolean</span> required)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">  <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ExecutorException</span>(<span class="string">&quot;Cannot commit, transaction is already closed&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  clearLocalCache();</span><br><span class="line">  flushStatements();</span><br><span class="line">  <span class="keyword">if</span> (required) &#123;</span><br><span class="line">    transaction.commit();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>SqlSession的insert方法和delete方法，都会统一走update的流程。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">insert</span><span class="params">(String statement, Object parameter)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> update(statement, parameter);</span><br><span class="line">  &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">delete</span><span class="params">(String statement)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> update(statement, <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>update方法也是委托给了Executor执行。BaseExecutor的执行方法如下所示。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">update</span><span class="params">(MappedStatement ms, Object parameter)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    ErrorContext.instance().resource(ms.getResource()).activity(<span class="string">&quot;executing an update&quot;</span>).object(ms.getId());</span><br><span class="line">    <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ExecutorException</span>(<span class="string">&quot;Executor was closed.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    clearLocalCache();</span><br><span class="line">    <span class="keyword">return</span> doUpdate(ms, parameter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="一级缓存失效的原因"><a href="#一级缓存失效的原因" class="headerlink" title="一级缓存失效的原因"></a>一级缓存失效的原因</h3><ul>
+<li>同一个用户使用不同的SqlSession对象导致无法看到一级缓存工作。</li>
+<li>在一个SqlSession中使用条件查询不同一级缓存也会失效。</li>
+<li>在一个SqlSession使用相同条件，但是，此时在查询之间进行数据修改操作会导致一级缓存失效。</li>
+<li>在一个SqlSession使用相同查询条件此时手动刷新缓存时导致一级缓存失败。</li>
+</ul>
+<h3 id="一级缓存注意"><a href="#一级缓存注意" class="headerlink" title="一级缓存注意"></a>一级缓存注意</h3><p>MyBatis一级缓存的生命周期和SqlSession一致。</p>
+<p>MyBatis一级缓存内部设计简单，只是一个没有容量限定的HashMap，在缓存的功能性上有所欠缺。</p>
+<p>MyBatis的一级缓存最大范围是SqlSession内部，有多个SqlSession或者分布式的环境下，数据库写操作会引起脏数据。</p>
+<p>mybatis和spring整合后进行mapper代理开发，不支持一级缓存。</p>
+<h2 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h2><img src="/2022/05/29/Mybatis/webp-16538311623015.webp" class="" title="img">
+
+<p>二级缓存开启后，同一个namespace下的所有操作语句，都影响着同一个Cache，即二级缓存被多个SqlSession共享，是一个全局的变量。<br> 当开启缓存后，数据的查询执行的流程就是 二级缓存 -&gt; 一级缓存 -&gt; 数据库。</p>
+<h3 id="如何开启二级缓存"><a href="#如何开启二级缓存" class="headerlink" title="如何开启二级缓存"></a>如何开启二级缓存</h3><ol>
+<li>需要在MyBatis核心配置文件,通过settings标签开发二级缓存。<br> <code>&lt;setting name=&quot;cacheEnabled&quot; value=&quot;true&quot;/&gt;</code></li>
+<li>在对应的Mapper文件中添加cache标签</li>
+<li>cache标签属性</li>
+</ol>
+<ul>
+<li><p>type：cache使用的类型，默认是PerpetualCache，这在一级缓存中提到过。</p>
+</li>
+<li><p>eviction： 定义回收的策略，常见的有FIFO，LRU。</p>
+</li>
+<li><p>flushInterval： 配置一定时间自动刷新缓存，单位是毫秒。</p>
+</li>
+<li><p>size： 最多缓存对象的个数。</p>
+</li>
+<li><p>readOnly： 是否只读，若配置可读写，则需要对应的实体类能够序列化。</p>
+</li>
+<li><p>blocking： 若缓存中找不到对应的key，是否会一直blocking，直到有对应的数据进入缓存4</p>
+<p>4.cache-ref代表引用别的命名空间的Cache配置，两个命名空间的操作使用的是同一个Cache。</p>
+</li>
+</ul>
+<p> <code>&lt;cache-ref namespace=&quot;mapper.StudentMapper&quot;/&gt;</code></p>
+<h3 id="核心接口和实现类"><a href="#核心接口和实现类" class="headerlink" title="核心接口和实现类"></a>核心接口和实现类</h3><img src="/2022/05/29/Mybatis/webp-16538313584837.webp" class="" title="img">
+
+<p>CachingExecutor的query方法，首先会从MappedStatement中获得在配置初始化时赋予的Cache。</p>
+<p>以下是具体这些Cache实现类的介绍，他们的组合为Cache赋予了不同的能力。</p>
+<ul>
+<li>SynchronizedCache： 同步Cache，实现比较简单，直接使用synchronized修饰方法。</li>
+<li>LoggingCache： 日志功能，装饰类，用于记录缓存的命中率，如果开启了DEBUG模式，则会输出命中率日志。</li>
+<li>SerializedCache： 序列化功能，将值序列化后存到缓存中。该功能用于缓存返回一份实例的Copy，用于保存线程安全。</li>
+<li>LruCache： 采用了Lru算法的Cache实现，移除最近最少使用的key&#x2F;value。</li>
+<li>PerpetualCache： 作为为最基础的缓存类，底层实现比较简单，直接使用了HashMap。</li>
+</ul>
+<p>可以为每条Mapper语句设置是否要刷新缓存,可以指定select语句是否使用缓存,如下所示:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">...</span> <span class="attr">flushCache</span>=<span class="string">&quot;false&quot;</span> <span class="attr">useCache</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">...</span> <span class="attr">flushCache</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">...</span> <span class="attr">flushCache</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">...</span> <span class="attr">flushCache</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>判断是否刷新缓存</p>
+<p> <code>flushCacheIfRequired(ms);</code></p>
+<p> 在默认的设置的select语句是不会刷新缓存的，insert&#x2F;update&#x2F;delte会刷新缓存。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">flushCacheIfRequired</span><span class="params">(MappedStatement ms)</span> &#123;</span><br><span class="line">    <span class="type">Cache</span> <span class="variable">cache</span> <span class="operator">=</span> ms.getCache();</span><br><span class="line">    <span class="keyword">if</span> (cache != <span class="literal">null</span> &amp;&amp; ms.isFlushCacheRequired()) &#123;      </span><br><span class="line">      tcm.clear(cache);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>&#x2F;&#x2F;TODO</p>
+<h3 id="二级缓存失效的原因"><a href="#二级缓存失效的原因" class="headerlink" title="二级缓存失效的原因"></a>二级缓存失效的原因</h3><ul>
+<li>flushCache属性在查询中作用针对二级缓存导致失效</li>
+<li>flushCache属性在查询中作用针对一级缓存导致失效</li>
+<li>flushCache属性在更新中作用导致两次查询结果完全一样</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>MyBatis的二级缓存相对于一级缓存来说，实现了SqlSession之间缓存数据的共享，同时粒度更加的细，能够到namespace级别，通过Cache接口实现类不同的组合，对Cache的可控性也更强。</p>
+<p>MyBatis在多表查询时，极大可能会出现脏数据，有设计上的缺陷，安全使用二级缓存的条件比较苛刻。</p>
+<p>在分布式环境下，由于默认的MyBatis Cache实现都是基于本地的，分布式环境下必然会出现读取到脏数据，需要使用集中式缓存将MyBatis的Cache接口实现，有一定的开发成本，直接使用Redis,Memcached等分布式缓存可能成本更低，安全性也更高。</p>
+<p>原文链接：<a href="https://tech.meituan.com/2018/01/19/mybatis-cache.html">聊聊MyBatis缓存机制 - 美团技术团队 (meituan.com)</a></p>
+<p>原文链接：<a href="https://www.jianshu.com/p/b4522c9212fb">https://www.jianshu.com/p/b4522c9212fb</a></p>
+<p>原文链接：<a href="https://www.w3cschool.cn/mybatis/mybatis-dyr53b5w.html">MyBatis 入门_w3cschool</a></p>
 ]]></content>
       <categories>
-        <category>Linux运维</category>
+        <category>Mybatis</category>
       </categories>
   </entry>
   <entry>
@@ -504,6 +890,125 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 ]]></content>
       <categories>
         <category>Spring</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>SpringBoot</title>
+    <url>/2022/05/28/SpringBoot/</url>
+    <content><![CDATA[<p>官网：<a href="https://spring.io/projects/spring-boot">Spring Boot</a></p>
+<img src="/2022/05/28/SpringBoot/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg" class="" title="查看源图像">
+
+<h1 id="什么是SpringBoot？"><a href="#什么是SpringBoot？" class="headerlink" title="什么是SpringBoot？"></a>什么是SpringBoot？</h1><p>Spring Boot 是 Pivotal 团队在 Spring 的基础上提供的一套全新的开源框架，其目的是为了简化 Spring 应用的搭建和开发过程。Spring Boot 去除了大量的 XML 配置文件，简化了复杂的依赖管理。</p>
+<p>Spring Boot 具有 Spring 一切优秀特性，Spring 能做的事，Spring Boot 都可以做，而且使用更加简单，功能更加丰富，性能更加稳定而健壮。随着近些年来微服务技术的流行，Spring Boot 也成了时下炙手可热的技术。</p>
+<p>Spring Boot 集成了大量常用的第三方库配置，Spring Boot 应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
+<span id="more"></span>
+
+<h1 id="SpringBoot自动装配原理"><a href="#SpringBoot自动装配原理" class="headerlink" title="SpringBoot自动装配原理"></a>SpringBoot自动装配原理</h1><p>Spring Boot 项目创建完成后，即使不进行任何的配置，也能够顺利地运行，这都要归功于 Spring Boot 的自动化配置。</p>
+<p>Spring Boot 默认使用 application.properties 或 application.yml 作为其全局配置文件，我们可以在该配置文件中对各种自动配置属性（server.port、logging.level.* 、spring.config.active.no-profile 等等）进行修改，并使之生效，那么您有没有想过这些属性是否有据可依呢？答案是肯定的。</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。本节为你揭开 SpringBoot 自动配置的神秘面纱。</p>
+<h2 id="Spring-Factories-机制"><a href="#Spring-Factories-机制" class="headerlink" title="Spring Factories 机制"></a>Spring Factories 机制</h2><p>Spring Boot 的自动配置是基于 Spring Factories 机制实现的。</p>
+<p>Spring Factories 机制是 Spring Boot 中的一种服务发现机制，这种扩展机制与 Java SPI 机制十分相似。Spring Boot 会自动扫描所有 Jar 包类路径下 META-INF&#x2F;spring.factories 文件，并读取其中的内容，进行实例化，这种机制也是 Spring Boot Starter 的基础。</p>
+<p><a href="https://www.jianshu.com/p/00e49c607fa1">Spring Factories - 简书 (jianshu.com)</a></p>
+<h3 id="spring-factories"><a href="#spring-factories" class="headerlink" title="spring.factories"></a>spring.factories</h3><p>spring.factories 文件本质上与 properties 文件相似，其中包含一组或多组键值对（key&#x3D;vlaue），其中，key 的取值为接口的完全限定名；value 的取值为接口实现类的完全限定名，一个接口可以设置多个实现类，不同实现类之间使用“，”隔开，例如：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">org.springframework.boot.autoconfigure.AutoConfigurationImportFilter</span>=<span class="string">\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnBeanCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnClassCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-Factories-实现原理"><a href="#Spring-Factories-实现原理" class="headerlink" title="Spring Factories 实现原理"></a>Spring Factories 实现原理</h3><p>spring-core 包里定义了 SpringFactoriesLoader 类，这个类会扫描所有 Jar 包类路径下的 META-INF&#x2F;spring.factories 文件，并获取指定接口的配置。在 SpringFactoriesLoader 类中定义了两个对外的方法，如下表。</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><T> List<T></td>
+<td>loadFactories(Class<T> factoryType, @Nullable ClassLoader classLoader)</td>
+<td>静态方法； 根据接口获取其实现类的实例； 该方法返回的是实现类对象列表。</td>
+</tr>
+<tr>
+<td>List<String></td>
+<td>loadFactoryNames(Class&lt;?&gt; factoryType, @Nullable ClassLoader classLoader)</td>
+<td>公共静态方法； 根据接口l获取其实现类的名称； 该方法返回的是实现类的类名的列表</td>
+</tr>
+</tbody></table>
+<p>以上两个方法的关键都是从指定的 ClassLoader 中获取 spring.factories 文件，并解析得到类名列表。</p>
+<p>loadFactories() 方法能够获取指定接口的实现类对象</p>
+<p>loadFactoryNames() 方法能够根据接口获取其实现类类名的集合。</p>
+<h3 id="SpringBootApplication-注解"><a href="#SpringBootApplication-注解" class="headerlink" title="@SpringBootApplication 注解"></a>@SpringBootApplication 注解</h3><p>所有 Spring Boot 项目的主启动程序类上都使用了一个 @SpringBootApplication 注解，该注解是 Spring Boot 中最重要的注解之一 ，也是 Spring Boot 实现自动化配置的关键。 </p>
+<p>@SpringBootApplication 是一个组合元注解，其主要包含两个注解：@SpringBootConfiguration 和 @EnableAutoConfiguration，其中 @EnableAutoConfiguration 注解是 SpringBoot 自动化配置的核心所在。</p>
+<img src="/2022/05/28/SpringBoot/image-20220529152015019.png" class="" title="image-20220529152015019">
+
+<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@<strong>ComponentScan</strong></h3><p>@ComponentScan主要就是定义<strong>扫描的路径</strong>从中找出标识了<strong>需要装配</strong>的类自动装配到spring的bean容器中</p>
+<p>@Controller，@Service，@Repository注解，查看其源码你会发现，他们中有一个<strong>共同的注解@Component</strong></p>
+<img src="/2022/05/28/SpringBoot/image-20220529153202827.png" class="" title="image-20220529153202827">
+
+
+
+<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>@ConfigurationProperties 注解的作用，是将这个类的所有属性与配置文件中相关的配置进行绑定，以便于获取或修改配置，但是 @ConfigurationProperties 功能是由容器提供的，被它注解的类必须是容器中的一个组件，否则该功能就无法使用。而 @EnableConfigurationProperties 注解的作用正是将指定的类以组件的形式注入到 IOC 容器中，并开启其 @ConfigurationProperties 功能。因此，@ConfigurationProperties + @EnableConfigurationProperties 组合使用，便可以为 XxxProperties 类实现配置绑定功能。</p>
+<h2 id="自动配置的生效和修改"><a href="#自动配置的生效和修改" class="headerlink" title="自动配置的生效和修改"></a>自动配置的生效和修改</h2><p>spring.factories 文件中的所有自动配置类（xxxAutoConfiguration），都是必须在一定的条件下才会作为组件添加到容器中，配置的内容才会生效。这些限制条件在 Spring Boot 中以 @Conditional 派生注解的形式体现，如下表。</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>生效条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@ConditionalOnJava</td>
+<td>应用使用指定的 Java 版本时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnBean</td>
+<td>容器中存在指定的 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingBean</td>
+<td>容器中不存在指定的 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnExpression</td>
+<td>满足指定的 SpEL 表达式时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnClass</td>
+<td>存在指定的类时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingClass</td>
+<td>不存在指定的类时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnSingleCandidate</td>
+<td>容器中只存在一个指定的 Bean 或这个 Bean 为首选 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnProperty</td>
+<td>系统中指定属性存在指定的值时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnResource</td>
+<td>类路径下存在指定的资源文件时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnWebApplication</td>
+<td>当前应用是 web 应用时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnNotWebApplication</td>
+<td>当前应用不是 web 应用生效</td>
+</tr>
+</tbody></table>
+<p><a href="http://c.biancheng.net/spring_boot/auto-config.html">Spring Boot自动配置原理 (biancheng.net)</a></p>
+<h1 id="Spring-boot-starter-web（Web启动器）"><a href="#Spring-boot-starter-web（Web启动器）" class="headerlink" title="Spring-boot-starter-web（Web启动器）"></a>Spring-boot-starter-web（Web启动器）</h1><p>Spring MVC 是 Spring 提供的一个基于 MVC 设计模式的轻量级 Web 开发框架，其本身就是 Spring 框架的一部分，可以与 Spring 无缝集成，性能方面具有先天的优越性，是当今业界最主流的 Web 开发框架之一。</p>
+<p>Spring Boot 是在 Spring 的基础上创建一款开源框架，它提供了 spring-boot-starter-web（Web 场景启动器） 来为 Web 开发予以支持。spring-boot-starter-web 为我们提供了嵌入的 Servlet 容器以及 SpringMVC 的依赖，并为 Spring MVC 提供了大量自动配置，可以适用于大多数 Web 开发场景。</p>
+<p>只要我们在 Spring Boot 项目中的 pom.xml 中引入了 spring-boot-starter-web ，即使不进行任何配置，也可以直接使用 Spring MVC 进行 Web 开发。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p>&#x2F;&#x2F;TODO</p>
+<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1>]]></content>
+      <categories>
+        <category>SpringBoot</category>
       </categories>
   </entry>
   <entry>
@@ -1069,125 +1574,6 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
       </categories>
   </entry>
   <entry>
-    <title>SpringBoot</title>
-    <url>/2022/05/28/SpringBoot/</url>
-    <content><![CDATA[<p>官网：<a href="https://spring.io/projects/spring-boot">Spring Boot</a></p>
-<img src="/2022/05/28/SpringBoot/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg" class="" title="查看源图像">
-
-<h1 id="什么是SpringBoot？"><a href="#什么是SpringBoot？" class="headerlink" title="什么是SpringBoot？"></a>什么是SpringBoot？</h1><p>Spring Boot 是 Pivotal 团队在 Spring 的基础上提供的一套全新的开源框架，其目的是为了简化 Spring 应用的搭建和开发过程。Spring Boot 去除了大量的 XML 配置文件，简化了复杂的依赖管理。</p>
-<p>Spring Boot 具有 Spring 一切优秀特性，Spring 能做的事，Spring Boot 都可以做，而且使用更加简单，功能更加丰富，性能更加稳定而健壮。随着近些年来微服务技术的流行，Spring Boot 也成了时下炙手可热的技术。</p>
-<p>Spring Boot 集成了大量常用的第三方库配置，Spring Boot 应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
-<span id="more"></span>
-
-<h1 id="SpringBoot自动装配原理"><a href="#SpringBoot自动装配原理" class="headerlink" title="SpringBoot自动装配原理"></a>SpringBoot自动装配原理</h1><p>Spring Boot 项目创建完成后，即使不进行任何的配置，也能够顺利地运行，这都要归功于 Spring Boot 的自动化配置。</p>
-<p>Spring Boot 默认使用 application.properties 或 application.yml 作为其全局配置文件，我们可以在该配置文件中对各种自动配置属性（server.port、logging.level.* 、spring.config.active.no-profile 等等）进行修改，并使之生效，那么您有没有想过这些属性是否有据可依呢？答案是肯定的。</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。本节为你揭开 SpringBoot 自动配置的神秘面纱。</p>
-<h2 id="Spring-Factories-机制"><a href="#Spring-Factories-机制" class="headerlink" title="Spring Factories 机制"></a>Spring Factories 机制</h2><p>Spring Boot 的自动配置是基于 Spring Factories 机制实现的。</p>
-<p>Spring Factories 机制是 Spring Boot 中的一种服务发现机制，这种扩展机制与 Java SPI 机制十分相似。Spring Boot 会自动扫描所有 Jar 包类路径下 META-INF&#x2F;spring.factories 文件，并读取其中的内容，进行实例化，这种机制也是 Spring Boot Starter 的基础。</p>
-<p><a href="https://www.jianshu.com/p/00e49c607fa1">Spring Factories - 简书 (jianshu.com)</a></p>
-<h3 id="spring-factories"><a href="#spring-factories" class="headerlink" title="spring.factories"></a>spring.factories</h3><p>spring.factories 文件本质上与 properties 文件相似，其中包含一组或多组键值对（key&#x3D;vlaue），其中，key 的取值为接口的完全限定名；value 的取值为接口实现类的完全限定名，一个接口可以设置多个实现类，不同实现类之间使用“，”隔开，例如：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">org.springframework.boot.autoconfigure.AutoConfigurationImportFilter</span>=<span class="string">\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnBeanCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnClassCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Spring-Factories-实现原理"><a href="#Spring-Factories-实现原理" class="headerlink" title="Spring Factories 实现原理"></a>Spring Factories 实现原理</h3><p>spring-core 包里定义了 SpringFactoriesLoader 类，这个类会扫描所有 Jar 包类路径下的 META-INF&#x2F;spring.factories 文件，并获取指定接口的配置。在 SpringFactoriesLoader 类中定义了两个对外的方法，如下表。</p>
-<table>
-<thead>
-<tr>
-<th>返回值</th>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><T> List<T></td>
-<td>loadFactories(Class<T> factoryType, @Nullable ClassLoader classLoader)</td>
-<td>静态方法； 根据接口获取其实现类的实例； 该方法返回的是实现类对象列表。</td>
-</tr>
-<tr>
-<td>List<String></td>
-<td>loadFactoryNames(Class&lt;?&gt; factoryType, @Nullable ClassLoader classLoader)</td>
-<td>公共静态方法； 根据接口l获取其实现类的名称； 该方法返回的是实现类的类名的列表</td>
-</tr>
-</tbody></table>
-<p>以上两个方法的关键都是从指定的 ClassLoader 中获取 spring.factories 文件，并解析得到类名列表。</p>
-<p>loadFactories() 方法能够获取指定接口的实现类对象</p>
-<p>loadFactoryNames() 方法能够根据接口获取其实现类类名的集合。</p>
-<h3 id="SpringBootApplication-注解"><a href="#SpringBootApplication-注解" class="headerlink" title="@SpringBootApplication 注解"></a>@SpringBootApplication 注解</h3><p>所有 Spring Boot 项目的主启动程序类上都使用了一个 @SpringBootApplication 注解，该注解是 Spring Boot 中最重要的注解之一 ，也是 Spring Boot 实现自动化配置的关键。 </p>
-<p>@SpringBootApplication 是一个组合元注解，其主要包含两个注解：@SpringBootConfiguration 和 @EnableAutoConfiguration，其中 @EnableAutoConfiguration 注解是 SpringBoot 自动化配置的核心所在。</p>
-<img src="/2022/05/28/SpringBoot/image-20220529152015019.png" class="" title="image-20220529152015019">
-
-<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@<strong>ComponentScan</strong></h3><p>@ComponentScan主要就是定义<strong>扫描的路径</strong>从中找出标识了<strong>需要装配</strong>的类自动装配到spring的bean容器中</p>
-<p>@Controller，@Service，@Repository注解，查看其源码你会发现，他们中有一个<strong>共同的注解@Component</strong></p>
-<img src="/2022/05/28/SpringBoot/image-20220529153202827.png" class="" title="image-20220529153202827">
-
-
-
-<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>@ConfigurationProperties 注解的作用，是将这个类的所有属性与配置文件中相关的配置进行绑定，以便于获取或修改配置，但是 @ConfigurationProperties 功能是由容器提供的，被它注解的类必须是容器中的一个组件，否则该功能就无法使用。而 @EnableConfigurationProperties 注解的作用正是将指定的类以组件的形式注入到 IOC 容器中，并开启其 @ConfigurationProperties 功能。因此，@ConfigurationProperties + @EnableConfigurationProperties 组合使用，便可以为 XxxProperties 类实现配置绑定功能。</p>
-<h2 id="自动配置的生效和修改"><a href="#自动配置的生效和修改" class="headerlink" title="自动配置的生效和修改"></a>自动配置的生效和修改</h2><p>spring.factories 文件中的所有自动配置类（xxxAutoConfiguration），都是必须在一定的条件下才会作为组件添加到容器中，配置的内容才会生效。这些限制条件在 Spring Boot 中以 @Conditional 派生注解的形式体现，如下表。</p>
-<table>
-<thead>
-<tr>
-<th>注解</th>
-<th>生效条件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@ConditionalOnJava</td>
-<td>应用使用指定的 Java 版本时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnBean</td>
-<td>容器中存在指定的 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnMissingBean</td>
-<td>容器中不存在指定的 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnExpression</td>
-<td>满足指定的 SpEL 表达式时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnClass</td>
-<td>存在指定的类时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnMissingClass</td>
-<td>不存在指定的类时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnSingleCandidate</td>
-<td>容器中只存在一个指定的 Bean 或这个 Bean 为首选 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnProperty</td>
-<td>系统中指定属性存在指定的值时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnResource</td>
-<td>类路径下存在指定的资源文件时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnWebApplication</td>
-<td>当前应用是 web 应用时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnNotWebApplication</td>
-<td>当前应用不是 web 应用生效</td>
-</tr>
-</tbody></table>
-<p><a href="http://c.biancheng.net/spring_boot/auto-config.html">Spring Boot自动配置原理 (biancheng.net)</a></p>
-<h1 id="Spring-boot-starter-web（Web启动器）"><a href="#Spring-boot-starter-web（Web启动器）" class="headerlink" title="Spring-boot-starter-web（Web启动器）"></a>Spring-boot-starter-web（Web启动器）</h1><p>Spring MVC 是 Spring 提供的一个基于 MVC 设计模式的轻量级 Web 开发框架，其本身就是 Spring 框架的一部分，可以与 Spring 无缝集成，性能方面具有先天的优越性，是当今业界最主流的 Web 开发框架之一。</p>
-<p>Spring Boot 是在 Spring 的基础上创建一款开源框架，它提供了 spring-boot-starter-web（Web 场景启动器） 来为 Web 开发予以支持。spring-boot-starter-web 为我们提供了嵌入的 Servlet 容器以及 SpringMVC 的依赖，并为 Spring MVC 提供了大量自动配置，可以适用于大多数 Web 开发场景。</p>
-<p>只要我们在 Spring Boot 项目中的 pom.xml 中引入了 spring-boot-starter-web ，即使不进行任何配置，也可以直接使用 Spring MVC 进行 Web 开发。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p>&#x2F;&#x2F;TODO</p>
-<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1>]]></content>
-      <categories>
-        <category>SpringBoot</category>
-      </categories>
-  </entry>
-  <entry>
     <title>SpringMVC</title>
     <url>/2022/05/28/SpringMVC/</url>
     <content><![CDATA[<img src="/2022/05/28/SpringMVC/image-20220528102032212.png" class="" title="image-20220528102032212">
@@ -1457,23 +1843,6 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
       </tags>
   </entry>
   <entry>
-    <title>IOStream</title>
-    <url>/2022/05/18/IOStream/</url>
-    <content><![CDATA[<h1 id="IO流的继承关系和分类"><a href="#IO流的继承关系和分类" class="headerlink" title="IO流的继承关系和分类"></a>IO流的继承关系和分类</h1><img src="/2022/05/18/IOStream/image-20220518162023270.png" class="" title="image-20220518162023270">
-
-<span id="more"></span>
-
-<img src="/2022/05/18/IOStream/image-20220518162100236.png" class="" title="image-20220518162100236">
-
-<img src="/2022/05/18/IOStream/image-20220518162120508.png" class="" title="image-20220518162120508">
-
-<img src="/2022/05/18/IOStream/image-20220518162134464.png" class="" title="image-20220518162134464">
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>equals()与HashCode()的爱恨情仇</title>
     <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
     <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
@@ -1554,6 +1923,24 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>中间件及容器管理</title>
+    <url>/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p><img src="https://sjwx.easydoc.xyz/46901064/files/kv7rlicu.png" alt="img"></p>
+<h2 id="Docker三要素"><a href="#Docker三要素" class="headerlink" title="Docker三要素"></a>Docker三要素</h2><p>镜像 </p>
+<p>容器</p>
+<p>容器是具体镜像文件的运行环境</p>
+<p>仓库</p>
+<p>集中存放镜像的地方</p>
+<p>Docker 中 docker run命令到底干了什么？</p>
+<img src="/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/image-20220711204926292.png" class="" title="image-20220711204926292">
+
+<h3 id="docker-的客户端-服务端"><a href="#docker-的客户端-服务端" class="headerlink" title="docker 的客户端 服务端"></a>docker 的客户端 服务端</h3><h3 id="为什么docker比Vmware快"><a href="#为什么docker比Vmware快" class="headerlink" title="为什么docker比Vmware快"></a>为什么docker比Vmware快</h3><p>docker时服用了宿主机操作系统的内核，而Vmware是宿主机的 </p>
+]]></content>
+      <categories>
+        <category>项目环境搭建及中间件</category>
+      </categories>
   </entry>
   <entry>
     <title>mysql</title>
@@ -2115,36 +2502,6 @@ Druid防御SQL注入攻击的WallFilter就是通过Druid的SQL Parser分析语�
       </categories>
   </entry>
   <entry>
-    <title>中间件及容器管理</title>
-    <url>/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p><img src="https://sjwx.easydoc.xyz/46901064/files/kv7rlicu.png" alt="img"></p>
-<h2 id="Docker三要素"><a href="#Docker三要素" class="headerlink" title="Docker三要素"></a>Docker三要素</h2><p>镜像 </p>
-<p>容器</p>
-<p>容器是具体镜像文件的运行环境</p>
-<p>仓库</p>
-<p>集中存放镜像的地方</p>
-<p>Docker 中 docker run命令到底干了什么？</p>
-<img src="/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/image-20220711204926292.png" class="" title="image-20220711204926292">
-
-<h3 id="docker-的客户端-服务端"><a href="#docker-的客户端-服务端" class="headerlink" title="docker 的客户端 服务端"></a>docker 的客户端 服务端</h3><h3 id="为什么docker比Vmware快"><a href="#为什么docker比Vmware快" class="headerlink" title="为什么docker比Vmware快"></a>为什么docker比Vmware快</h3><p>docker时服用了宿主机操作系统的内核，而Vmware是宿主机的 </p>
-]]></content>
-      <categories>
-        <category>项目环境搭建及中间件</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>双重检验锁</title>
-    <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
-    <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>乐观锁和悲观锁</title>
     <url>/2022/05/17/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/</url>
     <content><![CDATA[<h1 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h1><p><a href="https://zhuanlan.zhihu.com/p/95296289">摘自文章1</a></p>
@@ -2214,6 +2571,38 @@ Druid防御SQL注入攻击的WallFilter就是通过Druid的SQL Parser分析语�
 </ul>
 <p>当竞争不激烈 (出现并发冲突的概率小)时，乐观锁更有优势，因为悲观锁会锁住代码块或数据，其他线程无法同时访问，影响并发，而且加锁和释放锁都需要消耗额外的资源。</p>
 <p>当竞争激烈(出现并发冲突的概率大)时，悲观锁更有优势，因为乐观锁在执行更新时频繁失败，需要不断重试，浪费CPU资源。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>双重检验锁</title>
+    <url>/2022/05/08/%E5%8F%8C%E9%87%8D%E6%A3%80%E9%AA%8C%E9%94%81/</url>
+    <content><![CDATA[<h4 id="双重检验锁"><a href="#双重检验锁" class="headerlink" title="双重检验锁"></a>双重检验锁</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TheClass</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> TheClass theclass;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TheClass</span><span class="params">()</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Track <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span>(TheClass.class)&#123;</span><br><span class="line">                <span class="keyword">if</span>(theclass==<span class="literal">null</span>)&#123;</span><br><span class="line">                    theclass=<span class="keyword">new</span> <span class="title class_">TheClass</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> theclass;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>算法</title>
+    <url>/2022/07/11/%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="最懒的人就是整天忙得没时间学习、反思、成长的人。"><a href="#最懒的人就是整天忙得没时间学习、反思、成长的人。" class="headerlink" title="最懒的人就是整天忙得没时间学习、反思、成长的人。"></a><strong>最懒的人就是整天忙得没时间学习、反思、成长的人。</strong></h1><span id="more"></span>
+
+
+
+<h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p>三个遍历</p>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h3><p>先根节点      再左子节点     最后右子节点</p>
+<h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><p>先左子节点    再根节点       最后右子节点</p>
+<h3 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h3><p>先左子节点     再右子节点   最后根节点</p>
+<p>前中后遍历的<strong>顺序都是相当于根节点</strong>来说的 前中后的顺序就是遍历的根节点的顺序 但无论是哪个遍历方式 左右子节点的顺序都是先左后右。</p>
+<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><p>左子节点&lt;根节点&lt;右子节点</p>
+<p>题目：</p>
+<p><a href="https://leetcode.cn/problems/unique-binary-search-trees-ii/">95. 不同的二叉搜索树 II - 力扣（LeetCode）</a></p>
 ]]></content>
       <categories>
         <category>java</category>
@@ -2455,395 +2844,6 @@ count=100
 <p><a href="https://blog.csdn.net/xindoo/article/details/103637547">(28条消息) ReentrantLock源码解析_xindoo的博客-CSDN博客</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/263762343">Java并发编程——深入理解自旋锁 - 知乎 (zhihu.com)</a></p>
 <h1 id="LockSupport"><a href="#LockSupport" class="headerlink" title="LockSupport"></a>LockSupport</h1><h1 id="ReentrantLock不可打断模式与可打断模式"><a href="#ReentrantLock不可打断模式与可打断模式" class="headerlink" title="ReentrantLock不可打断模式与可打断模式"></a>ReentrantLock不可打断模式与可打断模式</h1><h1 id="ReentrantLock和Synchronized的区别"><a href="#ReentrantLock和Synchronized的区别" class="headerlink" title="ReentrantLock和Synchronized的区别"></a>ReentrantLock和Synchronized的区别</h1><h1 id="volatile、ThreadLocal的使用场景和原理"><a href="#volatile、ThreadLocal的使用场景和原理" class="headerlink" title="volatile、ThreadLocal的使用场景和原理"></a>volatile、ThreadLocal的使用场景和原理</h1><p>原文链接：<a href="https://cloud.tencent.com/developer/article/1684031">创建线程到底有多少种方式？ - 云+社区 - 腾讯云 (tencent.com)</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Mybatis</title>
-    <url>/2022/05/29/Mybatis/</url>
-    <content><![CDATA[<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><img src="/2022/05/29/Mybatis/1502093784622523.png" class="" title="img">
-
-<h1 id="什么是Mybatis"><a href="#什么是Mybatis" class="headerlink" title="什么是Mybatis?"></a>什么是Mybatis?</h1><p>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
-<span id="more"></span>
-
-<h1 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h1><p>首先在pom.xml文件中添加依赖</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>x.x.x<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="从-XML-中构建-SqlSessionFactory"><a href="#从-XML-中构建-SqlSessionFactory" class="headerlink" title="从 XML 中构建 SqlSessionFactory"></a>从 <a href="https://www.w3cschool.cn/xml/">XML</a> 中构建 SqlSessionFactory</h2><p>每个基于 MyBatis 的应用都是以一个 SqlSessionFactory 的实例为核心的。SqlSessionFactory 的实例可以通过 SqlSessionFactoryBuilder 获得。而 SqlSessionFactoryBuilder 则可以从 XML 配置文件或一个预先配置的 Configuration 实例来构建出 SqlSessionFactory 实例。</p>
-<p>从 XML 文件中构建 SqlSessionFactory 的实例非常简单，建议使用类路径下的资源文件进行配置。 但也可以使用任意的输入流（InputStream）实例，比如用文件路径字符串或 <code>file:// URL</code> 构造的输入流。MyBatis 包含一个名叫 Resources 的工具类，它包含一些实用方法，使得从类路径或其它位置加载资源文件更加容易。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;org/mybatis/example/mybatis-config.xml&quot;</span>;</span><br><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br></pre></td></tr></table></figure>
-
-<p>XML 配置文件中包含了对 MyBatis 系统的核心设置，包括获取数据库连接实例的数据源（DataSource）以及决定事务作用域和控制方式的事务管理器（TransactionManager）。后面会再探讨 XML 配置文件的详细内容，这里先给出一个简单的示例：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">  <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/example/BlogMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>当然，还有很多可以在 XML 文件中配置的选项，上面的示例仅罗列了最关键的部分。 注意 XML 头部的声明，它用来验证 XML 文档的正确性。environment 元素体中包含了事务管理和连接池的配置。mappers 元素则包含了一组映射器（<a href="https://www.w3cschool.cn/kzsow/kzsow-frbn2grj.html">mapper</a>），这些映射器的 XML 映射文件包含了 <a href="https://www.w3cschool.cn/sql/">SQL</a> 代码和映射定义信息。</p>
-<h1 id="MyBatis-XML配置"><a href="#MyBatis-XML配置" class="headerlink" title="MyBatis XML配置"></a>MyBatis XML配置</h1><p>mybatis-config.xml配置文件  <configuration> 标签中 各个标签的配置顺序</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--    此处易报错 注意错误返回的标签规则 将下面的标签顺序重新排列--&gt;</span><br><span class="line">&lt;!--    (properties?, settings?, typeAliases?, typeHandlers?, objectFactory?, objectWrapperFactory?, reflectorFactory?, plugins?, environments?, databaseIdProvider?, mappers?)&gt;--&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="XML-映射配置文件"><a href="#XML-映射配置文件" class="headerlink" title="XML 映射配置文件"></a>XML 映射配置文件</h2><p>MyBatis 的配置文件包含了影响 MyBatis 行为甚深的设置（settings）和属性（properties）信息。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">&quot;db.properties&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="属性（properties）"><a href="#属性（properties）" class="headerlink" title="属性（properties）"></a>属性（properties）</h2><p>这些属性都是可外部配置且可动态替换的，既可以在典型的 Java 属性文件中配置，亦可通过 properties 元素的子元素来传递。例如：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/example/config.properties&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;dev_user&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;F2Fa3!33TYyg&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>其中的属性就可以在整个配置文件中使用来替换需要动态配置的属性值。比如:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver&#125;&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username&#125;&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这个例子中的 username 和 password 将会由 properties 元素中设置的相应值来替换。 driver 和 url 属性将会由 config.properties 文件中对应的值来替换。这样就为配置提供了诸多灵活选择。</p>
-<p>属性也可以被传递到 SqlSessionBuilder.build()方法中。例如：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader, props);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ... or ...</span></span><br><span class="line"></span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader, environment, props);</span><br></pre></td></tr></table></figure>
-
-<p>如果属性在不只一个地方进行了配置，那么 MyBatis 将按照下面的<strong>顺序来加载</strong>：</p>
-<ul>
-<li>在 properties 元素体内指定的属性首先被读取。</li>
-<li>然后根据 properties 元素中的 resource 属性读取类路径下属性文件或根据 url 属性指定的路径读取属性文件，并覆盖已读取的同名属性。</li>
-<li>最后读取作为方法参数传递的属性，并覆盖已读取的同名属性。</li>
-</ul>
-<h2 id="配置环境（environments）"><a href="#配置环境（environments）" class="headerlink" title="配置环境（environments）"></a>配置环境（environments）</h2><p>MyBatis 可以配置成适应多种环境，这种机制有助于将 SQL 映射应用于多种数据库之中， 现实情况下有多种理由需要这么做。例如，开发、测试和生产环境需要有不同的配置；或者共享相同 Schema 的多个生产数据库， 想使用相同的 SQL 映射。许多类似的用例。</p>
-<p><strong>不过要记住：尽管可以配置多个环境，每个 SqlSessionFactory 实例只能选择其一。</strong></p>
-<p>所以，如果你想连接两个数据库，就需要创建两个 SqlSessionFactory 实例，每个数据库对应一个。而如果是三个数据库，就需要三个实例，依此类推，记起来很简单：</p>
-<ul>
-<li><strong>每个数据库对应一个 SqlSessionFactory 实例</strong></li>
-</ul>
-<p>为了指定创建哪种环境，只要将它作为可选的参数传递给 SqlSessionFactoryBuilder 即可。可以接受环境配置的两个方法签名是：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader, environment);</span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader, environment,properties);</span><br></pre></td></tr></table></figure>
-
-<p>如果忽略了环境参数，那么默认环境将会被加载，如下所示：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader);</span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">factory</span> <span class="operator">=</span> sqlSessionFactoryBuilder.build(reader,properties);</span><br></pre></td></tr></table></figure>
-
-<p>环境元素定义了如何配置环境。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 此处使用的是第一个环境变量 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;...&quot;</span> <span class="attr">value</span>=<span class="string">&quot;...&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 另一个环境 在&lt;environments default=&quot; &quot;&gt; 设置应该加载哪个--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development2&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;...&quot;</span> <span class="attr">value</span>=<span class="string">&quot;...&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;driver2&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;url2&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;username2&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;password2&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>注意这里的关键点:</p>
-<ul>
-<li>默认的环境 ID（比如:default&#x3D;”development”）。</li>
-<li>每个 environment 元素定义的环境 ID（比如:id&#x3D;”development”）。</li>
-<li>事务管理器的配置（比如:type&#x3D;”JDBC”）。</li>
-<li>数据源的配置（比如:type&#x3D;”POOLED”）。</li>
-</ul>
-<p>默认的环境和环境 ID 是一目了然的。随你怎么命名，只要保证默认环境要匹配其中一个环境ID。</p>
-<h3 id="数据源（dataSource）"><a href="#数据源（dataSource）" class="headerlink" title="数据源（dataSource）"></a><strong>数据源（dataSource）</strong></h3><p>数据源<dataSource> 标签 属于  <environment> 在其中配置数据源</p>
-<p>dataSource 元素使用标准的 JDBC 数据源接口来配置 JDBC 连接对象的资源。</p>
-<ul>
-<li>许多 MyBatis 的应用程序将会按示例中的例子来配置数据源。然而它并不是必须的。要知道为了方便使用延迟加载，数据源才是必须的。</li>
-</ul>
-<p>有三种内建的数据源类型（也就是 type&#x3D;”[   UNPOOLED     |    POOLED    |    JNDI    ]”）：</p>
-<p><strong>UNPOOLED</strong>– 这个数据源的实现只是每次被请求时打开和关闭连接。虽然一点慢，它对在及时可用连接方面没有性能要求的简单应用程序是一个很好的选择。 不同的数据库在这方面表现也是不一样的，所以对某些数据库来说使用连接池并不重要，这个配置也是理想的。UNPOOLED 类型的数据源仅仅需要配置以下 5 种属性：</p>
-<ul>
-<li><code>driver</code> – 这是 JDBC 驱动的 Java 类的完全限定名（并不是JDBC驱动中可能包含的数据源类）。</li>
-<li><code>url</code> – 这是数据库的 JDBC URL 地址。</li>
-<li><code>username</code> – 登录数据库的用户名。</li>
-<li><code>password</code> – 登录数据库的密码。</li>
-<li><code>defaultTransactionIsolationLevel</code> – 默认的连接事务隔离级别。</li>
-</ul>
-<p>作为可选项，你也可以传递属性给数据库驱动。要这样做，属性的前缀为”driver.”，例如：</p>
-<ul>
-<li><code>driver.encoding=UTF8</code></li>
-</ul>
-<p>这将通过DriverManager.getConnection(url,driverProperties)方法传递值为 <code>UTF8</code> 的 <code>encoding</code> 属性给数据库驱动。</p>
-<p><strong>POOLED</strong>– 这种数据源的实现利用”池”的概念将 JDBC 连接对象组织起来，避免了创建新的连接实例时所必需的初始化和认证时间。 这是一种使得并发 Web 应用快速响应请求的流行处理方式。</p>
-<p>除了上述提到 UNPOOLED 下的属性外，会有更多属性用来配置 POOLED 的数据源：</p>
-<ul>
-<li><code>poolMaximumActiveConnections</code> – 在任意时间可以存在的活动（也就是正在使用）连接数量，默认值：10</li>
-<li><code>poolMaximumIdleConnections</code> – 任意时间可能存在的空闲连接数。</li>
-<li><code>poolMaximumCheckoutTime</code> – 在被强制返回之前，池中连接被检出（checked out）时间，默认值：20000 毫秒（即 20 秒）</li>
-<li><code>poolTimeToWait</code> – 这是一个底层设置，如果获取连接花费的相当长的时间，它会给连接池打印状态日志并重新尝试获取一个连接（避免在误配置的情况下一直安静的失败），默认值：20000 毫秒（即 20 秒）。</li>
-<li><code>poolPingQuery</code> – 发送到数据库的侦测查询，用来检验连接是否处在正常工作秩序中并准备接受请求。默认是”NO PING QUERY SET”，这会导致多数数据库驱动失败时带有一个恰当的错误消息。</li>
-<li><code>poolPingEnabled</code> – 是否启用侦测查询。若开启，也必须使用一个可执行的 SQL 语句设置 <code>poolPingQuery</code> 属性（最好是一个非常快的 SQL），默认值：false。</li>
-<li><code>poolPingConnectionsNotUsedFor</code> – 配置 poolPingQuery 的使用频度。这可以被设置成匹配具体的数据库连接超时时间，来避免不必要的侦测，默认值：0（即所有连接每一时刻都被侦测 — 当然仅当 poolPingEnabled 为 true 时适用）。</li>
-</ul>
-<p><strong>JNDI</strong>– 这个数据源的实现是为了能在如 EJB 或应用服务器这类容器中使用，容器可以集中或在外部配置数据源，然后放置一个 JNDI 上下文的引用。这种数据源配置只需要两个属性：</p>
-<ul>
-<li><code>initial_context</code> – 这个属性用来在 InitialContext 中寻找上下文（即，initialContext.lookup(initial_context)）。这是个可选属性，如果忽略，那么 data_source 属性将会直接从 InitialContext 中寻找。</li>
-<li><code>data_source</code> – 这是引用数据源实例位置的上下文的路径。提供了 initial_context 配置时会在其返回的上下文中进行查找，没有提供时则直接在 InitialContext 中查找。</li>
-</ul>
-<h2 id="映射器（mappers）"><a href="#映射器（mappers）" class="headerlink" title="映射器（mappers）"></a>映射器（mappers）</h2><p>既然 MyBatis 的行为已经由上述元素配置完了，我们现在就要定义 SQL 映射语句了。但是首先我们需要告诉 MyBatis 到哪里去找到这些语句。 Java 在自动查找这方面没有提供一个很好的方法，所以最佳的方式是告诉 MyBatis 到哪里去找映射文件。你可以使用相对于类路径的资源引用， 或完全限定资源定位符（包括 <code>file:///</code> 的 URL），或类名和包名等。例如：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Using classpath relative resources --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/builder/AuthorMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/builder/BlogMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;org/mybatis/builder/PostMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Using mapper interface classes --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.builder.AuthorMapper&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.builder.BlogMapper&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;org.mybatis.builder.PostMapper&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Using url fully qualified paths --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">url</span>=<span class="string">&quot;file:///var/mappers/AuthorMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">url</span>=<span class="string">&quot;file:///var/mappers/BlogMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">url</span>=<span class="string">&quot;file:///var/mappers/PostMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="编写XML映射文件"><a href="#编写XML映射文件" class="headerlink" title="编写XML映射文件"></a>编写XML映射文件</h1><p>SQL 映射文件有很少的几个顶级元素（按照它们应该被定义的顺序）：</p>
-<ul>
-<li><code>cache</code> – 给定命名空间的缓存配置。</li>
-<li><code>cache-ref</code> – 其他命名空间缓存配置的引用。</li>
-<li><code>resultMap</code> – 是最复杂也是最强大的元素，用来描述如何从数据库结果集中来加载对象。</li>
-<li><code>sql</code> – 可被其他语句引用的可重用语句块。</li>
-<li><code>insert</code> – 映射插入语句</li>
-<li><code>update</code> – 映射更新语句</li>
-<li><code>delete</code> – 映射删除语句</li>
-<li><code>select</code> – 映射查询语句</li>
-</ul>
-<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><p>查询语句是 MyBatis 中最常用的元素之一，光能把数据存到数据库中价值并不大，如果还能重新取出来才有用，多数应用也都是查询比修改要频繁。对每个插入、更新或删除操作，通常对应多个查询操作。这是 MyBatis 的基本原则之一，也是将焦点和努力放到查询和结果映射的原因。</p>
-<p>select 标签有很多属性允许你配置，来决定每条语句的作用细节。</p>
-<p><strong>Select Attributes</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">id</td>
-<td align="left">在命名空间中唯一的标识符，可以被用来引用这条语句。</td>
-</tr>
-<tr>
-<td align="left">parameterType</td>
-<td align="left">将会传入这条语句的参数类的完全限定名或别名。这个属性是可选的，因为 MyBatis 可以通过 TypeHandler 推断出具体传入语句的参数，默认值为 unset。</td>
-</tr>
-<tr>
-<td align="left">resultType</td>
-<td align="left">从这条语句中返回的期望类型的类的完全限定名或别名。注意如果是集合情形，那应该是集合可以包含的类型，而不能是集合本身。使用 resultType 或 resultMap，但不能同时使用。</td>
-</tr>
-<tr>
-<td align="left">resultMap</td>
-<td align="left">外部 resultMap 的命名引用。结果集的映射是 MyBatis 最强大的特性，对其有一个很好的理解的话，许多复杂映射的情形都能迎刃而解。使用 resultMap 或 resultType，但不能同时使用。</td>
-</tr>
-<tr>
-<td align="left">flushCache</td>
-<td align="left">将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空，默认值：false。</td>
-</tr>
-<tr>
-<td align="left">useCache</td>
-<td align="left">将其设置为 true，将会导致本条语句的结果被二级缓存，默认值：对 select 元素为 true。</td>
-</tr>
-<tr>
-<td align="left">timeout</td>
-<td align="left">这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为 unset（依赖驱动）。</td>
-</tr>
-<tr>
-<td align="left">fetchSize</td>
-<td align="left">这是尝试影响驱动程序每次批量返回的结果行数和这个设置值相等。默认值为 unset（依赖驱动）。</td>
-</tr>
-<tr>
-<td align="left">statementType</td>
-<td align="left">STATEMENT，PREPARED 或 CALLABLE 的一个。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。</td>
-</tr>
-<tr>
-<td align="left">resultSetType</td>
-<td align="left">FORWARD_ONLY，SCROLL_SENSITIVE 或 SCROLL_INSENSITIVE 中的一个，默认值为 unset （依赖驱动）。</td>
-</tr>
-<tr>
-<td align="left">databaseId</td>
-<td align="left">如果配置了 databaseIdProvider，MyBatis 会加载所有的不带 databaseId 或匹配当前 databaseId 的语句；如果带或者不带的语句都有，则不带的会被忽略。</td>
-</tr>
-<tr>
-<td align="left">resultOrdered</td>
-<td align="left">这个设置仅针对嵌套结果 select 语句适用：如果为 true，就是假设包含了嵌套结果集或是分组了，这样的话当返回一个主结果行的时候，就不会发生有对前面结果集的引用的情况。这就使得在获取嵌套的结果集的时候不至于导致内存不够用。默认值：false。</td>
-</tr>
-<tr>
-<td align="left">resultSets</td>
-<td align="left">这个设置仅对多结果集的情况适用，它将列出语句执行后返回的结果集并每个结果集给一个名称，名称是逗号分隔的。</td>
-</tr>
-</tbody></table>
-<p>类似的 insert update delete 标签的属性</p>
-<p><strong>Insert Update Delete Attributes</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">id</td>
-<td align="left">命名空间中的唯一标识符，可被用来代表这条语句。</td>
-</tr>
-<tr>
-<td align="left">parameterType</td>
-<td align="left">将要传入语句的参数的完全限定类名或别名。这个属性是可选的，因为 MyBatis 可以通过 TypeHandler 推断出具体传入语句的参数，默认值为 unset。</td>
-</tr>
-<tr>
-<td align="left">flushCache</td>
-<td align="left">将其设置为 true，任何时候只要语句被调用，都会导致本地缓存和二级缓存都会被清空，默认值：true（对应插入、更新和删除语句）。</td>
-</tr>
-<tr>
-<td align="left">timeout</td>
-<td align="left">这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为 unset（依赖驱动）。</td>
-</tr>
-<tr>
-<td align="left">statementType</td>
-<td align="left">STATEMENT，PREPARED 或 CALLABLE 的一个。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。</td>
-</tr>
-<tr>
-<td align="left">useGeneratedKeys</td>
-<td align="left">（仅对 insert 和 update 有用）这会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键（比如：像 MySQL 和 SQL Server 这样的关系数据库管理系统的自动递增字段），默认值：false。</td>
-</tr>
-<tr>
-<td align="left">keyProperty</td>
-<td align="left">（仅对 insert 和 update 有用）唯一标记一个属性，MyBatis 会通过 getGeneratedKeys 的返回值或者通过 insert 语句的 selectKey 子元素设置它的键值，默认：unset。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。</td>
-</tr>
-<tr>
-<td align="left">keyColumn</td>
-<td align="left">（仅对 insert 和 update 有用）通过生成的键值设置表中的列名，这个设置仅在某些数据库（像 PostgreSQL）是必须的，当主键列不是表中的第一列的时候需要设置。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。</td>
-</tr>
-<tr>
-<td align="left">databaseId</td>
-<td align="left">如果配置了 databaseIdProvider，MyBatis 会加载所有的不带 databaseId 或匹配当前 databaseId 的语句；如果带或者不带的语句都有，则不带的会被忽略。</td>
-</tr>
-</tbody></table>
-<p>&#x2F;&#x2F;TODO 一些其他的构造方法和参数</p>
-<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><p>动态 SQL 元素和使用 JSTL 或其他类似基于 XML 的文本处理器相似。在 MyBatis 之前的版本中,有很多的元素需要来了解。MyBatis 3 大大提升了它们,现在用不到原先一半的元素就可以了。MyBatis 采用功能强大的基于 OGNL 的表达式来消除其他元素。</p>
-<h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><p>根据条件进行判断：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findActiveBlogWithTitleLike&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  WHERE state = ‘ACTIVE’ </span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">    AND title like #&#123;title&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="choose-when-otherwise"><a href="#choose-when-otherwise" class="headerlink" title="choose, when, otherwise"></a>choose, when, otherwise</h2><p>有些时候，我们不想用到所有的条件语句，而只想从中择其一二。针对这种情况，MyBatis 提供了 choose 元素，它有点像 Java 中的 switch 语句。</p>
-<p>还是上面的例子，但是这次变为提供了”title”就按”title”查找，提供了”author”就按”author”查找，若两者都没有提供，就返回所有符合条件的BLOG（实际情况可能是由管理员按一定策略选出BLOG列表，而不是返回大量无意义的随机结果）。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findActiveBlogLike&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG WHERE state = ‘ACTIVE’</span><br><span class="line">  <span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">      AND title like #&#123;title&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;author != null and author.name != null&quot;</span>&gt;</span></span><br><span class="line">      AND author_name like #&#123;author.name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">      AND featured = 1</span><br><span class="line">    <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="trim-where-set"><a href="#trim-where-set" class="headerlink" title="trim, where, set"></a>trim, where, set</h2><p>首先看一个动态SQL：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findActiveBlogLike&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  WHERE </span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;state != null&quot;</span>&gt;</span></span><br><span class="line">    state = #&#123;state&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">    AND title like #&#123;title&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null and author.name != null&quot;</span>&gt;</span></span><br><span class="line">    AND author_name like #&#123;author.name&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>乍一看没什么问题 但是当每个条件都匹配不到时,这条SQL会变成这样：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> BLOG</span><br><span class="line"><span class="keyword">WHERE</span></span><br></pre></td></tr></table></figure>
-
-<p>如何解决这种条件不匹配的sql？MyBatis 有一个简单的处理，这在90%的情况下都会有用。而在不能使用的地方，你可以自定义处理方式来令其正常工作。一处简单的修改就能得到想要的效果：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findActiveBlogLike&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">resultType</span>=<span class="string">&quot;Blog&quot;</span>&gt;</span></span><br><span class="line">  SELECT * FROM BLOG </span><br><span class="line">  <span class="tag">&lt;<span class="name">where</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;state != null&quot;</span>&gt;</span></span><br><span class="line">         state = #&#123;state&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">        AND title like #&#123;title&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null and author.name != null&quot;</span>&gt;</span></span><br><span class="line">        AND author_name like #&#123;author.name&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>where 元素知道只有在一个以上的if条件有值的情况下才去插入”WHERE”子句。而且，若最后的内容是”AND”或”OR”开头的，where 元素也知道如何将他们去除。</p>
-<p>如果 where 元素没有按正常套路出牌，我们还是可以通过自定义 trim 元素来定制我们想要的功能。比如，和 where 元素等价的自定义 trim 元素为：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;WHERE&quot;</span> <span class="attr">prefixOverrides</span>=<span class="string">&quot;AND |OR &quot;</span>&gt;</span></span><br><span class="line">  ... </span><br><span class="line"><span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>prefixOverrides 属性会忽略通过管道分隔的文本序列（注意此例中的空格也是必要的）。它带来的结果就是所有在 prefixOverrides 属性中指定的内容将被移除，并且插入 prefix 属性中指定的内容。</p>
-<p>类似的用于动态更新语句的解决方案叫做 set。set 元素可以被用于动态包含需要更新的列，而舍去其他的。比如：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateAuthorIfNecessary&quot;</span>&gt;</span></span><br><span class="line">  update Author</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;username != null&quot;</span>&gt;</span>username=#&#123;username&#125;,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;password != null&quot;</span>&gt;</span>password=#&#123;password&#125;,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;email != null&quot;</span>&gt;</span>email=#&#123;email&#125;,<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;bio != null&quot;</span>&gt;</span>bio=#&#123;bio&#125;<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">  where id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这里，set 元素会动态前置 SET 关键字，同时也会消除无关的逗号，因为用了条件语句之后很可能就会在生成的赋值语句的后面留下这些逗号。</p>
-<p>若你对等价的自定义 trim 元素的样子感兴趣，那这就应该是它的真面目：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;SET&quot;</span> <span class="attr">suffixOverrides</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>注意这里我们忽略的是后缀中的值，而又一次附加了前缀中的值。</p>
-<h2 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h2><p>动态 SQL 的另外一个常用的必要操作是需要对一个集合进行遍历，通常是在构建 IN 条件语句的时候。比如：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectPostIn&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;domain.blog.Post&quot;</span>&gt;</span></span><br><span class="line">  SELECT *</span><br><span class="line">  FROM POST P</span><br><span class="line">  WHERE ID in</span><br><span class="line">  <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">        #&#123;item&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>foreach 元素的功能是非常强大的，它允许你指定一个集合，声明可以用在元素体内的集合项和索引变量。它也允许你指定开闭匹配的字符串以及在迭代中间放置分隔符。这个元素是很智能的，因此它不会偶然地附加多余的分隔符。</p>
-<h1 id="Mybatis-日志"><a href="#Mybatis-日志" class="headerlink" title="Mybatis 日志"></a>Mybatis 日志</h1><p>Mybatis内置的日志工厂提供日志功能，具体的日志实现有以下几种工具：</p>
-<ul>
-<li>SLF4J</li>
-<li>Apache Commons Logging</li>
-<li>Log4j 2</li>
-<li>Log4j</li>
-<li>JDK logging</li>
-</ul>
-<p>&#x2F;&#x2F;TODO</p>
-<h1 id="Mybatis-缓存"><a href="#Mybatis-缓存" class="headerlink" title="Mybatis 缓存"></a>Mybatis 缓存</h1><p>将用户经常查询的数据的结果的一个保存，保存到一个内存中（缓存就是内存中的一个对象），用户在查询的时候就不用到数据库文件中查询（磁盘），从而减少与数据库的交付次数提高了响应速度，解决了并发系统的性能问题。</p>
-<h2 id="缓存分类"><a href="#缓存分类" class="headerlink" title="缓存分类"></a>缓存分类</h2><p>MyBatis提供了一级缓存和二级缓存</p>
-<ul>
-<li>一级缓存：也称为本地缓存，用于保存用户在一次会话过程中查询的结果，用户一次会话中只能使用一个sqlSession，一级缓存是自动开启的，不允许关闭。</li>
-<li>二级缓存：也称为全局缓存，是mapper级别的缓存，是针对一个表的查结果的存储，可以共享给所有针对这张表的查询的用户。也就是说对于mapper级别的缓存不同的sqlsession是可以共享的。</li>
-</ul>
-<h2 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h2><p>在应用运行过程中，在一次数据库会话中，执行多次查询条件完全相同的SQL，会优先命中一级缓存，避免直接对数据库中直接查询。</p>
-<img src="/2022/05/29/Mybatis/webp.webp" class="" title="img">
-
-<p>每个SqlSession中都持有Excutor，每个Excutor中有一个LocalCache。当用户发起询问时，MyBatis根据当前执行的语句生成MappedStatement，在Local Cache进行查询，如果缓存命中的话，直接返回结果给用户，如果缓存没有命中的话，查询数据库，结果写入Local Cache，最后返回结果给用户。</p>
-<img src="/2022/05/29/Mybatis/webp-16538306997353.webp" class="" title="img">
-
-<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p><strong>SqlSession：</strong> 对外提供了用户和数据库之间交互需要的所有方法，隐藏了底层的细节。默认实现类是DefaultSqlSession。<br> <strong>Executor：</strong> SqlSession向用户提供操作数据库的方法，但和数据库操作有关的职责都会委托给Executor。Executor有两个实现类，和一级缓存关联的是BaseExecutor。<br> <strong>BaseExecutor：</strong> BaseExecutor是一个实现了Executor接口的抽象类，定义若干抽象方法，在执行的时候，把具体的操作委托给子类进行执行。<br> <strong>PerpetualCache：</strong>对Cache接口最基本实现，内部持有HashMap，对一级缓存的操作实则是对HashMap的操作。</p>
-<p>SqlSession初始化时会创建Executor的实例，Mybatis默认使用的是SimpleExecutor，初始化代码如下所示:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> Executor <span class="title function_">newExecutor</span><span class="params">(Transaction transaction, ExecutorType executorType)</span> &#123;</span><br><span class="line">    executorType = executorType == <span class="literal">null</span> ? defaultExecutorType : executorType;</span><br><span class="line">    executorType = executorType == <span class="literal">null</span> ? ExecutorType.SIMPLE : executorType;</span><br><span class="line">    Executor executor;</span><br><span class="line">    <span class="keyword">if</span> (ExecutorType.BATCH == executorType) &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> <span class="title class_">BatchExecutor</span>(<span class="built_in">this</span>, transaction);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ExecutorType.REUSE == executorType) &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> <span class="title class_">ReuseExecutor</span>(<span class="built_in">this</span>, transaction);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> <span class="title class_">SimpleExecutor</span>(<span class="built_in">this</span>, transaction);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">//如果启用二级缓存，使用CahingExecutor装饰类</span></span><br><span class="line">    <span class="keyword">if</span> (cacheEnabled) &#123;</span><br><span class="line">      executor = <span class="keyword">new</span> <span class="title class_">CachingExecutor</span>(executor);</span><br><span class="line">    &#125;</span><br><span class="line">    executor = (Executor) interceptorChain.pluginAll(executor);</span><br><span class="line">    <span class="keyword">return</span> executor;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>SqlSession在提交的时候会清空本地缓存，因为commit操作一般对应插入、更新或者删除操作，清空缓存防止读取脏数据。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">commit</span><span class="params">(<span class="type">boolean</span> required)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">  <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ExecutorException</span>(<span class="string">&quot;Cannot commit, transaction is already closed&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  clearLocalCache();</span><br><span class="line">  flushStatements();</span><br><span class="line">  <span class="keyword">if</span> (required) &#123;</span><br><span class="line">    transaction.commit();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>SqlSession的insert方法和delete方法，都会统一走update的流程。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">insert</span><span class="params">(String statement, Object parameter)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> update(statement, parameter);</span><br><span class="line">  &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">delete</span><span class="params">(String statement)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> update(statement, <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>update方法也是委托给了Executor执行。BaseExecutor的执行方法如下所示。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">update</span><span class="params">(MappedStatement ms, Object parameter)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">    ErrorContext.instance().resource(ms.getResource()).activity(<span class="string">&quot;executing an update&quot;</span>).object(ms.getId());</span><br><span class="line">    <span class="keyword">if</span> (closed) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ExecutorException</span>(<span class="string">&quot;Executor was closed.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    clearLocalCache();</span><br><span class="line">    <span class="keyword">return</span> doUpdate(ms, parameter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="一级缓存失效的原因"><a href="#一级缓存失效的原因" class="headerlink" title="一级缓存失效的原因"></a>一级缓存失效的原因</h3><ul>
-<li>同一个用户使用不同的SqlSession对象导致无法看到一级缓存工作。</li>
-<li>在一个SqlSession中使用条件查询不同一级缓存也会失效。</li>
-<li>在一个SqlSession使用相同条件，但是，此时在查询之间进行数据修改操作会导致一级缓存失效。</li>
-<li>在一个SqlSession使用相同查询条件此时手动刷新缓存时导致一级缓存失败。</li>
-</ul>
-<h3 id="一级缓存注意"><a href="#一级缓存注意" class="headerlink" title="一级缓存注意"></a>一级缓存注意</h3><p>MyBatis一级缓存的生命周期和SqlSession一致。</p>
-<p>MyBatis一级缓存内部设计简单，只是一个没有容量限定的HashMap，在缓存的功能性上有所欠缺。</p>
-<p>MyBatis的一级缓存最大范围是SqlSession内部，有多个SqlSession或者分布式的环境下，数据库写操作会引起脏数据。</p>
-<p>mybatis和spring整合后进行mapper代理开发，不支持一级缓存。</p>
-<h2 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h2><img src="/2022/05/29/Mybatis/webp-16538311623015.webp" class="" title="img">
-
-<p>二级缓存开启后，同一个namespace下的所有操作语句，都影响着同一个Cache，即二级缓存被多个SqlSession共享，是一个全局的变量。<br> 当开启缓存后，数据的查询执行的流程就是 二级缓存 -&gt; 一级缓存 -&gt; 数据库。</p>
-<h3 id="如何开启二级缓存"><a href="#如何开启二级缓存" class="headerlink" title="如何开启二级缓存"></a>如何开启二级缓存</h3><ol>
-<li>需要在MyBatis核心配置文件,通过settings标签开发二级缓存。<br> <code>&lt;setting name=&quot;cacheEnabled&quot; value=&quot;true&quot;/&gt;</code></li>
-<li>在对应的Mapper文件中添加cache标签</li>
-<li>cache标签属性</li>
-</ol>
-<ul>
-<li><p>type：cache使用的类型，默认是PerpetualCache，这在一级缓存中提到过。</p>
-</li>
-<li><p>eviction： 定义回收的策略，常见的有FIFO，LRU。</p>
-</li>
-<li><p>flushInterval： 配置一定时间自动刷新缓存，单位是毫秒。</p>
-</li>
-<li><p>size： 最多缓存对象的个数。</p>
-</li>
-<li><p>readOnly： 是否只读，若配置可读写，则需要对应的实体类能够序列化。</p>
-</li>
-<li><p>blocking： 若缓存中找不到对应的key，是否会一直blocking，直到有对应的数据进入缓存4</p>
-<p>4.cache-ref代表引用别的命名空间的Cache配置，两个命名空间的操作使用的是同一个Cache。</p>
-</li>
-</ul>
-<p> <code>&lt;cache-ref namespace=&quot;mapper.StudentMapper&quot;/&gt;</code></p>
-<h3 id="核心接口和实现类"><a href="#核心接口和实现类" class="headerlink" title="核心接口和实现类"></a>核心接口和实现类</h3><img src="/2022/05/29/Mybatis/webp-16538313584837.webp" class="" title="img">
-
-<p>CachingExecutor的query方法，首先会从MappedStatement中获得在配置初始化时赋予的Cache。</p>
-<p>以下是具体这些Cache实现类的介绍，他们的组合为Cache赋予了不同的能力。</p>
-<ul>
-<li>SynchronizedCache： 同步Cache，实现比较简单，直接使用synchronized修饰方法。</li>
-<li>LoggingCache： 日志功能，装饰类，用于记录缓存的命中率，如果开启了DEBUG模式，则会输出命中率日志。</li>
-<li>SerializedCache： 序列化功能，将值序列化后存到缓存中。该功能用于缓存返回一份实例的Copy，用于保存线程安全。</li>
-<li>LruCache： 采用了Lru算法的Cache实现，移除最近最少使用的key&#x2F;value。</li>
-<li>PerpetualCache： 作为为最基础的缓存类，底层实现比较简单，直接使用了HashMap。</li>
-</ul>
-<p>可以为每条Mapper语句设置是否要刷新缓存,可以指定select语句是否使用缓存,如下所示:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">...</span> <span class="attr">flushCache</span>=<span class="string">&quot;false&quot;</span> <span class="attr">useCache</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">...</span> <span class="attr">flushCache</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">...</span> <span class="attr">flushCache</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">...</span> <span class="attr">flushCache</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>判断是否刷新缓存</p>
-<p> <code>flushCacheIfRequired(ms);</code></p>
-<p> 在默认的设置的select语句是不会刷新缓存的，insert&#x2F;update&#x2F;delte会刷新缓存。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">flushCacheIfRequired</span><span class="params">(MappedStatement ms)</span> &#123;</span><br><span class="line">    <span class="type">Cache</span> <span class="variable">cache</span> <span class="operator">=</span> ms.getCache();</span><br><span class="line">    <span class="keyword">if</span> (cache != <span class="literal">null</span> &amp;&amp; ms.isFlushCacheRequired()) &#123;      </span><br><span class="line">      tcm.clear(cache);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>&#x2F;&#x2F;TODO</p>
-<h3 id="二级缓存失效的原因"><a href="#二级缓存失效的原因" class="headerlink" title="二级缓存失效的原因"></a>二级缓存失效的原因</h3><ul>
-<li>flushCache属性在查询中作用针对二级缓存导致失效</li>
-<li>flushCache属性在查询中作用针对一级缓存导致失效</li>
-<li>flushCache属性在更新中作用导致两次查询结果完全一样</li>
-</ul>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>MyBatis的二级缓存相对于一级缓存来说，实现了SqlSession之间缓存数据的共享，同时粒度更加的细，能够到namespace级别，通过Cache接口实现类不同的组合，对Cache的可控性也更强。</p>
-<p>MyBatis在多表查询时，极大可能会出现脏数据，有设计上的缺陷，安全使用二级缓存的条件比较苛刻。</p>
-<p>在分布式环境下，由于默认的MyBatis Cache实现都是基于本地的，分布式环境下必然会出现读取到脏数据，需要使用集中式缓存将MyBatis的Cache接口实现，有一定的开发成本，直接使用Redis,Memcached等分布式缓存可能成本更低，安全性也更高。</p>
-<p>原文链接：<a href="https://tech.meituan.com/2018/01/19/mybatis-cache.html">聊聊MyBatis缓存机制 - 美团技术团队 (meituan.com)</a></p>
-<p>原文链接：<a href="https://www.jianshu.com/p/b4522c9212fb">https://www.jianshu.com/p/b4522c9212fb</a></p>
-<p>原文链接：<a href="https://www.w3cschool.cn/mybatis/mybatis-dyr53b5w.html">MyBatis 入门_w3cschool</a></p>
-]]></content>
-      <categories>
-        <category>Mybatis</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>算法</title>
-    <url>/2022/07/11/%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="最懒的人就是整天忙得没时间学习、反思、成长的人。"><a href="#最懒的人就是整天忙得没时间学习、反思、成长的人。" class="headerlink" title="最懒的人就是整天忙得没时间学习、反思、成长的人。"></a><strong>最懒的人就是整天忙得没时间学习、反思、成长的人。</strong></h1><span id="more"></span>
-
-
-
-<h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p>三个遍历</p>
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h3><p>先根节点      再左子节点     最后右子节点</p>
-<h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><p>先左子节点    再根节点       最后右子节点</p>
-<h3 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h3><p>先左子节点     再右子节点   最后根节点</p>
-<p>前中后遍历的<strong>顺序都是相当于根节点</strong>来说的 前中后的顺序就是遍历的根节点的顺序 但无论是哪个遍历方式 左右子节点的顺序都是先左后右。</p>
-<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><p>左子节点&lt;根节点&lt;右子节点</p>
-<p>题目：</p>
-<p><a href="https://leetcode.cn/problems/unique-binary-search-trees-ii/">95. 不同的二叉搜索树 II - 力扣（LeetCode）</a></p>
 ]]></content>
       <categories>
         <category>java</category>

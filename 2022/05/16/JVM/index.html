@@ -35,15 +35,15 @@
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220521095627681.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220520140939077.png">
 <meta property="og:image" content="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223659712-1825753625.png">
-<meta property="og:image" content="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223822891-1286299930.png">
-<meta property="og:image" content="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223858262-125394764.png">
-<meta property="og:image" content="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223940541-1635130641.png">
+<meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png">
+<meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png">
+<meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220711174215771.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220711171336881.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220711173346887.png">
 <meta property="article:published_time" content="2022-05-16T06:46:22.000Z">
-<meta property="article:modified_time" content="2022-07-11T09:42:19.234Z">
+<meta property="article:modified_time" content="2022-07-11T14:02:22.328Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -255,7 +255,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-11 17:42:19" itemprop="dateModified" datetime="2022-07-11T17:42:19+08:00">2022-07-11</time>
+                <time title="Modified: 2022-07-11 22:02:22" itemprop="dateModified" datetime="2022-07-11T22:02:22+08:00">2022-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -480,21 +480,21 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 </ul>
 <h4 id="字符串常量池的位置变化"><a href="#字符串常量池的位置变化" class="headerlink" title="字符串常量池的位置变化"></a>字符串常量池的位置变化</h4><p>运行时常量池存和字符串常量池的变化</p>
 <p>JDK1.7之前 ：<br>运行时常量池(包含字符串常量池 )存放在方法区，此时 hotspot 虚拟机对方法区的实现为永久代。</p>
-<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223822891-1286299930.png" alt="9.5_1"  />
+<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_1">
 
 
 
 
 
 <p>JDK1.7 ：<br>字符串常量池被从方法区拿到了堆中；<br>运行时常量池剩下的东西还在方法区, 也就是hotspot中的永久代。</p>
-<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223858262-125394764.png" alt="9.5_2"  />
+<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_2">
 
 
 
 
 
 <p>JDK1.8 ：<br>hotspot移除了永久代，用元空间(Metaspace) 取而代之。这时候，<br>字符串常量池还在堆,<br>运行时常量池还在方法区, 只不过方法区的实现从永久代变成元空间(Metaspace)。</p>
-<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223940541-1635130641.png" alt="9.5_3"  />
+<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_3">
 
 
 
