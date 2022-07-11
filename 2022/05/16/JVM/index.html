@@ -33,9 +33,13 @@
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220516154322660.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220521095627681.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220520140939077.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223659712-1825753625.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223822891-1286299930.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223858262-125394764.png">
+<meta property="og:image" content="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223940541-1635130641.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png">
 <meta property="article:published_time" content="2022-05-16T06:46:22.000Z">
-<meta property="article:modified_time" content="2022-07-11T08:11:45.723Z">
+<meta property="article:modified_time" content="2022-07-11T08:47:04.341Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -247,7 +251,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-11 16:11:45" itemprop="dateModified" datetime="2022-07-11T16:11:45+08:00">2022-07-11</time>
+                <time title="Modified: 2022-07-11 16:47:04" itemprop="dateModified" datetime="2022-07-11T16:47:04+08:00">2022-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,14 +276,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7.7k</span>
+              <span>9.5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>7 mins.</span>
+              <span>9 mins.</span>
             </span>
 
         </div>
@@ -444,9 +448,63 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc">Minor GC vs Major GC vs Full GC | Plumbr – User Experience &amp; Application Performance Monitoring</a></p>
 </blockquote>
-<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><h2 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h2><h3 id="元空间的内存大小"><a href="#元空间的内存大小" class="headerlink" title="元空间的内存大小"></a>元空间的内存大小</h3><p>元空间是方法区的在HotSpot jvm 中的实现，方法区主要用于存储类的信息、常量池、方法数据、方法代码等。方法区逻辑上属于堆的一部分，但是为了与堆进行区分，通常又叫“非堆”。</p>
-<p>元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过<strong>元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。</strong>理论上取决于32位&#x2F;64位系统可虚拟的内存大小。可见也不是无限制的，需要配置参数。</p>
-<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><h2 id="对象从创建到消亡的历史过程"><a href="#对象从创建到消亡的历史过程" class="headerlink" title="对象从创建到消亡的历史过程"></a>对象从创建到消亡的历史过程</h2><h2 id="User-user-x3D-new-User-做了什么操作，申请了哪些内存？"><a href="#User-user-x3D-new-User-做了什么操作，申请了哪些内存？" class="headerlink" title="User user &#x3D; new User()  做了什么操作，申请了哪些内存？"></a>User user &#x3D; new User()  做了什么操作，申请了哪些内存？</h2><h2 id="对象的内存分配位置"><a href="#对象的内存分配位置" class="headerlink" title="对象的内存分配位置"></a>对象的内存分配位置</h2><h2 id="JVM的性能调优"><a href="#JVM的性能调优" class="headerlink" title="JVM的性能调优"></a>JVM的性能调优</h2><h2 id="为什么jdk8用metaspace数据结构用来替代perm？"><a href="#为什么jdk8用metaspace数据结构用来替代perm？" class="headerlink" title="为什么jdk8用metaspace数据结构用来替代perm？"></a>为什么jdk8用metaspace数据结构用来替代perm？</h2><h2 id="GC算法，永久代对象如何GC，GC有环怎么处理"><a href="#GC算法，永久代对象如何GC，GC有环怎么处理" class="headerlink" title="GC算法，永久代对象如何GC，GC有环怎么处理"></a><strong>GC</strong>算法，永久代对象如何GC，GC有环怎么处理</h2><h2 id="Java7到Java8关于JVM的改变"><a href="#Java7到Java8关于JVM的改变" class="headerlink" title="Java7到Java8关于JVM的改变"></a>Java7到Java8关于JVM的改变</h2><img src="/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png" class="" title="img">
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><h4 id="方法区存放的具体内容："><a href="#方法区存放的具体内容：" class="headerlink" title="方法区存放的具体内容："></a>方法区存放的具体内容：</h4><p>它用于存储已被虚拟机加载的类型信息、常量、静态常量、即时编译器编译后的代码缓存等。</p>
+<p><img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223659712-1825753625.png" alt="9.4.1_1"></p>
+<h4 id="方法区的位置"><a href="#方法区的位置" class="headerlink" title="方法区的位置"></a>方法区的位置</h4><p>《Java 虚拟机规范》中明确说明：“尽管所有的方法区在逻辑上是属于堆的一部分，但一些简单的实现可能不会选择去进行垃圾收集或进行压缩。”但对于 HotSpot JVM 而言，方法区还有一个别名叫做 Non-Heap（非堆），目的就是要和堆分开。</p>
+<p>所以，<strong>方法区看作是一块独立于 Java 堆的内存空间。</strong></p>
+<p>方法区在 JVM 启动的时候被创建，并且它在实际的物理内存空间中，和 Java 堆区一样都可以是不连续的。在 jdk7 及以前，习惯上把方法区称为永久代。jdk8 开始，使用元空间取代了永久代。本质上，方法区和永久代并不等价，等价仅是对 HotSpot 而言的。</p>
+<p>到了 JDK8，永久代的概念被完全废除，改用了在本地内存中实现的元空间（Metaspace）来代替。</p>
+<h4 id="运行时常量池和常量池"><a href="#运行时常量池和常量池" class="headerlink" title="运行时常量池和常量池"></a>运行时常量池和常量池</h4><ul>
+<li>方法区内部包含了运行时常量池。</li>
+<li>字节码文件包含了常量池。</li>
+</ul>
+<h5 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h5><p>一个有效的字节码文件中除了包含类的版本信息、字段、方法以及接口等描述信息外，还包含一项信息，那就是常量池表（Constant Pool Table），包括各种字面量和对类型、域和方法的符号引用。</p>
+<p>常量池，可以看作是一张表，虚拟机指令根据这张常量表找到要执行的类名、方法名、参数类型、字面量等类型。</p>
+<h5 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h5><ul>
+<li>运行时常量池（Runtime Constant Pool）是方法区的一部分。</li>
+<li>常量池表（Constant Pool Table）是 Class 文件的一部分，<strong>用于存放编译期生成的各种字面量与符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。</strong></li>
+<li>在加载类和接口到虚拟机后，就会创建对应的运行时常量池。</li>
+<li>JVM 为每个已加载的类型（类或接口）都维护一个常量池，池中的数据项像数组项一样，是通过索引访问的。</li>
+<li>运行时常量池中包含多种不同的常量，包括编译期就已经明确的数值字面量，也包括到运行期解析后才能获得的方法或者字段引用，此时不再是常量池中的符号地址了，这里换为真实地址。<ul>
+<li>运行时常量池相对于 Class 文件常量池的另一重要特征是：具备动态性。</li>
+</ul>
+</li>
+<li>运行时常量池类似于传统编程语言中的符号表（symbol table），但是它所包含的数据却比符号表要更加丰富一些。</li>
+<li>当创建类或接口的运行时常量池时，如果构造运行时常量池所需的内存空间超过了方法区所能提供的最大值，则 JVM 会抛 OutOfMemoryError 异常。</li>
+</ul>
+<h4 id="字符串常量池的位置变化"><a href="#字符串常量池的位置变化" class="headerlink" title="字符串常量池的位置变化"></a>字符串常量池的位置变化</h4><p>运行时常量池存和字符串常量池的变化</p>
+<p>JDK1.7之前 ：<br>运行时常量池(包含字符串常量池 )存放在方法区，此时 hotspot 虚拟机对方法区的实现为永久代。</p>
+<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223822891-1286299930.png" alt="9.5_1" style="zoom:80%;" />
+
+
+
+
+
+<p>JDK1.7 ：<br>字符串常量池被从方法区拿到了堆中；<br>运行时常量池剩下的东西还在方法区, 也就是hotspot中的永久代。</p>
+<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223858262-125394764.png" alt="9.5_2" style="zoom:80%;" />
+
+
+
+
+
+<p>JDK1.8 ：<br>hotspot移除了永久代，用元空间(Metaspace) 取而代之。这时候，<br>字符串常量池还在堆,<br>运行时常量池还在方法区, 只不过方法区的实现从永久代变成元空间(Metaspace)。</p>
+<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223940541-1635130641.png" alt="9.5_3" style="zoom:80%;" />
+
+
+
+<h3 id="元空间"><a href="#元空间" class="headerlink" title="元空间"></a>元空间</h3><h4 id="元空间的内存大小"><a href="#元空间的内存大小" class="headerlink" title="元空间的内存大小"></a>元空间的内存大小</h4><p>元空间是方法区的在HotSpot jvm 中的实现，方法区主要用于存储类的信息、常量池、方法数据、方法代码等。方法区逻辑上属于堆的一部分，但是为了与堆进行区分，通常又叫“非堆”。</p>
+<p>元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过<strong>元空间与永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。</strong>理论上取决于32位&#x2F;64位系统可虚拟的内存大小。可见也不是无限制的，需要配置参数，元数据区大小可以使用参数 -XX:MetaspaceSize 和 -XX:MaxMetaspaceSize 指定。</p>
+<h4 id="为什么jdk8用metaspace数据结构用来替代perm？"><a href="#为什么jdk8用metaspace数据结构用来替代perm？" class="headerlink" title="为什么jdk8用metaspace数据结构用来替代perm？"></a>为什么jdk8用metaspace数据结构用来替代perm？</h4><p>由于类的元数据分配在本地内存中，元空间的最大可分配空间就是系统可用内存空间。</p>
+<p>这项改动是很有必要的，原因有：</p>
+<ol>
+<li>永久代应该设置的空间大小很难确定。</li>
+</ol>
+<p>在某些场景下，如果动态加载类过多，容易产生 Perm 区的 OOM。而元空间和永久代之间最大的区别在于：元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存的限制。</p>
+<ol start="2">
+<li>对永久代的调优是很困难的。</li>
+</ol>
+<h4 id="StringTable-为什么要调整？"><a href="#StringTable-为什么要调整？" class="headerlink" title="StringTable 为什么要调整？"></a>StringTable 为什么要调整？</h4><p>jdk7 中将 StringTable 放到了堆空间中。因为永久代的回收效率很低，在 Full GC 的时候才会触发，而 Full GC 是老年代的空间不足、永久代不足时才会触发，这就就导致 StringTable 回收效率不高。而开发中会有大量的字符串被创建，回收效率低，导致永久代不足。放在堆里，能及时回收内存。</p>
+<h2 id="类的加载机制"><a href="#类的加载机制" class="headerlink" title="类的加载机制"></a>类的加载机制</h2><h2 id="对象从创建到消亡的历史过程"><a href="#对象从创建到消亡的历史过程" class="headerlink" title="对象从创建到消亡的历史过程"></a>对象从创建到消亡的历史过程</h2><h2 id="User-user-x3D-new-User-做了什么操作，申请了哪些内存？"><a href="#User-user-x3D-new-User-做了什么操作，申请了哪些内存？" class="headerlink" title="User user &#x3D; new User()  做了什么操作，申请了哪些内存？"></a>User user &#x3D; new User()  做了什么操作，申请了哪些内存？</h2><h2 id="对象的内存分配位置"><a href="#对象的内存分配位置" class="headerlink" title="对象的内存分配位置"></a>对象的内存分配位置</h2><h2 id="JVM的性能调优"><a href="#JVM的性能调优" class="headerlink" title="JVM的性能调优"></a>JVM的性能调优</h2><h2 id="GC算法，永久代对象如何GC，GC有环怎么处理"><a href="#GC算法，永久代对象如何GC，GC有环怎么处理" class="headerlink" title="GC算法，永久代对象如何GC，GC有环怎么处理"></a><strong>GC</strong>算法，永久代对象如何GC，GC有环怎么处理</h2><h2 id="Java7到Java8关于JVM的改变"><a href="#Java7到Java8关于JVM的改变" class="headerlink" title="Java7到Java8关于JVM的改变"></a>Java7到Java8关于JVM的改变</h2><img src="/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png" class="" title="img">
 
 <h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p>在讨论深拷贝和浅拷贝之前 首先要了解一下java的赋值机制——值传递</p>
 <p>什么是值传递 什么是引用传递?</p>
@@ -471,6 +529,11 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <hr>
 <p>那么这两个传递类型和深拷贝浅拷贝有什么关系呢?</p>
 <p>深拷贝和浅拷贝在拷贝值的时候 都是值传递 并没有使用引用传递 而深拷贝的效果之所以有时候和引用传递相同,是因为引用传递是将对象的内存地址直接传给一个函数,而深拷贝是直接复制了一个内存值 在这个复制的内存值上进行操作.</p>
+<p>巨人的肩膀：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/myfirstuser/article/details/98034911">(31条消息) 方法区和堆_csdn.user的博客-CSDN博客_堆和方法区</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pensieve/p/13574459.html">09_方法区 - 只是一名学徒 - 博客园 (cnblogs.com)</a></p>
+<p>更深入：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/duanxz/p/3520829.html">Metaspace 之一：Metaspace整体介绍（永久代被替换原因、元空间特点、元空间内存查看分析方法） - duanxz - 博客园 (cnblogs.com)</a></p>
 
     </div>
 
@@ -551,7 +614,7 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM"><span class="nav-number">1.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">JVM结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">JVM总体结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">运行时数据区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">什么是垃圾回收机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFGC"><span class="nav-number">2.2.2.</span> <span class="nav-text">什么是GC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8A%9E%E6%B3%95%E5%8F%AF%E4%BB%A5%E9%80%9A%E7%9F%A5%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E9%A9%AC%E4%B8%8A%E5%BC%80%E5%A7%8BGC%E5%90%97"><span class="nav-number">2.2.3.</span> <span class="nav-text">垃圾回收的基本原理是什么?有什么办法可以通知垃圾回收器马上开始GC吗?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6%EF%BC%88%E4%B8%A4%E7%A7%8D%E5%9E%83%E5%9C%BE%E4%BD%8D%E7%BD%AE%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">2.2.4.</span> <span class="nav-text">如何判断对象是否可以被回收（两种垃圾位置分析算法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.5.</span> <span class="nav-text">垃圾回收算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.5.1.</span> <span class="nav-text">1.标记-清除算法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%A0%87%E8%AE%B0-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.5.2.</span> <span class="nav-text">2.标记-复制算法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.5.3.</span> <span class="nav-text">3.标记-整理算法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%88%86%E4%BB%A3%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.5.4.</span> <span class="nav-text">4.分代算法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%EF%BC%9F"><span class="nav-number">2.2.6.</span> <span class="nav-text">JVM都有哪些垃圾回收器？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.2.7.</span> <span class="nav-text">各垃圾回收器的使用位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E4%BB%A3%E9%80%82%E5%90%88%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.8.</span> <span class="nav-text">各代适合的垃圾回收算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B-CMS-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%EF%BC%9F"><span class="nav-number">2.2.9.</span> <span class="nav-text">详细介绍一下 CMS 垃圾回收器？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-number">2.2.10.</span> <span class="nav-text">创建对象的内存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%AF%B9%E8%B1%A1%E5%A4%AA%E5%A4%A7%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">2.2.11.</span> <span class="nav-text">如果对象太大怎么办？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E7%94%9F%E5%9C%A8%E4%B8%8D%E5%90%8C%E5%8C%BA%E5%9F%9F%E7%9A%84GC"><span class="nav-number">2.2.12.</span> <span class="nav-text">发生在不同区域的GC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="nav-number">2.3.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4"><span class="nav-number">2.4.</span> <span class="nav-text">元空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4%E7%9A%84%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F"><span class="nav-number">2.4.1.</span> <span class="nav-text">元空间的内存大小</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="nav-number">2.5.</span> <span class="nav-text">类加载机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E4%BB%8E%E5%88%9B%E5%BB%BA%E5%88%B0%E6%B6%88%E4%BA%A1%E7%9A%84%E5%8E%86%E5%8F%B2%E8%BF%87%E7%A8%8B"><span class="nav-number">2.6.</span> <span class="nav-text">对象从创建到消亡的历史过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-user-x3D-new-User-%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E6%93%8D%E4%BD%9C%EF%BC%8C%E7%94%B3%E8%AF%B7%E4%BA%86%E5%93%AA%E4%BA%9B%E5%86%85%E5%AD%98%EF%BC%9F"><span class="nav-number">2.7.</span> <span class="nav-text">User user &#x3D; new User()  做了什么操作，申请了哪些内存？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.8.</span> <span class="nav-text">对象的内存分配位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98"><span class="nav-number">2.9.</span> <span class="nav-text">JVM的性能调优</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88jdk8%E7%94%A8metaspace%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%94%A8%E6%9D%A5%E6%9B%BF%E4%BB%A3perm%EF%BC%9F"><span class="nav-number">2.10.</span> <span class="nav-text">为什么jdk8用metaspace数据结构用来替代perm？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC%E7%AE%97%E6%B3%95%EF%BC%8C%E6%B0%B8%E4%B9%85%E4%BB%A3%E5%AF%B9%E8%B1%A1%E5%A6%82%E4%BD%95GC%EF%BC%8CGC%E6%9C%89%E7%8E%AF%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86"><span class="nav-number">2.11.</span> <span class="nav-text">GC算法，永久代对象如何GC，GC有环怎么处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java7%E5%88%B0Java8%E5%85%B3%E4%BA%8EJVM%E7%9A%84%E6%94%B9%E5%8F%98"><span class="nav-number">2.12.</span> <span class="nav-text">Java7到Java8关于JVM的改变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-number">2.13.</span> <span class="nav-text">深拷贝和浅拷贝</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM"><span class="nav-number">1.</span> <span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">JVM结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">JVM总体结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">运行时数据区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">2.2.1.</span> <span class="nav-text">什么是垃圾回收机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFGC"><span class="nav-number">2.2.2.</span> <span class="nav-text">什么是GC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8A%9E%E6%B3%95%E5%8F%AF%E4%BB%A5%E9%80%9A%E7%9F%A5%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E9%A9%AC%E4%B8%8A%E5%BC%80%E5%A7%8BGC%E5%90%97"><span class="nav-number">2.2.3.</span> <span class="nav-text">垃圾回收的基本原理是什么?有什么办法可以通知垃圾回收器马上开始GC吗?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9B%9E%E6%94%B6%EF%BC%88%E4%B8%A4%E7%A7%8D%E5%9E%83%E5%9C%BE%E4%BD%8D%E7%BD%AE%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">2.2.4.</span> <span class="nav-text">如何判断对象是否可以被回收（两种垃圾位置分析算法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.5.</span> <span class="nav-text">垃圾回收算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.5.1.</span> <span class="nav-text">1.标记-清除算法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%A0%87%E8%AE%B0-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.5.2.</span> <span class="nav-text">2.标记-复制算法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.5.3.</span> <span class="nav-text">3.标记-整理算法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%88%86%E4%BB%A3%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">2.2.5.4.</span> <span class="nav-text">4.分代算法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%EF%BC%9F"><span class="nav-number">2.2.6.</span> <span class="nav-text">JVM都有哪些垃圾回收器？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.2.7.</span> <span class="nav-text">各垃圾回收器的使用位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E4%BB%A3%E9%80%82%E5%90%88%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.8.</span> <span class="nav-text">各代适合的垃圾回收算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B-CMS-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%EF%BC%9F"><span class="nav-number">2.2.9.</span> <span class="nav-text">详细介绍一下 CMS 垃圾回收器？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-number">2.2.10.</span> <span class="nav-text">创建对象的内存分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%AF%B9%E8%B1%A1%E5%A4%AA%E5%A4%A7%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">2.2.11.</span> <span class="nav-text">如果对象太大怎么办？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E7%94%9F%E5%9C%A8%E4%B8%8D%E5%90%8C%E5%8C%BA%E5%9F%9F%E7%9A%84GC"><span class="nav-number">2.2.12.</span> <span class="nav-text">发生在不同区域的GC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="nav-number">2.2.13.</span> <span class="nav-text">方法区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA%E5%AD%98%E6%94%BE%E7%9A%84%E5%85%B7%E4%BD%93%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="nav-number">2.2.13.1.</span> <span class="nav-text">方法区存放的具体内容：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.2.13.2.</span> <span class="nav-text">方法区的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%92%8C%E5%B8%B8%E9%87%8F%E6%B1%A0"><span class="nav-number">2.2.13.3.</span> <span class="nav-text">运行时常量池和常量池</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E6%B1%A0"><span class="nav-number">2.2.13.3.1.</span> <span class="nav-text">常量池</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0"><span class="nav-number">2.2.13.3.2.</span> <span class="nav-text">运行时常量池</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E7%9A%84%E4%BD%8D%E7%BD%AE%E5%8F%98%E5%8C%96"><span class="nav-number">2.2.13.4.</span> <span class="nav-text">字符串常量池的位置变化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4"><span class="nav-number">2.2.14.</span> <span class="nav-text">元空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%83%E7%A9%BA%E9%97%B4%E7%9A%84%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F"><span class="nav-number">2.2.14.1.</span> <span class="nav-text">元空间的内存大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88jdk8%E7%94%A8metaspace%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%94%A8%E6%9D%A5%E6%9B%BF%E4%BB%A3perm%EF%BC%9F"><span class="nav-number">2.2.14.2.</span> <span class="nav-text">为什么jdk8用metaspace数据结构用来替代perm？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StringTable-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%B0%83%E6%95%B4%EF%BC%9F"><span class="nav-number">2.2.14.3.</span> <span class="nav-text">StringTable 为什么要调整？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="nav-number">2.3.</span> <span class="nav-text">类的加载机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E4%BB%8E%E5%88%9B%E5%BB%BA%E5%88%B0%E6%B6%88%E4%BA%A1%E7%9A%84%E5%8E%86%E5%8F%B2%E8%BF%87%E7%A8%8B"><span class="nav-number">2.4.</span> <span class="nav-text">对象从创建到消亡的历史过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-user-x3D-new-User-%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E6%93%8D%E4%BD%9C%EF%BC%8C%E7%94%B3%E8%AF%B7%E4%BA%86%E5%93%AA%E4%BA%9B%E5%86%85%E5%AD%98%EF%BC%9F"><span class="nav-number">2.5.</span> <span class="nav-text">User user &#x3D; new User()  做了什么操作，申请了哪些内存？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.6.</span> <span class="nav-text">对象的内存分配位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98"><span class="nav-number">2.7.</span> <span class="nav-text">JVM的性能调优</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC%E7%AE%97%E6%B3%95%EF%BC%8C%E6%B0%B8%E4%B9%85%E4%BB%A3%E5%AF%B9%E8%B1%A1%E5%A6%82%E4%BD%95GC%EF%BC%8CGC%E6%9C%89%E7%8E%AF%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86"><span class="nav-number">2.8.</span> <span class="nav-text">GC算法，永久代对象如何GC，GC有环怎么处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java7%E5%88%B0Java8%E5%85%B3%E4%BA%8EJVM%E7%9A%84%E6%94%B9%E5%8F%98"><span class="nav-number">2.9.</span> <span class="nav-text">Java7到Java8关于JVM的改变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-number">2.10.</span> <span class="nav-text">深拷贝和浅拷贝</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -611,13 +674,13 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">137k</span>
+    <span title="Symbols count total">139k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:05</span>
+    <span title="Reading time total">2:07</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
