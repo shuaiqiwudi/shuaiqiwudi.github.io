@@ -18,36 +18,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Linux</title>
-    <url>/2022/06/07/Linux/</url>
-    <content><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>另一种操作系统</p>
-<p>服务器操作系统</p>
-<p>针对CentOS7</p>
-<h2 id="Linux文件信息位置"><a href="#Linux文件信息位置" class="headerlink" title="Linux文件信息位置"></a>Linux文件信息位置</h2><h3 id="1-网卡信息存放位置"><a href="#1-网卡信息存放位置" class="headerlink" title="1.网卡信息存放位置"></a>1.网卡信息存放位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">/* 如果是dell的物理服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-em1或em2 ，em3，em4</span><br><span class="line">/* 如果是云服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-防火墙的开启和关闭"><a href="#2-防火墙的开启和关闭" class="headerlink" title="2.防火墙的开启和关闭"></a>2.防火墙的开启和关闭</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
-
-<p>启动防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start firewalld.service  		--启动firewall</span><br><span class="line">systemctl enable firewalld.service		--开机时启动firewall</span><br></pre></td></tr></table></figure>
-
-<p>关闭防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service    		--停止firewall</span><br><span class="line">systemctl disable firewalld.service		--禁止firewall开机启动</span><br></pre></td></tr></table></figure>
-
-<p>重启防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
-
-<p>查看防火墙是否开启自启</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled firewalld.service;echo $?</span><br></pre></td></tr></table></figure>
-
-<p>查看已启动的服务列表</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files|grep enabled</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Linux运维</category>
-      </categories>
-  </entry>
-  <entry>
     <title>JVM</title>
     <url>/2022/05/16/JVM/</url>
     <content><![CDATA[<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>什么是JVM？</p>
@@ -233,6 +203,36 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 ]]></content>
       <categories>
         <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux</title>
+    <url>/2022/06/07/Linux/</url>
+    <content><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>另一种操作系统</p>
+<p>服务器操作系统</p>
+<p>针对CentOS7</p>
+<h2 id="Linux文件信息位置"><a href="#Linux文件信息位置" class="headerlink" title="Linux文件信息位置"></a>Linux文件信息位置</h2><h3 id="1-网卡信息存放位置"><a href="#1-网卡信息存放位置" class="headerlink" title="1.网卡信息存放位置"></a>1.网卡信息存放位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">/* 如果是dell的物理服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-em1或em2 ，em3，em4</span><br><span class="line">/* 如果是云服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-防火墙的开启和关闭"><a href="#2-防火墙的开启和关闭" class="headerlink" title="2.防火墙的开启和关闭"></a>2.防火墙的开启和关闭</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>启动防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start firewalld.service  		--启动firewall</span><br><span class="line">systemctl enable firewalld.service		--开机时启动firewall</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service    		--停止firewall</span><br><span class="line">systemctl disable firewalld.service		--禁止firewall开机启动</span><br></pre></td></tr></table></figure>
+
+<p>重启防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>查看防火墙是否开启自启</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled firewalld.service;echo $?</span><br></pre></td></tr></table></figure>
+
+<p>查看已启动的服务列表</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files|grep enabled</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux运维</category>
       </categories>
   </entry>
   <entry>
@@ -605,6 +605,25 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       </categories>
   </entry>
   <entry>
+    <title>Server</title>
+    <url>/2022/05/18/Server/</url>
+    <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
+<p>提到Tomcat 就必须提到Server。</p>
+<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
+<p>扒开Tomcat 看看真面目：</p>
+<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
+
+<span id="more"></span>
+
+
+
+<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Spring Cloud Alibaba</title>
     <url>/2022/07/01/Spring-Cloud-Alibaba/</url>
     <content><![CDATA[<p><a href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html">Spring Cloud Alibaba 参考文档 (spring-cloud-alibaba-group.github.io)</a></p>
@@ -793,144 +812,6 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 ]]></content>
       <categories>
         <category>Spring</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Server</title>
-    <url>/2022/05/18/Server/</url>
-    <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
-<p>提到Tomcat 就必须提到Server。</p>
-<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
-<p>扒开Tomcat 看看真面目：</p>
-<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
-
-<span id="more"></span>
-
-
-
-<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>SpringBoot</title>
-    <url>/2022/05/28/SpringBoot/</url>
-    <content><![CDATA[<p>官网：<a href="https://spring.io/projects/spring-boot">Spring Boot</a></p>
-<img src="/2022/05/28/SpringBoot/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg" class="" title="查看源图像">
-
-<h1 id="什么是SpringBoot？"><a href="#什么是SpringBoot？" class="headerlink" title="什么是SpringBoot？"></a>什么是SpringBoot？</h1><p>Spring Boot 是 Pivotal 团队在 Spring 的基础上提供的一套全新的开源框架，其目的是为了简化 Spring 应用的搭建和开发过程。Spring Boot 去除了大量的 XML 配置文件，简化了复杂的依赖管理。</p>
-<p>Spring Boot 具有 Spring 一切优秀特性，Spring 能做的事，Spring Boot 都可以做，而且使用更加简单，功能更加丰富，性能更加稳定而健壮。随着近些年来微服务技术的流行，Spring Boot 也成了时下炙手可热的技术。</p>
-<p>Spring Boot 集成了大量常用的第三方库配置，Spring Boot 应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
-<span id="more"></span>
-
-<h1 id="SpringBoot自动装配原理"><a href="#SpringBoot自动装配原理" class="headerlink" title="SpringBoot自动装配原理"></a>SpringBoot自动装配原理</h1><p>Spring Boot 项目创建完成后，即使不进行任何的配置，也能够顺利地运行，这都要归功于 Spring Boot 的自动化配置。</p>
-<p>Spring Boot 默认使用 application.properties 或 application.yml 作为其全局配置文件，我们可以在该配置文件中对各种自动配置属性（server.port、logging.level.* 、spring.config.active.no-profile 等等）进行修改，并使之生效，那么您有没有想过这些属性是否有据可依呢？答案是肯定的。</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。本节为你揭开 SpringBoot 自动配置的神秘面纱。</p>
-<h2 id="Spring-Factories-机制"><a href="#Spring-Factories-机制" class="headerlink" title="Spring Factories 机制"></a>Spring Factories 机制</h2><p>Spring Boot 的自动配置是基于 Spring Factories 机制实现的。</p>
-<p>Spring Factories 机制是 Spring Boot 中的一种服务发现机制，这种扩展机制与 Java SPI 机制十分相似。Spring Boot 会自动扫描所有 Jar 包类路径下 META-INF&#x2F;spring.factories 文件，并读取其中的内容，进行实例化，这种机制也是 Spring Boot Starter 的基础。</p>
-<p><a href="https://www.jianshu.com/p/00e49c607fa1">Spring Factories - 简书 (jianshu.com)</a></p>
-<h3 id="spring-factories"><a href="#spring-factories" class="headerlink" title="spring.factories"></a>spring.factories</h3><p>spring.factories 文件本质上与 properties 文件相似，其中包含一组或多组键值对（key&#x3D;vlaue），其中，key 的取值为接口的完全限定名；value 的取值为接口实现类的完全限定名，一个接口可以设置多个实现类，不同实现类之间使用“，”隔开，例如：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">org.springframework.boot.autoconfigure.AutoConfigurationImportFilter</span>=<span class="string">\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnBeanCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnClassCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Spring-Factories-实现原理"><a href="#Spring-Factories-实现原理" class="headerlink" title="Spring Factories 实现原理"></a>Spring Factories 实现原理</h3><p>spring-core 包里定义了 SpringFactoriesLoader 类，这个类会扫描所有 Jar 包类路径下的 META-INF&#x2F;spring.factories 文件，并获取指定接口的配置。在 SpringFactoriesLoader 类中定义了两个对外的方法，如下表。</p>
-<table>
-<thead>
-<tr>
-<th>返回值</th>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><T> List<T></td>
-<td>loadFactories(Class<T> factoryType, @Nullable ClassLoader classLoader)</td>
-<td>静态方法； 根据接口获取其实现类的实例； 该方法返回的是实现类对象列表。</td>
-</tr>
-<tr>
-<td>List<String></td>
-<td>loadFactoryNames(Class&lt;?&gt; factoryType, @Nullable ClassLoader classLoader)</td>
-<td>公共静态方法； 根据接口l获取其实现类的名称； 该方法返回的是实现类的类名的列表</td>
-</tr>
-</tbody></table>
-<p>以上两个方法的关键都是从指定的 ClassLoader 中获取 spring.factories 文件，并解析得到类名列表。</p>
-<p>loadFactories() 方法能够获取指定接口的实现类对象</p>
-<p>loadFactoryNames() 方法能够根据接口获取其实现类类名的集合。</p>
-<h3 id="SpringBootApplication-注解"><a href="#SpringBootApplication-注解" class="headerlink" title="@SpringBootApplication 注解"></a>@SpringBootApplication 注解</h3><p>所有 Spring Boot 项目的主启动程序类上都使用了一个 @SpringBootApplication 注解，该注解是 Spring Boot 中最重要的注解之一 ，也是 Spring Boot 实现自动化配置的关键。 </p>
-<p>@SpringBootApplication 是一个组合元注解，其主要包含两个注解：@SpringBootConfiguration 和 @EnableAutoConfiguration，其中 @EnableAutoConfiguration 注解是 SpringBoot 自动化配置的核心所在。</p>
-<img src="/2022/05/28/SpringBoot/image-20220529152015019.png" class="" title="image-20220529152015019">
-
-<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@<strong>ComponentScan</strong></h3><p>@ComponentScan主要就是定义<strong>扫描的路径</strong>从中找出标识了<strong>需要装配</strong>的类自动装配到spring的bean容器中</p>
-<p>@Controller，@Service，@Repository注解，查看其源码你会发现，他们中有一个<strong>共同的注解@Component</strong></p>
-<img src="/2022/05/28/SpringBoot/image-20220529153202827.png" class="" title="image-20220529153202827">
-
-
-
-<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>@ConfigurationProperties 注解的作用，是将这个类的所有属性与配置文件中相关的配置进行绑定，以便于获取或修改配置，但是 @ConfigurationProperties 功能是由容器提供的，被它注解的类必须是容器中的一个组件，否则该功能就无法使用。而 @EnableConfigurationProperties 注解的作用正是将指定的类以组件的形式注入到 IOC 容器中，并开启其 @ConfigurationProperties 功能。因此，@ConfigurationProperties + @EnableConfigurationProperties 组合使用，便可以为 XxxProperties 类实现配置绑定功能。</p>
-<h2 id="自动配置的生效和修改"><a href="#自动配置的生效和修改" class="headerlink" title="自动配置的生效和修改"></a>自动配置的生效和修改</h2><p>spring.factories 文件中的所有自动配置类（xxxAutoConfiguration），都是必须在一定的条件下才会作为组件添加到容器中，配置的内容才会生效。这些限制条件在 Spring Boot 中以 @Conditional 派生注解的形式体现，如下表。</p>
-<table>
-<thead>
-<tr>
-<th>注解</th>
-<th>生效条件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@ConditionalOnJava</td>
-<td>应用使用指定的 Java 版本时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnBean</td>
-<td>容器中存在指定的 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnMissingBean</td>
-<td>容器中不存在指定的 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnExpression</td>
-<td>满足指定的 SpEL 表达式时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnClass</td>
-<td>存在指定的类时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnMissingClass</td>
-<td>不存在指定的类时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnSingleCandidate</td>
-<td>容器中只存在一个指定的 Bean 或这个 Bean 为首选 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnProperty</td>
-<td>系统中指定属性存在指定的值时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnResource</td>
-<td>类路径下存在指定的资源文件时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnWebApplication</td>
-<td>当前应用是 web 应用时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnNotWebApplication</td>
-<td>当前应用不是 web 应用生效</td>
-</tr>
-</tbody></table>
-<p><a href="http://c.biancheng.net/spring_boot/auto-config.html">Spring Boot自动配置原理 (biancheng.net)</a></p>
-<h1 id="Spring-boot-starter-web（Web启动器）"><a href="#Spring-boot-starter-web（Web启动器）" class="headerlink" title="Spring-boot-starter-web（Web启动器）"></a>Spring-boot-starter-web（Web启动器）</h1><p>Spring MVC 是 Spring 提供的一个基于 MVC 设计模式的轻量级 Web 开发框架，其本身就是 Spring 框架的一部分，可以与 Spring 无缝集成，性能方面具有先天的优越性，是当今业界最主流的 Web 开发框架之一。</p>
-<p>Spring Boot 是在 Spring 的基础上创建一款开源框架，它提供了 spring-boot-starter-web（Web 场景启动器） 来为 Web 开发予以支持。spring-boot-starter-web 为我们提供了嵌入的 Servlet 容器以及 SpringMVC 的依赖，并为 Spring MVC 提供了大量自动配置，可以适用于大多数 Web 开发场景。</p>
-<p>只要我们在 Spring Boot 项目中的 pom.xml 中引入了 spring-boot-starter-web ，即使不进行任何配置，也可以直接使用 Spring MVC 进行 Web 开发。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p>&#x2F;&#x2F;TODO</p>
-<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1>]]></content>
-      <categories>
-        <category>SpringBoot</category>
       </categories>
   </entry>
   <entry>
@@ -1496,6 +1377,125 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
       </categories>
   </entry>
   <entry>
+    <title>SpringBoot</title>
+    <url>/2022/05/28/SpringBoot/</url>
+    <content><![CDATA[<p>官网：<a href="https://spring.io/projects/spring-boot">Spring Boot</a></p>
+<img src="/2022/05/28/SpringBoot/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg" class="" title="查看源图像">
+
+<h1 id="什么是SpringBoot？"><a href="#什么是SpringBoot？" class="headerlink" title="什么是SpringBoot？"></a>什么是SpringBoot？</h1><p>Spring Boot 是 Pivotal 团队在 Spring 的基础上提供的一套全新的开源框架，其目的是为了简化 Spring 应用的搭建和开发过程。Spring Boot 去除了大量的 XML 配置文件，简化了复杂的依赖管理。</p>
+<p>Spring Boot 具有 Spring 一切优秀特性，Spring 能做的事，Spring Boot 都可以做，而且使用更加简单，功能更加丰富，性能更加稳定而健壮。随着近些年来微服务技术的流行，Spring Boot 也成了时下炙手可热的技术。</p>
+<p>Spring Boot 集成了大量常用的第三方库配置，Spring Boot 应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
+<span id="more"></span>
+
+<h1 id="SpringBoot自动装配原理"><a href="#SpringBoot自动装配原理" class="headerlink" title="SpringBoot自动装配原理"></a>SpringBoot自动装配原理</h1><p>Spring Boot 项目创建完成后，即使不进行任何的配置，也能够顺利地运行，这都要归功于 Spring Boot 的自动化配置。</p>
+<p>Spring Boot 默认使用 application.properties 或 application.yml 作为其全局配置文件，我们可以在该配置文件中对各种自动配置属性（server.port、logging.level.* 、spring.config.active.no-profile 等等）进行修改，并使之生效，那么您有没有想过这些属性是否有据可依呢？答案是肯定的。</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。本节为你揭开 SpringBoot 自动配置的神秘面纱。</p>
+<h2 id="Spring-Factories-机制"><a href="#Spring-Factories-机制" class="headerlink" title="Spring Factories 机制"></a>Spring Factories 机制</h2><p>Spring Boot 的自动配置是基于 Spring Factories 机制实现的。</p>
+<p>Spring Factories 机制是 Spring Boot 中的一种服务发现机制，这种扩展机制与 Java SPI 机制十分相似。Spring Boot 会自动扫描所有 Jar 包类路径下 META-INF&#x2F;spring.factories 文件，并读取其中的内容，进行实例化，这种机制也是 Spring Boot Starter 的基础。</p>
+<p><a href="https://www.jianshu.com/p/00e49c607fa1">Spring Factories - 简书 (jianshu.com)</a></p>
+<h3 id="spring-factories"><a href="#spring-factories" class="headerlink" title="spring.factories"></a>spring.factories</h3><p>spring.factories 文件本质上与 properties 文件相似，其中包含一组或多组键值对（key&#x3D;vlaue），其中，key 的取值为接口的完全限定名；value 的取值为接口实现类的完全限定名，一个接口可以设置多个实现类，不同实现类之间使用“，”隔开，例如：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">org.springframework.boot.autoconfigure.AutoConfigurationImportFilter</span>=<span class="string">\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnBeanCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnClassCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-Factories-实现原理"><a href="#Spring-Factories-实现原理" class="headerlink" title="Spring Factories 实现原理"></a>Spring Factories 实现原理</h3><p>spring-core 包里定义了 SpringFactoriesLoader 类，这个类会扫描所有 Jar 包类路径下的 META-INF&#x2F;spring.factories 文件，并获取指定接口的配置。在 SpringFactoriesLoader 类中定义了两个对外的方法，如下表。</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><T> List<T></td>
+<td>loadFactories(Class<T> factoryType, @Nullable ClassLoader classLoader)</td>
+<td>静态方法； 根据接口获取其实现类的实例； 该方法返回的是实现类对象列表。</td>
+</tr>
+<tr>
+<td>List<String></td>
+<td>loadFactoryNames(Class&lt;?&gt; factoryType, @Nullable ClassLoader classLoader)</td>
+<td>公共静态方法； 根据接口l获取其实现类的名称； 该方法返回的是实现类的类名的列表</td>
+</tr>
+</tbody></table>
+<p>以上两个方法的关键都是从指定的 ClassLoader 中获取 spring.factories 文件，并解析得到类名列表。</p>
+<p>loadFactories() 方法能够获取指定接口的实现类对象</p>
+<p>loadFactoryNames() 方法能够根据接口获取其实现类类名的集合。</p>
+<h3 id="SpringBootApplication-注解"><a href="#SpringBootApplication-注解" class="headerlink" title="@SpringBootApplication 注解"></a>@SpringBootApplication 注解</h3><p>所有 Spring Boot 项目的主启动程序类上都使用了一个 @SpringBootApplication 注解，该注解是 Spring Boot 中最重要的注解之一 ，也是 Spring Boot 实现自动化配置的关键。 </p>
+<p>@SpringBootApplication 是一个组合元注解，其主要包含两个注解：@SpringBootConfiguration 和 @EnableAutoConfiguration，其中 @EnableAutoConfiguration 注解是 SpringBoot 自动化配置的核心所在。</p>
+<img src="/2022/05/28/SpringBoot/image-20220529152015019.png" class="" title="image-20220529152015019">
+
+<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@<strong>ComponentScan</strong></h3><p>@ComponentScan主要就是定义<strong>扫描的路径</strong>从中找出标识了<strong>需要装配</strong>的类自动装配到spring的bean容器中</p>
+<p>@Controller，@Service，@Repository注解，查看其源码你会发现，他们中有一个<strong>共同的注解@Component</strong></p>
+<img src="/2022/05/28/SpringBoot/image-20220529153202827.png" class="" title="image-20220529153202827">
+
+
+
+<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>@ConfigurationProperties 注解的作用，是将这个类的所有属性与配置文件中相关的配置进行绑定，以便于获取或修改配置，但是 @ConfigurationProperties 功能是由容器提供的，被它注解的类必须是容器中的一个组件，否则该功能就无法使用。而 @EnableConfigurationProperties 注解的作用正是将指定的类以组件的形式注入到 IOC 容器中，并开启其 @ConfigurationProperties 功能。因此，@ConfigurationProperties + @EnableConfigurationProperties 组合使用，便可以为 XxxProperties 类实现配置绑定功能。</p>
+<h2 id="自动配置的生效和修改"><a href="#自动配置的生效和修改" class="headerlink" title="自动配置的生效和修改"></a>自动配置的生效和修改</h2><p>spring.factories 文件中的所有自动配置类（xxxAutoConfiguration），都是必须在一定的条件下才会作为组件添加到容器中，配置的内容才会生效。这些限制条件在 Spring Boot 中以 @Conditional 派生注解的形式体现，如下表。</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>生效条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@ConditionalOnJava</td>
+<td>应用使用指定的 Java 版本时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnBean</td>
+<td>容器中存在指定的 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingBean</td>
+<td>容器中不存在指定的 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnExpression</td>
+<td>满足指定的 SpEL 表达式时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnClass</td>
+<td>存在指定的类时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingClass</td>
+<td>不存在指定的类时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnSingleCandidate</td>
+<td>容器中只存在一个指定的 Bean 或这个 Bean 为首选 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnProperty</td>
+<td>系统中指定属性存在指定的值时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnResource</td>
+<td>类路径下存在指定的资源文件时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnWebApplication</td>
+<td>当前应用是 web 应用时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnNotWebApplication</td>
+<td>当前应用不是 web 应用生效</td>
+</tr>
+</tbody></table>
+<p><a href="http://c.biancheng.net/spring_boot/auto-config.html">Spring Boot自动配置原理 (biancheng.net)</a></p>
+<h1 id="Spring-boot-starter-web（Web启动器）"><a href="#Spring-boot-starter-web（Web启动器）" class="headerlink" title="Spring-boot-starter-web（Web启动器）"></a>Spring-boot-starter-web（Web启动器）</h1><p>Spring MVC 是 Spring 提供的一个基于 MVC 设计模式的轻量级 Web 开发框架，其本身就是 Spring 框架的一部分，可以与 Spring 无缝集成，性能方面具有先天的优越性，是当今业界最主流的 Web 开发框架之一。</p>
+<p>Spring Boot 是在 Spring 的基础上创建一款开源框架，它提供了 spring-boot-starter-web（Web 场景启动器） 来为 Web 开发予以支持。spring-boot-starter-web 为我们提供了嵌入的 Servlet 容器以及 SpringMVC 的依赖，并为 Spring MVC 提供了大量自动配置，可以适用于大多数 Web 开发场景。</p>
+<p>只要我们在 Spring Boot 项目中的 pom.xml 中引入了 spring-boot-starter-web ，即使不进行任何配置，也可以直接使用 Spring MVC 进行 Web 开发。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p>&#x2F;&#x2F;TODO</p>
+<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1>]]></content>
+      <categories>
+        <category>SpringBoot</category>
+      </categories>
+  </entry>
+  <entry>
     <title>SpringCloud一站式微服务解决方案</title>
     <url>/2022/06/25/SpringCloud%E4%B8%80%E7%AB%99%E5%BC%8F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h1 id="微服务生态"><a href="#微服务生态" class="headerlink" title="微服务生态"></a>微服务生态</h1><p><a href="https://martinfowler.com/microservices/">Microservices Guide (martinfowler.com)</a></p>
@@ -1765,6 +1765,24 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2022/04/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>equals()与HashCode()的爱恨情仇</title>
     <url>/2022/05/12/equals-%E4%B8%8EHashCode%E7%9A%84%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
     <content><![CDATA[<h4 id="‘-x3D-x3D-’和equals"><a href="#‘-x3D-x3D-’和equals" class="headerlink" title="‘&#x3D;&#x3D;’和equals"></a>‘&#x3D;&#x3D;’和equals</h4><p>“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。</p>
@@ -1827,24 +1845,6 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
       <categories>
         <category>java</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/04/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>mysql</title>
@@ -2764,48 +2764,6 @@ count=100
       </categories>
   </entry>
   <entry>
-    <title>线程池</title>
-    <url>/2022/06/02/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</url>
-    <content><![CDATA[<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p><strong>什么是线程池？</strong></p>
-<p><a href="https://baike.baidu.com/item/%E7%BA%BF%E7%A8%8B%E6%B1%A0/4745661">线程池_百度百科 (baidu.com)</a></p>
-<p>线程池是一种多线程处理形式，处理过程中将任务添加到队列，然后在创建线程后自动启动这些任务。线程池线程都是后台线程。每个线程都使用默认的<a href="https://baike.baidu.com/item/%E5%A0%86%E6%A0%88/1682032">堆栈</a>大小，以默认的优先级运行，并处于多线程单元中。如果某个线程在<a href="https://baike.baidu.com/item/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81/2886980">托管代码</a>中空闲（如正在等待某个事件）,则线程池将插入另一个<a href="https://baike.baidu.com/item/%E8%BE%85%E5%8A%A9%E7%BA%BF%E7%A8%8B/4746601">辅助线程</a>来使所有处理器保持繁忙。如果所有线程池线程都始终保持繁忙，但队列中包含挂起的工作，则线程池将在一段时间后创建另一个辅助线程但线程的数目永远不会超过最大值。超过最大值的线程可以排队，但他们要等到其他线程完成后才启动。</p>
-<p>说实话，百度的答案我没看懂。</p>
-<span id="more"></span>
-
-<p><strong>创建线程池有哪几个核心参数？ 如何合理配置线程池的大小？</strong></p>
-<ol>
-<li>核心参数</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ThreadPoolExecutor</span><span class="params">(<span class="type">int</span> corePoolSize, // 核心线程数量大小 </span></span><br><span class="line"><span class="params">                          <span class="type">int</span> maximumPoolSize, // 线程池最大容纳线程数 </span></span><br><span class="line"><span class="params">                          <span class="type">long</span> keepAliveTime, // 线程空闲后的存活时长 </span></span><br><span class="line"><span class="params">                          TimeUnit unit, //缓存异步任务的队列 //用来构造线程池里的worker线程 </span></span><br><span class="line"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue, </span></span><br><span class="line"><span class="params">                          ThreadFactory threadFactory, //线程池任务满载后采取的任务拒绝策略 </span></span><br><span class="line"><span class="params">                          RejectedExecutionHandler handler)</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>核心说明</li>
-</ol>
-<ol>
-<li>当线程池中线程数量小于 corePoolSize 则创建线程，并处理请求。</li>
-<li>当线程池中线程数量大于等于 corePoolSize 时，则把请求放入 workQueue 中,随着线程池 中的核心线程们不断执行任务，只要线程池中有空闲的核心线程，线程池就从 workQueue 中取 任务并处理。</li>
-<li>当 workQueue 已存满，放不下新任务时则新建非核心线程入池，并处理请求直到线程数目 达到maximumPoolSize（最大线程数量设置值）。</li>
-<li>如果线程池中线程数大于 maximumPoolSize 则使用 RejectedExecutionHandler 来进行任 务拒绝处理。</li>
-</ol>
-<ol start="3">
-<li>线程池大小分配</li>
-</ol>
-<p>线程池究竟设置多大要看你的线程池执行的什么任务了，CPU密集型、IO密集型、混合型，任 务类型不同，设置的方式也不一样。 </p>
-<p>任务一般分为：CPU密集型、IO密集型、混合型，对于不同类型的任务需要分配不同大小的线 程池。</p>
-<p>3.1）CPU密集型 </p>
-<p>尽量使用较小的线程池，一般Cpu核心数+1</p>
-<p>3.2）IO密集型 </p>
-<p>方法一：可以使用较大的线程池，一般CPU核心数 * 2 </p>
-<p>方法二：（线程等待时间与线程CPU时间之比 + 1）* CPU数目</p>
-<p>3.3）混合型 可以将任务分为CPU密集型和IO密集型，然后分别使用不同的线程池去处理，按情况而定</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>集合</title>
     <url>/2022/05/11/%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<img src="/2022/05/11/%E9%9B%86%E5%90%88/1166662.jpg" class="" width="1166662">
@@ -2984,6 +2942,48 @@ count=100
 </ol>
 <p>​	</p>
 <p>​	</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>线程池</title>
+    <url>/2022/06/02/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</url>
+    <content><![CDATA[<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p><strong>什么是线程池？</strong></p>
+<p><a href="https://baike.baidu.com/item/%E7%BA%BF%E7%A8%8B%E6%B1%A0/4745661">线程池_百度百科 (baidu.com)</a></p>
+<p>线程池是一种多线程处理形式，处理过程中将任务添加到队列，然后在创建线程后自动启动这些任务。线程池线程都是后台线程。每个线程都使用默认的<a href="https://baike.baidu.com/item/%E5%A0%86%E6%A0%88/1682032">堆栈</a>大小，以默认的优先级运行，并处于多线程单元中。如果某个线程在<a href="https://baike.baidu.com/item/%E6%89%98%E7%AE%A1%E4%BB%A3%E7%A0%81/2886980">托管代码</a>中空闲（如正在等待某个事件）,则线程池将插入另一个<a href="https://baike.baidu.com/item/%E8%BE%85%E5%8A%A9%E7%BA%BF%E7%A8%8B/4746601">辅助线程</a>来使所有处理器保持繁忙。如果所有线程池线程都始终保持繁忙，但队列中包含挂起的工作，则线程池将在一段时间后创建另一个辅助线程但线程的数目永远不会超过最大值。超过最大值的线程可以排队，但他们要等到其他线程完成后才启动。</p>
+<p>说实话，百度的答案我没看懂。</p>
+<span id="more"></span>
+
+<p><strong>创建线程池有哪几个核心参数？ 如何合理配置线程池的大小？</strong></p>
+<ol>
+<li>核心参数</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ThreadPoolExecutor</span><span class="params">(<span class="type">int</span> corePoolSize, // 核心线程数量大小 </span></span><br><span class="line"><span class="params">                          <span class="type">int</span> maximumPoolSize, // 线程池最大容纳线程数 </span></span><br><span class="line"><span class="params">                          <span class="type">long</span> keepAliveTime, // 线程空闲后的存活时长 </span></span><br><span class="line"><span class="params">                          TimeUnit unit, //缓存异步任务的队列 //用来构造线程池里的worker线程 </span></span><br><span class="line"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue, </span></span><br><span class="line"><span class="params">                          ThreadFactory threadFactory, //线程池任务满载后采取的任务拒绝策略 </span></span><br><span class="line"><span class="params">                          RejectedExecutionHandler handler)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>核心说明</li>
+</ol>
+<ol>
+<li>当线程池中线程数量小于 corePoolSize 则创建线程，并处理请求。</li>
+<li>当线程池中线程数量大于等于 corePoolSize 时，则把请求放入 workQueue 中,随着线程池 中的核心线程们不断执行任务，只要线程池中有空闲的核心线程，线程池就从 workQueue 中取 任务并处理。</li>
+<li>当 workQueue 已存满，放不下新任务时则新建非核心线程入池，并处理请求直到线程数目 达到maximumPoolSize（最大线程数量设置值）。</li>
+<li>如果线程池中线程数大于 maximumPoolSize 则使用 RejectedExecutionHandler 来进行任 务拒绝处理。</li>
+</ol>
+<ol start="3">
+<li>线程池大小分配</li>
+</ol>
+<p>线程池究竟设置多大要看你的线程池执行的什么任务了，CPU密集型、IO密集型、混合型，任 务类型不同，设置的方式也不一样。 </p>
+<p>任务一般分为：CPU密集型、IO密集型、混合型，对于不同类型的任务需要分配不同大小的线 程池。</p>
+<p>3.1）CPU密集型 </p>
+<p>尽量使用较小的线程池，一般Cpu核心数+1</p>
+<p>3.2）IO密集型 </p>
+<p>方法一：可以使用较大的线程池，一般CPU核心数 * 2 </p>
+<p>方法二：（线程等待时间与线程CPU时间之比 + 1）* CPU数目</p>
+<p>3.3）混合型 可以将任务分为CPU密集型和IO密集型，然后分别使用不同的线程池去处理，按情况而定</p>
 ]]></content>
       <categories>
         <category>java</category>
