@@ -50,6 +50,8 @@
 <p>执行顺序：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Java源代码(.java文件)----&gt;编译器----&gt;jvm可执行的Java字节码(.class文件)----&gt;jvm----&gt;jvm中的解释器-----&gt; 机器可执行的二进制机器码----&gt;程序运行。</span><br></pre></td></tr></table></figure>
 
+<img src="/2022/05/16/JVM/image-20220711165236171.png" class="" title="image-20220711165236171">
+
 <p>接下来看一下JVM内部结构：</p>
 <h1 id="JVM结构"><a href="#JVM结构" class="headerlink" title="JVM结构"></a>JVM结构</h1><img src="/2022/05/16/JVM/image-20220516154322660.png" class="" title="image-20220516154322660">
 
@@ -199,21 +201,21 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 </ul>
 <h4 id="字符串常量池的位置变化"><a href="#字符串常量池的位置变化" class="headerlink" title="字符串常量池的位置变化"></a>字符串常量池的位置变化</h4><p>运行时常量池存和字符串常量池的变化</p>
 <p>JDK1.7之前 ：<br>运行时常量池(包含字符串常量池 )存放在方法区，此时 hotspot 虚拟机对方法区的实现为永久代。</p>
-<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223822891-1286299930.png" alt="9.5_1" style="zoom:80%;" />
+<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223822891-1286299930.png" alt="9.5_1"  />
 
 
 
 
 
 <p>JDK1.7 ：<br>字符串常量池被从方法区拿到了堆中；<br>运行时常量池剩下的东西还在方法区, 也就是hotspot中的永久代。</p>
-<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223858262-125394764.png" alt="9.5_2" style="zoom:80%;" />
+<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223858262-125394764.png" alt="9.5_2"  />
 
 
 
 
 
 <p>JDK1.8 ：<br>hotspot移除了永久代，用元空间(Metaspace) 取而代之。这时候，<br>字符串常量池还在堆,<br>运行时常量池还在方法区, 只不过方法区的实现从永久代变成元空间(Metaspace)。</p>
-<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223940541-1635130641.png" alt="9.5_3" style="zoom:80%;" />
+<img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223940541-1635130641.png" alt="9.5_3"  />
 
 
 
@@ -229,9 +231,11 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <li>对永久代的调优是很困难的。</li>
 </ol>
 <h4 id="StringTable-为什么要调整？"><a href="#StringTable-为什么要调整？" class="headerlink" title="StringTable 为什么要调整？"></a>StringTable 为什么要调整？</h4><p>jdk7 中将 StringTable 放到了堆空间中。因为永久代的回收效率很低，在 Full GC 的时候才会触发，而 Full GC 是老年代的空间不足、永久代不足时才会触发，这就就导致 StringTable 回收效率不高。而开发中会有大量的字符串被创建，回收效率低，导致永久代不足。放在堆里，能及时回收内存。</p>
-<h2 id="类的加载机制"><a href="#类的加载机制" class="headerlink" title="类的加载机制"></a>类的加载机制</h2><h2 id="对象从创建到消亡的历史过程"><a href="#对象从创建到消亡的历史过程" class="headerlink" title="对象从创建到消亡的历史过程"></a>对象从创建到消亡的历史过程</h2><h2 id="User-user-x3D-new-User-做了什么操作，申请了哪些内存？"><a href="#User-user-x3D-new-User-做了什么操作，申请了哪些内存？" class="headerlink" title="User user &#x3D; new User()  做了什么操作，申请了哪些内存？"></a>User user &#x3D; new User()  做了什么操作，申请了哪些内存？</h2><h2 id="对象的内存分配位置"><a href="#对象的内存分配位置" class="headerlink" title="对象的内存分配位置"></a>对象的内存分配位置</h2><h2 id="JVM的性能调优"><a href="#JVM的性能调优" class="headerlink" title="JVM的性能调优"></a>JVM的性能调优</h2><h2 id="GC算法，永久代对象如何GC，GC有环怎么处理"><a href="#GC算法，永久代对象如何GC，GC有环怎么处理" class="headerlink" title="GC算法，永久代对象如何GC，GC有环怎么处理"></a><strong>GC</strong>算法，永久代对象如何GC，GC有环怎么处理</h2><h2 id="Java7到Java8关于JVM的改变"><a href="#Java7到Java8关于JVM的改变" class="headerlink" title="Java7到Java8关于JVM的改变"></a>Java7到Java8关于JVM的改变</h2><img src="/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png" class="" title="img">
+<img src="/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png" class="" title="img">
 
-<h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p>在讨论深拷贝和浅拷贝之前 首先要了解一下java的赋值机制——值传递</p>
+<h2 id="类的加载机制"><a href="#类的加载机制" class="headerlink" title="类的加载机制"></a>类的加载机制</h2><h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><img src="/2022/05/16/JVM/image-20220711171336881.png" class="" title="image-20220711171336881">
+
+<h2 id="对象从创建到消亡的历史过程"><a href="#对象从创建到消亡的历史过程" class="headerlink" title="对象从创建到消亡的历史过程"></a>对象从创建到消亡的历史过程</h2><h2 id="User-user-x3D-new-User-做了什么操作，申请了哪些内存？"><a href="#User-user-x3D-new-User-做了什么操作，申请了哪些内存？" class="headerlink" title="User user &#x3D; new User()  做了什么操作，申请了哪些内存？"></a>User user &#x3D; new User()  做了什么操作，申请了哪些内存？</h2><h2 id="对象的内存分配位置"><a href="#对象的内存分配位置" class="headerlink" title="对象的内存分配位置"></a>对象的内存分配位置</h2><h2 id="JVM的性能调优"><a href="#JVM的性能调优" class="headerlink" title="JVM的性能调优"></a>JVM的性能调优</h2><h2 id="GC算法，永久代对象如何GC，GC有环怎么处理"><a href="#GC算法，永久代对象如何GC，GC有环怎么处理" class="headerlink" title="GC算法，永久代对象如何GC，GC有环怎么处理"></a><strong>GC</strong>算法，永久代对象如何GC，GC有环怎么处理</h2><h2 id="Java7到Java8关于JVM的改变"><a href="#Java7到Java8关于JVM的改变" class="headerlink" title="Java7到Java8关于JVM的改变"></a>Java7到Java8关于JVM的改变</h2><h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p>在讨论深拷贝和浅拷贝之前 首先要了解一下java的赋值机制——值传递</p>
 <p>什么是值传递 什么是引用传递?</p>
 <p>首先要了解一下 什么是实际参数 什么是形式参数?</p>
 <p>形式参数 最先想到的就是java方法中的方法参数值了</p>
@@ -262,6 +266,36 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 ]]></content>
       <categories>
         <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux</title>
+    <url>/2022/06/07/Linux/</url>
+    <content><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>另一种操作系统</p>
+<p>服务器操作系统</p>
+<p>针对CentOS7</p>
+<h2 id="Linux文件信息位置"><a href="#Linux文件信息位置" class="headerlink" title="Linux文件信息位置"></a>Linux文件信息位置</h2><h3 id="1-网卡信息存放位置"><a href="#1-网卡信息存放位置" class="headerlink" title="1.网卡信息存放位置"></a>1.网卡信息存放位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">/* 如果是dell的物理服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-em1或em2 ，em3，em4</span><br><span class="line">/* 如果是云服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-防火墙的开启和关闭"><a href="#2-防火墙的开启和关闭" class="headerlink" title="2.防火墙的开启和关闭"></a>2.防火墙的开启和关闭</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>启动防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start firewalld.service  		--启动firewall</span><br><span class="line">systemctl enable firewalld.service		--开机时启动firewall</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service    		--停止firewall</span><br><span class="line">systemctl disable firewalld.service		--禁止firewall开机启动</span><br></pre></td></tr></table></figure>
+
+<p>重启防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>查看防火墙是否开启自启</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled firewalld.service;echo $?</span><br></pre></td></tr></table></figure>
+
+<p>查看已启动的服务列表</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files|grep enabled</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux运维</category>
       </categories>
   </entry>
   <entry>
@@ -634,36 +668,6 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       </categories>
   </entry>
   <entry>
-    <title>Linux</title>
-    <url>/2022/06/07/Linux/</url>
-    <content><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>另一种操作系统</p>
-<p>服务器操作系统</p>
-<p>针对CentOS7</p>
-<h2 id="Linux文件信息位置"><a href="#Linux文件信息位置" class="headerlink" title="Linux文件信息位置"></a>Linux文件信息位置</h2><h3 id="1-网卡信息存放位置"><a href="#1-网卡信息存放位置" class="headerlink" title="1.网卡信息存放位置"></a>1.网卡信息存放位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">/* 如果是dell的物理服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-em1或em2 ，em3，em4</span><br><span class="line">/* 如果是云服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-防火墙的开启和关闭"><a href="#2-防火墙的开启和关闭" class="headerlink" title="2.防火墙的开启和关闭"></a>2.防火墙的开启和关闭</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
-
-<p>启动防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start firewalld.service  		--启动firewall</span><br><span class="line">systemctl enable firewalld.service		--开机时启动firewall</span><br></pre></td></tr></table></figure>
-
-<p>关闭防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service    		--停止firewall</span><br><span class="line">systemctl disable firewalld.service		--禁止firewall开机启动</span><br></pre></td></tr></table></figure>
-
-<p>重启防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
-
-<p>查看防火墙是否开启自启</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled firewalld.service;echo $?</span><br></pre></td></tr></table></figure>
-
-<p>查看已启动的服务列表</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files|grep enabled</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Linux运维</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Server</title>
     <url>/2022/05/18/Server/</url>
     <content><![CDATA[<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
@@ -680,316 +684,6 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 ]]></content>
       <categories>
         <category>java</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Spring Cloud Alibaba</title>
-    <url>/2022/07/01/Spring-Cloud-Alibaba/</url>
-    <content><![CDATA[<p><a href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html">Spring Cloud Alibaba 参考文档 (spring-cloud-alibaba-group.github.io)</a></p>
-<p><a href="https://github.com/alibaba/spring-cloud-alibaba">alibaba&#x2F;spring-cloud-alibaba: Spring Cloud Alibaba provides a one-stop solution for application development for the distributed solutions of Alibaba middleware. (github.com)</a></p>
-<h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><img src="https://mrhelloworld.com/resources/articles/articles_header/2020/06/03/header.jpg" alt="https://mrhelloworld.com/resources/articles/articles_header/2020/06/03/header.jpg" style="zoom:80%;" />
-
-<span id="more"></span>
-
-<h2 id="Nacos-x3D-eureka-config-bus-！！！"><a href="#Nacos-x3D-eureka-config-bus-！！！" class="headerlink" title="Nacos &#x3D; eureka + config + bus ！！！"></a><strong>Nacos &#x3D; eureka + config + bus ！！！</strong></h2><p>Quick Start</p>
-<p>首先打开下载好的nacos，进入bin目录启动start.cmd 就开启了本地的nacos服务</p>
-<h2 id="作为注册中心"><a href="#作为注册中心" class="headerlink" title="作为注册中心"></a>作为注册中心</h2><p>开启nacos服务后,相当与配置了一个完整的eureka服务并开启,nacos的本地地址为<a href="http://localhost:8848/nacos">http://localhost:8848/nacos</a></p>
-<p>接下来姐可以开启服务模块和客服模块了.</p>
-<p>服务模块:</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--SpringCloud ailibaba nacos --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- SpringBoot整合Web组件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--日常通用jar包配置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置文件:</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">9001</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-payment-provider</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#配置Nacos地址</span></span><br><span class="line"></span><br><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">endpoints:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">exposure:</span></span><br><span class="line">        <span class="attr">include:</span> <span class="string">&#x27;*&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>主启动类:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PaymentMain9001</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(PaymentMain9001.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Nacos和其他注册中心比较"><a href="#Nacos和其他注册中心比较" class="headerlink" title="Nacos和其他注册中心比较"></a>Nacos和其他注册中心比较</h2><p>Nacos自动支持CP和AP</p>
-<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706154546368.png" class="" title="image-20220706154546368">
-
-<p>Nacos如何切换AP和CP?</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">curl -X PUT &#x27;$NACOS_SERVER:<span class="number">8848</span>/nacos/v1/ns/operator/switches?entry=serverMode&amp;value=CP&#x27;</span><br></pre></td></tr></table></figure>
-
-<h2 id="作为配置中心Config"><a href="#作为配置中心Config" class="headerlink" title="作为配置中心Config"></a>作为配置中心Config</h2><p>在nacos的配置文件的命名规则</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">$&#123;spring.application.name&#125;-$&#123;spring.profile.active&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建一个微服务，cloudalibaba-config-nacos-client3377</p>
-<p>需要 <strong>application.yaml 和 bootstrap.yaml</strong> 两个配置文件 (为了能和SpringCloud平滑过渡）</p>
-<blockquote>
-<p> <em><strong>bootstrap.yaml的优先级高于application.yaml</strong></em></p>
-</blockquote>
-<p>1.application.yaml</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span> <span class="comment"># 表示开发环境</span></span><br><span class="line"><span class="comment">#    active: test # 表示测试环境</span></span><br><span class="line">    <span class="comment">#active: info </span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>bootstrap.yaml</li>
-</ol>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># nacos配置</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">3377</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-config-client</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#Nacos服务注册中心地址</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#Nacos作为配置中心地址</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment">#指定yaml格式的配置</span></span><br><span class="line"><span class="comment">#        group: DEV_GROUP # 指定分组</span></span><br><span class="line"><span class="comment">#        namespace: 7d8f0f5a-6a53-4785-9686-dd460158e5d4 # 指定命名空间</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># $&#123;spring.application.name&#125;-$&#123;spring.profile.active&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</span></span><br><span class="line"><span class="comment"># nacos-config-client-dev.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># nacos-config-client-test.yaml   ----&gt; config.info</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>因为nacos集成了bus+config+eureka 所以当nacos的配置文件进行修改了之后 其config客户端自动就会进行动态刷新。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RefreshScope</span> <span class="comment">//支持Nacos的动态刷新功能。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConfigClientController</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;config.info&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String configInfo;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/config/info&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getConfigInfo</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> configInfo;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以使用@Value注解自动填充配置文件里的信息。</p>
-<p>于是就可以获取的到文件了。</p>
-<h2 id="切换环境"><a href="#切换环境" class="headerlink" title="切换环境"></a>切换环境</h2><p><strong>之后想要不同的配置文件则切换环境就可以了。首先可以再 bootstrap.yaml指定命名空间namespace 然后 Group 最后在 application.yaml 通过命名规则指定 DataID。</strong></p>
-<h2 id="Group和Data-ID"><a href="#Group和Data-ID" class="headerlink" title="Group和Data ID"></a>Group和Data ID</h2><img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220701200647822.png" class="" title="image-20220701200647822">
-
-<p>所以，当我们需要制定某个配置文件的时候，就需要Group和Data Id配合使用 所以就需要application.yaml和bootstrap.yaml两个配置文件配合使用。</p>
-<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220707105954569.png" class="" title="image-20220707105954569">
-
-
-
-<h2 id="Nacos集群配置"><a href="#Nacos集群配置" class="headerlink" title="Nacos集群配置"></a>Nacos集群配置</h2><p><a href="https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html">集群部署说明 (nacos.io)</a></p>
-<p>作为服务注册中心，为了保证其可用性以及出现宕机的意外情况，应该配置nacos集群以保证线上环境的稳定。</p>
-<p><img src="https://nacos.io/img/deployDnsVipMode.jpg" alt="deployDnsVipMode.jpg"></p>
-<p>SLB代表的是负载均衡的集群配置，此处使用的是nginx的一个集群配置。<a href="https://developer.aliyun.com/article/1803">SLB技术原理浅析-阿里云开发者社区 (aliyun.com)</a></p>
-<p>关于nacos的数据源使用高可用数据库，类似以下情况架构</p>
-<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220702100327727.png" class="" title="image-20220702100327727">
-
-<p>从github上的源码中查看nacos的pom依赖文件，<strong>derby是nacos自带的内置数据库</strong>，所以我们的配置文件才得以保存在nacos中，而当我们需要一个稳定的数据源的使用，就需要将这个<strong>derby数据库切换为mysql数据库</strong>（集群）</p>
-<p>切换步骤：（本机电脑未切换）</p>
-<p>nacos-server-1.1.3\nacos\conf\nacos-mysql.sql </p>
-<p>复制该sql脚本到本地数据库中，创建对应配置文件表。</p>
-<p>nacos-server-1.1.3\nacos\conf\application.properties</p>
-<p>修改该配置文件，在最后添加一段配置，指向本地mysql</p>
-<h1 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h1><p><a href="https://github.com/alibaba/Sentinel/wiki/%E4%BB%8B%E7%BB%8D">介绍 · alibaba&#x2F;Sentinel Wiki (github.com)</a></p>
-<img src="https://user-images.githubusercontent.com/9434884/43697219-3cb4ef3a-9975-11e8-9a9c-73f4f537442d.png" alt="Sentinel Logo" style="zoom: 50%;" />
-
-<p>Sentinel单独组件，直接界面化的细粒度统一配置。</p>
-<p>Sentinel 是什么？<br>随着微服务的流行，服务和服务之间的稳定性变得越来越重要。Sentinel 以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性</p>
-<p>Sentinel的官方标题是：分布式系统的流量防卫兵。从名字上来看，很容易就能猜到它是用来作服务稳定性保障的。对于服务稳定性保障组件，如果熟悉Spring Cloud的用户，第一反应应该就是Hystrix。但是比较可惜的是Netflix已经宣布对Hystrix停止更新。那么，在未来我们还有什么更好的选择呢？除了Spring Cloud官方推荐的resilience4j之外，目前Spring Cloud Alibaba下整合的Sentinel也是用户可以重点考察和选型的目标。</p>
-<p>在官网下载jar包后，使用java -jar命令运行该项目，访问localhost:8080 即可进入（通常情况下同时配合Nacos使用，Sentinel与Nacos进行具体服务的操作和配置）</p>
-<h2 id="工程搭建"><a href="#工程搭建" class="headerlink" title="工程搭建"></a>工程搭建</h2><p>Sentinel 不需要Hystrix一样自己进行服务的搭建，而是直接运行jar包启动服务。</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">java -jar sentinel-dashboard-<span class="number">1</span>.<span class="number">7</span>.<span class="number">0</span>.jar</span><br></pre></td></tr></table></figure>
-
-<p>运行具体版本jar包。</p>
-<p>支付端：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8401</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">cloudalibaba-sentinel-service</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#Nacos服务注册中心地址</span></span><br><span class="line">    <span class="attr">sentinel:</span></span><br><span class="line">      <span class="attr">transport:</span></span><br><span class="line">        <span class="attr">dashboard:</span> <span class="string">localhost:8080</span> <span class="comment">#配置Sentinel dashboard地址</span></span><br><span class="line">        <span class="attr">port:</span> <span class="number">8719</span></span><br><span class="line"><span class="comment">#      datasource:</span></span><br><span class="line"><span class="comment">#        ds1:</span></span><br><span class="line"><span class="comment">#          nacos:</span></span><br><span class="line"><span class="comment">#            server-addr: localhost:8848</span></span><br><span class="line"><span class="comment">#            dataId: cloudalibaba-sentinel-service</span></span><br><span class="line"><span class="comment">#            groupId: DEFAULT_GROUP</span></span><br><span class="line"><span class="comment">#            data-type: json</span></span><br><span class="line"><span class="comment">#            rule-type: flow</span></span><br><span class="line"></span><br><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">endpoints:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">exposure:</span></span><br><span class="line">        <span class="attr">include:</span> <span class="string">&#x27;*&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#feign:</span></span><br><span class="line"><span class="comment">#  sentinel:</span></span><br><span class="line"><span class="comment">#    enabled: true # 激活Sentinel对Feign的支持</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="流控"><a href="#流控" class="headerlink" title="流控"></a>流控</h2><h3 id="流控规则的规则意义"><a href="#流控规则的规则意义" class="headerlink" title="流控规则的规则意义"></a>流控规则的规则意义</h3><p>Sentinel 作为一种轻量级高可用流量控制组件，流量控制是它最主要的工作之一。</p>
-<p>我们可以针对资源定义流控规则，Sentinel 会根据这些规则对流量相关的各项指标进行监控。当这些指标当达到或超过流控规则规定的阈值时，Sentinel 会对请求的流量进行限制（即“限流”），以避免系统被瞬时的流量高峰冲垮，保障系统的高可用性。</p>
-<p><strong>同一个资源可以创建多条流控规则，Sentinel 会遍历这些规则，直到有规则触发限流或者所有规则遍历完毕为止。</strong></p>
-<h3 id="流控规则的具体实现"><a href="#流控规则的具体实现" class="headerlink" title="流控规则的具体实现"></a>流控规则的具体实现</h3><img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706153537108.jpg" class="" title="image-20220706153537108">
-
-
-
-<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220703105117104.png" class="" title="image-20220703105117104">
-
-<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220703105210793.png" class="" title="image-20220703105210793">
-
-
-
-<p>添加流控规则添加：簇点链路 ——&gt;列表视图 ——&gt;选择具体资源名  就可以继续进行流控限制。</p>
-<h2 id="熔断降级"><a href="#熔断降级" class="headerlink" title="熔断降级"></a>熔断降级</h2><p>除了流量控制以外，对调用链路中不稳定的资源进行熔断降级也是保障高可用的重要措施之一。由于调用关系的复杂性，如果调用链路中的某个资源不稳定，最终会导致请求发生堆积。Sentinel <strong>熔断降级</strong>会在调用链路中某个资源出现不稳定状态时（例如调用超时或异常比例升高），对这个资源的调用进行限制，让请求快速失败，避免影响到其它的资源而导致级联错误。当资源被降级后，在接下来的降级时间窗口之内，对该资源的调用都自动熔断（默认行为是抛出 <code>DegradeException</code>）。</p>
-<img src="/2022/07/01/Spring-Cloud-Alibaba/10252343H-15.png" class="" title="Sentinel 熔断状态转换">
-
-<h3 id="Sentinel-熔断策略"><a href="#Sentinel-熔断策略" class="headerlink" title="Sentinel 熔断策略"></a>Sentinel 熔断策略</h3><ol>
-<li><strong>平均响应时间 (<code>DEGRADE_GRADE_RT</code>)<strong>：当 1s 内持续进入 5 个请求（大于等于5），对应时刻的平均响应时间（秒级）均超过阈值（<code>count</code>，以 ms 为单位），那么在接下的时间窗口期（<code>DegradeRule</code> 中的 <code>timeWindow</code>，以 s 为单位）之内，对这个方法的调用都会自动地熔断（抛出 <code>DegradeException</code>）。注意 Sentinel 默认统计的 RT 上限是 4900 ms，</strong>超出此阈值的都会算作 4900 ms</strong>，若需要变更此上限可以通过启动配置项 <code>-Dcsp.sentinel.statistic.max.rt=xxx</code> 来配置。</li>
-<li>**异常比例 (<code>DEGRADE_GRADE_EXCEPTION_RATIO</code>)**：当资源的每秒请求量 &gt;&#x3D; 5，并且每秒异常总数占通过量的比值超过阈值（<code>DegradeRule</code> 中的 <code>count</code>）之后，资源进入降级状态，即在接下的时间窗口（<code>DegradeRule</code> 中的 <code>timeWindow</code>，以 s 为单位）之内，对这个方法的调用都会自动地返回。异常比率的阈值范围是 <code>[0.0, 1.0]</code>，代表 0% - 100%。</li>
-<li>**异常数 (<code>DEGRADE_GRADE_EXCEPTION_COUNT</code>)**：当资源近 1 分钟的异常数目超过阈值之后会进行熔断。注意由于统计时间窗口是分钟级别的，若 <code>timeWindow</code> 小于 60s，则结束熔断状态后仍可能再进入熔断状态。</li>
-</ol>
-<p><strong>需要注意的是</strong>：</p>
-<p>RT和异常比例分别需要满足的条件不只是处理时间和异常的所占比率，而且<strong>都需要满足每秒的请求数 &gt;&#x3D;5</strong>，如果请求数目不满足的话，只会进入RunTimeException然后返回常见的报错界面。</p>
-<p>Sentinel 1.8.0 版本对熔断降级特性进行了全新的改进升级，以下熔断策略针对的是 Sentinel 1.8.0 及以上版本。</p>
-<h4 id="Sentinel-1-8-0-以上熔断策略"><a href="#Sentinel-1-8-0-以上熔断策略" class="headerlink" title="Sentinel 1.8.0 以上熔断策略"></a>Sentinel 1.8.0 以上熔断策略</h4><p>Sentinel 提供了 3 种熔断策略，如下表所示。</p>
-<table>
-<thead>
-<tr>
-<th>熔断策略</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>慢调用比例 (SLOW_REQUEST_RATIO）</td>
-<td>选择以慢调用比例作为阈值，需要设置允许的慢调用 RT（即最大响应时间），若请求的响应时间大于该值则统计为慢调用。  当单位统计时长（statIntervalMs）内请求数目大于设置的最小请求数目，且慢调用的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。  经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求响应时间小于设置的慢调用 RT 则结束熔断，若大于设置的慢调用 RT 则再次被熔断。</td>
-</tr>
-<tr>
-<td>异常比例 (ERROR_RATIO)</td>
-<td>当单位统计时长（statIntervalMs）内请求数目大于设置的最小请求数目且异常的比例大于阈值，则在接下来的熔断时长内请求会自动被熔断。  经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。异常比率的阈值范围是 [0.0, 1.0]，代表 0% - 100%。</td>
-</tr>
-<tr>
-<td>异常数 (ERROR_COUNT)</td>
-<td>当单位统计时长内的异常数目超过阈值之后会自动进行熔断。  经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。</td>
-</tr>
-</tbody></table>
-<h3 id="和Hystrix的熔断降级对比"><a href="#和Hystrix的熔断降级对比" class="headerlink" title="和Hystrix的熔断降级对比"></a>和Hystrix的熔断降级对比</h3><p>Sentinel 和 Hystrix 的熔断降级功能本质上都是基于熔断器模式（Circuit Breaker Pattern）。Sentinel 与 Hystrix 都支持基于失败比率（异常比率）的熔断降级，在调用达到一定量级并且失败比率达到设定的阈值时自动进行熔断，此时所有对该资源的调用都会被 block，直到过了指定的时间窗口后才启发性地恢复。Sentinel 还支持基于平均响应时间的熔断降级，可以在服务响应时间持续飙高的时候自动熔断，拒绝掉更多的请求，直到一段时间后才恢复。这样可以防止调用非常慢造成级联阻塞的情况。</p>
-<p>Hystrix存在半开规则，判断是否可以恢复服务，而<strong>Sentinel的熔断器是没有半开状态</strong>的，取而代之的是时间窗口期内的<strong>探测恢复状态</strong>。</p>
-<h2 id="热点Key"><a href="#热点Key" class="headerlink" title="热点Key"></a>热点Key</h2><p>热点即经常访问的数据。很多时候我们希望统计某个热点数据中访问频次最高的 Top K 数据，并对其访问进行限制。比如：</p>
-<ul>
-<li>商品 ID 为参数，统计一段时间内最常购买的商品 ID 并进行限制</li>
-<li>用户 ID 为参数，针对一段时间内频繁访问的用户 ID 进行限制</li>
-</ul>
-<p>热点参数限流会统计传入参数中的热点参数，并根据配置的限流阈值与模式，对包含热点参数的资源调用进行限流。热点参数限流可以看做是一种特殊的流量控制，仅对包含热点参数的资源调用生效。<br> Sentinel 利用 LRU 策略统计最近最常访问的热点参数，结合令牌桶算法来进行参数级别的流控。热点参数限流支持集群模式。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/testHotKey&quot;)</span></span><br><span class="line">    <span class="meta">@SentinelResource(value = &quot;testHotKey&quot;,blockHandler = &quot;deal_testHotKey&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">testHotKey</span><span class="params">(<span class="meta">@RequestParam(value = &quot;p1&quot;,required = false)</span> String p1,</span></span><br><span class="line"><span class="params">                             <span class="meta">@RequestParam(value = &quot;p2&quot;,required = false)</span> String p2)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//int age = 10/0;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;------testHotKey&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">deal_testHotKey</span> <span class="params">(String p1, String p2, BlockException exception)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;------deal_testHotKey,o(╥﹏╥)o&quot;</span>;  <span class="comment">//sentinel系统默认的提示：Blocked by Sentinel (flow limiting)</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>新增热点规则：</p>
-<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706104040702.png" class="" title="image-20220706104040702">
-
-<p>限流规则：仅支持QPS（线程数）</p>
-<p>参数索引：指定限制的热点参数的索引位置</p>
-<p>单机阈值：流量个数</p>
-<p>统计时长：休息的窗口期 </p>
-<p>如果使用了热点规则，强烈建议**@SentinelResource注解添加blockHandler参数**，否则返回正常的错误界面，不友好。</p>
-<h3 id="参数例外项："><a href="#参数例外项：" class="headerlink" title="参数例外项："></a>参数例外项：</h3><p>选择高级选项，具体到某一参数的具体值进行限流控制。仅支持八大数据类型。</p>
-<h2 id="系统自适应限流"><a href="#系统自适应限流" class="headerlink" title="系统自适应限流"></a>系统自适应限流</h2><p><a href="https://github.com/alibaba/Sentinel/wiki/%E7%B3%BB%E7%BB%9F%E8%87%AA%E9%80%82%E5%BA%94%E9%99%90%E6%B5%81">系统自适应限流 · alibaba&#x2F;Sentinel Wiki (github.com)</a></p>
-<p>Sentinel 系统<strong>自适应限流从整体维度对应用入口流量进行控制</strong>，结合应用的 Load、CPU 使用率、总体平均 RT、入口 QPS 和并发线程数等几个维度的监控指标，通过自适应的流控策略，让系统的入口流量和系统的负载达到一个<strong>平衡</strong>，让系统尽可能跑在最大吞吐量的同时保证系统整体的<strong>稳定性</strong>。</p>
-<p>系统规则支持以下的模式：</p>
-<ul>
-<li><strong>Load 自适应</strong>（仅对 Linux&#x2F;Unix-like 机器生效）：系统的 load1 作为启发指标，进行自适应系统保护。当系统 load1 超过设定的启发值，且系统当前的并发线程数超过估算的系统容量时才会触发系统保护（BBR 阶段）。系统容量由系统的 <code>maxQps * minRt</code> 估算得出。设定参考值一般是 <code>CPU cores * 2.5</code>。</li>
-<li><strong>CPU usage</strong>（1.5.0+ 版本）：当系统 CPU 使用率超过阈值即触发系统保护（取值范围 0.0-1.0），比较灵敏。</li>
-<li><strong>平均 RT</strong>：当单台机器上所有入口流量的平均 RT 达到阈值即触发系统保护，单位是毫秒。</li>
-<li><strong>并发线程数</strong>：当单台机器上所有入口流量的并发线程数达到阈值即触发系统保护。</li>
-<li><strong>入口 QPS</strong>：当单台机器上所有入口流量的 QPS 达到阈值即触发系统保护。</li>
-</ul>
-<h2 id="SentinelResource注解配置"><a href="#SentinelResource注解配置" class="headerlink" title="@SentinelResource注解配置"></a>@SentinelResource注解配置</h2><p>以上使用@SentinelResource的规则 我们要面临以下几个问题。</p>
-<ol>
-<li>系统默认的，没有体现我们自己的业务逻辑</li>
-<li>依照现有条件，我们自定义的处理方法又和业务模块耦合在一起，耦合度高。</li>
-<li>每个业务方法都添加一个blockhandler兜底方法，代发过于冗余。</li>
-<li>没有全局统一的处理方法。</li>
-</ol>
-<p>对于很多的方法类，如果都需要一个降级的blockHandler兜底方法，不能挨个配置，可以定义一个公共的降级方法提供给这些方法使用。</p>
-<p>所以我们可以解锁 @SentinelResource 的更多姿势：写一个公共类（本例中为CustomerBlockHandler），可以定义不同的静态blockHandler方法提供给其他方法，在具体方法上添加@SentinelResource注解，然后（blockHandlerClass ）指定处理异常的类，（blockHandler）再具体到这个类中的某个方法。</p>
-<p>配置参数和具体方法的对应位置：</p>
-<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706151534201.png" class="" title="image-20220706151534201">
-
-
-
-
-
-<h1 id="Sentinel-整合Ribbon-OpenFeign-Fallback"><a href="#Sentinel-整合Ribbon-OpenFeign-Fallback" class="headerlink" title="Sentinel 整合Ribbon+OpenFeign+Fallback"></a>Sentinel 整合Ribbon+OpenFeign+Fallback</h1><blockquote>
-<p> 本地三个微服务：提供者cloudalibaba-provider-payment9003 cloudalibaba-provider-payment9004 								</p>
-<p>​								消费者 cloudalibaba-consumer-nacos-order84	</p>
-</blockquote>
-<p>巨人的肩膀：</p>
-<p><a href="https://developer.aliyun.com/article/623424">Sentinel 与 Hystrix 的对比-阿里云开发者社区 (aliyun.com)</a></p>
-<p><a href="http://c.biancheng.net/springcloud/sentinel.html">Sentinel：Spring Cloud Alibaba高可用流量控制组件（非常详细） (biancheng.net)</a></p>
-]]></content>
-      <categories>
-        <category>Spring</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>SpringBoot</title>
-    <url>/2022/05/28/SpringBoot/</url>
-    <content><![CDATA[<p>官网：<a href="https://spring.io/projects/spring-boot">Spring Boot</a></p>
-<img src="/2022/05/28/SpringBoot/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg" class="" title="查看源图像">
-
-<h1 id="什么是SpringBoot？"><a href="#什么是SpringBoot？" class="headerlink" title="什么是SpringBoot？"></a>什么是SpringBoot？</h1><p>Spring Boot 是 Pivotal 团队在 Spring 的基础上提供的一套全新的开源框架，其目的是为了简化 Spring 应用的搭建和开发过程。Spring Boot 去除了大量的 XML 配置文件，简化了复杂的依赖管理。</p>
-<p>Spring Boot 具有 Spring 一切优秀特性，Spring 能做的事，Spring Boot 都可以做，而且使用更加简单，功能更加丰富，性能更加稳定而健壮。随着近些年来微服务技术的流行，Spring Boot 也成了时下炙手可热的技术。</p>
-<p>Spring Boot 集成了大量常用的第三方库配置，Spring Boot 应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
-<span id="more"></span>
-
-<h1 id="SpringBoot自动装配原理"><a href="#SpringBoot自动装配原理" class="headerlink" title="SpringBoot自动装配原理"></a>SpringBoot自动装配原理</h1><p>Spring Boot 项目创建完成后，即使不进行任何的配置，也能够顺利地运行，这都要归功于 Spring Boot 的自动化配置。</p>
-<p>Spring Boot 默认使用 application.properties 或 application.yml 作为其全局配置文件，我们可以在该配置文件中对各种自动配置属性（server.port、logging.level.* 、spring.config.active.no-profile 等等）进行修改，并使之生效，那么您有没有想过这些属性是否有据可依呢？答案是肯定的。</p>
-<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。本节为你揭开 SpringBoot 自动配置的神秘面纱。</p>
-<h2 id="Spring-Factories-机制"><a href="#Spring-Factories-机制" class="headerlink" title="Spring Factories 机制"></a>Spring Factories 机制</h2><p>Spring Boot 的自动配置是基于 Spring Factories 机制实现的。</p>
-<p>Spring Factories 机制是 Spring Boot 中的一种服务发现机制，这种扩展机制与 Java SPI 机制十分相似。Spring Boot 会自动扫描所有 Jar 包类路径下 META-INF&#x2F;spring.factories 文件，并读取其中的内容，进行实例化，这种机制也是 Spring Boot Starter 的基础。</p>
-<p><a href="https://www.jianshu.com/p/00e49c607fa1">Spring Factories - 简书 (jianshu.com)</a></p>
-<h3 id="spring-factories"><a href="#spring-factories" class="headerlink" title="spring.factories"></a>spring.factories</h3><p>spring.factories 文件本质上与 properties 文件相似，其中包含一组或多组键值对（key&#x3D;vlaue），其中，key 的取值为接口的完全限定名；value 的取值为接口实现类的完全限定名，一个接口可以设置多个实现类，不同实现类之间使用“，”隔开，例如：</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">org.springframework.boot.autoconfigure.AutoConfigurationImportFilter</span>=<span class="string">\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnBeanCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnClassCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Spring-Factories-实现原理"><a href="#Spring-Factories-实现原理" class="headerlink" title="Spring Factories 实现原理"></a>Spring Factories 实现原理</h3><p>spring-core 包里定义了 SpringFactoriesLoader 类，这个类会扫描所有 Jar 包类路径下的 META-INF&#x2F;spring.factories 文件，并获取指定接口的配置。在 SpringFactoriesLoader 类中定义了两个对外的方法，如下表。</p>
-<table>
-<thead>
-<tr>
-<th>返回值</th>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><T> List<T></td>
-<td>loadFactories(Class<T> factoryType, @Nullable ClassLoader classLoader)</td>
-<td>静态方法； 根据接口获取其实现类的实例； 该方法返回的是实现类对象列表。</td>
-</tr>
-<tr>
-<td>List<String></td>
-<td>loadFactoryNames(Class&lt;?&gt; factoryType, @Nullable ClassLoader classLoader)</td>
-<td>公共静态方法； 根据接口l获取其实现类的名称； 该方法返回的是实现类的类名的列表</td>
-</tr>
-</tbody></table>
-<p>以上两个方法的关键都是从指定的 ClassLoader 中获取 spring.factories 文件，并解析得到类名列表。</p>
-<p>loadFactories() 方法能够获取指定接口的实现类对象</p>
-<p>loadFactoryNames() 方法能够根据接口获取其实现类类名的集合。</p>
-<h3 id="SpringBootApplication-注解"><a href="#SpringBootApplication-注解" class="headerlink" title="@SpringBootApplication 注解"></a>@SpringBootApplication 注解</h3><p>所有 Spring Boot 项目的主启动程序类上都使用了一个 @SpringBootApplication 注解，该注解是 Spring Boot 中最重要的注解之一 ，也是 Spring Boot 实现自动化配置的关键。 </p>
-<p>@SpringBootApplication 是一个组合元注解，其主要包含两个注解：@SpringBootConfiguration 和 @EnableAutoConfiguration，其中 @EnableAutoConfiguration 注解是 SpringBoot 自动化配置的核心所在。</p>
-<img src="/2022/05/28/SpringBoot/image-20220529152015019.png" class="" title="image-20220529152015019">
-
-<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@<strong>ComponentScan</strong></h3><p>@ComponentScan主要就是定义<strong>扫描的路径</strong>从中找出标识了<strong>需要装配</strong>的类自动装配到spring的bean容器中</p>
-<p>@Controller，@Service，@Repository注解，查看其源码你会发现，他们中有一个<strong>共同的注解@Component</strong></p>
-<img src="/2022/05/28/SpringBoot/image-20220529153202827.png" class="" title="image-20220529153202827">
-
-
-
-<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>@ConfigurationProperties 注解的作用，是将这个类的所有属性与配置文件中相关的配置进行绑定，以便于获取或修改配置，但是 @ConfigurationProperties 功能是由容器提供的，被它注解的类必须是容器中的一个组件，否则该功能就无法使用。而 @EnableConfigurationProperties 注解的作用正是将指定的类以组件的形式注入到 IOC 容器中，并开启其 @ConfigurationProperties 功能。因此，@ConfigurationProperties + @EnableConfigurationProperties 组合使用，便可以为 XxxProperties 类实现配置绑定功能。</p>
-<h2 id="自动配置的生效和修改"><a href="#自动配置的生效和修改" class="headerlink" title="自动配置的生效和修改"></a>自动配置的生效和修改</h2><p>spring.factories 文件中的所有自动配置类（xxxAutoConfiguration），都是必须在一定的条件下才会作为组件添加到容器中，配置的内容才会生效。这些限制条件在 Spring Boot 中以 @Conditional 派生注解的形式体现，如下表。</p>
-<table>
-<thead>
-<tr>
-<th>注解</th>
-<th>生效条件</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@ConditionalOnJava</td>
-<td>应用使用指定的 Java 版本时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnBean</td>
-<td>容器中存在指定的 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnMissingBean</td>
-<td>容器中不存在指定的 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnExpression</td>
-<td>满足指定的 SpEL 表达式时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnClass</td>
-<td>存在指定的类时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnMissingClass</td>
-<td>不存在指定的类时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnSingleCandidate</td>
-<td>容器中只存在一个指定的 Bean 或这个 Bean 为首选 Bean 时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnProperty</td>
-<td>系统中指定属性存在指定的值时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnResource</td>
-<td>类路径下存在指定的资源文件时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnWebApplication</td>
-<td>当前应用是 web 应用时生效</td>
-</tr>
-<tr>
-<td>@ConditionalOnNotWebApplication</td>
-<td>当前应用不是 web 应用生效</td>
-</tr>
-</tbody></table>
-<p><a href="http://c.biancheng.net/spring_boot/auto-config.html">Spring Boot自动配置原理 (biancheng.net)</a></p>
-<h1 id="Spring-boot-starter-web（Web启动器）"><a href="#Spring-boot-starter-web（Web启动器）" class="headerlink" title="Spring-boot-starter-web（Web启动器）"></a>Spring-boot-starter-web（Web启动器）</h1><p>Spring MVC 是 Spring 提供的一个基于 MVC 设计模式的轻量级 Web 开发框架，其本身就是 Spring 框架的一部分，可以与 Spring 无缝集成，性能方面具有先天的优越性，是当今业界最主流的 Web 开发框架之一。</p>
-<p>Spring Boot 是在 Spring 的基础上创建一款开源框架，它提供了 spring-boot-starter-web（Web 场景启动器） 来为 Web 开发予以支持。spring-boot-starter-web 为我们提供了嵌入的 Servlet 容器以及 SpringMVC 的依赖，并为 Spring MVC 提供了大量自动配置，可以适用于大多数 Web 开发场景。</p>
-<p>只要我们在 Spring Boot 项目中的 pom.xml 中引入了 spring-boot-starter-web ，即使不进行任何配置，也可以直接使用 Spring MVC 进行 Web 开发。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p>&#x2F;&#x2F;TODO</p>
-<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1>]]></content>
-      <categories>
-        <category>SpringBoot</category>
       </categories>
   </entry>
   <entry>
@@ -1555,31 +1249,314 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
       </categories>
   </entry>
   <entry>
-    <title>SpringMVC</title>
-    <url>/2022/05/28/SpringMVC/</url>
-    <content><![CDATA[<img src="/2022/05/28/SpringMVC/image-20220528102032212.png" class="" title="image-20220528102032212">
+    <title>Spring Cloud Alibaba</title>
+    <url>/2022/07/01/Spring-Cloud-Alibaba/</url>
+    <content><![CDATA[<p><a href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html">Spring Cloud Alibaba 参考文档 (spring-cloud-alibaba-group.github.io)</a></p>
+<p><a href="https://github.com/alibaba/spring-cloud-alibaba">alibaba&#x2F;spring-cloud-alibaba: Spring Cloud Alibaba provides a one-stop solution for application development for the distributed solutions of Alibaba middleware. (github.com)</a></p>
+<h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><img src="https://mrhelloworld.com/resources/articles/articles_header/2020/06/03/header.jpg" alt="https://mrhelloworld.com/resources/articles/articles_header/2020/06/03/header.jpg" style="zoom:80%;" />
 
-<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1>]]></content>
+<span id="more"></span>
+
+<h2 id="Nacos-x3D-eureka-config-bus-！！！"><a href="#Nacos-x3D-eureka-config-bus-！！！" class="headerlink" title="Nacos &#x3D; eureka + config + bus ！！！"></a><strong>Nacos &#x3D; eureka + config + bus ！！！</strong></h2><p>Quick Start</p>
+<p>首先打开下载好的nacos，进入bin目录启动start.cmd 就开启了本地的nacos服务</p>
+<h2 id="作为注册中心"><a href="#作为注册中心" class="headerlink" title="作为注册中心"></a>作为注册中心</h2><p>开启nacos服务后,相当与配置了一个完整的eureka服务并开启,nacos的本地地址为<a href="http://localhost:8848/nacos">http://localhost:8848/nacos</a></p>
+<p>接下来姐可以开启服务模块和客服模块了.</p>
+<p>服务模块:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--SpringCloud ailibaba nacos --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- SpringBoot整合Web组件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--日常通用jar包配置--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>配置文件:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">9001</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-payment-provider</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#配置Nacos地址</span></span><br><span class="line"></span><br><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">endpoints:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">exposure:</span></span><br><span class="line">        <span class="attr">include:</span> <span class="string">&#x27;*&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>主启动类:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PaymentMain9001</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(PaymentMain9001.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nacos和其他注册中心比较"><a href="#Nacos和其他注册中心比较" class="headerlink" title="Nacos和其他注册中心比较"></a>Nacos和其他注册中心比较</h2><p>Nacos自动支持CP和AP</p>
+<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706154546368.png" class="" title="image-20220706154546368">
+
+<p>Nacos如何切换AP和CP?</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">curl -X PUT &#x27;$NACOS_SERVER:<span class="number">8848</span>/nacos/v1/ns/operator/switches?entry=serverMode&amp;value=CP&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="作为配置中心Config"><a href="#作为配置中心Config" class="headerlink" title="作为配置中心Config"></a>作为配置中心Config</h2><p>在nacos的配置文件的命名规则</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">$&#123;spring.application.name&#125;-$&#123;spring.profile.active&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建一个微服务，cloudalibaba-config-nacos-client3377</p>
+<p>需要 <strong>application.yaml 和 bootstrap.yaml</strong> 两个配置文件 (为了能和SpringCloud平滑过渡）</p>
+<blockquote>
+<p> <em><strong>bootstrap.yaml的优先级高于application.yaml</strong></em></p>
+</blockquote>
+<p>1.application.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span> <span class="comment"># 表示开发环境</span></span><br><span class="line"><span class="comment">#    active: test # 表示测试环境</span></span><br><span class="line">    <span class="comment">#active: info </span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>bootstrap.yaml</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># nacos配置</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">3377</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-config-client</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#Nacos服务注册中心地址</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#Nacos作为配置中心地址</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment">#指定yaml格式的配置</span></span><br><span class="line"><span class="comment">#        group: DEV_GROUP # 指定分组</span></span><br><span class="line"><span class="comment">#        namespace: 7d8f0f5a-6a53-4785-9686-dd460158e5d4 # 指定命名空间</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># $&#123;spring.application.name&#125;-$&#123;spring.profile.active&#125;.$&#123;spring.cloud.nacos.config.file-extension&#125;</span></span><br><span class="line"><span class="comment"># nacos-config-client-dev.yaml</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># nacos-config-client-test.yaml   ----&gt; config.info</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>因为nacos集成了bus+config+eureka 所以当nacos的配置文件进行修改了之后 其config客户端自动就会进行动态刷新。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RefreshScope</span> <span class="comment">//支持Nacos的动态刷新功能。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConfigClientController</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;config.info&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String configInfo;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/config/info&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getConfigInfo</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> configInfo;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以使用@Value注解自动填充配置文件里的信息。</p>
+<p>于是就可以获取的到文件了。</p>
+<h2 id="切换环境"><a href="#切换环境" class="headerlink" title="切换环境"></a>切换环境</h2><p><strong>之后想要不同的配置文件则切换环境就可以了。首先可以再 bootstrap.yaml指定命名空间namespace 然后 Group 最后在 application.yaml 通过命名规则指定 DataID。</strong></p>
+<h2 id="Group和Data-ID"><a href="#Group和Data-ID" class="headerlink" title="Group和Data ID"></a>Group和Data ID</h2><img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220701200647822.png" class="" title="image-20220701200647822">
+
+<p>所以，当我们需要制定某个配置文件的时候，就需要Group和Data Id配合使用 所以就需要application.yaml和bootstrap.yaml两个配置文件配合使用。</p>
+<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220707105954569.png" class="" title="image-20220707105954569">
+
+
+
+<h2 id="Nacos集群配置"><a href="#Nacos集群配置" class="headerlink" title="Nacos集群配置"></a>Nacos集群配置</h2><p><a href="https://nacos.io/zh-cn/docs/cluster-mode-quick-start.html">集群部署说明 (nacos.io)</a></p>
+<p>作为服务注册中心，为了保证其可用性以及出现宕机的意外情况，应该配置nacos集群以保证线上环境的稳定。</p>
+<p><img src="https://nacos.io/img/deployDnsVipMode.jpg" alt="deployDnsVipMode.jpg"></p>
+<p>SLB代表的是负载均衡的集群配置，此处使用的是nginx的一个集群配置。<a href="https://developer.aliyun.com/article/1803">SLB技术原理浅析-阿里云开发者社区 (aliyun.com)</a></p>
+<p>关于nacos的数据源使用高可用数据库，类似以下情况架构</p>
+<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220702100327727.png" class="" title="image-20220702100327727">
+
+<p>从github上的源码中查看nacos的pom依赖文件，<strong>derby是nacos自带的内置数据库</strong>，所以我们的配置文件才得以保存在nacos中，而当我们需要一个稳定的数据源的使用，就需要将这个<strong>derby数据库切换为mysql数据库</strong>（集群）</p>
+<p>切换步骤：（本机电脑未切换）</p>
+<p>nacos-server-1.1.3\nacos\conf\nacos-mysql.sql </p>
+<p>复制该sql脚本到本地数据库中，创建对应配置文件表。</p>
+<p>nacos-server-1.1.3\nacos\conf\application.properties</p>
+<p>修改该配置文件，在最后添加一段配置，指向本地mysql</p>
+<h1 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h1><p><a href="https://github.com/alibaba/Sentinel/wiki/%E4%BB%8B%E7%BB%8D">介绍 · alibaba&#x2F;Sentinel Wiki (github.com)</a></p>
+<img src="https://user-images.githubusercontent.com/9434884/43697219-3cb4ef3a-9975-11e8-9a9c-73f4f537442d.png" alt="Sentinel Logo" style="zoom: 50%;" />
+
+<p>Sentinel单独组件，直接界面化的细粒度统一配置。</p>
+<p>Sentinel 是什么？<br>随着微服务的流行，服务和服务之间的稳定性变得越来越重要。Sentinel 以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性</p>
+<p>Sentinel的官方标题是：分布式系统的流量防卫兵。从名字上来看，很容易就能猜到它是用来作服务稳定性保障的。对于服务稳定性保障组件，如果熟悉Spring Cloud的用户，第一反应应该就是Hystrix。但是比较可惜的是Netflix已经宣布对Hystrix停止更新。那么，在未来我们还有什么更好的选择呢？除了Spring Cloud官方推荐的resilience4j之外，目前Spring Cloud Alibaba下整合的Sentinel也是用户可以重点考察和选型的目标。</p>
+<p>在官网下载jar包后，使用java -jar命令运行该项目，访问localhost:8080 即可进入（通常情况下同时配合Nacos使用，Sentinel与Nacos进行具体服务的操作和配置）</p>
+<h2 id="工程搭建"><a href="#工程搭建" class="headerlink" title="工程搭建"></a>工程搭建</h2><p>Sentinel 不需要Hystrix一样自己进行服务的搭建，而是直接运行jar包启动服务。</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">java -jar sentinel-dashboard-<span class="number">1</span>.<span class="number">7</span>.<span class="number">0</span>.jar</span><br></pre></td></tr></table></figure>
+
+<p>运行具体版本jar包。</p>
+<p>支付端：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8401</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">cloudalibaba-sentinel-service</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#Nacos服务注册中心地址</span></span><br><span class="line">    <span class="attr">sentinel:</span></span><br><span class="line">      <span class="attr">transport:</span></span><br><span class="line">        <span class="attr">dashboard:</span> <span class="string">localhost:8080</span> <span class="comment">#配置Sentinel dashboard地址</span></span><br><span class="line">        <span class="attr">port:</span> <span class="number">8719</span></span><br><span class="line"><span class="comment">#      datasource:</span></span><br><span class="line"><span class="comment">#        ds1:</span></span><br><span class="line"><span class="comment">#          nacos:</span></span><br><span class="line"><span class="comment">#            server-addr: localhost:8848</span></span><br><span class="line"><span class="comment">#            dataId: cloudalibaba-sentinel-service</span></span><br><span class="line"><span class="comment">#            groupId: DEFAULT_GROUP</span></span><br><span class="line"><span class="comment">#            data-type: json</span></span><br><span class="line"><span class="comment">#            rule-type: flow</span></span><br><span class="line"></span><br><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">endpoints:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">exposure:</span></span><br><span class="line">        <span class="attr">include:</span> <span class="string">&#x27;*&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#feign:</span></span><br><span class="line"><span class="comment">#  sentinel:</span></span><br><span class="line"><span class="comment">#    enabled: true # 激活Sentinel对Feign的支持</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="流控"><a href="#流控" class="headerlink" title="流控"></a>流控</h2><h3 id="流控规则的规则意义"><a href="#流控规则的规则意义" class="headerlink" title="流控规则的规则意义"></a>流控规则的规则意义</h3><p>Sentinel 作为一种轻量级高可用流量控制组件，流量控制是它最主要的工作之一。</p>
+<p>我们可以针对资源定义流控规则，Sentinel 会根据这些规则对流量相关的各项指标进行监控。当这些指标当达到或超过流控规则规定的阈值时，Sentinel 会对请求的流量进行限制（即“限流”），以避免系统被瞬时的流量高峰冲垮，保障系统的高可用性。</p>
+<p><strong>同一个资源可以创建多条流控规则，Sentinel 会遍历这些规则，直到有规则触发限流或者所有规则遍历完毕为止。</strong></p>
+<h3 id="流控规则的具体实现"><a href="#流控规则的具体实现" class="headerlink" title="流控规则的具体实现"></a>流控规则的具体实现</h3><img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706153537108.jpg" class="" title="image-20220706153537108">
+
+
+
+<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220703105117104.png" class="" title="image-20220703105117104">
+
+<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220703105210793.png" class="" title="image-20220703105210793">
+
+
+
+<p>添加流控规则添加：簇点链路 ——&gt;列表视图 ——&gt;选择具体资源名  就可以继续进行流控限制。</p>
+<h2 id="熔断降级"><a href="#熔断降级" class="headerlink" title="熔断降级"></a>熔断降级</h2><p>除了流量控制以外，对调用链路中不稳定的资源进行熔断降级也是保障高可用的重要措施之一。由于调用关系的复杂性，如果调用链路中的某个资源不稳定，最终会导致请求发生堆积。Sentinel <strong>熔断降级</strong>会在调用链路中某个资源出现不稳定状态时（例如调用超时或异常比例升高），对这个资源的调用进行限制，让请求快速失败，避免影响到其它的资源而导致级联错误。当资源被降级后，在接下来的降级时间窗口之内，对该资源的调用都自动熔断（默认行为是抛出 <code>DegradeException</code>）。</p>
+<img src="/2022/07/01/Spring-Cloud-Alibaba/10252343H-15.png" class="" title="Sentinel 熔断状态转换">
+
+<h3 id="Sentinel-熔断策略"><a href="#Sentinel-熔断策略" class="headerlink" title="Sentinel 熔断策略"></a>Sentinel 熔断策略</h3><ol>
+<li><strong>平均响应时间 (<code>DEGRADE_GRADE_RT</code>)<strong>：当 1s 内持续进入 5 个请求（大于等于5），对应时刻的平均响应时间（秒级）均超过阈值（<code>count</code>，以 ms 为单位），那么在接下的时间窗口期（<code>DegradeRule</code> 中的 <code>timeWindow</code>，以 s 为单位）之内，对这个方法的调用都会自动地熔断（抛出 <code>DegradeException</code>）。注意 Sentinel 默认统计的 RT 上限是 4900 ms，</strong>超出此阈值的都会算作 4900 ms</strong>，若需要变更此上限可以通过启动配置项 <code>-Dcsp.sentinel.statistic.max.rt=xxx</code> 来配置。</li>
+<li>**异常比例 (<code>DEGRADE_GRADE_EXCEPTION_RATIO</code>)**：当资源的每秒请求量 &gt;&#x3D; 5，并且每秒异常总数占通过量的比值超过阈值（<code>DegradeRule</code> 中的 <code>count</code>）之后，资源进入降级状态，即在接下的时间窗口（<code>DegradeRule</code> 中的 <code>timeWindow</code>，以 s 为单位）之内，对这个方法的调用都会自动地返回。异常比率的阈值范围是 <code>[0.0, 1.0]</code>，代表 0% - 100%。</li>
+<li>**异常数 (<code>DEGRADE_GRADE_EXCEPTION_COUNT</code>)**：当资源近 1 分钟的异常数目超过阈值之后会进行熔断。注意由于统计时间窗口是分钟级别的，若 <code>timeWindow</code> 小于 60s，则结束熔断状态后仍可能再进入熔断状态。</li>
+</ol>
+<p><strong>需要注意的是</strong>：</p>
+<p>RT和异常比例分别需要满足的条件不只是处理时间和异常的所占比率，而且<strong>都需要满足每秒的请求数 &gt;&#x3D;5</strong>，如果请求数目不满足的话，只会进入RunTimeException然后返回常见的报错界面。</p>
+<p>Sentinel 1.8.0 版本对熔断降级特性进行了全新的改进升级，以下熔断策略针对的是 Sentinel 1.8.0 及以上版本。</p>
+<h4 id="Sentinel-1-8-0-以上熔断策略"><a href="#Sentinel-1-8-0-以上熔断策略" class="headerlink" title="Sentinel 1.8.0 以上熔断策略"></a>Sentinel 1.8.0 以上熔断策略</h4><p>Sentinel 提供了 3 种熔断策略，如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>熔断策略</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>慢调用比例 (SLOW_REQUEST_RATIO）</td>
+<td>选择以慢调用比例作为阈值，需要设置允许的慢调用 RT（即最大响应时间），若请求的响应时间大于该值则统计为慢调用。  当单位统计时长（statIntervalMs）内请求数目大于设置的最小请求数目，且慢调用的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。  经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求响应时间小于设置的慢调用 RT 则结束熔断，若大于设置的慢调用 RT 则再次被熔断。</td>
+</tr>
+<tr>
+<td>异常比例 (ERROR_RATIO)</td>
+<td>当单位统计时长（statIntervalMs）内请求数目大于设置的最小请求数目且异常的比例大于阈值，则在接下来的熔断时长内请求会自动被熔断。  经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。异常比率的阈值范围是 [0.0, 1.0]，代表 0% - 100%。</td>
+</tr>
+<tr>
+<td>异常数 (ERROR_COUNT)</td>
+<td>当单位统计时长内的异常数目超过阈值之后会自动进行熔断。  经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。</td>
+</tr>
+</tbody></table>
+<h3 id="和Hystrix的熔断降级对比"><a href="#和Hystrix的熔断降级对比" class="headerlink" title="和Hystrix的熔断降级对比"></a>和Hystrix的熔断降级对比</h3><p>Sentinel 和 Hystrix 的熔断降级功能本质上都是基于熔断器模式（Circuit Breaker Pattern）。Sentinel 与 Hystrix 都支持基于失败比率（异常比率）的熔断降级，在调用达到一定量级并且失败比率达到设定的阈值时自动进行熔断，此时所有对该资源的调用都会被 block，直到过了指定的时间窗口后才启发性地恢复。Sentinel 还支持基于平均响应时间的熔断降级，可以在服务响应时间持续飙高的时候自动熔断，拒绝掉更多的请求，直到一段时间后才恢复。这样可以防止调用非常慢造成级联阻塞的情况。</p>
+<p>Hystrix存在半开规则，判断是否可以恢复服务，而<strong>Sentinel的熔断器是没有半开状态</strong>的，取而代之的是时间窗口期内的<strong>探测恢复状态</strong>。</p>
+<h2 id="热点Key"><a href="#热点Key" class="headerlink" title="热点Key"></a>热点Key</h2><p>热点即经常访问的数据。很多时候我们希望统计某个热点数据中访问频次最高的 Top K 数据，并对其访问进行限制。比如：</p>
+<ul>
+<li>商品 ID 为参数，统计一段时间内最常购买的商品 ID 并进行限制</li>
+<li>用户 ID 为参数，针对一段时间内频繁访问的用户 ID 进行限制</li>
+</ul>
+<p>热点参数限流会统计传入参数中的热点参数，并根据配置的限流阈值与模式，对包含热点参数的资源调用进行限流。热点参数限流可以看做是一种特殊的流量控制，仅对包含热点参数的资源调用生效。<br> Sentinel 利用 LRU 策略统计最近最常访问的热点参数，结合令牌桶算法来进行参数级别的流控。热点参数限流支持集群模式。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/testHotKey&quot;)</span></span><br><span class="line">    <span class="meta">@SentinelResource(value = &quot;testHotKey&quot;,blockHandler = &quot;deal_testHotKey&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">testHotKey</span><span class="params">(<span class="meta">@RequestParam(value = &quot;p1&quot;,required = false)</span> String p1,</span></span><br><span class="line"><span class="params">                             <span class="meta">@RequestParam(value = &quot;p2&quot;,required = false)</span> String p2)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//int age = 10/0;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;------testHotKey&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">deal_testHotKey</span> <span class="params">(String p1, String p2, BlockException exception)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;------deal_testHotKey,o(╥﹏╥)o&quot;</span>;  <span class="comment">//sentinel系统默认的提示：Blocked by Sentinel (flow limiting)</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>新增热点规则：</p>
+<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706104040702.png" class="" title="image-20220706104040702">
+
+<p>限流规则：仅支持QPS（线程数）</p>
+<p>参数索引：指定限制的热点参数的索引位置</p>
+<p>单机阈值：流量个数</p>
+<p>统计时长：休息的窗口期 </p>
+<p>如果使用了热点规则，强烈建议**@SentinelResource注解添加blockHandler参数**，否则返回正常的错误界面，不友好。</p>
+<h3 id="参数例外项："><a href="#参数例外项：" class="headerlink" title="参数例外项："></a>参数例外项：</h3><p>选择高级选项，具体到某一参数的具体值进行限流控制。仅支持八大数据类型。</p>
+<h2 id="系统自适应限流"><a href="#系统自适应限流" class="headerlink" title="系统自适应限流"></a>系统自适应限流</h2><p><a href="https://github.com/alibaba/Sentinel/wiki/%E7%B3%BB%E7%BB%9F%E8%87%AA%E9%80%82%E5%BA%94%E9%99%90%E6%B5%81">系统自适应限流 · alibaba&#x2F;Sentinel Wiki (github.com)</a></p>
+<p>Sentinel 系统<strong>自适应限流从整体维度对应用入口流量进行控制</strong>，结合应用的 Load、CPU 使用率、总体平均 RT、入口 QPS 和并发线程数等几个维度的监控指标，通过自适应的流控策略，让系统的入口流量和系统的负载达到一个<strong>平衡</strong>，让系统尽可能跑在最大吞吐量的同时保证系统整体的<strong>稳定性</strong>。</p>
+<p>系统规则支持以下的模式：</p>
+<ul>
+<li><strong>Load 自适应</strong>（仅对 Linux&#x2F;Unix-like 机器生效）：系统的 load1 作为启发指标，进行自适应系统保护。当系统 load1 超过设定的启发值，且系统当前的并发线程数超过估算的系统容量时才会触发系统保护（BBR 阶段）。系统容量由系统的 <code>maxQps * minRt</code> 估算得出。设定参考值一般是 <code>CPU cores * 2.5</code>。</li>
+<li><strong>CPU usage</strong>（1.5.0+ 版本）：当系统 CPU 使用率超过阈值即触发系统保护（取值范围 0.0-1.0），比较灵敏。</li>
+<li><strong>平均 RT</strong>：当单台机器上所有入口流量的平均 RT 达到阈值即触发系统保护，单位是毫秒。</li>
+<li><strong>并发线程数</strong>：当单台机器上所有入口流量的并发线程数达到阈值即触发系统保护。</li>
+<li><strong>入口 QPS</strong>：当单台机器上所有入口流量的 QPS 达到阈值即触发系统保护。</li>
+</ul>
+<h2 id="SentinelResource注解配置"><a href="#SentinelResource注解配置" class="headerlink" title="@SentinelResource注解配置"></a>@SentinelResource注解配置</h2><p>以上使用@SentinelResource的规则 我们要面临以下几个问题。</p>
+<ol>
+<li>系统默认的，没有体现我们自己的业务逻辑</li>
+<li>依照现有条件，我们自定义的处理方法又和业务模块耦合在一起，耦合度高。</li>
+<li>每个业务方法都添加一个blockhandler兜底方法，代发过于冗余。</li>
+<li>没有全局统一的处理方法。</li>
+</ol>
+<p>对于很多的方法类，如果都需要一个降级的blockHandler兜底方法，不能挨个配置，可以定义一个公共的降级方法提供给这些方法使用。</p>
+<p>所以我们可以解锁 @SentinelResource 的更多姿势：写一个公共类（本例中为CustomerBlockHandler），可以定义不同的静态blockHandler方法提供给其他方法，在具体方法上添加@SentinelResource注解，然后（blockHandlerClass ）指定处理异常的类，（blockHandler）再具体到这个类中的某个方法。</p>
+<p>配置参数和具体方法的对应位置：</p>
+<img src="/2022/07/01/Spring-Cloud-Alibaba/image-20220706151534201.png" class="" title="image-20220706151534201">
+
+
+
+
+
+<h1 id="Sentinel-整合Ribbon-OpenFeign-Fallback"><a href="#Sentinel-整合Ribbon-OpenFeign-Fallback" class="headerlink" title="Sentinel 整合Ribbon+OpenFeign+Fallback"></a>Sentinel 整合Ribbon+OpenFeign+Fallback</h1><blockquote>
+<p> 本地三个微服务：提供者cloudalibaba-provider-payment9003 cloudalibaba-provider-payment9004 								</p>
+<p>​								消费者 cloudalibaba-consumer-nacos-order84	</p>
+</blockquote>
+<p>巨人的肩膀：</p>
+<p><a href="https://developer.aliyun.com/article/623424">Sentinel 与 Hystrix 的对比-阿里云开发者社区 (aliyun.com)</a></p>
+<p><a href="http://c.biancheng.net/springcloud/sentinel.html">Sentinel：Spring Cloud Alibaba高可用流量控制组件（非常详细） (biancheng.net)</a></p>
+]]></content>
       <categories>
-        <category>SpringMVC</category>
+        <category>Spring</category>
       </categories>
   </entry>
   <entry>
-    <title>Write blog using markdown01</title>
-    <url>/2022/05/07/Write-blog-using-markdown01/</url>
-    <content><![CDATA[<h4 id="预览界面"><a href="#预览界面" class="headerlink" title="预览界面"></a>预览界面</h4><p><strong>hexo g</strong><br><strong>hexo s</strong></p>
-<h4 id="部署到网站"><a href="#部署到网站" class="headerlink" title="部署到网站"></a>部署到网站</h4><p><em>hexo clean</em><br><em>hexo g</em><br><em>hexo d</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>[md文档教程]<a href="https://www.imooc.com/wiki/markdownlesson/markdownlink.html">14 Markdown 超链接丨慕课网教程 (imooc.com)</a></p>
-<p><a href="https://www.githubs.cloud/#/trend">github中文社区 (githubs.cloud)</a></p>
-]]></content>
+    <title>SpringBoot</title>
+    <url>/2022/05/28/SpringBoot/</url>
+    <content><![CDATA[<p>官网：<a href="https://spring.io/projects/spring-boot">Spring Boot</a></p>
+<img src="/2022/05/28/SpringBoot/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg" class="" title="查看源图像">
+
+<h1 id="什么是SpringBoot？"><a href="#什么是SpringBoot？" class="headerlink" title="什么是SpringBoot？"></a>什么是SpringBoot？</h1><p>Spring Boot 是 Pivotal 团队在 Spring 的基础上提供的一套全新的开源框架，其目的是为了简化 Spring 应用的搭建和开发过程。Spring Boot 去除了大量的 XML 配置文件，简化了复杂的依赖管理。</p>
+<p>Spring Boot 具有 Spring 一切优秀特性，Spring 能做的事，Spring Boot 都可以做，而且使用更加简单，功能更加丰富，性能更加稳定而健壮。随着近些年来微服务技术的流行，Spring Boot 也成了时下炙手可热的技术。</p>
+<p>Spring Boot 集成了大量常用的第三方库配置，Spring Boot 应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
+<span id="more"></span>
+
+<h1 id="SpringBoot自动装配原理"><a href="#SpringBoot自动装配原理" class="headerlink" title="SpringBoot自动装配原理"></a>SpringBoot自动装配原理</h1><p>Spring Boot 项目创建完成后，即使不进行任何的配置，也能够顺利地运行，这都要归功于 Spring Boot 的自动化配置。</p>
+<p>Spring Boot 默认使用 application.properties 或 application.yml 作为其全局配置文件，我们可以在该配置文件中对各种自动配置属性（server.port、logging.level.* 、spring.config.active.no-profile 等等）进行修改，并使之生效，那么您有没有想过这些属性是否有据可依呢？答案是肯定的。</p>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。本节为你揭开 SpringBoot 自动配置的神秘面纱。</p>
+<h2 id="Spring-Factories-机制"><a href="#Spring-Factories-机制" class="headerlink" title="Spring Factories 机制"></a>Spring Factories 机制</h2><p>Spring Boot 的自动配置是基于 Spring Factories 机制实现的。</p>
+<p>Spring Factories 机制是 Spring Boot 中的一种服务发现机制，这种扩展机制与 Java SPI 机制十分相似。Spring Boot 会自动扫描所有 Jar 包类路径下 META-INF&#x2F;spring.factories 文件，并读取其中的内容，进行实例化，这种机制也是 Spring Boot Starter 的基础。</p>
+<p><a href="https://www.jianshu.com/p/00e49c607fa1">Spring Factories - 简书 (jianshu.com)</a></p>
+<h3 id="spring-factories"><a href="#spring-factories" class="headerlink" title="spring.factories"></a>spring.factories</h3><p>spring.factories 文件本质上与 properties 文件相似，其中包含一组或多组键值对（key&#x3D;vlaue），其中，key 的取值为接口的完全限定名；value 的取值为接口实现类的完全限定名，一个接口可以设置多个实现类，不同实现类之间使用“，”隔开，例如：</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">org.springframework.boot.autoconfigure.AutoConfigurationImportFilter</span>=<span class="string">\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnBeanCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnClassCondition,\</span></span><br><span class="line"><span class="string">org.springframework.boot.autoconfigure.condition.OnWebApplicationCondition</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-Factories-实现原理"><a href="#Spring-Factories-实现原理" class="headerlink" title="Spring Factories 实现原理"></a>Spring Factories 实现原理</h3><p>spring-core 包里定义了 SpringFactoriesLoader 类，这个类会扫描所有 Jar 包类路径下的 META-INF&#x2F;spring.factories 文件，并获取指定接口的配置。在 SpringFactoriesLoader 类中定义了两个对外的方法，如下表。</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><T> List<T></td>
+<td>loadFactories(Class<T> factoryType, @Nullable ClassLoader classLoader)</td>
+<td>静态方法； 根据接口获取其实现类的实例； 该方法返回的是实现类对象列表。</td>
+</tr>
+<tr>
+<td>List<String></td>
+<td>loadFactoryNames(Class&lt;?&gt; factoryType, @Nullable ClassLoader classLoader)</td>
+<td>公共静态方法； 根据接口l获取其实现类的名称； 该方法返回的是实现类的类名的列表</td>
+</tr>
+</tbody></table>
+<p>以上两个方法的关键都是从指定的 ClassLoader 中获取 spring.factories 文件，并解析得到类名列表。</p>
+<p>loadFactories() 方法能够获取指定接口的实现类对象</p>
+<p>loadFactoryNames() 方法能够根据接口获取其实现类类名的集合。</p>
+<h3 id="SpringBootApplication-注解"><a href="#SpringBootApplication-注解" class="headerlink" title="@SpringBootApplication 注解"></a>@SpringBootApplication 注解</h3><p>所有 Spring Boot 项目的主启动程序类上都使用了一个 @SpringBootApplication 注解，该注解是 Spring Boot 中最重要的注解之一 ，也是 Spring Boot 实现自动化配置的关键。 </p>
+<p>@SpringBootApplication 是一个组合元注解，其主要包含两个注解：@SpringBootConfiguration 和 @EnableAutoConfiguration，其中 @EnableAutoConfiguration 注解是 SpringBoot 自动化配置的核心所在。</p>
+<img src="/2022/05/28/SpringBoot/image-20220529152015019.png" class="" title="image-20220529152015019">
+
+<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@<strong>ComponentScan</strong></h3><p>@ComponentScan主要就是定义<strong>扫描的路径</strong>从中找出标识了<strong>需要装配</strong>的类自动装配到spring的bean容器中</p>
+<p>@Controller，@Service，@Repository注解，查看其源码你会发现，他们中有一个<strong>共同的注解@Component</strong></p>
+<img src="/2022/05/28/SpringBoot/image-20220529153202827.png" class="" title="image-20220529153202827">
+
+
+
+<h3 id="ConfigurationProperties"><a href="#ConfigurationProperties" class="headerlink" title="@ConfigurationProperties"></a>@ConfigurationProperties</h3><p>@ConfigurationProperties 注解的作用，是将这个类的所有属性与配置文件中相关的配置进行绑定，以便于获取或修改配置，但是 @ConfigurationProperties 功能是由容器提供的，被它注解的类必须是容器中的一个组件，否则该功能就无法使用。而 @EnableConfigurationProperties 注解的作用正是将指定的类以组件的形式注入到 IOC 容器中，并开启其 @ConfigurationProperties 功能。因此，@ConfigurationProperties + @EnableConfigurationProperties 组合使用，便可以为 XxxProperties 类实现配置绑定功能。</p>
+<h2 id="自动配置的生效和修改"><a href="#自动配置的生效和修改" class="headerlink" title="自动配置的生效和修改"></a>自动配置的生效和修改</h2><p>spring.factories 文件中的所有自动配置类（xxxAutoConfiguration），都是必须在一定的条件下才会作为组件添加到容器中，配置的内容才会生效。这些限制条件在 Spring Boot 中以 @Conditional 派生注解的形式体现，如下表。</p>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>生效条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@ConditionalOnJava</td>
+<td>应用使用指定的 Java 版本时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnBean</td>
+<td>容器中存在指定的 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingBean</td>
+<td>容器中不存在指定的 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnExpression</td>
+<td>满足指定的 SpEL 表达式时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnClass</td>
+<td>存在指定的类时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingClass</td>
+<td>不存在指定的类时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnSingleCandidate</td>
+<td>容器中只存在一个指定的 Bean 或这个 Bean 为首选 Bean 时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnProperty</td>
+<td>系统中指定属性存在指定的值时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnResource</td>
+<td>类路径下存在指定的资源文件时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnWebApplication</td>
+<td>当前应用是 web 应用时生效</td>
+</tr>
+<tr>
+<td>@ConditionalOnNotWebApplication</td>
+<td>当前应用不是 web 应用生效</td>
+</tr>
+</tbody></table>
+<p><a href="http://c.biancheng.net/spring_boot/auto-config.html">Spring Boot自动配置原理 (biancheng.net)</a></p>
+<h1 id="Spring-boot-starter-web（Web启动器）"><a href="#Spring-boot-starter-web（Web启动器）" class="headerlink" title="Spring-boot-starter-web（Web启动器）"></a>Spring-boot-starter-web（Web启动器）</h1><p>Spring MVC 是 Spring 提供的一个基于 MVC 设计模式的轻量级 Web 开发框架，其本身就是 Spring 框架的一部分，可以与 Spring 无缝集成，性能方面具有先天的优越性，是当今业界最主流的 Web 开发框架之一。</p>
+<p>Spring Boot 是在 Spring 的基础上创建一款开源框架，它提供了 spring-boot-starter-web（Web 场景启动器） 来为 Web 开发予以支持。spring-boot-starter-web 为我们提供了嵌入的 Servlet 容器以及 SpringMVC 的依赖，并为 Spring MVC 提供了大量自动配置，可以适用于大多数 Web 开发场景。</p>
+<p>只要我们在 Spring Boot 项目中的 pom.xml 中引入了 spring-boot-starter-web ，即使不进行任何配置，也可以直接使用 Spring MVC 进行 Web 开发。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p>&#x2F;&#x2F;TODO</p>
+<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1>]]></content>
       <categories>
-        <category>java</category>
+        <category>SpringBoot</category>
       </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>blog</tag>
-      </tags>
   </entry>
   <entry>
     <title>SpringCloud一站式微服务解决方案</title>
@@ -1821,6 +1798,33 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 ]]></content>
       <categories>
         <category>Spring</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Write blog using markdown01</title>
+    <url>/2022/05/07/Write-blog-using-markdown01/</url>
+    <content><![CDATA[<h4 id="预览界面"><a href="#预览界面" class="headerlink" title="预览界面"></a>预览界面</h4><p><strong>hexo g</strong><br><strong>hexo s</strong></p>
+<h4 id="部署到网站"><a href="#部署到网站" class="headerlink" title="部署到网站"></a>部署到网站</h4><p><em>hexo clean</em><br><em>hexo g</em><br><em>hexo d</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>[md文档教程]<a href="https://www.imooc.com/wiki/markdownlesson/markdownlink.html">14 Markdown 超链接丨慕课网教程 (imooc.com)</a></p>
+<p><a href="https://www.githubs.cloud/#/trend">github中文社区 (githubs.cloud)</a></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringMVC</title>
+    <url>/2022/05/28/SpringMVC/</url>
+    <content><![CDATA[<img src="/2022/05/28/SpringMVC/image-20220528102032212.png" class="" title="image-20220528102032212">
+
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1>]]></content>
+      <categories>
+        <category>SpringMVC</category>
       </categories>
   </entry>
   <entry>
@@ -2807,22 +2811,6 @@ count=100
       </categories>
   </entry>
   <entry>
-    <title>算法</title>
-    <url>/2022/07/11/%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p>三个遍历</p>
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h3><p>先根节点      再左子节点     最后右子节点</p>
-<h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><p>先左子节点    再根节点       最后右子节点</p>
-<h3 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h3><p>先左子节点     再右子节点   最后根节点</p>
-<p>前中后遍历的<strong>顺序都是相当于根节点</strong>来说的 前中后的顺序就是遍历的根节点的顺序 但无论是哪个遍历方式 左右子节点的顺序都是先左后右。</p>
-<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><p>左子节点&lt;根节点&lt;右子节点</p>
-<p>题目：</p>
-<p><a href="https://leetcode.cn/problems/unique-binary-search-trees-ii/">95. 不同的二叉搜索树 II - 力扣（LeetCode）</a></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-  </entry>
-  <entry>
     <title>线程池</title>
     <url>/2022/06/02/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</url>
     <content><![CDATA[<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p><strong>什么是线程池？</strong></p>
@@ -2859,6 +2847,22 @@ count=100
 <p>方法一：可以使用较大的线程池，一般CPU核心数 * 2 </p>
 <p>方法二：（线程等待时间与线程CPU时间之比 + 1）* CPU数目</p>
 <p>3.3）混合型 可以将任务分为CPU密集型和IO密集型，然后分别使用不同的线程池去处理，按情况而定</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>算法</title>
+    <url>/2022/07/11/%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p>三个遍历</p>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h3><p>先根节点      再左子节点     最后右子节点</p>
+<h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><p>先左子节点    再根节点       最后右子节点</p>
+<h3 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h3><p>先左子节点     再右子节点   最后根节点</p>
+<p>前中后遍历的<strong>顺序都是相当于根节点</strong>来说的 前中后的顺序就是遍历的根节点的顺序 但无论是哪个遍历方式 左右子节点的顺序都是先左后右。</p>
+<h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><p>左子节点&lt;根节点&lt;右子节点</p>
+<p>题目：</p>
+<p><a href="https://leetcode.cn/problems/unique-binary-search-trees-ii/">95. 不同的二叉搜索树 II - 力扣（LeetCode）</a></p>
 ]]></content>
       <categories>
         <category>java</category>
