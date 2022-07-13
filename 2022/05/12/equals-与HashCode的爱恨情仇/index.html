@@ -30,7 +30,7 @@
 <meta property="og:description" content="‘&#x3D;&#x3D;’和equals“&#x3D;&#x3D;”运算符用来比较两个变量的值是否相等。也就是说，该运算符用于比较变量对应的内存中所存储的数值是否相同。 对于基本数据类而言，可以直接使用“&#x3D;&#x3D;”运算符来比较其对应的值是否相等。但是对于引用类型： 12String s1&#x3D;new String();String s2&#x3D;new String();  此时的两个引用变">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-12T00:36:08.000Z">
-<meta property="article:modified_time" content="2022-05-20T02:37:10.241Z">
+<meta property="article:modified_time" content="2022-07-13T09:19:04.601Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -241,7 +241,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-20 10:37:10" itemprop="dateModified" datetime="2022-05-20T10:37:10+08:00">2022-05-20</time>
+                <time title="Modified: 2022-07-13 17:19:04" itemprop="dateModified" datetime="2022-07-13T17:19:04+08:00">2022-07-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,11 +298,8 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Human</span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"><span class="comment">//		generate生成的equals和hashcode</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">Human</span> <span class="variable">human</span> <span class="operator">=</span> (Human) o;</span><br><span class="line">            <span class="type">return</span> <span class="variable">age</span> <span class="operator">=</span>= human.age &amp;&amp;</span><br><span class="line">                    Objects.equals(name, human.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Objects.hash(age, name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="HashCode和equals"><a href="#HashCode和equals" class="headerlink" title="HashCode和equals"></a>HashCode和equals</h4><p>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个int整 数。这个哈希码的作用是</p>
-<p>确定该对象在哈希表中的索引位置。hashCode() 定义 在JDK的Object.java中，这就意味着Java中的任何</p>
-<p>类都包含有hashCode()函数.</p>
-<h4 id="hashCode-与equals-的相关规定"><a href="#hashCode-与equals-的相关规定" class="headerlink" title="hashCode()与equals() 的相关规定"></a><strong>hashCode()<strong>与</strong>equals()</strong> <strong>的相关规定</strong></h4><p>如果两个对象相等，则hashcode一定也是相同的 两个对象相等，对两个对象分别调用equals方法都返</p>
-<p>回true 两个对象有相同的hashcode值，它们也不一定是相等的</p>
+<h4 id="HashCode和equals"><a href="#HashCode和equals" class="headerlink" title="HashCode和equals"></a>HashCode和equals</h4><p>hashCode() 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。hashCode() 定义 在JDK的Object.java中，这就意味着Java中的任何类都包含有hashCode()函数.</p>
+<h4 id="hashCode-与equals-的相关规定"><a href="#hashCode-与equals-的相关规定" class="headerlink" title="hashCode()与equals() 的相关规定"></a><strong>hashCode()<strong>与</strong>equals()</strong> <strong>的相关规定</strong></h4><p>如果两个对象相等，则hashcode一定也是相同的 两个对象相等，对两个对象分别调用equals方法都返回true 两个对象有相同的hashcode值，它们也不一定是相等的</p>
 <h4 id="两者的关系"><a href="#两者的关系" class="headerlink" title="两者的关系"></a>两者的关系</h4><p>第一种 不会创建“类对应的散列表”<br> 这里所说的“不会创建类对应的散列表”是说：我们不会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，不会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”没有关系。<br> 这种情况下，equals() 用来比较该类的两个对象是否相等。而hashCode() 则根本没有任何作用，所以，不用理会hashCode()。</p>
 <p>第二种 会创建“类对应的散列表”<br> 这里所说的“会创建类对应的散列表”是说：我们会在HashSet, Hashtable, HashMap等等这些本质是散列表的数据结构中，用到该类。例如，会创建该类的HashSet集合。<br> 在这种情况下，该类的“hashCode() 和 equals() ”是有关系的：<br> 1)、如果两个对象相等，那么它们的hashCode()值一定相同。<br> 这里的相等是指，通过equals()比较两个对象时返回true。<br> 2)、如果两个对象hashCode()相等，它们并不一定相等。<br> 因为在散列表中，hashCode()相等，即两个键值对的哈希值相等。然而哈希值相等，并不一定能得出键值对相等。<br> 此外，在这种情况下。若要判断两个对象是否相等，除了要覆盖equals()之外，也要覆盖hashCode()函数。否则，equals()无效。</p>
 
@@ -445,13 +442,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">141k</span>
+    <span title="Symbols count total">142k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:08</span>
+    <span title="Reading time total">2:09</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
