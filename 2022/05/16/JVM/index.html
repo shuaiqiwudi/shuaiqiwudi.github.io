@@ -44,7 +44,7 @@
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220711173346887.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/ec9158ddefc24b9a8c638d469729c542.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6aOO6KGM5rC05LiKX1pI,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="article:published_time" content="2022-05-16T06:46:22.000Z">
-<meta property="article:modified_time" content="2022-07-12T06:50:54.450Z">
+<meta property="article:modified_time" content="2022-07-12T09:28:14.222Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -256,7 +256,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-12 14:50:54" itemprop="dateModified" datetime="2022-07-12T14:50:54+08:00">2022-07-12</time>
+                <time title="Modified: 2022-07-12 17:28:14" itemprop="dateModified" datetime="2022-07-12T17:28:14+08:00">2022-07-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -435,10 +435,10 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <p>整堆回收器：G1</p>
 <h3 id="各代适合的垃圾回收算法"><a href="#各代适合的垃圾回收算法" class="headerlink" title="各代适合的垃圾回收算法"></a><strong>各代适合的垃圾回收算法</strong></h3><p>年轻代的堆空间，因为经常生成对象，并且对象的消亡和创建都很频繁，所以该区域需要高效率，能更好利用cpu的垃圾回收算法以保证内存空间的充足，<strong>新生代常常使用标记-复制算法。</strong></p>
 <p>老年代的堆空间常常存放不易回收的对象，所以该区域不需要频繁的进行GC，需要考虑的是内存空间的利用，需要足够的空间存放不易回收的老年代对象，<strong>老年代常常使用标记整理算法，CMS的标记清除算法。</strong></p>
-<h3 id="详细介绍一下-CMS-垃圾回收器？"><a href="#详细介绍一下-CMS-垃圾回收器？" class="headerlink" title="详细介绍一下 CMS 垃圾回收器？"></a><strong>详细介绍一下</strong> <strong>CMS</strong> <strong>垃圾回收器？</strong></h3><p>CMS 是英文 Concurrent Mark-Sweep 的简称，是以牺牲吞吐量为代价来获得 最短回收停顿时间的垃圾回收器。对于要求服务器响应速度的应用上，这种垃圾 回收器非常适合。在启动 JVM 的参数加上“-XX:+UseConcMarkSweepGC”来指定使用 CMS 垃圾回收器。 CMS 使用的是标记-清除的算法实现的，所以在 gc的时候回产生大量的内存碎 片，当剩余内存不能满足程序运行要求时，系统将会出现Concurrent Mode Failure，临时 CMS 会采用 Serial Old 回收器进行垃圾清除，此时的性能将会被降低。</p>
+<h3 id="详细介绍一下-CMS-垃圾回收器？"><a href="#详细介绍一下-CMS-垃圾回收器？" class="headerlink" title="详细介绍一下 CMS 垃圾回收器？"></a><strong>详细介绍一下</strong> <strong>CMS</strong> <strong>垃圾回收器？</strong></h3><p>CMS 是英文 Concurrent Mark-Sweep 的简称，是以牺牲吞吐量为代价来获得 最短回收停顿时间的垃圾回收器。对于要求服务器响应速度的应用上，这种垃圾回收器非常适合。在启动 JVM 的参数加上“-XX:+UseConcMarkSweepGC”来指定使用 CMS 垃圾回收器。 CMS 使用的是标记-清除的算法实现的，所以在 gc的时候回产生大量的内存碎 片，当剩余内存不能满足程序运行要求时，系统将会出现Concurrent Mode Failure，临时 CMS 会采用 Serial Old 回收器进行垃圾清除，此时的性能将会被降低。</p>
 <h3 id="创建对象的内存分配"><a href="#创建对象的内存分配" class="headerlink" title="创建对象的内存分配"></a>创建对象的内存分配</h3><p>多数情况下，对象都在Eden区被创建，但是当Eden区内存空间不足的时候，虚拟机会进行一次<strong>年轻代的MinorGC</strong>，</p>
 <p>如果本次GC以后，依然没有足够的空间，则将启用分配担保机制，在老年代中分配内存。</p>
-<h3 id="如果对象太大怎么办？"><a href="#如果对象太大怎么办？" class="headerlink" title="如果对象太大怎么办？"></a><strong>如果对象太大怎么办？</strong></h3><p>大对象是指需要大连的连续的内存空间的对象，而大对象如果存放在年轻代，而年轻代使用的是标记复制算法，大对象在两个幸存区之不断复制，占用了其他对象的空间，并且影响了效率。假设大对象是“朝生夕死”的（从GC次数上来讲不会进入老年代），那它占用了年轻的空间，其他对象进入的时候因为大对象的存在会提前触发GC，而大对象在幸存区的空间占比又过大，导致新创建的对象只能添加到老年代，这就加快了老年代GC的时间，对老年代的性能进行了很大的负面影响。<strong>（毕竟老年代的GC效率大概要比年轻代的GC效率低10倍左右）</strong>。如果确定大对象是“朝生夕死”的，可以通过设置JVM对大对象的参数阈值【-XX:PretenureSizeThreshold】，使大对象相对JVM来讲是不再那么大，从而在年轻代就GC（当然会这样影响性能）。</p>
+<h3 id="如果对象太大怎么办？"><a href="#如果对象太大怎么办？" class="headerlink" title="如果对象太大怎么办？"></a><strong>如果对象太大怎么办？</strong></h3><p>大对象是指需要大的连续的内存空间的对象，而大对象如果存放在年轻代，而年轻代使用的是标记复制算法，大对象在两个幸存区之不断复制，占用了其他对象的空间，并且影响了效率。假设大对象是“朝生夕死”的（从GC次数上来讲不会进入老年代），那它占用了年轻的空间，其他对象进入的时候因为大对象的存在会提前触发GC，而大对象在幸存区的空间占比又过大，导致新创建的对象只能添加到老年代，这就加快了老年代GC的时间，对老年代的性能进行了很大的负面影响。<strong>（毕竟老年代的GC效率大概要比年轻代的GC效率低10倍左右）</strong>。如果确定大对象是“朝生夕死”的，可以通过设置JVM对大对象的参数阈值【-XX:PretenureSizeThreshold】，使大对象相对JVM来讲是不再那么大，从而在年轻代就GC（当然会这样影响性能）。</p>
 <h3 id="发生在不同区域的GC"><a href="#发生在不同区域的GC" class="headerlink" title="发生在不同区域的GC"></a>发生在不同区域的GC</h3><p><strong>Minor GC</strong> 是指发生在新生代的 GC，因为 Java 对象大多都是朝生夕死，所 有 Minor GC 非常频繁，一般回收速度也非常快；</p>
 <p><strong>Major GC</strong> 是指发生在老年代的 GC，出现了 Major GC 通常会伴 随至少一次 Minor GC。</p>
 <p><strong>FullGC</strong> 是指发生在整个堆内存的GC ，老年代和年轻代一起GC，应该避免FullGC的发生，会影响JVM的性能。</p>
