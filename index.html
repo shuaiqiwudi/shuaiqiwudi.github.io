@@ -328,7 +328,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-13 22:04:02" itemprop="dateModified" datetime="2022-07-13T22:04:02+08:00">2022-07-13</time>
+                <time title="Modified: 2022-07-14 13:56:11" itemprop="dateModified" datetime="2022-07-14T13:56:11+08:00">2022-07-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -346,7 +346,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>460</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -398,7 +398,8 @@
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search name</span><br></pre></td></tr></table></figure>
 
 <h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><p>端口映射</p>
-<p>启动交互式命令</p>
+<p>从docker外部的端口 映射到docker内部的容器内部镜像的端口</p>
+<p>启动交互式容器</p>
 <p>docker的镜像pull到宿主机后 可以运行这个镜像并进行交互式操作</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it 镜像名称 /bin/bash</span><br></pre></td></tr></table></figure>
 
@@ -406,8 +407,56 @@
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name=容器名 镜像名称 /bin/bash</span><br></pre></td></tr></table></figure>
 
 <p>退出交互界面</p>
+<p>① 退出镜像 容器停止</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
 
+<p>② 退出但是 容器不停止</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl+q+p</span><br></pre></td></tr></table></figure>
+
+
+
+<p>批量操作</p>
+<p>批量删除容器</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f $(docker ps -a -q)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>停止容器</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop 容器id</span><br></pre></td></tr></table></figure>
+
+
+
+<p>启动守护式容器</p>
+<p>大部分场景下 我们希望docker容器在后台运行 可以通过-d指定容器的后台模式</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d ubuntu </span><br></pre></td></tr></table></figure>
+
+<p>docker容器后台运行 就必须要有一个前台进程</p>
+<p>容器运行的命令如果不是那些一直挂起的命令（比如top，tail） 就会自动退出</p>
+<p>查看容器内部进程</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker top 容器id</span><br></pre></td></tr></table></figure>
+
+<p>重新进入正在运行的容器</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 容器id /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>使用attach 退出的时候 会导致容器停止</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach 容器id</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="导入和导出容器"><a href="#导入和导出容器" class="headerlink" title="导入和导出容器"></a>导入和导出容器</h4><p>将整个容器进行备份</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker export 容器id &gt; 文件名.tar</span><br></pre></td></tr></table></figure>
+
+<p>这个tar包就会在宿主机的内部存放</p>
+<p>再将tar包转化为docker的镜像文件</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 文件名.tar | docker import - 镜像文件包名/镜像名:镜像版本号</span><br></pre></td></tr></table></figure>
+
+<p>docker内部就会存在这个镜像文件 就可以运行了</p>
+<p>查看容器日志</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs 容器id </span><br></pre></td></tr></table></figure>
+
+
+
+<p>Docker镜像层都是只读的，容器层是可写的。当容器启动时，一个新的可写层容器被加载到镜像的顶部，这一层通常被称为容器层 容器层之下的都是镜像层。</p>
 
       
     </div>
@@ -1311,13 +1360,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">142k</span>
+    <span title="Symbols count total">146k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:09</span>
+    <span title="Reading time total">2:12</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>

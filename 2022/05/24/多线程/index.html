@@ -31,8 +31,13 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/image-20220530172524328.png">
 <meta property="og:image" content="http://example.com/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/image-20220517082401082.png">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-e411138c62b82128f475e3e999c30632_1440w.jpg">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/23/169aa1836d0ac5b0~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/23/169aab7befb2e5de~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/23/169aad4a8e578933~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/23/169aaf5a27ee58d5~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp">
 <meta property="article:published_time" content="2022-05-24T01:45:44.000Z">
-<meta property="article:modified_time" content="2022-06-15T01:14:00.293Z">
+<meta property="article:modified_time" content="2022-07-14T08:14:24.310Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -244,7 +249,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-15 09:14:00" itemprop="dateModified" datetime="2022-06-15T09:14:00+08:00">2022-06-15</time>
+                <time title="Modified: 2022-07-14 16:14:24" itemprop="dateModified" datetime="2022-07-14T16:14:24+08:00">2022-07-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,14 +274,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8.2k</span>
+              <span>12k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>7 mins.</span>
+              <span>11 mins.</span>
             </span>
 
         </div>
@@ -516,11 +521,104 @@ count=100
 <p>线程本地的变量，每个线程获取一份共享变量的拷贝，单独进行处理。</p>
 <p>3）线程本地存储</p>
 <p>如果一个共享资源一定要被多线程共享，可以尽量让一个线程完成所有的处理操作，比如生产者消费者模式中，一般会让一个消费者完成对队列上资源的消费。典型的应用是基于请求-应答模式的web服务器的设计。</p>
-<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><p>Synchorized和ReentrantLock的性能比较</p>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><h1 id="LockSupport"><a href="#LockSupport" class="headerlink" title="LockSupport"></a>LockSupport</h1><h1 id="ReentrantLock不可打断模式与可打断模式"><a href="#ReentrantLock不可打断模式与可打断模式" class="headerlink" title="ReentrantLock不可打断模式与可打断模式"></a>ReentrantLock不可打断模式与可打断模式</h1><h1 id="ReentrantLock和Synchronized的区别"><a href="#ReentrantLock和Synchronized的区别" class="headerlink" title="ReentrantLock和Synchronized的区别"></a>ReentrantLock和Synchronized的区别</h1><h2 id="相似点"><a href="#相似点" class="headerlink" title="相似点"></a>相似点</h2><p>这两种同步方式有很多相似之处，它们都是加锁方式同步，而且都是阻塞式的同步，也就是说当如果一个线程获得了对象锁，进入了同步块，其他访问该同步块的线程都必须阻塞在同步块外面等待，而进行线程阻塞和唤醒的代价是比较高的（操作系统需要在用户态与内核态之间来回切换，代价很高，不过可以通过对锁优化进行改善）。</p>
+<h2 id="功能区别："><a href="#功能区别：" class="headerlink" title="功能区别："></a>功能区别：</h2><p>这两种方式最大区别就是对于Synchronized来说，它是java语言的关键字，是原生语法层面的互斥，需要jvm实现。而ReentrantLock它是JDK 1.5之后提供的API层面的互斥锁，需要lock()和unlock()方法配合try&#x2F;finally语句块来完成</p>
+<p>ReentrantLock类提供了一些高级功能，主要有以下3项：</p>
+<p>①等待可中断，持有锁的线程长期不释放的时候，正在等待的线程可以选择放弃等待，这相当于Synchronized来说可以避免出现死锁的情况。通过lock.lockInterruptibly()来实现这个机制。</p>
+<p>②公平锁，多个线程等待同一个锁时，必须按照申请锁的时间顺序获得锁，Synchronized锁非公平锁，ReentrantLock默认的构造函数是创建的非公平锁，可以通过参数true设为公平锁，但公平锁表现的性能不是很好。</p>
+<p>③锁绑定多个条件，一个ReentrantLock对象可以同时绑定对个对象。ReenTrantLock提供了一个Condition（条件）类，用来实现分组唤醒需要唤醒的线程们，而不是像synchronized要么随机唤醒一个线程要么唤醒全部线程。</p>
+<h2 id="便利性"><a href="#便利性" class="headerlink" title="便利性"></a>便利性</h2><p>很明显Synchronized的使用比较方便简洁，并且由编译器去保证锁的加锁和释放，而ReenTrantLock需要手工声明来加锁和释放锁，为了避免忘记手工释放锁造成死锁，所以最好在finally中声明释放锁。</p>
+<p>锁的细粒度和灵活度：很明显ReenTrantLock优于Synchronized</p>
+<h2 id="性能的区别："><a href="#性能的区别：" class="headerlink" title="性能的区别："></a>性能的区别：</h2><p>在Synchronized优化以前，synchronized的性能是比ReenTrantLock差很多的，但是自从Synchronized引入了偏向锁，轻量级锁（自旋锁）后，两者的性能就差不多了，在两种方法都可用的情况下，官方甚至建议使用synchronized，其实synchronized的优化我感觉就借鉴了ReenTrantLock中的CAS技术。都是试图在用户态就把加锁问题解决，避免进入内核态的线程阻塞。</p>
+<h2 id="性能比较"><a href="#性能比较" class="headerlink" title="性能比较"></a>性能比较</h2><p>Synchorized和ReentrantLock的性能比较</p>
 <p>无可置疑，synchronized的性能确实要比ReentrantLock差个20%-30%</p>
+<p>Synchronized适合于并发竞争低的情况，因为Synchronized的锁升级如果最终升级为重量级锁在使用的过程中是没有办法消除的，意味着每次都要和cpu去请求锁资源，而ReentrantLock主要是提供了阻塞的能力，<strong>通过在高并发下线程的挂起，来减少竞争，提高并发能力</strong></p>
+<h2 id="是否可手动释放："><a href="#是否可手动释放：" class="headerlink" title="是否可手动释放："></a><strong>是否可手动释放：</strong></h2><p>synchronized 不需要用户去手动释放锁，synchronized 代码执行完后系统会自动让线程释放对锁的占用； ReentrantLock则需要用户去手动释放锁，如果没有手动释放锁，就可能导致死锁现象。一般通过lock()和unlock()方法配合try&#x2F;finally语句块来完成，使用释放更加灵活。</p>
+<h2 id="锁是否可以被中断："><a href="#锁是否可以被中断：" class="headerlink" title="锁是否可以被中断："></a><strong>锁是否可以被中断：</strong></h2><p>synchronized是不可中断类型的锁，除非加锁的代码中出现异常或正常执行完成； ReentrantLock则可以中断，可通过trylock(long timeout,TimeUnit unit)设置超时方法或者将lockInterruptibly()放到代码块中，调用interrupt方法进行中断。</p>
+<h2 id="上锁的内容："><a href="#上锁的内容：" class="headerlink" title="上锁的内容："></a><strong>上锁的内容：</strong></h2><p>synchronzied锁的是对象，锁是保存在对象头里面的，根据对象头数据来标识是否有线程获得锁&#x2F;争抢锁；ReentrantLock锁的是线程，根据进入的线程和int类型的state标识锁的获得&#x2F;争抢。</p>
+<h2 id="二者原理："><a href="#二者原理：" class="headerlink" title="二者原理："></a>二者原理：</h2><h3 id="1-Synchronized上锁过程"><a href="#1-Synchronized上锁过程" class="headerlink" title="1.Synchronized上锁过程"></a>1.Synchronized上锁过程</h3><p><img src="https://pic3.zhimg.com/80/v2-e411138c62b82128f475e3e999c30632_1440w.jpg" alt="img"><br>Synchronized进过编译，会在同步块的前后分别形成monitorenter和monitorexit这个两个字节码指令。在执行monitorenter指令时，首先要尝试获取对象锁。如果这个对象没被锁定，或者当前线程已经拥有了那个对象锁，把锁的计算器加1，相应的，在执行monitorexit指令时会将锁计算器就减1，当计算器为0时，锁就被释放了。如果获取对象锁失败，那当前线程就要阻塞，直到对象锁被另一个线程释放为止。</p>
+<h3 id="2-ReentrantLock"><a href="#2-ReentrantLock" class="headerlink" title="2.ReentrantLock"></a>2.ReentrantLock</h3><p><strong>ReenTrantLock的实现是一种自旋锁，通过循环调用CAS操作来实现加锁，并且使用了AQS队列。它的性能比较好也是因为避免了使线程进入内核态的阻塞状态</strong>。</p>
+<h4 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h4><p><code>AQS</code>即<code>AbstractQueuedSynchronizer</code>的缩写，这个是个内部实现了两个队列的抽象类，分别是<strong>同步队列</strong>和<strong>条件队列</strong>。其中<strong>同步队列</strong>是一个双向链表，里面储存的是处于等待状态的线程，正在排队等待唤醒去获取锁，而<strong>条件队列</strong>是一个单向链表，里面储存的也是处于等待状态的线程，只不过这些线程唤醒的结果是加入到了同步队列的队尾，<code>AQS</code>所做的就是管理这两个队列里面线程之间的<strong>等待状态-唤醒</strong>的工作。</p>
+<p>ReentrantLock通过设置参数调整是否为公平锁和非公平锁</p>
+<p>内部结构：</p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/23/169aa1836d0ac5b0~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp" alt="img"></p>
+<p>首先<code>ReentrantLock</code>继承自父类<code>Lock</code>，然后有<code>3</code>个内部类，其中<code>Sync</code>内部类继承自<code>AQS</code>，另外的两个内部类继承自<code>Sync</code>，这两个类分别是用来<strong>公平锁和非公平锁</strong>的。<br> 通过<code>Sync</code>重写的方法<code>tryAcquire</code>、<code>tryRelease</code>可以知道，**<code>ReentrantLock</code>实现的是<code>AQS</code>的独占模式，也就是独占锁，这个锁是悲观锁**。</p>
+<p>ReentrantLock的lock() 和 unlock() 方法的流程：</p>
+<h4 id="lock方法获取锁"><a href="#lock方法获取锁" class="headerlink" title="lock方法获取锁"></a>lock方法获取锁</h4><ol>
+<li><code>lock</code>方法调用<code>CAS</code>方法设置<code>state</code>的值，如果<code>state</code>等于期望值<code>0</code>(代表锁没有被占用)，那么就将<code>state</code>更新为<code>1</code>(代表该线程获取锁成功)，然后执行<code>setExclusiveOwnerThread</code>方法直接将该线程设置成锁的所有者。如果<code>CAS</code>设置<code>state</code>的值失败，即<code>state</code>不等于<code>0</code>，代表锁正在被占领着，则执行<code>acquire(1)</code>，即下面的步骤。</li>
+<li><code>nonfairTryAcquire</code>方法首先调用<code>getState</code>方法获取<code>state</code>的值，如果<code>state</code>的值为<code>0</code>(之前占领锁的线程刚好释放了锁)，那么用<code>CAS</code>这是<code>state</code>的值，设置成功则将该线程设置成锁的所有者，并且返回<code>true</code>。如果<code>state</code>的值不为<code>0</code>，那就<strong>调用<code>getExclusiveOwnerThread</code>方法查看占用锁的线程是不是自己</strong>，如果是的话那就直接将<code>state + 1</code>，然后返回<code>true</code>。如果<code>state</code>不为<code>0</code>且锁的所有者又不是自己，那就返回<code>false</code>，<strong>然后线程会进入到同步队列中</strong>。</li>
+</ol>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/23/169aab7befb2e5de~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp" alt="img"></p>
+<h4 id="tryRelease锁的释放"><a href="#tryRelease锁的释放" class="headerlink" title="tryRelease锁的释放"></a>tryRelease锁的释放</h4><ol>
+<li>判断当前线程是不是锁的所有者，如果是则进行步骤<code>2</code>，如果不是则抛出异常。</li>
+<li>判断此次释放锁后<code>state</code>的值是否为0，如果是则代表<strong>锁有没有重入</strong>，然后将锁的所有者设置成<code>null</code>且返回<code>true</code>，然后执行步骤<code>3</code>，如果不是则<strong>代表锁发生了重入</strong>执行步骤<code>4</code>。</li>
+<li>现在锁已经释放完，即<code>state=0</code>，唤醒同步队列中的后继节点进行锁的获取。</li>
+<li>锁还没有释放完，即<code>state!=0</code>，不唤醒同步队列。</li>
+</ol>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/23/169aad4a8e578933~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp" alt="img"></p>
+<p>公平锁的实现原理：</p>
+<h4 id="lock方法获取锁-1"><a href="#lock方法获取锁-1" class="headerlink" title="lock方法获取锁"></a>lock方法获取锁</h4><ol>
+<li>获取状态的<code>state</code>的值，如果<code>state=0</code>即代表锁没有被其它线程占用(但是并不代表同步队列没有线程在等待)，执行步骤<code>2</code>。如果<code>state!=0</code>则代表锁正在被其它线程占用，执行步骤<code>3</code>。</li>
+<li><strong>判断同步队列是否存在线程(节点)，如果不存在则直接将锁的所有者设置成当前线程，且更新状态state，然后返回true。</strong></li>
+<li><strong>判断锁的所有者是不是当前线程，如果是则更新状态state的值，然后返回true，如果不是，那么返回false，即线程会被加入到同步队列中</strong></li>
+</ol>
+<p>通过步骤<code>2</code><strong>实现了锁获取的公平性，即锁的获取按照先来先得的顺序，后来的不能抢先获取锁，非公平锁和公平锁也正是通过这个区别来实现了锁的公平性。</strong></p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/3/23/169aaf5a27ee58d5~tplv-t2oaga2asx-zoom-in-crop-mark:3024:0:0:0.awebp" alt="img"></p>
+<p>对比表：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ReentrantLock</th>
+<th>Synchronized</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>底层实现</td>
+<td>通过<code>AQS</code>实现</td>
+<td>通过<code>JVM</code>实现，其中<code>synchronized</code>又有多个类型的锁，除了重量级锁是通过<code>monitor</code>对象(操作系统mutex互斥原语)实现外，其它类型的通过对象头实现。</td>
+</tr>
+<tr>
+<td>是否可重入</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>公平锁</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>非公平锁</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>锁的类型</td>
+<td>悲观锁、显式锁</td>
+<td>悲观锁、隐式锁(内置锁)</td>
+</tr>
+<tr>
+<td>是否支持中断</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>是否支持超时等待</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>是否自动获取&#x2F;释放锁</td>
+<td>否</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<h1 id="volatile、ThreadLocal的使用场景和原理"><a href="#volatile、ThreadLocal的使用场景和原理" class="headerlink" title="volatile、ThreadLocal的使用场景和原理"></a>volatile、ThreadLocal的使用场景和原理</h1><p>原文链接：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1684031">创建线程到底有多少种方式？ - 云+社区 - 腾讯云 (tencent.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fuyuwei2015/article/details/83719444">(31条消息) ReentrantLock原理_孙悟空2015的博客-CSDN博客_reentrantlock原理</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xindoo/article/details/103637547">(28条消息) ReentrantLock源码解析_xindoo的博客-CSDN博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/263762343">Java并发编程——深入理解自旋锁 - 知乎 (zhihu.com)</a></p>
-<h1 id="LockSupport"><a href="#LockSupport" class="headerlink" title="LockSupport"></a>LockSupport</h1><h1 id="ReentrantLock不可打断模式与可打断模式"><a href="#ReentrantLock不可打断模式与可打断模式" class="headerlink" title="ReentrantLock不可打断模式与可打断模式"></a>ReentrantLock不可打断模式与可打断模式</h1><h1 id="ReentrantLock和Synchronized的区别"><a href="#ReentrantLock和Synchronized的区别" class="headerlink" title="ReentrantLock和Synchronized的区别"></a>ReentrantLock和Synchronized的区别</h1><h1 id="volatile、ThreadLocal的使用场景和原理"><a href="#volatile、ThreadLocal的使用场景和原理" class="headerlink" title="volatile、ThreadLocal的使用场景和原理"></a>volatile、ThreadLocal的使用场景和原理</h1><p>原文链接：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1684031">创建线程到底有多少种方式？ - 云+社区 - 腾讯云 (tencent.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903805683761165">https://juejin.cn/post/6844903805683761165</a></p>
 
     </div>
 
@@ -601,7 +699,7 @@ count=100
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%B9%B6%E5%8F%91"><span class="nav-number">1.</span> <span class="nav-text">Java的多线程和并发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">3.</span> <span class="nav-text">线程的状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%90%AF%E5%8A%A8"><span class="nav-number">4.</span> <span class="nav-text">线程的创建和启动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">1. 多线程实现的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">4.2.</span> <span class="nav-text">2.线程的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BB%A7%E6%89%BFThread%E7%B1%BB"><span class="nav-number">4.2.1.</span> <span class="nav-text">1) 继承Thread类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%89%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.2.2.</span> <span class="nav-text">2）实现Runnable接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">4.2.3.</span> <span class="nav-text">3) 线程池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%BC%89%E5%AE%9E%E7%8E%B0Callable-%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.2.4.</span> <span class="nav-text">4）实现Callable 接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">4.2.5.</span> <span class="nav-text">创建线程方式总结：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">多线程并发问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">线程安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">6.1.</span> <span class="nav-text">实现线程安全的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">6.1.1.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LockSupport"><span class="nav-number">7.</span> <span class="nav-text">LockSupport</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReentrantLock%E4%B8%8D%E5%8F%AF%E6%89%93%E6%96%AD%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%8F%AF%E6%89%93%E6%96%AD%E6%A8%A1%E5%BC%8F"><span class="nav-number">8.</span> <span class="nav-text">ReentrantLock不可打断模式与可打断模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReentrantLock%E5%92%8CSynchronized%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">9.</span> <span class="nav-text">ReentrantLock和Synchronized的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#volatile%E3%80%81ThreadLocal%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E5%8E%9F%E7%90%86"><span class="nav-number">10.</span> <span class="nav-text">volatile、ThreadLocal的使用场景和原理</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%B9%B6%E5%8F%91"><span class="nav-number">1.</span> <span class="nav-text">Java的多线程和并发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">3.</span> <span class="nav-text">线程的状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%90%AF%E5%8A%A8"><span class="nav-number">4.</span> <span class="nav-text">线程的创建和启动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-number">4.1.</span> <span class="nav-text">1. 多线程实现的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">4.2.</span> <span class="nav-text">2.线程的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BB%A7%E6%89%BFThread%E7%B1%BB"><span class="nav-number">4.2.1.</span> <span class="nav-text">1) 继承Thread类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%89%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.2.2.</span> <span class="nav-text">2）实现Runnable接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">4.2.3.</span> <span class="nav-text">3) 线程池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%BC%89%E5%AE%9E%E7%8E%B0Callable-%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.2.4.</span> <span class="nav-text">4）实现Callable 接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">4.2.5.</span> <span class="nav-text">创建线程方式总结：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">多线程并发问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">线程安全问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">6.1.</span> <span class="nav-text">实现线程安全的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">6.1.1.</span> <span class="nav-text">代码示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LockSupport"><span class="nav-number">7.</span> <span class="nav-text">LockSupport</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReentrantLock%E4%B8%8D%E5%8F%AF%E6%89%93%E6%96%AD%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%8F%AF%E6%89%93%E6%96%AD%E6%A8%A1%E5%BC%8F"><span class="nav-number">8.</span> <span class="nav-text">ReentrantLock不可打断模式与可打断模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReentrantLock%E5%92%8CSynchronized%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">9.</span> <span class="nav-text">ReentrantLock和Synchronized的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E4%BC%BC%E7%82%B9"><span class="nav-number">9.1.</span> <span class="nav-text">相似点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">9.2.</span> <span class="nav-text">功能区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%BF%E5%88%A9%E6%80%A7"><span class="nav-number">9.3.</span> <span class="nav-text">便利性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">9.4.</span> <span class="nav-text">性能的区别：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83"><span class="nav-number">9.5.</span> <span class="nav-text">性能比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%AF%E5%90%A6%E5%8F%AF%E6%89%8B%E5%8A%A8%E9%87%8A%E6%94%BE%EF%BC%9A"><span class="nav-number">9.6.</span> <span class="nav-text">是否可手动释放：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E8%A2%AB%E4%B8%AD%E6%96%AD%EF%BC%9A"><span class="nav-number">9.7.</span> <span class="nav-text">锁是否可以被中断：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E9%94%81%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="nav-number">9.8.</span> <span class="nav-text">上锁的内容：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E8%80%85%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="nav-number">9.9.</span> <span class="nav-text">二者原理：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Synchronized%E4%B8%8A%E9%94%81%E8%BF%87%E7%A8%8B"><span class="nav-number">9.9.1.</span> <span class="nav-text">1.Synchronized上锁过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ReentrantLock"><span class="nav-number">9.9.2.</span> <span class="nav-text">2.ReentrantLock</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AQS"><span class="nav-number">9.9.2.1.</span> <span class="nav-text">AQS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lock%E6%96%B9%E6%B3%95%E8%8E%B7%E5%8F%96%E9%94%81"><span class="nav-number">9.9.2.2.</span> <span class="nav-text">lock方法获取锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tryRelease%E9%94%81%E7%9A%84%E9%87%8A%E6%94%BE"><span class="nav-number">9.9.2.3.</span> <span class="nav-text">tryRelease锁的释放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lock%E6%96%B9%E6%B3%95%E8%8E%B7%E5%8F%96%E9%94%81-1"><span class="nav-number">9.9.2.4.</span> <span class="nav-text">lock方法获取锁</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#volatile%E3%80%81ThreadLocal%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E5%8E%9F%E7%90%86"><span class="nav-number">10.</span> <span class="nav-text">volatile、ThreadLocal的使用场景和原理</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -661,13 +759,13 @@ count=100
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">142k</span>
+    <span title="Symbols count total">146k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:09</span>
+    <span title="Reading time total">2:12</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
