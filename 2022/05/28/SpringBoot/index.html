@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://example.com/2022/05/28/SpringBoot/image-20220529152015019.png">
 <meta property="og:image" content="http://example.com/2022/05/28/SpringBoot/image-20220529153202827.png">
 <meta property="article:published_time" content="2022-05-28T05:24:37.000Z">
-<meta property="article:modified_time" content="2022-05-29T07:50:01.010Z">
+<meta property="article:modified_time" content="2022-07-17T06:33:13.451Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -245,7 +245,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-29 15:50:01" itemprop="dateModified" datetime="2022-05-29T15:50:01+08:00">2022-05-29</time>
+                <time title="Modified: 2022-07-17 14:33:13" itemprop="dateModified" datetime="2022-07-17T14:33:13+08:00">2022-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,7 +270,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4k</span>
+              <span>4.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -299,7 +299,7 @@
 
 <h1 id="SpringBoot自动装配原理"><a href="#SpringBoot自动装配原理" class="headerlink" title="SpringBoot自动装配原理"></a>SpringBoot自动装配原理</h1><p>Spring Boot 项目创建完成后，即使不进行任何的配置，也能够顺利地运行，这都要归功于 Spring Boot 的自动化配置。</p>
 <p>Spring Boot 默认使用 application.properties 或 application.yml 作为其全局配置文件，我们可以在该配置文件中对各种自动配置属性（server.port、logging.level.* 、spring.config.active.no-profile 等等）进行修改，并使之生效，那么您有没有想过这些属性是否有据可依呢？答案是肯定的。</p>
-<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。本节为你揭开 SpringBoot 自动配置的神秘面纱。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#application-properties">Spring Boot 官方文档：常见应用属性</a>中对所有的配置属性都进行了列举和解释，我们可以根据官方文档对 Spring Boot 进行配置，但 Spring Boot 中的配置属性数量庞大，仅仅依靠官方文档进行配置也十分麻烦。我们只有了解了 Spring Boot 自动配置的原理，才能更加轻松熟练地对 Spirng Boot 进行配置。</p>
 <h2 id="Spring-Factories-机制"><a href="#Spring-Factories-机制" class="headerlink" title="Spring Factories 机制"></a>Spring Factories 机制</h2><p>Spring Boot 的自动配置是基于 Spring Factories 机制实现的。</p>
 <p>Spring Factories 机制是 Spring Boot 中的一种服务发现机制，这种扩展机制与 Java SPI 机制十分相似。Spring Boot 会自动扫描所有 Jar 包类路径下 META-INF&#x2F;spring.factories 文件，并读取其中的内容，进行实例化，这种机制也是 Spring Boot Starter 的基础。</p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/00e49c607fa1">Spring Factories - 简书 (jianshu.com)</a></p>
@@ -399,8 +399,15 @@
 <p>只要我们在 Spring Boot 项目中的 pom.xml 中引入了 spring-boot-starter-web ，即使不进行任何配置，也可以直接使用 Spring MVC 进行 Web 开发。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p>&#x2F;&#x2F;TODO</p>
-<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1>
+<h1 id="Spring-Boot拦截器"><a href="#Spring-Boot拦截器" class="headerlink" title="Spring Boot拦截器"></a>Spring Boot拦截器</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ye-hcj/p/9614109.html">springboot成神之——监视器 - qz奔跑的马 - 博客园 (cnblogs.com)</a></p>
+<h1 id="Spring-Boot-中的监视器"><a href="#Spring-Boot-中的监视器" class="headerlink" title="Spring Boot 中的监视器"></a><strong>Spring Boot</strong> <strong>中的监视器</strong></h1><p><strong>Spring Boot中的监视器是什么？</strong></p>
+<p>Spring boot actuator是spring启动框架中的重要功能之一。Spring boot监视器可帮助您访问生产环境中正在运行的应用程序的当前状态。有几个指标必须在生产环境中进行检查和监控。即使一些外部应用程序可能正在使用这些服务来向相关人员触发警报消息。监视器模块公开了一组可直接作为HTTP URL访问的REST端点来检查状态。</p>
+<h1 id="Spring-Boot-热加载"><a href="#Spring-Boot-热加载" class="headerlink" title="Spring Boot 热加载"></a><strong>Spring Boot</strong> 热加载</h1><p>修改代码后不需要重启服务， 自动加载修改的内容。  修改内容后restart加载器加载会变动的资源。 那些第三方的包不会被重新加载， 所以可以提高重启速度</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="什么是JavaConfig？"><a href="#什么是JavaConfig？" class="headerlink" title="什么是JavaConfig？"></a><strong>什么是JavaConfig？</strong></h2><p>Spring JavaConfig是Spring社区的产品，它提供了配置Spring IoC容器的纯Java方法。因此它有助于避免使用XML配置。使用JavaConfig的优点在于：</p>
+<p>面向对象的配置。由于配置被定义为JavaConfig中的类，因此用户可以充分利用Java中的面向对象功能。一个配置类可以继承另一个，重写它的@Bean方法等。</p>
+<p>减少或消除XML配置。基于依赖注入原则的外化配置的好处已被证明。但是，许多开发人员不希望在XML和Java之间来回切换。JavaConfig为开发人员提供了一种纯Java方法来配置与XML配置概念相似的Spring容器。从技术角度来讲，只使用JavaConfig配置类来配置容器是可行的，但实际上很多人认为将JavaConfig与XML混合匹配是理想的。</p>
+<p>类型安全和重构友好。JavaConfig提供了一种类型安全的方法来配置Spring容器。由于Java 5.0对泛型的支持，现在可以按类型而不是按名称检索bean，不需要任何强制转换或基于字符串的查找。</p>
+
     </div>
 
     
@@ -480,7 +487,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSpringBoot%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是SpringBoot？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">SpringBoot自动装配原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Factories-%E6%9C%BA%E5%88%B6"><span class="nav-number">2.1.</span> <span class="nav-text">Spring Factories 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-factories"><span class="nav-number">2.1.1.</span> <span class="nav-text">spring.factories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Factories-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.2.</span> <span class="nav-text">Spring Factories 实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBootApplication-%E6%B3%A8%E8%A7%A3"><span class="nav-number">2.1.3.</span> <span class="nav-text">@SpringBootApplication 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ComponentScan"><span class="nav-number">2.1.4.</span> <span class="nav-text">@ComponentScan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConfigurationProperties"><span class="nav-number">2.1.5.</span> <span class="nav-text">@ConfigurationProperties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E7%9A%84%E7%94%9F%E6%95%88%E5%92%8C%E4%BF%AE%E6%94%B9"><span class="nav-number">2.2.</span> <span class="nav-text">自动配置的生效和修改</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-boot-starter-web%EF%BC%88Web%E5%90%AF%E5%8A%A8%E5%99%A8%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">Spring-boot-starter-web（Web启动器）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Boot%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">Spring Boot拦截器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Boot-%E4%B8%AD%E7%9A%84%E7%9B%91%E8%A7%86%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">Spring Boot 中的监视器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Boot-%E7%83%AD%E5%8A%A0%E8%BD%BD"><span class="nav-number">6.</span> <span class="nav-text">Spring Boot 热加载</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFSpringBoot%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是SpringBoot？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">SpringBoot自动装配原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Factories-%E6%9C%BA%E5%88%B6"><span class="nav-number">2.1.</span> <span class="nav-text">Spring Factories 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-factories"><span class="nav-number">2.1.1.</span> <span class="nav-text">spring.factories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Factories-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.2.</span> <span class="nav-text">Spring Factories 实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBootApplication-%E6%B3%A8%E8%A7%A3"><span class="nav-number">2.1.3.</span> <span class="nav-text">@SpringBootApplication 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ComponentScan"><span class="nav-number">2.1.4.</span> <span class="nav-text">@ComponentScan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConfigurationProperties"><span class="nav-number">2.1.5.</span> <span class="nav-text">@ConfigurationProperties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E7%9A%84%E7%94%9F%E6%95%88%E5%92%8C%E4%BF%AE%E6%94%B9"><span class="nav-number">2.2.</span> <span class="nav-text">自动配置的生效和修改</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-boot-starter-web%EF%BC%88Web%E5%90%AF%E5%8A%A8%E5%99%A8%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">Spring-boot-starter-web（Web启动器）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Boot%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">Spring Boot拦截器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Boot-%E4%B8%AD%E7%9A%84%E7%9B%91%E8%A7%86%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">Spring Boot 中的监视器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Boot-%E7%83%AD%E5%8A%A0%E8%BD%BD"><span class="nav-number">6.</span> <span class="nav-text">Spring Boot 热加载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">7.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFJavaConfig%EF%BC%9F"><span class="nav-number">7.1.</span> <span class="nav-text">什么是JavaConfig？</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -540,13 +547,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">146k</span>
+    <span title="Symbols count total">155k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:12</span>
+    <span title="Reading time total">2:21</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
