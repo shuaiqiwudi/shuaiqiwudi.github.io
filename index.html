@@ -328,7 +328,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-21 12:03:30" itemprop="dateModified" datetime="2022-07-21T12:03:30+08:00">2022-07-21</time>
+                <time title="Modified: 2022-07-21 14:11:39" itemprop="dateModified" datetime="2022-07-21T14:11:39+08:00">2022-07-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1017,7 +1017,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-17 14:05:45" itemprop="dateModified" datetime="2022-07-17T14:05:45+08:00">2022-07-17</time>
+                <time title="Modified: 2022-07-21 20:15:35" itemprop="dateModified" datetime="2022-07-21T20:15:35+08:00">2022-07-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1056,62 +1056,15 @@
       
           <img src="/2022/05/28/SpringMVC/image-20220528102032212.png" class="" title="image-20220528102032212">
 
-<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h2 id="什么是SpringMVC？"><a href="#什么是SpringMVC？" class="headerlink" title="什么是SpringMVC？"></a>什么是SpringMVC？</h2><p>SpringMVC 是一种基于 Java 的实现 MVC 设计模型的请求驱动类型的轻量级 Web 框架，属于 SpringFrameWork 的后续产品，已经融合在 Spring Web Flow 中。</p>
-<p>SpringMVC属于Spring 的一部分</p>
-<p><img src="https://img-blog.csdnimg.cn/20190328153606755.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGlhbnhpYW5nX2thb2xh,size_16,color_FFFFFF,t_70" alt="img"></p>
-<h2 id="SpringMVC的核心架构："><a href="#SpringMVC的核心架构：" class="headerlink" title="SpringMVC的核心架构："></a>SpringMVC的核心架构：</h2><p><img src="https://img-blog.csdnimg.cn/20190630145911981.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdGlhbnhpYW5nX2thb2xh,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>具体流程：</p>
-<p>（1）首先浏览器发送请求——&gt;DispatcherServlet，前端控制器收到请求后自己不进行处理，而是委托给其他的解析器进行处理，作为统一访问点，进行全局的流程控制；</p>
-<p>（2）DispatcherServlet——&gt;HandlerMapping，处理器映射器将会把请求映射为HandlerExecutionChain对象（包含一个Handler处理器对象、多个HandlerInterceptor拦截器）对象；</p>
-<p>（3）DispatcherServlet——&gt;HandlerAdapter，处理器适配器将会把处理器包装为适配器，从而支持多种类型的处理器，即适配器设计模式的应用，从而很容易支持很多类型的处理器；</p>
-<p>（4）HandlerAdapter——&gt;调用处理器相应功能处理方法，并返回一个ModelAndView对象（包含模型数据、逻辑视图名）；</p>
-<p>（5）ModelAndView对象（Model部分是业务对象返回的模型数据，View部分为逻辑视图名）——&gt; ViewResolver， 视图解析器将把逻辑视图名解析为具体的View；</p>
-<p>（6）View——&gt;渲染，View会根据传进来的Model模型数据进行渲染，此处的Model实际是一个Map数据结构；</p>
-<p>（7）返回控制权给DispatcherServlet，由DispatcherServlet返回响应给用户，到此一个流程结束。</p>
-<img src="/2022/05/28/SpringMVC/wps1.jpg" class="" title="img">
-
-<h2 id="组件分析"><a href="#组件分析" class="headerlink" title="组件分析"></a>组件分析</h2><ol>
-<li><p><strong>前端控制器：DispatcherServlet</strong></p>
-<p> 用户请求到达前端控制器，它就相当于 MVC 模式中的 C，DispatcherServlet 是整个流程控制的中心，由 它调用其它组件处理用户的请求，DispatcherServlet 的存在降低了组件之间的耦合性。</p>
-</li>
-<li><p><strong>处理器映射器：HandlerMapping HandlerMapping</strong></p>
-<p>负责根据用户请求找到 Handler 即处理器，SpringMVC 提供了不同的映射器实现不同的 映射方式，例如：配置文件方式，实现接口方式，注解方式等。        </p>
-</li>
-<li><p><strong>处理器适配器：HandlerAdapter</strong>     </p>
-<p>通过 HandlerAdapter 对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理 器进行执行。        </p>
-</li>
-<li><p><strong>处理器：Handler</strong>     </p>
-<p>它就是我们开发中要编写的具体业务控制器。由 DispatcherServlet 把用户请求转发到 Handler。由 Handler 对具体的用户请求进行处理。        </p>
-</li>
-<li><p><strong>视图解析器：View Resolver</strong>     </p>
-<p> View Resolver 负责将处理结果生成 View 视图，View Resolver 首先根据逻辑视图名解析成物理视图名，即 具体的页面地址，再生成 View 视图对象，最后对 View 进行渲染将处理结果通过页面展示给用户。</p>
-</li>
-<li><p><strong>视图：View</strong><br>SpringMVC 框架提供了很多的 View 视图类型的支持，包括：jstlView、freemarkerView、pdfView等。最 常用的视图就是 jsp。一般情况下需要通过页面标签或页面模版技术将模型数据通过页面展示给用户，需要由程 序员根据业务需求开发具体的页面</p>
-</li>
-</ol>
-<h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p> Spring MVC 的拦截器类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。将拦截器按一定的顺序联结成<strong>一条链</strong>，这条链称为<strong>拦截器链（Interceptor Chain）</strong>。在访问被拦截的方法或字段时，拦截器链中的拦截器就会按其之前<strong>定义的顺序被调用</strong>。拦截器也是AOP思想的具体实现。</p>
-<p>拦截器的方法声明：</p>
-<p><img src="https://img-blog.csdnimg.cn/4561be39258343c3acf60145af40f4dd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBASkFWQeaIkOelng==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="自定义拦截器进行资源拦截"><a href="#自定义拦截器进行资源拦截" class="headerlink" title="自定义拦截器进行资源拦截"></a>自定义拦截器进行资源拦截</h3><p>​        <em>① 创建拦截器类实现HandlerInterceptor接口</em></p>
-<p>​        <em>② 配置拦截器</em></p>
-<p>​        <em>③ 测试拦截器的拦截效果</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyInterceptor1</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line">    <span class="comment">//在目标方法执行之前 执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">      <span class="comment">//设置需要的程序</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//在目标方法执行之后 视图对象返回之前执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> &#123;</span><br><span class="line">         <span class="comment">//设置需要的程序</span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//在流程都执行完毕后 执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> &#123;</span><br><span class="line">         <span class="comment">//设置需要的程序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置拦截器--&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">mvc:interceptors</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line">         <span class="comment">&lt;!--对哪些资源执行拦截操作--&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">mvc:mapping</span> <span class="attr">path</span>=<span class="string">&quot;/**&quot;</span>/&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;com.itheima.interceptor.MyInterceptor1&quot;</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">mvc:interceptor</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">mvc:interceptors</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="SpringMVC异常处理"><a href="#SpringMVC异常处理" class="headerlink" title="SpringMVC异常处理"></a>SpringMVC异常处理</h2><h3 id="异常处理的思路"><a href="#异常处理的思路" class="headerlink" title="异常处理的思路"></a>异常处理的思路</h3><p>​        系统中异常包括两类：预期异常和运行时异常RuntimeException，前者通过捕获异常从而获取异常信息，后 者主要通过规范代码开发、测试等手段减少运行时异常的发生。</p>
-<pre><code>    系统的Dao、Service、Controller出现都通过throws Exception向上抛出，最后由SpringMVC前端控制器交 由异常处理器进行异常处理，如下图：
-</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/d4d82dfe8933400d99919f904d5d56bc.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBASkFWQeaIkOelng==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h3 id="异常处理两种方式"><a href="#异常处理两种方式" class="headerlink" title="异常处理两种方式"></a>异常处理两种方式</h3><p>使用Spring MVC提供的简单异常处理器SimpleMappingExceptionResolver<br>实现Spring的异常处理接口HandlerExceptionResolver 自定义自己的异常处理器</p>
-<h3 id="简单异常处理器SimpleMappingExceptionResolver"><a href="#简单异常处理器SimpleMappingExceptionResolver" class="headerlink" title="简单异常处理器SimpleMappingExceptionResolver"></a>简单异常处理器SimpleMappingExceptionResolver</h3><p>  SpringMVC已经定义好了该类型转换器，在使用时可以根据项目情况进行相应异常与视图的映射配置</p>
-<p><img src="https://img-blog.csdnimg.cn/b61441bc5b3a4d12933d910d07bc3de9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBASkFWQeaIkOelng==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<p><img src="https://img-blog.csdn.net/20180409143915337?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpbGlwaW5nMjg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/litianxiang_kaola/article/details/79169148">(32条消息) SpringMVC框架理解_椰子Tyshawn的博客-CSDN博客_springmvc</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_58168493/article/details/122634493">(32条消息) 黑马程序员–SpringMVC详细教程_JAVA成神的博客-CSDN博客_springmvc教程</a></p>
-
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/05/28/SpringMVC/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
