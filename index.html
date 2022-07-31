@@ -239,7 +239,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-25 18:21:39" itemprop="dateModified" datetime="2022-07-25T18:21:39+08:00">2022-07-25</time>
+                <time title="Modified: 2022-07-26 08:52:35" itemprop="dateModified" datetime="2022-07-26T08:52:35+08:00">2022-07-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -257,7 +257,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>656</span>
+              <span>683</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -618,10 +618,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-06-07 09:15:48 / Modified: 09:58:20" itemprop="dateCreated datePublished" datetime="2022-06-07T09:15:48+08:00">2022-06-07</time>
+              <time title="Created: 2022-06-07 09:15:48" itemprop="dateCreated datePublished" datetime="2022-06-07T09:15:48+08:00">2022-06-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-07-31 09:37:11" itemprop="dateModified" datetime="2022-07-31T09:37:11+08:00">2022-07-31</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -638,7 +644,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>628</span>
+              <span>636</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -659,27 +665,15 @@
       
           <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>另一种操作系统</p>
 <p>服务器操作系统</p>
-<p>针对CentOS7</p>
-<h2 id="Linux文件信息位置"><a href="#Linux文件信息位置" class="headerlink" title="Linux文件信息位置"></a>Linux文件信息位置</h2><h3 id="1-网卡信息存放位置"><a href="#1-网卡信息存放位置" class="headerlink" title="1.网卡信息存放位置"></a>1.网卡信息存放位置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">/* 如果是dell的物理服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-em1或em2 ，em3，em4</span><br><span class="line">/* 如果是云服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-防火墙的开启和关闭"><a href="#2-防火墙的开启和关闭" class="headerlink" title="2.防火墙的开启和关闭"></a>2.防火墙的开启和关闭</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
-
-<p>启动防火墙</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld.service  		--启动firewall</span><br><span class="line">systemctl enable firewalld.service		--开机时启动firewall</span><br></pre></td></tr></table></figure>
-
-<p>关闭防火墙</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service    		--停止firewall</span><br><span class="line">systemctl disable firewalld.service		--禁止firewall开机启动</span><br></pre></td></tr></table></figure>
-
-<p>重启防火墙</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
-
-<p>查看防火墙是否开启自启</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl is-enabled firewalld.service;echo $?</span><br></pre></td></tr></table></figure>
-
-<p>查看已启动的服务列表</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files|grep enabled</span><br></pre></td></tr></table></figure>
-
-
+<p>主要针对CentOS7进行操作讲解</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/07/Linux/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
