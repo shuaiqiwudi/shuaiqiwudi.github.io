@@ -231,10 +231,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-08-01 09:17:52 / Modified: 15:20:32" itemprop="dateCreated datePublished" datetime="2022-08-01T09:17:52+08:00">2022-08-01</time>
+              <time title="Created: 2022-08-01 09:17:52" itemprop="dateCreated datePublished" datetime="2022-08-01T09:17:52+08:00">2022-08-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-03 15:38:07" itemprop="dateModified" datetime="2022-08-03T15:38:07+08:00">2022-08-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,14 +257,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.2k</span>
+              <span>7.7k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
+              <span>7 mins.</span>
             </span>
 
         </div>
@@ -270,113 +276,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h1><h2 id="MQ的用途"><a href="#MQ的用途" class="headerlink" title="MQ的用途"></a>MQ的用途</h2><ol>
-<li><p><strong>限流削峰</strong></p>
-<p>MQ可以将系统的超量请求暂存其中，以便系统后期可以慢慢进行处理，从而避免了请求的丢失或系统被压垮</p>
-</li>
-</ol>
-<img src="/2022/08/01/MQ/image-20220801135527811.png" class="" title="image-20220801135527811">
-
-
-
-<img src="/2022/08/01/MQ/image-20220801135606503.png" class="" title="image-20220801135606503">
-
-<ol start="2">
-<li><p><strong>异步解耦</strong></p>
-<p>上游系统对下游系统的调用若为同步调用，则会大大降低系统的吞吐量与并发度，且系统耦合度太高。而异步调用则会解决这些问题。所以两层之间若要实现由同步到异步的转化，一般性做法就是，在这两层间添加一个MQ层</p>
-<img src="/2022/08/01/MQ/image-20220801135730675.png" class="" title="image-20220801135730675">
-</li>
-<li><p><strong>数据收集</strong></p>
-<p>分布式系统会产生海量级数据流，如：业务日志、监控数据、用户行为等。针对这些数据流进行实时或批量采集汇总，然后对这些数据流进行大数据分析，这是当前互联网平台的必备技术。通过MQ完成此类数据收集是最好的选择。</p>
-</li>
-</ol>
-<h2 id="MQ的常见协议"><a href="#MQ的常见协议" class="headerlink" title="MQ的常见协议"></a>MQ的常见协议</h2><p>一般情况下MQ的实现是遵循一些常规性协议的。常见的协议：</p>
-<p><strong>JMS</strong> </p>
-<p>JMS，Java Messaging Service（Java消息服务）。是Java平台上有关MOM（Message Oriented Middleware，面向消息的中间件 PO&#x2F;OO&#x2F;AO）的技术规范，它便于消息系统中的Java应用程序进行消息交换，并且通过提供标准的产生、发送、接收消息的接口，简化企业应用的开发。ActiveMQ是该协议的典型实现。</p>
-<p><strong>STOMP</strong> </p>
-<p>STOMP，Streaming Text Orientated Message Protocol（面向流文本的消息协议），是一种MOM设计的简单文本协议。STOMP提供一个可互操作的连接格式，允许客户端与任意STOMP消息代理（Broker）进行交互。ActiveMQ是该协议的典型实现，RabbitMQ通过插件可以支持该协议。 </p>
-<p><strong>AMQP</strong> </p>
-<p>AMQP，Advanced Message Queuing Protocol（高级消息队列协议），一个提供统一消息服务的应用层标准，是应用层协议的一个开放标准，是一种MOM设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端&#x2F;中间件不同产品，不同开发语言等条件的限制。 RabbitMQ是该协议的典型实现。</p>
-<p><strong>MQTT</strong> </p>
-<p>MQTT，Message Queuing Telemetry Transport（消息队列遥测传输），是IBM开发的一个即时通讯协议，是一种二进制协议，主要用于服务器和低功耗IoT（物联网）设备间的通信。该协议支持所有平台，几乎可以把所有联网物品和外部连接起来，被用来当做传感器和致动器的通信协议。 RabbitMQ通过插件可以支持该协议</p>
-<h2 id="各种MQ产品"><a href="#各种MQ产品" class="headerlink" title="各种MQ产品"></a>各种MQ产品</h2><p><strong>1. RocketMQ</strong></p>
-<p>阿里系下开源的一款分布式、队列模型的消息中间件，原名Metaq，3.0版本名称改为<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=RocketMQ&spm=1001.2101.3001.7020">RocketMQ</a>，是阿里参照kafka设计思想使用java实现的一套mq。同时将阿里系内部多款mq产品（Notify、metaq）进行整合，只维护核心功能，去除了所有其他运行时依赖，保证核心功能最简化，在此基础上配合阿里上述其他开源产品实现不同场景下mq的架构，目前主要多用于订单交易系统。</p>
-<p>具有以下特点：</p>
-<ul>
-<li>能够保证严格的消息顺序</li>
-<li>提供针对消息的过滤功能</li>
-<li>提供丰富的消息拉取模式</li>
-<li>高效的订阅者水平扩展能力</li>
-<li>实时的消息订阅机制</li>
-<li>亿级消息堆积能力</li>
-<li>其没有遵循任何常见的MQ协议，而是<strong>使用自研协议</strong>。</li>
-</ul>
-<p>官方提供了一些不同于kafka的对比差异：<br><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/docs/motivation/">https://rocketmq.apache.org/docs/motivation/</a></p>
-<p><strong>2. RabbitMQ</strong></p>
-<p>使用Erlang编写的一个开源的消息队列，本身支持很多的协议：AMQP，XMPP, SMTP,STOMP，也正是如此，使的它变的非常重量级，更适合于企业级的开发。同时实现了Broker架构，核心思想是生产者不会将消息直接发送给队列，消息在发送给客户端时先在中心队列排队。对路由(Routing)，负载均衡(Load balance)、数据持久化都有很好的支持。多用于进行企业级的ESB整合。</p>
-<p><strong>3.  ActiveMQ</strong></p>
-<p>Apache下的一个子项目。使用Java完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现，少量代码就可以高效地实现高级应用场景。可插拔的传输协议支持，比如：in-VM, TCP, SSL, NIO, UDP, multicast, JGroups and JXTA transports。<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=RabbitMQ&spm=1001.2101.3001.7020">RabbitMQ</a>、ZeroMQ、ActiveMQ均支持常用的多种语言客户端 C++、Java、.Net,、Python、 Php、 Ruby等。</p>
-<p><strong>4. Redis</strong></p>
-<p>使用C语言开发的一个Key-Value的NoSQL数据库，开发维护很活跃，虽然它是一个Key-Value数据库存储系统，但它本身支持MQ功能，所以完全可以当做一个轻量级的队列服务来使用。对于RabbitMQ和Redis的入队和出队操作，各执行100万次，每10万次记录一次执行时间。测试数据分为128Bytes、512Bytes、1K和10K四个不同大小的数据。实验表明：入队时，当数据比较小时Redis的性能要高于RabbitMQ，而如果数据大小超过了10K，Redis则慢的无法忍受；出队时，无论数据大小，Redis都表现出非常好的性能，而RabbitMQ的出队性能则远低于Redis。</p>
-<p><strong>5. Kafka</strong></p>
-<p>Apache下的一个子项目，使用scala实现的一个高性能分布式Publish&#x2F;Subscribe消息队列系统，具有以下特性：</p>
-<ul>
-<li>快速持久化：通过磁盘顺序读写与零拷贝机制，可以在O(1)的系统开销下进行消息持久化；</li>
-<li>高吞吐：在一台普通的服务器上既可以达到10W&#x2F;s的吞吐速率；</li>
-<li>高堆积：支持topic下消费者较长时间离线，消息堆积量大；</li>
-<li>完全的分布式系统：Broker、Producer、Consumer都原生自动支持分布式，依赖zookeeper自动实现复杂均衡；</li>
-<li>支持Hadoop数据并行加载：对于像Hadoop的一样的日志数据和离线分析系统，但又要求实时处理的限制，这是一个可行的解决方案。</li>
-<li>其没有遵循任何常见的MQ协议，而是<strong>使用自研协议</strong>。</li>
-</ul>
-<h1 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h1><p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/780968">RocketMQ 简介-阿里云开发者社区 (aliyun.com)</a></p>
-<p>RocketMQ是由阿里捐赠给Apache的一款<strong>低延迟、高并发、高可用、高可靠</strong>的分布式消息中间件。经历了淘宝<strong>双十一</strong>的洗礼。RocketMQ既可为分布式应用系统提供异步解耦和削峰填谷的能力，同时也具备互联网应用所需的海量消息堆积、高吞吐、可靠重试等特性。</p>
-<h2 id="基本组成及其概念"><a href="#基本组成及其概念" class="headerlink" title="基本组成及其概念"></a>基本组成及其概念</h2><ol>
-<li><p><strong>消息Message</strong></p>
-</li>
-<li><p><strong>主题Topic</strong></p>
-<p>Topic表示一类消息的集合，每个主题包含若干条消息，每条消息只能属于一个主题，是RocketMQ进行消息订阅的基本单位。 topic:message 1:n message:topic 1:1</p>
-<p>一个生产者可以同时发送多种Topic的消息；而一个消费者只对某种特定的Topic感兴趣，即只可以订阅和消费一种Topic的消息。 producer:topic 1:n consumer:topic 1:1</p>
-</li>
-<li><p><strong>标签Tag</strong></p>
-<p>为消息设置的标签，用于同一主题下区分不同类型的消息。来自同一业务单元的消息，可以根据不同业务目的在同一主题下设置不同标签。标签能够有效地保持代码的清晰度和连贯性，并优化RocketMQ提供的查询系统。消费者可以根据Tag实现对不同子主题的不同消费逻辑，实现更好的扩展性。</p>
-</li>
-<li><p><strong>队列Queue</strong></p>
-<p>存储消息的物理实体。一个Topic中可以包含多个Queue，每个Queue中存放的就是该Topic的消息。一个Topic的Queue也被称为一个Topic中消息的分区（Partition）。一个Topic的Queue中的消息只能被一个消费者组中的一个消费者消费。一个Queue中的消息不允许同一个消费者组中的多个消费者同时消费。</p>
-</li>
-<li><p><strong>消息标识Message ID&#x2F;Key</strong></p>
-<p>RocketMQ中每个消息拥有唯一的MessageId，且可以携带具有业务标识的Key，以方便对消息的查询。不过需要注意的是，MessageId有两个：在生产者send()消息时会自动生成一个MessageId（msgId)，当消息到达Broker后，Broker也会自动生成一个MessageId(offsetMsgId)。msgId、offsetMsgId与key都称为消息标识。</p>
-</li>
-</ol>
-<p><strong>msgId</strong>：由producer端生成，其生成规则为：producerIp + 进程pid + MessageClientIDSetter类的ClassLoader的hashCode +当前时间 + AutomicInteger自增计数器</p>
-<p><strong>offsetMsgId</strong>：由broker端生成，其生成规则为：brokerIp + 物理分区的offset（Queue中的偏移量）</p>
-<p><strong>key</strong>：由用户指定的业务相关的唯一标识</p>
-<h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><img src="/2022/08/01/MQ/image-20220801141303900.png" class="" title="image-20220801141303900">
-
-<h3 id="1-Producer"><a href="#1-Producer" class="headerlink" title="1. Producer"></a>1. <strong>Producer</strong></h3><p>   消息生产者，负责生产消息。Producer通过MQ的负载均衡模块选择相应的Broker集群队列进行消息投递，投递的过程支持快速失败并且低延迟。</p>
-<h3 id="2-Consumer"><a href="#2-Consumer" class="headerlink" title="2. Consumer"></a>2. <strong>Consumer</strong></h3><p>   消息消费者，负责消费消息。一个消息消费者会从Broker服务器中获取到消息，并对消息进行相关业务处理。消费者组使得在消息消费方面，实现<strong>负载均衡</strong>（：将一个Topic中的不同的Queue平均分配给同一个Consumer Group的不同的Consumer，注意，并不是将消息负载均衡）和<strong>容错</strong>（：一个Consmer挂了，该Consumer Group中的其它Consumer可以接着消费原Consumer消费的Queue）的目标变得非常容易。</p>
-<h3 id="3-Name-Server"><a href="#3-Name-Server" class="headerlink" title="3. Name Server"></a>3. <strong>Name Server</strong></h3><p>   NameServer是一个Broker与Topic路由的注册中心，支持Broker的动态注册与发现。</p>
-<p>主要包括两个功能：</p>
-<p><strong>Broker管理：</strong>接受Broker集群的注册信息并且保存下来作为路由信息的基本数据；提供心跳检测机制，检查Broker是否还存活。</p>
-<p><strong>路由信息管理：</strong>每个NameServer中都保存着Broker集群的整个路由信息和用于客户端查询的队列信息。Producer和Conumser通过NameServer可以获取整个Broker集群的路由信息，从而进行消息的投递和消费。</p>
-<p><strong>路由注册</strong></p>
-<p>NameServer通常也是以集群的方式部署，不过，NameServer是无状态的，即NameServer集群中的各个节点间是无差异的，各节点间相互不进行信息通讯。那各节点中的数据是如何进行数据同步的呢？在Broker节点启动时，轮询NameServer列表，与每个NameServer节点建立长连接，发起注册请求。在NameServer内部维护着⼀个Broker列表，用来动态存储Broker的信息。</p>
-<p>Broker节点为了证明自己是活着的，为了维护与NameServer间的长连接，会将最新的信息以心跳包的方式上报给NameServer，每30秒发送一次心跳。心跳包中包含 BrokerId、Broker地址(IP+Port)、 Broker名称、Broker所属集群名称等等。NameServer在接收到心跳包后，会更新心跳时间戳，记录这个Broker的最新存活时间。</p>
-<p><strong>路由剔除</strong></p>
-<p>由于Broker关机、宕机或网络抖动等原因，NameServer没有收到Broker的心跳，NameServer可能会将其从Broker列表中剔除。NameServer中有⼀个定时任务，每隔10秒就会扫描⼀次Broker表，查看每一个Broker的最新心跳时间戳距离当前时间是否超过120秒，如果超过，则会判定Broker失效，然后将其从Broker列表中剔除。</p>
-<p><strong>路由发现</strong></p>
-<p>RocketMQ的路由发现采用的是Pull模型。当Topic路由信息出现变化时，NameServer不会主动推送给客户端，而是客户端定时拉取主题最新的路由。默认客户端每30秒会拉取一次最新的路由。</p>
-<p>扩展： </p>
-<p><em>1</em>）<em>Push</em>模型：推送模型。其实时性较好，是一个<em>“</em>发布*-<em>订阅</em>”*模型，需要维护一个长连接。而长连接的维护是需要资源成本的。该模型适合于的场景： </p>
-<p>实时性要求较高</p>
-<p><em>Client</em>数量不多，<em>Server</em>数据变化较频繁 </p>
-<p><em>2</em>）<em>Pull</em>模型：拉取模型。存在的问题是，实时性较差。 </p>
-<p><em>3</em>）<em>Long Polling</em>模型：长轮询模型。其是对<em>Push</em>与<em>Pull</em>模型的整合，充分利用了这两种模型的优 势，屏蔽了它们的劣势。<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d3f66b1eb748?isappinstalled=0">Long Polling长轮询详解 - 简书 (jianshu.com)</a></p>
-<h3 id="4"><a href="#4" class="headerlink" title="4."></a>4.</h3><h2 id="生产者组和消费者组（ProducerGroup-amp-ConsumerGroup）"><a href="#生产者组和消费者组（ProducerGroup-amp-ConsumerGroup）" class="headerlink" title="生产者组和消费者组（ProducerGroup&amp;ConsumerGroup）"></a>生产者组和消费者组（ProducerGroup&amp;ConsumerGroup）</h2><p>一个生产者组存在多个生产者，一个胜场这可以说生产的多个topic的消息。</p>
-<p>一个topic对应一个ConsumerGroup。</p>
-<p>一个ConsumerGroup里的一个Consumer 可以消费不同的Queue，但是一个Queue不可以被同一个Consumer所消费。</p>
-<p>官方文档：</p>
-<p><a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/43523.htm?spm=a2c4g.11186623.0.0.17933635TNm0d1">订阅关系一致 (aliyun.com)</a></p>
-<h1 id="KafKa"><a href="#KafKa" class="headerlink" title="KafKa"></a>KafKa</h1>
+          <h1 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h1><p>MQ 是message queue ,消息队列，也叫消息中间件，遵守JMS（java message service）规范的一种软件。是类似于数据库一样需要独立部署在服务器上的一种应用，提供接口给其他系统调用。</p>
+<p>主要用于各个系统之间通信的解耦。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/01/MQ/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -592,7 +501,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-25 09:29:06" itemprop="dateModified" datetime="2022-07-25T09:29:06+08:00">2022-07-25</time>
+                <time title="Modified: 2022-08-03 14:35:25" itemprop="dateModified" datetime="2022-08-03T14:35:25+08:00">2022-08-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1358,13 +1267,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">179k</span>
+    <span title="Symbols count total">182k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:43</span>
+    <span title="Reading time total">2:45</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
