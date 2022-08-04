@@ -208,6 +208,162 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zh-CN">
+      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shuaiqiwudi blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-title-link" itemprop="url">计算机网络</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-08-04 14:02:31 / Modified: 16:24:42" itemprop="dateCreated datePublished" datetime="2022-08-04T14:02:31+08:00">2022-08-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20220804142611346-16595943730113.png" class="" title="image-20220804142611346">
+
+<p>注：五层协议的体系结构只是为了介绍网络原理而设计的，实际应用还是 TCP&#x2F;IP 四层体系结构。国际标准化组织 ISO 于1977年提 出了一个试图使各种计算机在世界范围内互联成网的标准框架，即著名的开放系统互联基本参考模型 OSI&#x2F;RM，简称为OSI，但它既复杂又不实用</p>
+<p>在计算机网络要做到有条不紊地交换数据，就必须遵守一些事先约定好的规则， 比如交换数据的格式、是否需要发送一个应答信息。这些规则被称为网络协议。</p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/428372105">应用层协议详解 - 知乎 (zhihu.com)</a></p>
+<p>在 TCP&#x2F;IP 模型中，应用层提供的服务相当于 OSI 模型的应用层、表示层和会话层的服务总和。不仅包含了<strong>管理通信连接</strong>的会话层功能、<strong>数据格式转换</strong>的表示层功能，还包括<strong>主机间交互</strong>的应用层功能。</p>
+<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20220804152634329-16595979954344.png" class="" title="image-20220804152634329">
+
+
+
+<p>TCP&#x2F;IP 模型中应用层位于传输层之上，传输层的端口号用于标识数据所对应的应用层协议。也就是说，有端口号的协议都是<strong>应用层协议</strong>。应用协议是终端设备之间的应用通信规则。应用之间交互的信息叫<strong>消息</strong>，应用协议定义这些消息的格式以及消息的控制或操作的规则。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-3fff05a4c9cc787c8c0abaf2e7d20097_720w.jpg" alt="img"></p>
+<p>应用协议的通信方式可分为两类：</p>
+<ul>
+<li>服务器和客户端模型</li>
+<li>P2P 模型</li>
+</ul>
+<p>在<strong>服务器和客户端模型</strong>中，始终公开固定 IP 地址的主机为其它主机的应用程序提供服务，请求服务的主机之间不会互相通信。这些为其它主机提供服务的终端设备称为<strong>服务器</strong>，那些请求服务的主机则称为<strong>客户端</strong>。大多数应用层协议，都是这种模型。</p>
+<p>在 <strong>P2P 模型</strong>中，没有特定的服务器或客户端，这些设备上安装的应用程序，可以在主机间建立对等连接，既可以提供服务，也可以接受服务。通常是大流量的应用程序采用 P2P 模型，比如：下载器等。</p>
+<h2 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h2><h3 id="TCP-x2F-IP-四层体系结构"><a href="#TCP-x2F-IP-四层体系结构" class="headerlink" title="TCP&#x2F;IP 四层体系结构"></a><strong>TCP&#x2F;IP</strong> 四层体系结构</h3><p>应用层( application-layer ）的任务是通过应用进程间的交互来完成特定网络应 用。应用层协议定义的是应用进程（进程：主机中正在运行的程序）间的通信和 交互的规则。</p>
+<p>对于不同的网络应用需要不同的应用层协议。在互联网中应用层协议很多，如域 名系统 DNS，支持万维网应用的 HTTP 协议，支持电子邮件的 SMTP 协议等 等。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>UDP</strong></th>
+<th>TCP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否连接</td>
+<td>无连接</td>
+<td>有连接</td>
+</tr>
+<tr>
+<td>是否可靠</td>
+<td>不可靠传输，不使用流量控制和拥塞控制</td>
+<td>可靠传输，使用 流量控制和拥塞控制</td>
+</tr>
+<tr>
+<td>连接对象个数</td>
+<td>支持一对 一，一对多，多对一和多对多交互通信</td>
+<td>只能是一对一通信</td>
+</tr>
+<tr>
+<td>传输方式</td>
+<td>面向报文</td>
+<td>面向字节流</td>
+</tr>
+<tr>
+<td>首部开销</td>
+<td>首部开销小，仅8个字节</td>
+<td>首部小：20字节， 大：60字节</td>
+</tr>
+<tr>
+<td>场景</td>
+<td>适用于实时应用 （IP电话、视频会议、直播等）</td>
+<td>适用于要求可靠传输的应用，例如文件传输</td>
+</tr>
+</tbody></table>
+<h2 id="常见面试题："><a href="#常见面试题：" class="headerlink" title="常见面试题："></a>常见面试题：</h2><h3 id="1-HTTP和HTTPS的区别："><a href="#1-HTTP和HTTPS的区别：" class="headerlink" title="1. HTTP和HTTPS的区别："></a>1. HTTP和HTTPS的区别：</h3><p>HTTP（HyperText Transfer Protocol：超文本传输协议）是一种用于分布式、协作式和超媒体信息系统的应用层协议。 简单来说就是一种发布和接收 HTML 页面的方法，被用于在 Web 浏览器和网站服务器之间传递信息。HTTP 默认工作在 TCP 协议 80 端口，用户访问网站 http:&#x2F;&#x2F; 打头的都是标准 HTTP 服务。</p>
+<p><strong>HTTP 协议以明文方式发送内容</strong>，不提供任何方式的数据加密，如果攻击者截取了Web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，因此，HTTP协议不适合传输一些敏感信息，比如：信用卡号、密码等支付信息。</p>
+<p><strong>HTTPS</strong>（Hypertext Transfer Protocol Secure：超文本传输安全协议）是一种透过计算机网络进行安全通信的传输协议。HTTPS 经由 HTTP 进行通信，但利用 SSL&#x2F;TLS 来加密数据包。HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。既使用<strong>SSL&#x2F;TLS+HTTP</strong>。</p>
+<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/v2-9556fa61ac7262a18bc639db29362669_720w.jpg" class="" title="img">
+
+<p>SSL（Secure Socket Layer，安全套接字层）TLS（Transport Layer Security，传输层安全）</p>
+<h4 id="对称加密和非对称加密："><a href="#对称加密和非对称加密：" class="headerlink" title="对称加密和非对称加密："></a>对称加密和非对称加密：</h4><p><strong>对称加密：</strong>加密和解密的秘钥使用的是同一个.</p>
+<p> <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AF%86%E9%92%A5&spm=1001.2101.3001.7020">密钥</a>较短，破译困难，除了数据加密标准（DES），另一个对称密钥加密系统是国际数据加密算法（IDEA），它比DES的加密性好，且对计算机性能要求也没有那么高.</p>
+<p>缺点：  算法公开、计算量小、加密速度快、加密效率高</p>
+<p>常见的对称加密算法：DES、3DES、Blowfish、IDEA、RC4、RC5、RC6 和 AES </p>
+<p>在N个人之间通信的时候：使用非对称加密只需要N个密钥对，每个人只管理自己的密钥对。而使用对称加密需要则需要<code>N*(N-1)/2</code>个密钥，因此每个人需要管理<code>N-1</code>个密钥，密钥管理难度大，而且非常容易泄漏。</p>
+<p><strong>非对称加密算法:</strong> 公开密钥与私有密钥是一对，如果用公开密钥对数据进行加密，只有用对应的私有密钥才能解密；如果用私有密钥对数据进行加密，那么只有用对应的公开密钥才能解密。因为加密和解密使用的是两个不同的密钥，所以这种算法叫作非对称加密算法。</p>
+<p>非对称加密算法实现机密信息交换的基本过程是：甲方生成一对密钥并将其中的一把作为公用密钥向其它方公开；得到该公用密钥的乙方使用该密钥对机密信息进行加密后再发送给甲方；甲方再用自己保存的另一把专用密钥对加密后的信息进行解密。甲方只能用其专用密钥解密由其公用密钥加密后的任何信息。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29689487/article/details/81634057">https://blog.csdn.net/qq_29689487/article/details/81634057</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1304227873816610">非对称加密算法 - 廖雪峰的官方网站 (liaoxuefeng.com)</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/01/MQ/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -406,7 +562,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-26 08:52:35" itemprop="dateModified" datetime="2022-07-26T08:52:35+08:00">2022-07-26</time>
+                <time title="Modified: 2022-08-04 15:11:51" itemprop="dateModified" datetime="2022-08-04T15:11:51+08:00">2022-08-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -424,7 +580,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>683</span>
+              <span>685</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -1050,106 +1206,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/28/SpringBoot/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zh-CN">
-      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shuaiqiwudi blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/28/SpringBoot/" class="post-title-link" itemprop="url">SpringBoot</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-05-28 13:24:37" itemprop="dateCreated datePublished" datetime="2022-05-28T13:24:37+08:00">2022-05-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-17 14:33:13" itemprop="dateModified" datetime="2022-07-17T14:33:13+08:00">2022-07-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.7k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>官网：<a target="_blank" rel="noopener" href="https://spring.io/projects/spring-boot">Spring Boot</a></p>
-<img src="/2022/05/28/SpringBoot/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg" class="" title="查看源图像">
-
-<h1 id="什么是SpringBoot？"><a href="#什么是SpringBoot？" class="headerlink" title="什么是SpringBoot？"></a>什么是SpringBoot？</h1><p>Spring Boot 是 Pivotal 团队在 Spring 的基础上提供的一套全新的开源框架，其目的是为了简化 Spring 应用的搭建和开发过程。Spring Boot 去除了大量的 XML 配置文件，简化了复杂的依赖管理。</p>
-<p>Spring Boot 具有 Spring 一切优秀特性，Spring 能做的事，Spring Boot 都可以做，而且使用更加简单，功能更加丰富，性能更加稳定而健壮。随着近些年来微服务技术的流行，Spring Boot 也成了时下炙手可热的技术。</p>
-<p>Spring Boot 集成了大量常用的第三方库配置，Spring Boot 应用中这些第三方库几乎可以是零配置的开箱即用（out-of-the-box），大部分的 Spring Boot 应用都只需要非常少量的配置代码（基于 Java 的配置），开发者能够更加专注于业务逻辑。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/28/SpringBoot/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1219,14 +1275,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1267,13 +1323,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">182k</span>
+    <span title="Symbols count total">190k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:46</span>
+    <span title="Reading time total">2:53</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
