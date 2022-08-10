@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220516154322660.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220521095627681.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220520140939077.png">
-<meta property="og:image" content="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223659712-1825753625.png">
+<meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223659712-1825753625.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png">
@@ -45,7 +45,7 @@
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220711173346887.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/ec9158ddefc24b9a8c638d469729c542.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6aOO6KGM5rC05LiKX1pI,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="article:published_time" content="2022-05-16T06:46:22.000Z">
-<meta property="article:modified_time" content="2022-08-04T02:34:46.358Z">
+<meta property="article:modified_time" content="2022-08-09T02:48:28.996Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -242,7 +242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-04 10:34:46" itemprop="dateModified" datetime="2022-08-04T10:34:46+08:00">2022-08-04</time>
+                <time title="Modified: 2022-08-09 10:48:28" itemprop="dateModified" datetime="2022-08-09T10:48:28+08:00">2022-08-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -447,7 +447,8 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <p><a target="_blank" rel="noopener" href="https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc">Minor GC vs Major GC vs Full GC | Plumbr – User Experience &amp; Application Performance Monitoring</a></p>
 </blockquote>
 <h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><h4 id="方法区存放的具体内容："><a href="#方法区存放的具体内容：" class="headerlink" title="方法区存放的具体内容："></a>方法区存放的具体内容：</h4><p>它用于存储已被虚拟机加载的类型信息、常量、静态常量、即时编译器编译后的代码缓存等。</p>
-<p><img src="https://img2020.cnblogs.com/blog/2128165/202008/2128165-20200827223659712-1825753625.png" alt="9.4.1_1"></p>
+<img src="/2022/05/16/JVM/2128165-20200827223659712-1825753625.png" class="" title="9.4.1_1">
+
 <h4 id="方法区的位置"><a href="#方法区的位置" class="headerlink" title="方法区的位置"></a>方法区的位置</h4><p>《Java 虚拟机规范》中明确说明：“尽管所有的方法区在逻辑上是属于堆的一部分，但一些简单的实现可能不会选择去进行垃圾收集或进行压缩。”但对于 HotSpot JVM 而言，方法区还有一个别名叫做 Non-Heap（非堆），目的就是要和堆分开。</p>
 <p>所以，<strong>方法区看作是一块独立于 Java 堆的内存空间。</strong></p>
 <p>方法区在 JVM 启动的时候被创建，并且它在实际的物理内存空间中，和 Java 堆区一样都可以是不连续的。在 jdk7 及以前，习惯上把方法区称为永久代。jdk8 开始，使用元空间取代了永久代。本质上，方法区和永久代并不等价，等价仅是对 HotSpot 而言的。</p>
@@ -528,9 +529,9 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
     TALB机制：把内存分配的动作按照线程划分在不同的空间之中进行，即每个线程在Java堆中预先分配一小块私有内存，也就是本地线程分配缓冲（Thread Local Allocation Buffer,TLAB），JVM在线程初始化时，同时也会申请一块指定大小的内存，只给当前线程使用，这样每个线程都单独拥有一个Buffer，如果需要分配内存，就在自己的Buffer上分配，这样就不存在竞争的情况，可以大大提升分配效率，当Buffer容量不够的时候，再重新从Eden区域申请一块继续使用。TLAB的目的是在为新对象分配内存空间时，让每个Java应用线程能在使用自己专属的分配指针来分配空间，减少同步开销。TLAB只是让每个线程有私有的分配指针，但是对象的内存空间还是给所有线程访问的，只是其它线程无法在这个区域分配而已。当一个TLAB用满（分配指针top撞上分配极限end了），就新申请一个TLAB。（Jvm默认使用此方案）。
 </code></pre>
 <h2 id="对象的内存分配位置"><a href="#对象的内存分配位置" class="headerlink" title="对象的内存分配位置"></a>对象的内存分配位置</h2><p><img src="https://img-blog.csdnimg.cn/ec9158ddefc24b9a8c638d469729c542.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6aOO6KGM5rC05LiKX1pI,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
-<h2 id="JVM的性能调优"><a href="#JVM的性能调优" class="headerlink" title="JVM的性能调优"></a>JVM的性能调优</h2><h2 id="GC算法，永久代对象如何GC，GC有环怎么处理"><a href="#GC算法，永久代对象如何GC，GC有环怎么处理" class="headerlink" title="GC算法，永久代对象如何GC，GC有环怎么处理"></a><strong>GC</strong>算法，永久代对象如何GC，GC有环怎么处理</h2><h2 id="Java7到Java8关于JVM的改变"><a href="#Java7到Java8关于JVM的改变" class="headerlink" title="Java7到Java8关于JVM的改变"></a>Java7到Java8关于JVM的改变</h2><h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p>在讨论深拷贝和浅拷贝之前 首先要了解一下java的赋值机制——值传递</p>
+<h2 id="JVM的性能调优"><a href="#JVM的性能调优" class="headerlink" title="JVM的性能调优"></a>JVM的性能调优</h2><h2 id="GC算法，永久代对象如何GC，GC有环怎么处理"><a href="#GC算法，永久代对象如何GC，GC有环怎么处理" class="headerlink" title="GC算法，永久代对象如何GC，GC有环怎么处理"></a>GC算法，永久代对象如何GC，GC有环怎么处理</h2><h2 id="Java7到Java8关于JVM的改变"><a href="#Java7到Java8关于JVM的改变" class="headerlink" title="Java7到Java8关于JVM的改变"></a>Java7到Java8关于JVM的改变</h2><h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p>在讨论深拷贝和浅拷贝之前 首先要了解一下java的赋值机制——值传递</p>
 <p>什么是值传递 什么是引用传递?</p>
-<p>首先要了解一下 什么是实际参数 什么是形式参数?</p>
+<p>首先要了解一下 什么是实际参数 什么是形式参数?(纯纯套娃了)</p>
 <p>形式参数 最先想到的就是java方法中的方法参数值了</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">speak</span><span class="params">(String word)</span>&#123; <span class="comment">//word就是形式参数 简称形参</span></span><br><span class="line">    System.out.println(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -657,14 +658,14 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -705,7 +706,7 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">191k</span>
+    <span title="Symbols count total">192k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
