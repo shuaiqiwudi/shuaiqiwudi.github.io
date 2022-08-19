@@ -22,20 +22,26 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Tomcat作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。 提到Tomcat 就必须提到Server。 每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程">
+  <meta name="description" content="Apache Tomcat® - Welcome! WebWeb (World Wide Web) 即全球广域网，也称为万维网，它是一种基于超文本和HTTP的、全球性的、动态交互的、跨平台的分布式图形信息系统。是建立在Internet上的一种网络服务，为浏览者在Internet上查找和浏览信息提供了图形化的、易于访问的直观界面。 那么Web端就是可以浏览Internet上信息的设备，再说得简单">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Server">
+<meta property="og:title" content="Tomcat的网络请求及Web界面的工作流程">
 <meta property="og:url" content="http://example.com/2022/05/18/Server/index.html">
 <meta property="og:site_name" content="shuaiqiwudi blog">
-<meta property="og:description" content="Tomcat作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。 提到Tomcat 就必须提到Server。 每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程">
+<meta property="og:description" content="Apache Tomcat® - Welcome! WebWeb (World Wide Web) 即全球广域网，也称为万维网，它是一种基于超文本和HTTP的、全球性的、动态交互的、跨平台的分布式图形信息系统。是建立在Internet上的一种网络服务，为浏览者在Internet上查找和浏览信息提供了图形化的、易于访问的直观界面。 那么Web端就是可以浏览Internet上信息的设备，再说得简单">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/05/18/Server/image-20220819104112930.png">
+<meta property="og:image" content="http://example.com/2022/05/18/Server/v2-ca567ba088698a36d2d418358f45ad9d_720w.jpg">
+<meta property="og:image" content="http://example.com/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTk0Mzg4,size_16,color_FFFFFF,t_70.png">
+<meta property="og:image" content="http://example.com/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTk0Mzg4,size_16,color_FFFFFF,t_70-16608748133523.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200801170056168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTk0Mzg4,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="http://example.com/2022/05/18/Server/20160816205332380.png">
+<meta property="og:image" content="http://example.com/2022/05/18/Server/image-20220819103553762.png">
 <meta property="article:published_time" content="2022-05-18T03:17:35.000Z">
-<meta property="article:modified_time" content="2022-08-09T01:56:45.562Z">
+<meta property="article:modified_time" content="2022-08-19T02:43:49.090Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/05/18/Server/20160816205332380.png">
+<meta name="twitter:image" content="http://example.com/2022/05/18/Server/image-20220819104112930.png">
 
 <link rel="canonical" href="http://example.com/2022/05/18/Server/">
 
@@ -50,7 +56,7 @@
   };
 </script>
 
-  <title>Server | shuaiqiwudi blog</title>
+  <title>Tomcat的网络请求及Web界面的工作流程 | shuaiqiwudi blog</title>
   
 
 
@@ -211,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Server
+          Tomcat的网络请求及Web界面的工作流程
         </h1>
 
         <div class="post-meta">
@@ -228,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-09 09:56:45" itemprop="dateModified" datetime="2022-08-09T09:56:45+08:00">2022-08-09</time>
+                <time title="Modified: 2022-08-19 10:43:49" itemprop="dateModified" datetime="2022-08-19T10:43:49+08:00">2022-08-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,14 +273,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>308</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -286,17 +292,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
-<p>提到Tomcat 就必须提到Server。</p>
-<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
-<p>扒开Tomcat 看看真面目：</p>
-<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
+        <img src="/2022/05/18/Server/image-20220819104112930.png" class="" title="image-20220819104112930">
 
+<p><a target="_blank" rel="noopener" href="https://tomcat.apache.org/">Apache Tomcat® - Welcome!</a></p>
+<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><p>Web (World Wide Web) 即全球广域网，也称为万维网，它是一种基于超文本和HTTP的、全球性的、动态交互的、跨平台的分布式图形信息系统。是建立在Internet上的一种网络服务，为浏览者在Internet上查找和浏览信息提供了图形化的、易于访问的直观界面。</p>
+<p>那么Web端就是可以浏览Internet上信息的设备，再说得简单点，就是设备上可以安装浏览器，都可以称之为Web端，可以是台笔记本电脑，也可以是PAD,或是一台冰箱，只要<strong>可以安装浏览器的设备</strong>，我们都可以称之为Web端。</p>
 <span id="more"></span>
 
+<h1 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h1><p>Java Servlet（Java服务器小程序）是一个<strong>基于Java</strong>技术的Web组件，运行在服务器端，它<strong>由Servlet容器</strong>所管理，用于生成动态的内容。 Servlet是平台独立的Java类，编写一个Servlet，<strong>实际上就是按照Servlet规范编写一个Java类</strong>。Servlet被编译为平台独立的字节码，可以被动态地加载到支持Java技术的Web服务器中运行。</p>
+<h1 id="Servlet容器"><a href="#Servlet容器" class="headerlink" title="Servlet容器"></a>Servlet容器</h1><p>Servlet容器也叫做Servlet引擎，是<strong>Web服务器</strong>或应用程序服务器的一部分，用于在发送的请求和响应之上提供网络服务，解码基于MIME的请求，格式化基于MIME的响应。Servlet没有main方法，不能独立运行，它必须被部署到Servlet容器中，由容器来实例化和调用 Servlet的方法（如doGet()和doPost()），Servlet容器在Servlet的生命周期内包容和管理Servlet。在JSP技术 推出后，管理和运行Servlet&#x2F;JSP的容器也称为Web容器。</p>
+<img src="/2022/05/18/Server/v2-ca567ba088698a36d2d418358f45ad9d_720w.jpg" class="" title="img">
+
+<h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
+<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>作为后端开发，数据传输到前端界面，或者浏览器运行，如果出现问题，那么就会让人崩溃，各种错误代码扑面而来，让头发焦急。</p>
+<p>每当一个项目开始运行（启动）那么，支撑浏览器到达指定端口的位置，并且显示界面的，显示数据的，一定是服务器的工作，在本地的项目开始运行，tomcat就充当这个服务器的角色，所以tomcat是web应用服务器,是用来处理java程序的一个应用服务器。</p>
+<p>Tomcat是⼀个由⼀系列可配置（conf&#x2F;server.xml）的组件构成的Web容器，⽽<strong>Catalina是Tomcat的servlet容器</strong>。从另⼀个⻆度来说，Tomcat 本质上就是⼀款 Servlet 容器， 因为 Catalina 才是 Tomcat 的核⼼ ， 其他模块都是为Catalina 提供⽀撑的。 ⽐如 ： 通过 Coyote 模块提供链接通信，Jasper 模块提供 JSP 引擎，Naming 提供JNDI 服务，Juli 提供⽇志服务。</p>
+<p>Tomcat 组件：</p>
+<img src="/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTk0Mzg4,size_16,color_FFFFFF,t_70.png" class="" title="Tomcat 组件">
+
+<h2 id="Servlet-和-Server-的关系"><a href="#Servlet-和-Server-的关系" class="headerlink" title="Servlet 和 Server 的关系"></a>Servlet 和 Server 的关系</h2><p>Server 元素表示整个 Catalina servlet 容器。</p>
+<h2 id="Tomcat和Catelina的关系"><a href="#Tomcat和Catelina的关系" class="headerlink" title="Tomcat和Catelina的关系"></a>Tomcat和Catelina的关系</h2><p>我们往往有⼀个认识，Tomcat就是⼀个Catalina的实例，因为Catalina是Tomcat的核⼼，其实，<strong>可以认为整个Tomcat就是⼀个Catalina实例，Tomcat 启动的时候会初始化这个实例</strong>，Catalina实例通过加载server.xml完成其他实例的创建，创建并管理<strong>⼀个Server</strong>，Server创建并管理多个服务，每个服务⼜可以有<strong>多个Connector和⼀个Container。</strong></p>
+<h2 id="Catalina-的结构（Servlet容器）"><a href="#Catalina-的结构（Servlet容器）" class="headerlink" title="Catalina 的结构（Servlet容器）"></a>Catalina 的结构（Servlet容器）</h2><img src="/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTk0Mzg4,size_16,color_FFFFFF,t_70-16608748133523.png" class="" title="Catalina 的结构">
 
 
-<h2 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h2><p>Server是Tomcat最顶层的容器，代表着整个服务器，即一个Tomcat只有一个Server，Server中包含至少一个Service组件，用于提供具体服务。</p>
+
+<p><strong>Catalina</strong><br>负责解析Tomcat的配置⽂件（server.xml） , 以此来创建服务器Server组件并进⾏管理<br><strong>Server</strong><br>Server表示整个Catalina Servlet容器以及其它组件，负责组装并启动Servlaet引擎,Tomcat连接器。Server通过实现Lifecycle接⼝，提供了⼀种优雅的启动和关闭整个系统的⽅式<br><strong>Service</strong><br>服务是Server内部的组件，⼀个Server包含多个Service。它将若⼲个Connector组件绑定到⼀个Container容器，负责处理⽤户的servlet请求，并返回对象给web⽤户的模块Container 组件的具体结构。<br><strong>Connector</strong><br>连接器（Connector）处理与客户端的通信，它负责接收客户请求，以及向客户返回响应结果。在Tomcat中，有多个连接器可以使用。</p>
+<h2 id="Container-组件的具体结构"><a href="#Container-组件的具体结构" class="headerlink" title="Container 组件的具体结构"></a>Container 组件的具体结构</h2><p>Container组件下有⼏种具体的组件，分别是Engine、Host、Context和Wrapper。这4种组件（容器）是⽗⼦关系。Tomcat通过⼀种分层的架构，使得Servlet容器具有很好的灵活性。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200801170056168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTk0Mzg4,size_16,color_FFFFFF,t_70" alt="Container 组件的具体结构"></p>
+<p><strong>Engine</strong><br>表示整个Catalina的Servlet引擎，⽤来管理多个虚拟站点，⼀个Service最多只能有⼀个Engine，但是⼀个引擎可包含多个Host<br><strong>Host</strong><br>表示一个虚拟主机，一个引擎可以包含多个Host。用户通常不需要创建自定义的Host，因为Tomcat给出的Host接口的实现（类StandardHost）提供了重要的附加功能。<br><strong>Context</strong><br>一个Context表示了一个Web应用程序，运行在特定的虚拟主机中（Web应用程序：一个Web应用程序是由一组Servlet、HTML页面、类，以及其他的资源组成的运行在Web服务器上的完整的应用程序。它可以在多个供应商提供的实现了Servlet规范的Web容器中运行）。<br><strong>Wrapper</strong><br>wrapper是四大容器最底层的容器，是请求处理的真正容器。与servlet的区别是：wrapper本质并未处理请求，而是加载对应的servlet来处理，在这之前也会调用filter。</p>
+<img src="/2022/05/18/Server/20160816205332380.png" class="" title="Tomcat总体架构">
+
+
+
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40249834">几个概念：Servlet、Servlet容器、Tomcat - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36194388/article/details/107733315">(43条消息) Tomcat Servlet 容器 Catalina基本认识_时小浅的博客-CSDN博客</a></p>
+<h2 id="整体请求流程"><a href="#整体请求流程" class="headerlink" title="整体请求流程"></a>整体请求流程</h2><img src="/2022/05/18/Server/image-20220819103553762.png" class="" title="image-20220819103553762">
+
+
+
+<h1 id="Servlet深入"><a href="#Servlet深入" class="headerlink" title="Servlet深入"></a>Servlet深入</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19782019/article/details/80292110?ops_request_misc=%7B%22request_id%22:%22166086995916781790723169%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=166086995916781790723169&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-80292110-null-null.142%5Ev42%5Econtrol,185%5Ev2%5Econtrol&utm_term=Servlet&spm=1018.2226.3001.4187">(43条消息) JavaWeb——Servlet（全网最详细教程包括Servlet源码分析）_刘扬俊的博客-CSDN博客_servlet</a></p>
+<h1 id="Requset-和-Response-的区别"><a href="#Requset-和-Response-的区别" class="headerlink" title="Requset 和 Response 的区别"></a>Requset 和 Response 的区别</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq1808814025/article/details/106199159">(43条消息) request和response的区别!!!_经理，天台风好大的博客-CSDN博客_request和response的区别</a></p>
 
     </div>
 
@@ -378,7 +413,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat"><span class="nav-number">1.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Server"><span class="nav-number">1.1.</span> <span class="nav-text">Server</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web"><span class="nav-number">1.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet"><span class="nav-number">2.</span> <span class="nav-text">Servlet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet%E5%AE%B9%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">Servlet容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Server"><span class="nav-number">4.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat"><span class="nav-number">5.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-%E5%92%8C-Server-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.1.</span> <span class="nav-text">Servlet 和 Server 的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat%E5%92%8CCatelina%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.2.</span> <span class="nav-text">Tomcat和Catelina的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Catalina-%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%88Servlet%E5%AE%B9%E5%99%A8%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">Catalina 的结构（Servlet容器）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%85%B7%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">5.4.</span> <span class="nav-text">Container 组件的具体结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B"><span class="nav-number">5.5.</span> <span class="nav-text">整体请求流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet%E6%B7%B1%E5%85%A5"><span class="nav-number">6.</span> <span class="nav-text">Servlet深入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Requset-%E5%92%8C-Response-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">7.</span> <span class="nav-text">Requset 和 Response 的区别</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -392,14 +427,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -440,13 +475,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">192k</span>
+    <span title="Symbols count total">194k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:54</span>
+    <span title="Reading time total">2:57</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
