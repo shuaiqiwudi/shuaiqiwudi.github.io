@@ -36,8 +36,11 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200801170056168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTk0Mzg4,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="http://example.com/2022/05/18/Server/20160816205332380.png">
 <meta property="og:image" content="http://example.com/2022/05/18/Server/image-20220819103553762.png">
+<meta property="og:image" content="http://example.com/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlc2lsZXFpbg==,size_16,color_FFFFFF,t_70#pic_center.png">
+<meta property="og:image" content="http://example.com/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxMTgwODgxNDAyNQ==,size_16,color_FFFFFF,t_70#pic_center-166126828144912.png">
+<meta property="og:image" content="http://example.com/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxMTgwODgxNDAyNQ==,size_16,color_FFFFFF,t_70#pic_center.png">
 <meta property="article:published_time" content="2022-05-18T03:17:35.000Z">
-<meta property="article:modified_time" content="2022-08-19T02:43:49.090Z">
+<meta property="article:modified_time" content="2022-08-23T15:27:40.162Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -234,7 +237,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-19 10:43:49" itemprop="dateModified" datetime="2022-08-19T10:43:49+08:00">2022-08-19</time>
+                <time title="Modified: 2022-08-23 23:27:40" itemprop="dateModified" datetime="2022-08-23T23:27:40+08:00">2022-08-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,14 +276,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.6k</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
+              <span>4 mins.</span>
             </span>
 
         </div>
@@ -331,7 +334,30 @@
 
 
 <h1 id="Servlet深入"><a href="#Servlet深入" class="headerlink" title="Servlet深入"></a>Servlet深入</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19782019/article/details/80292110?ops_request_misc=%7B%22request_id%22:%22166086995916781790723169%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=166086995916781790723169&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-80292110-null-null.142%5Ev42%5Econtrol,185%5Ev2%5Econtrol&utm_term=Servlet&spm=1018.2226.3001.4187">(43条消息) JavaWeb——Servlet（全网最详细教程包括Servlet源码分析）_刘扬俊的博客-CSDN博客_servlet</a></p>
-<h1 id="Requset-和-Response-的区别"><a href="#Requset-和-Response-的区别" class="headerlink" title="Requset 和 Response 的区别"></a>Requset 和 Response 的区别</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq1808814025/article/details/106199159">(43条消息) request和response的区别!!!_经理，天台风好大的博客-CSDN博客_request和response的区别</a></p>
+<h1 id="Requset-和-Response"><a href="#Requset-和-Response" class="headerlink" title="Requset 和 Response"></a>Requset 和 Response</h1><h2 id="Request和Response的生命周期"><a href="#Request和Response的生命周期" class="headerlink" title="Request和Response的生命周期"></a>Request和Response的生命周期</h2><img src="/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xlc2lsZXFpbg==,size_16,color_FFFFFF,t_70#pic_center.png" class="" title="在这里插入图片描述">
+
+<ol>
+<li>服务器在接收到客户端的请求之后，会创建request对象和response对象</li>
+<li>服务器会通过request对象把客户的数据，包括请求信息都封装到这个对象里面</li>
+<li>所以我们在控制层，servlet里面就是service方法里面通过request得到很多数据，并对信息进行相应的业务处理，最后反馈给用户结果</li>
+<li>这个结果我们是通过response来封装的，并带到用户面前</li>
+<li>当这整个过程结束之后，request和response对象的周期也就结束了，他们的生命范围就是用户的一次请求和得到的一次结果的反馈。</li>
+</ol>
+<h3 id="Request、Response对象的内存地址维护"><a href="#Request、Response对象的内存地址维护" class="headerlink" title="Request、Response对象的内存地址维护:"></a>Request、Response对象的内存地址维护:</h3><p>1、在同一个浏览器中不断的向同一个Servlet发送请求，reqeust和response不断的新建和销毁但是内存地址没有改变。是因为tomcat根据访问的IP地址对reqeust和response内存地址进行维护，当reqeust和response对象销毁后，tomcat不会立刻将该内存地址销毁，而是将该内存进行占位，等到下次创建新的reqeust和response对象就会分配到这个内存中。避免了不断分配新内存造成资源浪费。<br>2、如果该内存长时间（默认30分钟）没有reqeust和response对象，将会销毁该内存地址，或是存放其他的对象。</p>
+<h2 id="Request和Response的区别"><a href="#Request和Response的区别" class="headerlink" title="Request和Response的区别"></a>Request和Response的区别</h2><h2 id="转发和重定向"><a href="#转发和重定向" class="headerlink" title="转发和重定向"></a>转发和重定向</h2><h3 id="请求转发（forward"><a href="#请求转发（forward" class="headerlink" title="请求转发（forward)"></a>请求转发（forward)</h3><img src="/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxMTgwODgxNDAyNQ==,size_16,color_FFFFFF,t_70#pic_center-166126828144912.png" class="" title="在这里插入图片描述">
+
+<p>（1）转发是一次请求，一次响应<br>（2）请求转发前后，浏览器的地址栏地址不会发生变化。（浏览器–访问–&gt; A –转发–&gt; B，地址栏地址始终指向A的地址）<br>（3）请求转发前后的request对象是同一个（转发前在A中的request和转发到B后，B中的request对象和A中的request对象是同一个。基于这一点，可以通过request从A带数据到B）<br>（4）请求转发前后的两个资源必须<strong>属于同一个Web应用</strong>，否则将无法进行转发。（A–转发–&gt;B，A和B必须属于同一个Web应用！）</p>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getRequestDispatcher(url地址/转发到资源的地址).forward(req, res);</span><br></pre></td></tr></table></figure>
+
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><img src="/2022/05/18/Server/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxMTgwODgxNDAyNQ==,size_16,color_FFFFFF,t_70#pic_center.png" class="" title="在这里插入图片描述">
+
+<p>（1）重定向是两次请求、两次响应<br>（2）重定向前后，浏览器的地址栏地址会发生变化。（因为两次请求都是通过浏览器发起，浏览器知道这个跳转的过程，因此地址栏地址会变化）<br>（3）重定向前后的<strong>request对象不是同一个</strong>（因为重定向是两次请求，服务器会根据两次请求创建两个不同的request对象，request对象不是同一个，也就不能在重定向时通过request带数据到目的地。）<br>（4）重定向前后的两个资源可以是来自不同的web应用，甚至可以是来自不同的服务器。(进行跳转的两个资源之间没有限制)。</p>
+<p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(所重定向到资源的URL地址);</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45151795/article/details/105999196">(48条消息) Request、Response对象的生命周期_段远山的博客-CSDN博客_response生命周期</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq1808814025/article/details/106199159">(43条消息) request和response的区别!!!_经理，天台风好大的博客-CSDN博客_request和response的区别</a></p>
 
     </div>
 
@@ -413,7 +439,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web"><span class="nav-number">1.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet"><span class="nav-number">2.</span> <span class="nav-text">Servlet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet%E5%AE%B9%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">Servlet容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Server"><span class="nav-number">4.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat"><span class="nav-number">5.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-%E5%92%8C-Server-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.1.</span> <span class="nav-text">Servlet 和 Server 的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat%E5%92%8CCatelina%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.2.</span> <span class="nav-text">Tomcat和Catelina的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Catalina-%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%88Servlet%E5%AE%B9%E5%99%A8%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">Catalina 的结构（Servlet容器）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%85%B7%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">5.4.</span> <span class="nav-text">Container 组件的具体结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B"><span class="nav-number">5.5.</span> <span class="nav-text">整体请求流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet%E6%B7%B1%E5%85%A5"><span class="nav-number">6.</span> <span class="nav-text">Servlet深入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Requset-%E5%92%8C-Response-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">7.</span> <span class="nav-text">Requset 和 Response 的区别</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web"><span class="nav-number">1.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet"><span class="nav-number">2.</span> <span class="nav-text">Servlet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet%E5%AE%B9%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">Servlet容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Server"><span class="nav-number">4.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat"><span class="nav-number">5.</span> <span class="nav-text">Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-%E5%92%8C-Server-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.1.</span> <span class="nav-text">Servlet 和 Server 的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat%E5%92%8CCatelina%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">5.2.</span> <span class="nav-text">Tomcat和Catelina的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Catalina-%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%88Servlet%E5%AE%B9%E5%99%A8%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">Catalina 的结构（Servlet容器）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%85%B7%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">5.4.</span> <span class="nav-text">Container 组件的具体结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E8%AF%B7%E6%B1%82%E6%B5%81%E7%A8%8B"><span class="nav-number">5.5.</span> <span class="nav-text">整体请求流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet%E6%B7%B1%E5%85%A5"><span class="nav-number">6.</span> <span class="nav-text">Servlet深入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Requset-%E5%92%8C-Response"><span class="nav-number">7.</span> <span class="nav-text">Requset 和 Response</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Request%E5%92%8CResponse%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">7.1.</span> <span class="nav-text">Request和Response的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Request%E3%80%81Response%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%9C%B0%E5%9D%80%E7%BB%B4%E6%8A%A4"><span class="nav-number">7.1.1.</span> <span class="nav-text">Request、Response对象的内存地址维护:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Request%E5%92%8CResponse%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">7.2.</span> <span class="nav-text">Request和Response的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">7.3.</span> <span class="nav-text">转发和重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%EF%BC%88forward"><span class="nav-number">7.3.1.</span> <span class="nav-text">请求转发（forward)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">7.3.2.</span> <span class="nav-text">重定向</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -475,13 +501,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">194k</span>
+    <span title="Symbols count total">203k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">2:57</span>
+    <span title="Reading time total">3:05</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
