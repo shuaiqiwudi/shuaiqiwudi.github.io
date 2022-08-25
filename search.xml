@@ -31,38 +31,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Linux</title>
-    <url>/2022/06/07/Linux/</url>
-    <content><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>另一种操作系统</p>
-<p>服务器操作系统</p>
-<p>主要针对CentOS7进行操作讲解</p>
-<span id="more"></span>
-
-<h2 id="Linux文件信息位置"><a href="#Linux文件信息位置" class="headerlink" title="Linux文件信息位置"></a>Linux文件信息位置</h2><h3 id="1-网卡信息存放位置"><a href="#1-网卡信息存放位置" class="headerlink" title="1.网卡信息存放位置"></a>1.网卡信息存放位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">/* 如果是dell的物理服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-em1或em2 ，em3，em4</span><br><span class="line">/* 如果是云服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-防火墙的开启和关闭"><a href="#2-防火墙的开启和关闭" class="headerlink" title="2.防火墙的开启和关闭"></a>2.防火墙的开启和关闭</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
-
-<p>启动防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start firewalld.service  		--启动firewall</span><br><span class="line">systemctl enable firewalld.service		--开机时启动firewall</span><br></pre></td></tr></table></figure>
-
-<p>关闭防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service    		--停止firewall</span><br><span class="line">systemctl disable firewalld.service		--禁止firewall开机启动</span><br></pre></td></tr></table></figure>
-
-<p>重启防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
-
-<p>查看防火墙是否开启自启</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled firewalld.service;echo $?</span><br></pre></td></tr></table></figure>
-
-<p>查看已启动的服务列表</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files|grep enabled</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Linux运维</category>
-      </categories>
-  </entry>
-  <entry>
     <title>JVM</title>
     <url>/2022/05/16/JVM/</url>
     <content><![CDATA[<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><h2 id="什么是JVM？"><a href="#什么是JVM？" class="headerlink" title="什么是JVM？"></a>什么是JVM？</h2><p><strong>J</strong>ava <strong>V</strong>irtual <strong>M</strong>achine是Java虚拟机，Java程序需要运行在虚拟机上，不同的平 台有自己的虚拟机，因此Java语言可以实现跨平台。</p>
@@ -334,6 +302,38 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       </categories>
   </entry>
   <entry>
+    <title>Linux</title>
+    <url>/2022/06/07/Linux/</url>
+    <content><![CDATA[<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><p>另一种操作系统</p>
+<p>服务器操作系统</p>
+<p>主要针对CentOS7进行操作讲解</p>
+<span id="more"></span>
+
+<h2 id="Linux文件信息位置"><a href="#Linux文件信息位置" class="headerlink" title="Linux文件信息位置"></a>Linux文件信息位置</h2><h3 id="1-网卡信息存放位置"><a href="#1-网卡信息存放位置" class="headerlink" title="1.网卡信息存放位置"></a>1.网卡信息存放位置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-ens33</span><br><span class="line">/* 如果是dell的物理服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-em1或em2 ，em3，em4</span><br><span class="line">/* 如果是云服务器 */</span><br><span class="line">cat /etc/sysconfig/network-scripts/ifcfg-eth0</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-防火墙的开启和关闭"><a href="#2-防火墙的开启和关闭" class="headerlink" title="2.防火墙的开启和关闭"></a>2.防火墙的开启和关闭</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --state</span><br><span class="line">或</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>启动防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start firewalld.service  		--启动firewall</span><br><span class="line">systemctl enable firewalld.service		--开机时启动firewall</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service    		--停止firewall</span><br><span class="line">systemctl disable firewalld.service		--禁止firewall开机启动</span><br></pre></td></tr></table></figure>
+
+<p>重启防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>查看防火墙是否开启自启</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl is-enabled firewalld.service;echo $?</span><br></pre></td></tr></table></figure>
+
+<p>查看已启动的服务列表</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl list-unit-files|grep enabled</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Linux运维</category>
+      </categories>
+  </entry>
+  <entry>
     <title>MQ</title>
     <url>/2022/08/01/MQ/</url>
     <content><![CDATA[<h1 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h1><p>MQ 是message queue ,消息队列，也叫消息中间件，遵守JMS（java message service）规范的一种软件。是类似于数据库一样需要独立部署在服务器上的一种应用，提供接口给其他系统调用。</p>
@@ -514,6 +514,11 @@ MQTT，Message Queuing Telemetry Transport（消息队列遥测传输），是IB
       <categories>
         <category>消息队列</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Redis</title>
+    <url>/2022/08/01/Redis/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Mybatis</title>
@@ -883,11 +888,6 @@ MQTT，Message Queuing Telemetry Transport（消息队列遥测传输），是IB
       <categories>
         <category>Mybatis</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Redis</title>
-    <url>/2022/08/01/Redis/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Tomcat的网络请求及Web界面的工作流程</title>
@@ -4534,6 +4534,7 @@ count=100
     <content><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><p>一些回答不好的面试题。</p>
 <span id="more"></span>
 
+<h1 id="面经"><a href="#面经" class="headerlink" title="面经"></a>面经</h1><p>一些面经：</p>
 <p><a href="https://leetcode.cn/circle/discuss/TbNRZ7/">【面经】字节北京抖音直播后端面经-已OC - 力扣（LeetCode）</a></p>
 <p><a href="https://leetcode.cn/circle/discuss/wOfw8h/">美团｜java后台开发｜秋招Java开发面经｜2020｜ - 力扣（LeetCode）</a></p>
 <p><a href="https://leetcode.cn/circle/discuss/KjcPyp/">百度java实习面经 - 力扣（LeetCode）</a></p>
@@ -4545,7 +4546,7 @@ count=100
 <p><a href="https://leetcode.cn/circle/discuss/jGm0Eu/">字节面经｜字节java后端一面，面经 - 力扣（LeetCode）</a></p>
 <p><a href="https://leetcode.cn/circle/discuss/KiatYq/">面试｜京东 - 力扣（LeetCode）</a></p>
 <p><a href="https://leetcode.cn/circle/discuss/v6M7KP/">8.6蔚来面经 - 力扣（LeetCode）</a></p>
-<h2 id="八股"><a href="#八股" class="headerlink" title="八股"></a>八股</h2><p>Innodb存储引擎的实现原理 索引的原理：</p>
+<h1 id="八股"><a href="#八股" class="headerlink" title="八股"></a>八股</h1><p>Innodb存储引擎的实现原理 索引的原理：</p>
 <p>内存泄露怎么解决：</p>
 <p>线程的生命周期：</p>
 <img src="/2022/05/16/%E9%9D%A2%E8%AF%95/image-20220517082401082.png" class="" title="image-20220517082401082">
@@ -4553,8 +4554,12 @@ count=100
 <p>缓存穿透、缓存击穿、缓存雪崩：</p>
 <p>hashmap的实现原理</p>
 <p>redis的数据类型：String（字符串） Hash（哈希 k-v） Set（集合） Zset（有序集合） List（列表）</p>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>回文子串：</p>
-]]></content>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>回文子串：</p>
+<h1 id="场景题"><a href="#场景题" class="headerlink" title="场景题"></a>场景题</h1><h2 id="抢红包方案："><a href="#抢红包方案：" class="headerlink" title="抢红包方案："></a>抢红包方案：</h2><p>应对高并发<br>    前面说过抢红包类似于秒杀场景，需要一定的性能保证，并且同时得保证红包不会抢出问题，比如10个红包，因为并发没处理好造成抢出了20个红包，那就血亏了。基于这两个原因，传统的基于数据库对红包进行扣减，会造成较大的压力。并且如果我们基于数据库的悲观锁来实现时，有可能造成堵塞，而基于乐观锁实现，又容易造成大量的失败请求，影响用户体验。所以最终决定基于redis来进行实现，redis的lua脚本本身具备原子性，同一时间不会处理多笔抢红包事件，同时redis本身的高性能（秒级10w）的操作量也能很好的承接住这种秒杀场景。<br>    基本的算法和设计方案敲定，再来推敲细节，redis的高性能得益于小操作，也就是你不能把一个很耗时的操作放到redis里（比如一个大循环），那可能会造成极为严重的影响，甚至堵塞住你的所有和redis相关的业务。所以我们这里仅仅将红包的扣减操作放到redis当中，设计如下：</p>
+<p>用户发放红包时，会将红包的剩余个数和剩余金额（即总个数和总金额）写入redis中，并将本次发放红包的所有详情记录记录到数据库中，数据库操作在前，redis操作在后，对整个写数据的方法增加事务，保证数据的写一致性。<br>用户抢红包时，在服务端生成[0,1]的浮点随机数，然后带入redis的lua脚本，在脚本中实现对前面的抢红包算法，根据当前剩余红包个数和剩余金额，计算出当前用户的红包区间，再将红包区间和我们带入的[0,1]的浮点随机数相乘并向下取整得到当前用户抢到的金额数，再对redis里的剩余个数和剩余金额进行修改。<br>从lua脚本执行结果中获取到剩余数量，剩余金额，本次抢到的金额，然后发布mq，将本次抢红包的日志记录和金额修改的操作放到异步去进行，如果mq发送失败，需要手动回滚调redis，将剩余数量自增1，将本次抢到金额也要加回剩余金额。</p>
+<p><a href="https://blog.csdn.net/qq_30095631/article/details/116485748">(51条消息) 抢红包设计方案_泰勒今天不想展开的博客-CSDN博客_抢红包设计</a></p>
+<p><a href="https://blog.csdn.net/weixin_43591980/article/details/112548164">(51条消息) Lua脚本基础入门及其案例_兴趣使然的草帽路飞的博客-CSDN博客_lua脚本入门</a></p>
+<h2 id="商城系统难点"><a href="#商城系统难点" class="headerlink" title="商城系统难点"></a>商城系统难点</h2>]]></content>
       <categories>
         <category>java</category>
       </categories>
