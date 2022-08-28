@@ -22,18 +22,23 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="(46条消息) 全面讲解LRU算法_Apple_Web的博客-CSDN博客_lru算法">
+  <meta name="description" content="操作系统读者前言本文章为《现代操作系统》原书第四版的读者笔记。读者旨在对操纵整个计算机层面的操作系统进行深刻理解。如有纰漏，敬请留言指正。 引论什么是操作系统？总观现代计算机系统有一个或多个处理器，主存，磁盘，打印机，键盘，鼠标，显示器，网络接口以及各种其他输入&#x2F;输出设备组成。所以，操作系统是计算机上安装的一层管理软件，为用户程序提供一个更好，更简单，更清晰的计算机模型，并管理刚才提及到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统">
 <meta property="og:url" content="http://example.com/2022/08/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="shuaiqiwudi blog">
-<meta property="og:description" content="(46条消息) 全面讲解LRU算法_Apple_Web的博客-CSDN博客_lru算法">
+<meta property="og:description" content="操作系统读者前言本文章为《现代操作系统》原书第四版的读者笔记。读者旨在对操纵整个计算机层面的操作系统进行深刻理解。如有纰漏，敬请留言指正。 引论什么是操作系统？总观现代计算机系统有一个或多个处理器，主存，磁盘，打印机，键盘，鼠标，显示器，网络接口以及各种其他输入&#x2F;输出设备组成。所以，操作系统是计算机上安装的一层管理软件，为用户程序提供一个更好，更简单，更清晰的计算机模型，并管理刚才提及到">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/08/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/操作系统/image-20220827083846729.png">
+<meta property="og:image" content="http://example.com/2022/08/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/操作系统/image-20220827090552471.png">
+<meta property="og:image" content="http://example.com/2022/08/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220828092304649.png">
+<meta property="og:image" content="http://example.com/2022/08/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220828123428209.png">
 <meta property="article:published_time" content="2022-08-09T07:37:57.000Z">
-<meta property="article:modified_time" content="2022-08-09T07:43:51.276Z">
+<meta property="article:modified_time" content="2022-08-28T04:42:53.531Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/08/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/操作系统/image-20220827083846729.png">
 
 <link rel="canonical" href="http://example.com/2022/08/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
 
@@ -218,10 +223,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-08-09 15:37:57 / Modified: 15:43:51" itemprop="dateCreated datePublished" datetime="2022-08-09T15:37:57+08:00">2022-08-09</time>
+              <time title="Created: 2022-08-09 15:37:57" itemprop="dateCreated datePublished" datetime="2022-08-09T15:37:57+08:00">2022-08-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-28 12:42:53" itemprop="dateModified" datetime="2022-08-28T12:42:53+08:00">2022-08-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -259,14 +270,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>42</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -278,7 +289,60 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/belongtocode/article/details/102989685">(46条消息) 全面讲解LRU算法_Apple_Web的博客-CSDN博客_lru算法</a></p>
+        <h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h2 id="读者前言"><a href="#读者前言" class="headerlink" title="读者前言"></a>读者前言</h2><p>本文章为《现代操作系统》原书第四版的读者笔记。读者旨在对操纵整个计算机层面的操作系统进行深刻理解。如有纰漏，敬请留言指正。</p>
+<h1 id="引论"><a href="#引论" class="headerlink" title="引论"></a>引论</h1><h2 id="什么是操作系统？"><a href="#什么是操作系统？" class="headerlink" title="什么是操作系统？"></a>什么是操作系统？</h2><h3 id="总观"><a href="#总观" class="headerlink" title="总观"></a>总观</h3><p>现代计算机系统有一个或多个处理器，主存，磁盘，打印机，键盘，鼠标，显示器，网络接口以及各种其他输入&#x2F;输出设备组成。所以，<strong>操作系统是计算机上安装的一层管理软件</strong>，为用户程序提供一个更好，更简单，更清晰的计算机模型，并管理刚才提及到的所有设备。</p>
+<p>与用户交互的程序，<strong>基于文本的通常称为shell</strong>，<strong>基于图标的成为图形用户界面（GUI）</strong>，它们其实并不属于操作系统的一部分。</p>
+<p>图1-1为简化视图，多数计算机有两种运行模式：<strong>内核态</strong> 和 <strong>用户态</strong>。软件中最基础的部分是操作系统，运行在内核态。这个模式中，操作系统具有对所有硬件的<ins>完全访问权</ins>。软件的其他应用在用户态下，只是用了机器指令中的一个<ins>子集</ins>。（特别的，那些会影响机器的控制或进行I&#x2F;O操作的指令，在用户态的程序中是禁止的）。</p>
+<p>操作系统（内核态）和普通软件（用户态）之间的主要区别是，如果用户不喜欢某个特定的电子邮件阅读器，它可以自己写一个，但是不能自行写一个属于操作系统一部分的时钟终端处理程序 ，这个程序由硬件保护，<ins>防止用户试图对其进行修改</ins>。</p>
+<p>但是一些在内核外运行的程序又有争议地被认为是操作系统的一部分，或者至少与操作系统密切相关。所以在一些系统中，<strong>很难在内核态和用户态之间划分住一条明显的界限。</strong></p>
+<img src="操作系统/image-20220827083846729.png" alt="image-20220827083846729" style="zoom: 50%;" />
+
+<p>操作系统是运行在内核态的软件。但我们还很难准确定义操作系统，因为还取决于从什么角度看待操作系统。</p>
+<h3 id="作为扩展机器的操作系统"><a href="#作为扩展机器的操作系统" class="headerlink" title="作为扩展机器的操作系统"></a>作为扩展机器的操作系统</h3><p>是没有人想和硬件层面上的硬件打交道的，至少操作系统的编写人员是这样，所以他们使用的是一些叫做<ins>硬盘驱动</ins>的软件来和硬盘交互，这些软件提供了读写硬盘块的接口。真是的处理器，内存条，磁盘和其他设备都是非常复杂的，编写软件的人们来说，他们使用的是那些困难，可怕，复杂的接口。操作系统的一个主要人数是隐藏硬件，呈现给程序使用人员们，良好，清晰，优雅，一致的抽象，如图1-2。</p>
+<img src="操作系统/image-20220827090552471.png" alt="image-20220827090552471" style="zoom:50%;" />
+
+<h3 id="作为资源管理者的操作系统"><a href="#作为资源管理者的操作系统" class="headerlink" title="作为资源管理者的操作系统"></a>作为资源管理者的操作系统</h3><p>现代计算机包含多种设备，操作系统的任务是在互相竞争的程序之间有序地控制对处理器，存储器以及其他I&#x2F;O接口设备的分配。</p>
+<p>当一个计算机（或网络）有多个用户时，用户通常不仅共享硬件，还要共享信息（文件，数据库等）。操作系统要记录哪个程序在使用什么资源，对资源请求进行分配，并未不同的程序和用户调解互相冲突的资源请求。</p>
+<p>资源管理包括一下两种方式实现多路复用（共享）资源：在<strong>时间上复用</strong>和在<strong>空间上复用</strong>。</p>
+<p>时间上复用：不同的程序或用户轮流使用资源（CPU）。例如单核CPu并发执行任务。</p>
+<p>空间上复用：每个客户都得到了资源的一部分，从而取代了客户排队。例如，一个磁盘同时为多个用户保存文件。分配磁盘空间并记录谁正在使用哪个磁盘块。</p>
+<h2 id="计算机硬件简介"><a href="#计算机硬件简介" class="headerlink" title="计算机硬件简介"></a>计算机硬件简介</h2><h4 id="1-处理器"><a href="#1-处理器" class="headerlink" title="1.处理器"></a>1.处理器</h4><h4 id="2-存储器"><a href="#2-存储器" class="headerlink" title="2.存储器"></a>2.存储器</h4><h4 id="3-磁盘"><a href="#3-磁盘" class="headerlink" title="3.磁盘"></a>3.磁盘</h4><h4 id="4-I-x2F-O设备"><a href="#4-I-x2F-O设备" class="headerlink" title="4.I&#x2F;O设备"></a>4.I&#x2F;O设备</h4><h2 id="操作系统的一些基本概念"><a href="#操作系统的一些基本概念" class="headerlink" title="操作系统的一些基本概念"></a>操作系统的一些基本概念</h2><h4 id="1-进程"><a href="#1-进程" class="headerlink" title="1.进程"></a>1.进程</h4><h4 id="2-地址空间"><a href="#2-地址空间" class="headerlink" title="2.地址空间"></a>2.地址空间</h4><h4 id="3-I-x2F-O设备-输入输出"><a href="#3-I-x2F-O设备-输入输出" class="headerlink" title="3.I&#x2F;O设备 输入输出"></a>3.I&#x2F;O设备 输入输出</h4><h4 id="4-保护"><a href="#4-保护" class="headerlink" title="4.保护"></a>4.保护</h4><h2 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h2><h3 id="用于进程管理的系统调用"><a href="#用于进程管理的系统调用" class="headerlink" title="用于进程管理的系统调用"></a>用于进程管理的系统调用</h3><h3 id="用于文件管理的系统调用"><a href="#用于文件管理的系统调用" class="headerlink" title="用于文件管理的系统调用"></a>用于文件管理的系统调用</h3><h3 id="用于目录管理的系统调用"><a href="#用于目录管理的系统调用" class="headerlink" title="用于目录管理的系统调用"></a>用于目录管理的系统调用</h3><p>page 29</p>
+<h2 id="操作系统结构"><a href="#操作系统结构" class="headerlink" title="操作系统结构"></a>操作系统结构</h2><h3 id="单体系统"><a href="#单体系统" class="headerlink" title="单体系统"></a>单体系统</h3><h3 id="层次式系统"><a href="#层次式系统" class="headerlink" title="层次式系统"></a>层次式系统</h3><h3 id="微内核"><a href="#微内核" class="headerlink" title="微内核"></a>微内核</h3><h3 id="客户端–服务器模式"><a href="#客户端–服务器模式" class="headerlink" title="客户端–服务器模式"></a>客户端–服务器模式</h3><h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><h3 id="外核"><a href="#外核" class="headerlink" title="外核"></a>外核</h3><h1 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h1><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>所有现代的计算机经常会在同一时间做许多件事情。现在考虑吧只有一个PC用户，当启动系统时，会秘密启动许多进程。例如，启动一个进程用来等待进入的 电子邮件；或者启动另一个防病毒进程周期性地检查是否由病毒库更新。这些活动都需要管理，于是一个支持多进程的<ins>多道程序系统</ins>在这里就显得非常有用了。</p>
+<p>在任何多道程序设计系统中，CPU有一个进程快速切换到另一个进程，使得每个进程各运行几十或几百毫秒。严格地说，<ins>在某一个瞬间，CPU只能运行一个进程。但是在1秒钟内，他可能运行多个进程，这样就产生并行的错觉。</ins>有时人们所说的<strong>伪并行</strong>就是指这种情景，以此来区分多处理器系统（该系统有两个或多个CPU共享同一个物理内存）的真正硬件并行。</p>
+<p>多道程序系统依赖于多道程序设计（系统在（伪）并行的情况下运行的程序集，这种方法要比试图跟踪CPU如何在程序之间来回切换简单得多）。</p>
+<p>图2-1a可以看到，一个多道程序计算机的内存中有4道程序，在b中，这4道程序被抽象成4个各自拥有自己控制流程的进程，在c中看到，所有的进程都运行了，但在任何一个给定的瞬间仅有一个程序真正的在运行。</p>
+<img src="/2022/08/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220828092304649.png" class="" title="image-20220828092304649">
+
+<p>一个进程是某正类型的一个活动，它有程序、输入、输出以及状态。单个处理器可以被若干进程共享，它使用某种调度算法决定何时停止一个进程的工作，并转而为另一个进程提供服务。</p>
+<p>关于程序和进程：如果一个程序运行了两遍，则算作两个进程。</p>
+<h3 id="进程的创建"><a href="#进程的创建" class="headerlink" title="进程的创建"></a>进程的创建</h3><p>从技术上看，在所有这些情形中，<strong>新进程都是由于一个已存在的进程执行了一个用于创建进程的系统调用而创建的</strong>。这个进程可以是一个运行的用户进程、一个由键盘或鼠标启动的程序进程或者一个批处理管理进程。这个进程所做的工作是，执行一个用来创建新进程的系统调用。这个系统调用通知操作系统创建一个新进程，并且直接或间接地指定在该进程中运行的程序。</p>
+<p>在unix系统中</p>
+<p>在window中</p>
+<p>&#x2F;&#x2F;TODO 两大系统类别的创建进程的步骤。page50</p>
+<h3 id="进程的终止"><a href="#进程的终止" class="headerlink" title="进程的终止"></a>进程的终止</h3><p>进程在被创建之后，开始运行到完成工作，迟早这个进程会被终止，通常会由以下条件引起：</p>
+<ol>
+<li>正常退出（自愿）</li>
+<li>出错退出（自愿）</li>
+<li>严重错误（非自愿）</li>
+<li>被其他进程杀死（非自愿）</li>
+</ol>
+<p><strong>正常退出：</strong>例如，当编译器完成给定程序的编译后，编译器执行一个系统调用，通知操作系统他的工作已经完成。大多数交互程序都有一个供用户点击的图标或菜单项，用来通知进程删除它所打开的任何临时文件，然后终止。</p>
+<p><strong>出错退出：</strong>比如我们要编译一个程序，但是该程序文件不存在，于是编译器就会退出，在给出错误参数的时候，面向屏幕的交互式进程通常并不退出，相反会让用户重试。</p>
+<p><strong>严重错误：</strong>这是由进程引起的错误，通常是由于程序中的错误所致。例如执行了一条非法指令，引用不存在的内存（空指针），除数为0，数组越界等。在这类错误中，程序会被终端，而不是在这类错误出现时停止。</p>
+<p><strong>被其他进程杀死：</strong>某个进程执行一个系统调用通知操作系统杀死某个其他进程。</p>
+<p>当一个进程终止时，不论是自愿还是其他原因，由该进程所创建的其他所有进程也一律立即被杀死。</p>
+<h3 id="进程的层次结构"><a href="#进程的层次结构" class="headerlink" title="进程的层次结构"></a>进程的层次结构</h3><p>某些系统中，当一个进程创建了另一个继承后，父进程和子进程就医某种形式继续保持关联。子进程自身可以创建更多的进程，组成一个进程的层次结构。</p>
+<p>在UNIX中，进程和它的所有紫禁城以及后裔共同组成一个进程组。当用户从键盘发出一个信号时，该信号被送给当前于键盘相关的进程组中的所有成员。每个进程可以分别捕获该信号，忽略该信号或采取默认的动作，既被该信号杀死。</p>
+<p>相反在windows系统中没有进程层次的概念，所有的进程都是地位相同的。唯一类似于继承层次的暗示是在创建进程的时候，父进程得到一个特别的令牌（成为句柄），该句柄可以用来控制子进程。但是。它有权把这个令牌传送给某个其他进程。</p>
+<h3 id="进程的状态！"><a href="#进程的状态！" class="headerlink" title="进程的状态！"></a>进程的状态！</h3><ol>
+<li>运行态（该时刻进程实际占用CPU）</li>
+<li>就绪态（可运行，但因为其他进程正在运行而暂时停止）</li>
+<li>阻塞态（除非某种外部事件发生，否则进程不能运行）</li>
+</ol>
+<img src="/2022/08/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/image-20220828123428209.png" class="" title="image-20220828123428209">
+
+<p>前两种状态在逻辑上是类似的，处于这两种状态的进程都可以运行，只是对于第二种状态暂时没有CPU分配给它。第三种状态和前两种状态不同，处于该状态的进程不能运行（即使CPU空闲）。</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/belongtocode/article/details/102989685">(46条消息) 全面讲解LRU算法_Apple_Web的博客-CSDN博客_lru算法</a></p>
 
     </div>
 
@@ -360,6 +424,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E8%80%85%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">读者前言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%AE%BA"><span class="nav-number">2.</span> <span class="nav-text">引论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">什么是操作系统？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E8%A7%82"><span class="nav-number">2.1.1.</span> <span class="nav-text">总观</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E6%89%A9%E5%B1%95%E6%9C%BA%E5%99%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.1.2.</span> <span class="nav-text">作为扩展机器的操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E8%80%85%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.1.3.</span> <span class="nav-text">作为资源管理者的操作系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">2.2.</span> <span class="nav-text">计算机硬件简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">1.处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">2.存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A3%81%E7%9B%98"><span class="nav-number">2.2.0.3.</span> <span class="nav-text">3.磁盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-I-x2F-O%E8%AE%BE%E5%A4%87"><span class="nav-number">2.2.0.4.</span> <span class="nav-text">4.I&#x2F;O设备</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.3.</span> <span class="nav-text">操作系统的一些基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">1.进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="nav-number">2.3.0.2.</span> <span class="nav-text">2.地址空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-I-x2F-O%E8%AE%BE%E5%A4%87-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="nav-number">2.3.0.3.</span> <span class="nav-text">3.I&#x2F;O设备 输入输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BF%9D%E6%8A%A4"><span class="nav-number">2.3.0.4.</span> <span class="nav-text">4.保护</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E4%BA%8E%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.4.1.</span> <span class="nav-text">用于进程管理的系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E4%BA%8E%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.4.2.</span> <span class="nav-text">用于文件管理的系统调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E4%BA%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.4.3.</span> <span class="nav-text">用于目录管理的系统调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84"><span class="nav-number">2.5.</span> <span class="nav-text">操作系统结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E4%BD%93%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.5.1.</span> <span class="nav-text">单体系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%82%E6%AC%A1%E5%BC%8F%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.5.2.</span> <span class="nav-text">层次式系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E5%86%85%E6%A0%B8"><span class="nav-number">2.5.3.</span> <span class="nav-text">微内核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E2%80%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.5.4.</span> <span class="nav-text">客户端–服务器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">2.5.5.</span> <span class="nav-text">虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E6%A0%B8"><span class="nav-number">2.5.6.</span> <span class="nav-text">外核</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">进程和线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">3.1.1.</span> <span class="nav-text">进程的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%88%E6%AD%A2"><span class="nav-number">3.1.2.</span> <span class="nav-text">进程的终止</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.3.</span> <span class="nav-text">进程的层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%EF%BC%81"><span class="nav-number">3.1.4.</span> <span class="nav-text">进程的状态！</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.2.</span> <span class="nav-text">线程</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -421,13 +486,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">208k</span>
+    <span title="Symbols count total">213k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:09</span>
+    <span title="Reading time total">3:13</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>

@@ -47,6 +47,7 @@
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/bean%E5%AF%B9%E8%B1%A1%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-16537349916045.png">
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/webp.webp">
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/format,png-16599262367702.png">
+<meta property="og:image" content="http://example.com/2022/05/26/Spring/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6X3NtYWxscmVk,size_16,color_FFFFFF,t_70#pic_center-16599262007251-16614820779222.jpeg">
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/format,png-16594342853715.png">
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/format,png-16594339917133.png">
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/format,png-16594344712637.png">
@@ -980,7 +981,7 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 <p>一级缓存为单例池（<code>singletonObjects</code>）,一级缓存中存储的是已经完全创建好了的单例Bean。</p>
 <p>二级缓存为早期曝光对象<code>earlySingletonObjects</code>，</p>
 <p>三级缓存为早期曝光对象工厂（<code>singletonFactories</code>）</p>
-
+<img src="/2022/05/26/Spring/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6X3NtYWxscmVk,size_16,color_FFFFFF,t_70#pic_center-16599262007251-16614820779222.jpeg" class="" title="watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6X3NtYWxscmVk,size_16,color_FFFFFF,t_70">
 
 <h3 id="Spring解决循环依赖的大致流程："><a href="#Spring解决循环依赖的大致流程：" class="headerlink" title="Spring解决循环依赖的大致流程："></a>Spring解决循环依赖的大致流程：</h3><p>这里我们假设一个场景进行讲解：ServiceA、ServiceB相互依赖。</p>
 <p>Spring容器依次创建两个bean时，发现在缓存中没有ServiceA，因此将新创建好的未注入属性的ServiceA放到三级缓存中去。<br>然后ServiceA进行属性注入时，发现依赖ServiceB，转而去实例化B。<br>同样创建对象ServiceB，注入属性时发现依赖ServiceA，依次从一级到三级缓存查询ServiceA，从三级缓存通过对象工厂拿到ServiceA，把ServiceA放入二级缓存，同时删除三级缓存中的ServiceA，此时，ServiceB已经实例化并且初始化完成，把ServiceB放入一级缓存。<br>接着继续创建ServiceA，顺利从一级缓存拿到实例化且初始化完成的ServiceB对象，ServiceA对象创建也完成，删除二级缓存中的ServiceA，同时把ServiceA放入一级缓存<br>最后，一级缓存中保存着实例化、初始化都完成的ServiceA、ServiceB对象</p>
@@ -1181,13 +1182,13 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">208k</span>
+    <span title="Symbols count total">213k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:09</span>
+    <span title="Reading time total">3:13</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
