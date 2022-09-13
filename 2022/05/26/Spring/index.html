@@ -52,7 +52,7 @@
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/format,png-16594339917133.png">
 <meta property="og:image" content="http://example.com/2022/05/26/Spring/format,png-16594344712637.png">
 <meta property="article:published_time" content="2022-05-26T01:26:34.000Z">
-<meta property="article:modified_time" content="2022-08-26T02:57:57.947Z">
+<meta property="article:modified_time" content="2022-09-13T04:37:14.841Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -249,7 +249,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-26 10:57:57" itemprop="dateModified" datetime="2022-08-26T10:57:57+08:00">2022-08-26</time>
+                <time title="Modified: 2022-09-13 12:37:14" itemprop="dateModified" datetime="2022-09-13T12:37:14+08:00">2022-09-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -955,7 +955,7 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
 <li>注意仅仅 @Transactional 注解的出现不足于开启事务行为，它仅仅 是一种元数据。必须在配置文件中使用配置元素，才真正开启了事务行为。</li>
 <li>通过 元素的 “proxy-target-class” 属性值来控制是基于接口的还是基于类的代理被创建。如果 “proxy-target-class” 属值被设置为 “true”，那么基于类的代理将起作用（这时需要CGLIB库cglib.jar在CLASSPATH中）。如果 “proxy-target-class” 属值被设置为 “false” 或者这个属性被省略，那么标准的JDK基于接口的代理将起作用。</li>
 <li>Spring团队建议在具体的类（或类的方法）上使用 @Transactional 注解，而不要使用在类所要实现的任何接口上。在接口上使用 @Transactional 注解，只能当你设置了基于接口的代理时它才生效。因为注解是 不能继承 的，这就意味着如果正在使用基于类的代理时，那么事务的设置将不能被基于类的代理所识别，而且对象也将不会被事务代理所包装。</li>
-<li>@Transactional 的事务开启 ，或者是基于接口的 或者是基于类的代理被创建。所以在同一个类中一个方法调用另一个方法有事务的方法，事务是不会起作用的。</li>
+<li>@Transactional 的事务开启 ，或者是基于接口的 或者是基于类的代理被创建。<ins>所以在同一个类中一个方法调用另一个方法有事务的方法，事务是不会起作用的。</ins></li>
 </ol>
 <h2 id="Spring事务超时时间"><a href="#Spring事务超时时间" class="headerlink" title="Spring事务超时时间"></a>Spring事务超时时间</h2><ol>
 <li>TransactionDefinition 接口中定义了1个表示超时时间的常量**TIMEOUT_DEFAULT **，使用getTimeout()方法可以获取到超时时间，单位是秒。Spring事务超时时间，是指一个事务所允许执行的最长时间，如果超过该时间限制但事务还没有完成，则自动回滚事务。在Spring程序中超时时间设置的注解方式是设置timeout的值表示这个事务，true只读取数据但不更新数据，false表示可正常读写数据</li>
@@ -1182,13 +1182,13 @@ public interface ApplicationContext extends EnvironmentCapable, ListableBeanFact
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">239k</span>
+    <span title="Symbols count total">241k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:37</span>
+    <span title="Reading time total">3:39</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
