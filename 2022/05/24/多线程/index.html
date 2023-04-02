@@ -47,7 +47,7 @@
 <meta property="og:image" content="http://example.com/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/image-20220802141547162.png">
 <meta property="og:image" content="http://example.com/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/image-20220802104931779.png">
 <meta property="article:published_time" content="2022-05-24T01:45:44.000Z">
-<meta property="article:modified_time" content="2022-08-26T03:41:08.521Z">
+<meta property="article:modified_time" content="2023-01-04T14:50:20.755Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -244,7 +244,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-26 11:41:08" itemprop="dateModified" datetime="2022-08-26T11:41:08+08:00">2022-08-26</time>
+                <time title="Modified: 2023-01-04 22:50:20" itemprop="dateModified" datetime="2023-01-04T22:50:20+08:00">2023-01-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -594,7 +594,8 @@ count=100
 <p>内部结构：</p>
 <img src="/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/169aa1836d0ac5b0tplv-t2oaga2asx-zoom-in-crop-mark3024000.webp" class="" title="img">
 
-<p>首先<code>ReentrantLock</code>继承自父类<code>Lock</code>，然后有<code>3</code>个内部类，其中<code>Sync</code>内部类继承自<code>AQS</code>，另外的两个内部类继承自<code>Sync</code>，这两个类分别是用来<strong>公平锁和非公平锁</strong>的。<br> 通过<code>Sync</code>重写的方法<code>tryAcquire</code>、<code>tryRelease</code>可以知道，**<code>ReentrantLock</code>实现的是<code>AQS</code>的独占模式，也就是独占锁，这个锁是悲观锁**。</p>
+<p>首先<code>ReentrantLock</code>继承自父类<code>Lock</code>，然后有<code>3</code>个内部类，其中<code>Sync</code>内部类继承自<code>AQS</code>，另外的两个内部类继承自<code>Sync</code>，这两个类分别是用来<strong>公平锁和非公平锁</strong>的。</p>
+<p>通过<code>Sync</code>重写的方法<code>tryAcquire</code>、<code>tryRelease</code>可以知道，**<code>ReentrantLock</code>实现的是<code>AQS</code>的独占模式，也就是独占锁，这个锁是悲观锁**。</p>
 <p>ReentrantLock的lock() 和 unlock() 方法的流程：</p>
 <h4 id="lock方法获取锁"><a href="#lock方法获取锁" class="headerlink" title="lock方法获取锁"></a>lock方法获取锁</h4><ol>
 <li><code>lock</code>方法调用<code>CAS</code>方法设置<code>state</code>的值，如果<code>state</code>等于期望值<code>0</code>(代表锁没有被占用)，那么就将<code>state</code>更新为<code>1</code>(代表该线程获取锁成功)，然后执行<code>setExclusiveOwnerThread</code>方法直接将该线程设置成锁的所有者。如果<code>CAS</code>设置<code>state</code>的值失败，即<code>state</code>不等于<code>0</code>，代表锁正在被占领着，则执行<code>acquire(1)</code>，即下面的步骤。</li>
@@ -1001,7 +1002,7 @@ count=100
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1011,13 +1012,13 @@ count=100
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">244k</span>
+    <span title="Symbols count total">247k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:42</span>
+    <span title="Reading time total">3:45</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>

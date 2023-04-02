@@ -24,6 +24,12 @@
 <span id="more"></span>
 
 <h1 id="String类型为什么是不可变的"><a href="#String类型为什么是不可变的" class="headerlink" title="String类型为什么是不可变的"></a>String类型为什么是不可变的</h1><p>引用拷贝和浅拷贝</p>
+<h1 id="StringBuilder和StringBuffer"><a href="#StringBuilder和StringBuffer" class="headerlink" title="StringBuilder和StringBuffer"></a>StringBuilder和StringBuffer</h1><img src="/2022/08/05/JavaEE/20200226214858667.png" class="" title="在这里插入图片描述">
+
+
+
+<p>StringBuffer的速度是低于和StringBuilder的 ， 但是StringBuffer的安全性是有保障的，经过测试，实际上StringBuffer的速度并不逊色于StringBuilder很多，所以实际上是<strong>没有必要</strong>为了一点点的性能提升而舍弃安全性去选StringBuilder。</p>
+<p><a href="https://blog.csdn.net/kaka_buka/article/details/78296217">StringBuffer和StringBuilder的性能对比_黑风风的博客-CSDN博客_stringbuilder stringbuffer 性能</a></p>
 <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p><a href="https://www.cnblogs.com/hongdada/p/13993251.html">Java 泛型擦除 - hongdada - 博客园 (cnblogs.com)</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/346486993">Java泛型中的类型擦除详解 - 知乎 (zhihu.com)</a></p>
 <h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>对于try-catch-finally的理解：</p>
@@ -349,18 +355,178 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
   <entry>
     <title>Redis</title>
     <url>/2022/08/01/Redis/</url>
-    <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h1 id="Redis基础"><a href="#Redis基础" class="headerlink" title="Redis基础"></a>Redis基础</h1><img src="/2022/08/01/Redis/v2-9eefca983a2bc16f51a72a077e32ab76_1440w.jpg" class="" title="最详细的Redis五种数据结构详解（理论+实战），建议收藏。">
+    <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p><a href="https://redis.io/">Redis</a></p>
+<img src="/2022/08/01/Redis/image-20230326184927282.png" class="" title="image-20230326184927282">
+
+<p>7.0版本后不再出现重大bug 推荐7.0</p>
+<h3 id="使用文档："><a href="#使用文档：" class="headerlink" title="使用文档："></a>使用文档：</h3><p><a href="https://redis.io/commands/?alpha=s">Commands | Redis</a>  官方文档 各种命令的解释和使用</p>
+<h1 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h1><p><a href="https://blog.csdn.net/lin443514407lin/article/details/124997940">(109条消息) Linux系统下安装Redis-7.0.0_lin502的博客-CSDN博客</a></p>
+<p>在linux中下载</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-<span class="number">7</span>.<span class="number">0</span>.<span class="number">0</span>.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>使用位置</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">/usr/local/bin</span><br></pre></td></tr></table></figure>
+
+<p>下载位置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/root/redis-7.0.0</span><br></pre></td></tr></table></figure>
+
+<p>启动服务</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">redis-server /myredis/redis7.conf (设置读取的配置文件)</span><br></pre></td></tr></table></figure>
+
+<p>进入客户端</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">redis-cli -a &quot;zsr413413&quot; (进入客户端需要登录密码-requirepass 在server读取文件中可以设置)</span><br></pre></td></tr></table></figure>
+
+
 
 <span id="more"></span>
 
-<h2 id="五种数据类型："><a href="#五种数据类型：" class="headerlink" title="五种数据类型："></a>五种数据类型：</h2><p>Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。</p>
+<h1 id="Redis基础"><a href="#Redis基础" class="headerlink" title="Redis基础"></a>Redis基础</h1><h2 id="五种数据类型："><a href="#五种数据类型：" class="headerlink" title="五种数据类型："></a>五种数据类型：</h2><p>Redis支持数据类型：</p>
+<p>常用5种：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。</p>
+<p>另外5种：GEO（地理位置），HyperLogLog（基数统计），bitmap（位图），bitfield（位域），Steam（流）。</p>
 <p><a href="https://zhuanlan.zhihu.com/p/148562122">最详细的Redis五种数据结构详解（理论+实战），建议收藏。 - 知乎 (zhihu.com)</a></p>
-<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><img src="/2022/08/01/Redis/image-20220908095506307.png" class="" title="image-20220908095506307">
+<p>关于NX|XX 这是各种类型操作的常见参数</p>
+<ul>
+<li><code>NX</code> – Only set the key if it does not already exist. </li>
+<li>NX命令: <strong>仅当key不存在时，set才会生效</strong>。</li>
+<li><code>XX</code> – Only set the key if it already exist.</li>
+<li>XX命令：<strong>仅当key存在时，set才会生效。</strong></li>
+</ul>
+<h3 id="1-String"><a href="#1-String" class="headerlink" title="1.String"></a>1.String</h3><p>String是redis最基本的类型，一个key对应一个value</p>
+<p>String类类型是二进制安全的，String可以包含任何数据，比如jpg图片或序列化的对象 最大的value是512M。</p>
+<h3 id="2-hash"><a href="#2-hash" class="headerlink" title="2.hash"></a>2.hash</h3><p>是一个String类型的field和value的映射表 hash特别适合存储对象 例：k1 field v1</p>
+<h3 id="3-list"><a href="#3-list" class="headerlink" title="3.list"></a>3.list</h3><p>简单的String列表 按照插入顺序排序 可以添加元素到列表的头部或尾部 它的底层实际是个双端链表 最多包含2^32-1个元素。</p>
+<h3 id="4-set"><a href="#4-set" class="headerlink" title="4.set"></a>4.set</h3><img src="/2022/08/01/Redis/image-20220908095506307.png" class="" title="image-20220908095506307">
 
-<h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><img src="/2022/08/01/Redis/image-20220908100053637.png" class="" title="image-20220908100053637">
+<p>使用场景：</p>
+<p>1.微信朋友圈点赞场景：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. 新增点赞</td>
+<td>sadd pub:msgId 点赞用户id01 点赞用户Id02</td>
+</tr>
+<tr>
+<td>2. 取消点赞</td>
+<td>smev pub:msgId 点赞用户Id01</td>
+</tr>
+<tr>
+<td>3. 展示所有点赞用户</td>
+<td>smembers pub:msgId</td>
+</tr>
+<tr>
+<td>4. 已点赞用户数量</td>
+<td>scard pub:msgId</td>
+</tr>
+<tr>
+<td>5. 判断这条朋友圈是否已经点赞过</td>
+<td>sismembers pub:msg 用户id</td>
+</tr>
+</tbody></table>
+<h3 id="5-zset"><a href="#5-zset" class="headerlink" title="5.zset"></a>5.zset</h3><p>zset和set一样也是String类型元素的集合 不允许有重复的成员</p>
+<p>不同的是：每个元素都会对应一个double类型的score  通过比较分数来进行从小到大的排序 是通过哈希表来实现的 </p>
+<img src="/2022/08/01/Redis/image-20220908100053637.png" class="" title="zset命令">
 
 
 
+<p>查找value分数值:  &gt;2 &amp;&amp; &lt;&#x3D;100 的value   ——此处命令中的 “ ( ” 代表不包含边界值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">zrangebyscore <span class="title function_">zset01</span> <span class="params">(<span class="number">2</span> <span class="number">100</span> withscores</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h5><p>打赏主播榜：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>某用户送出了某一个礼物 ：</td>
+<td>zincrby user:sellsort 1 1001</td>
+</tr>
+<tr>
+<td>送出礼物最多的前3个用户：</td>
+<td>zrange user:sellsort 0 2 withscores</td>
+</tr>
+</tbody></table>
+<h3 id="6-位图bitmap"><a href="#6-位图bitmap" class="headerlink" title="6. 位图bitmap"></a>6. 位图bitmap</h3><p>由0和1状态表现的二进制的bit数组 底层通过type命令查看后 依然还是string</p>
+<p>场景：</p>
+<ol>
+<li>电影，广告是否被点击观看过</li>
+<li>用户登录和打卡签到</li>
+</ol>
+<img src="Redis/image-20230402082905279.png" alt="image-20230402082905279" style="zoom: 80%;" />
+
+<p>其他命令：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">strlen <span class="title function_">k1</span> <span class="params">(获取bitmap的key长度 此处的长度不是字符串长度 而是占据几个字节 <span class="number">8</span>个长度一个字节 超过<span class="number">8</span>位后自己按照<span class="number">8</span>位<span class="number">1</span>组1byte扩容)</span></span><br></pre></td></tr></table></figure>
+
+<img src="Redis/image-20230402083041358.png" alt="image-20230402083041358" style="zoom: 67%;" />
+
+
+
+<h3 id="7-HyperLogLog"><a href="#7-HyperLogLog" class="headerlink" title="7. HyperLogLog"></a>7. HyperLogLog</h3><p>是用来做基数统计的算法 HyperLogLog的优点是 在输入元素的数量或者体积非常非常大时 计算基数所需的空间容量是固定的 并且是很小的 HyperLogLog不会存储输入元素本身 所以不能输出各个元素</p>
+<img src="/2022/08/01/Redis/image-20230402090042790.png" class="" title="image-20230402090042790">
+
+
+
+
+
+<h3 id="8-GEO"><a href="#8-GEO" class="headerlink" title="8.GEO"></a>8.GEO</h3><p>用于存储地理位置信息 可以添加地理位置的坐标 获取地理位置的坐标 计算两个位置之间的距离</p>
+<p>应用场景：</p>
+<p>核酸点距离 附近酒店 &#x2F;&#x2F;TODO 没学完</p>
+<h2 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h2><p>redis中 关于RDB和AOF的持久化解释：</p>
+<img src="/2022/08/01/Redis/image-20230402094740867.png" class="" title="image-20230402094740867">
+
+<ol>
+<li><p>RDB：Redis DataBase 以指定的时间间隔执行数据集的时间点快照 将某一时刻的数据和状态以文件的形式写道磁盘上	生成快照文件（dump.rdb文件）</p>
+</li>
+<li><p>AOF：Append Only File </p>
+</li>
+<li><p>RDB+AOF：</p>
+</li>
+</ol>
+<h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><img src="Redis/image-20230402095613142.png" alt="image-20230402095613142" style="zoom:50%;" />
+
+<p>rdb生成快照文件的时间条件：redis6和redis7中时机不同 （在redis.conf里配置的snapshot）</p>
+<p>redis6： 每隔<strong>900s（15分钟）</strong> 如果有1个key发生变化 重新写一份rdb文件   </p>
+<p>​				每隔300s（5分钟） 如果有10个key发生变化 重新写一份rdb文件</p>
+<p>​				每隔60s （1分钟）如果有10000个key发生变化 重新写一份rdb文件					</p>
+<p>redis7： 每隔<strong>3600s（60分钟）</strong> 如果有1个key发生变化 重新写一份rdb文件    （不同点）</p>
+<p>​				每隔300s（5分钟） 如果有10个key发生变化 重新写一份rdb文件</p>
+<p>​				每隔60s （1分钟）如果有10000个key发生变化 重新写一份rdb文件	</p>
+<h4 id="触发快照-生成rdb文件："><a href="#触发快照-生成rdb文件：" class="headerlink" title="触发快照 生成rdb文件："></a>触发快照 生成rdb文件：</h4><p>在配置文件中可以设置rdb文件的生成路径 （502行）</p>
+<h5 id="自动触发"><a href="#自动触发" class="headerlink" title="自动触发 :"></a>自动触发 :</h5><p>在配置文件内规定的时间里进行key的修改操作 就会自动生成</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">flushdb(但是这个命令生成的rdb文件只是一个空的文件 shutdown操作也会如此)</span><br></pre></td></tr></table></figure>
+
+<p>所以不要将真正有数据的rdb文件 和 会生成空的rdb文件放在同一目录下</p>
+<h5 id="手动触发："><a href="#手动触发：" class="headerlink" title="手动触发："></a>手动触发：</h5><p>对于主动想进行数据备份的操作 两个命令:  save，bgsave 相当于创建出一个子进程去生成rdb文件</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">save 在主程序中会执行阻塞当前redis服务器 直到持久化结束 </span><br></pre></td></tr></table></figure>
+
+<img src="Redis/image-20230402104903724.png" alt="image-20230402104903724" style="zoom:80%;" />
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">bgsave (会在后台异步进行快照操作 不阻塞 会fork一个子进程 由它进行持久化操作 推荐使用！！！！)</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用bgsave</strong></p>
+<h4 id="rdb持久化的优缺点："><a href="#rdb持久化的优缺点：" class="headerlink" title="rdb持久化的优缺点："></a>rdb持久化的优缺点：</h4><p>优点：rdb是redis数据的一个非常紧凑的单文件时间点表示 非常适合备份</p>
+<p>缺点：在redis停止工作的时候 可能会丢失数据 需要将数据丢失的可能性降到最低</p>
+<p>​			如果数据量太大 fork数据的时间和性能需要考虑</p>
+<h4 id="如何检查和修复rdb文件："><a href="#如何检查和修复rdb文件：" class="headerlink" title="如何检查和修复rdb文件："></a>如何检查和修复rdb文件：</h4><p>redis中存在redis-check-rdb命令  使用该命令可以修复rdb文件</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">redis-check-rdb /myredis/dump.rdb</span><br></pre></td></tr></table></figure>
+
+<h4 id="触发快照的几种方式"><a href="#触发快照的几种方式" class="headerlink" title="触发快照的几种方式"></a>触发快照的几种方式</h4><img src="Redis/image-20230402202829555.png" alt="image-20230402202829555" style="zoom:67%;" />
+
+
+
+<h3 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h3><p>以日志的形式来记录每一个写操作 将redis执行过的所有写命令都记录下来 只允许追加写文件不可以修改写文件</p>
+<p>redis重启的过程就是根据日志的文件内容将写指令从前到后执行一次 完成数据的构造过程</p>
+<p>（默认情况下不开启AOF	在配置文件中配置appendonly yes）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
+
+<p>AOF保存的是appendonly.aof文件	</p>
 <h2 id="Redis中常用的Java的客户端"><a href="#Redis中常用的Java的客户端" class="headerlink" title="Redis中常用的Java的客户端"></a>Redis中常用的Java的客户端</h2><img src="/2022/08/01/Redis/image-20220915082700182.png" class="" title="image-20220915082700182">
 
 
@@ -445,6 +611,8 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <li>逻辑过期</li>
 </ol>
 <h2 id="最热话题，点赞排行"><a href="#最热话题，点赞排行" class="headerlink" title="最热话题，点赞排行"></a>最热话题，点赞排行</h2><h2 id="短信登陆"><a href="#短信登陆" class="headerlink" title="短信登陆"></a>短信登陆</h2><h2 id="好友关注"><a href="#好友关注" class="headerlink" title="好友关注"></a>好友关注</h2><h2 id="附近商户"><a href="#附近商户" class="headerlink" title="附近商户"></a>附近商户</h2><h2 id="商品秒杀"><a href="#商品秒杀" class="headerlink" title="商品秒杀"></a>商品秒杀</h2><h2 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h2><p><a href="https://github.com/redisson/redisson">GitHub - redisson&#x2F;redisson: Redisson - Redis Java client with features of In-Memory Data Grid. Over 50 Redis based Java objects and services: Set, Multimap, SortedSet, Map, List, Queue, Deque, Semaphore, Lock, AtomicLong, Map Reduce, Publish &#x2F; Subscribe, Bloom filter, Spring Cache, Tomcat, Scheduler, JCache API, Hibernate, MyBatis, RPC, local cache …</a></p>
+<p>巨人的肩膀：</p>
+<p><a href="https://blog.csdn.net/pyufftj/article/details/106955607">(113条消息) Redis - NX与XX_redis xx_平_繁的博客-CSDN博客</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -3712,7 +3880,8 @@ count=100
 <p>内部结构：</p>
 <img src="/2022/05/24/%E5%A4%9A%E7%BA%BF%E7%A8%8B/169aa1836d0ac5b0tplv-t2oaga2asx-zoom-in-crop-mark3024000.webp" class="" title="img">
 
-<p>首先<code>ReentrantLock</code>继承自父类<code>Lock</code>，然后有<code>3</code>个内部类，其中<code>Sync</code>内部类继承自<code>AQS</code>，另外的两个内部类继承自<code>Sync</code>，这两个类分别是用来<strong>公平锁和非公平锁</strong>的。<br> 通过<code>Sync</code>重写的方法<code>tryAcquire</code>、<code>tryRelease</code>可以知道，**<code>ReentrantLock</code>实现的是<code>AQS</code>的独占模式，也就是独占锁，这个锁是悲观锁**。</p>
+<p>首先<code>ReentrantLock</code>继承自父类<code>Lock</code>，然后有<code>3</code>个内部类，其中<code>Sync</code>内部类继承自<code>AQS</code>，另外的两个内部类继承自<code>Sync</code>，这两个类分别是用来<strong>公平锁和非公平锁</strong>的。</p>
+<p>通过<code>Sync</code>重写的方法<code>tryAcquire</code>、<code>tryRelease</code>可以知道，**<code>ReentrantLock</code>实现的是<code>AQS</code>的独占模式，也就是独占锁，这个锁是悲观锁**。</p>
 <p>ReentrantLock的lock() 和 unlock() 方法的流程：</p>
 <h4 id="lock方法获取锁"><a href="#lock方法获取锁" class="headerlink" title="lock方法获取锁"></a>lock方法获取锁</h4><ol>
 <li><code>lock</code>方法调用<code>CAS</code>方法设置<code>state</code>的值，如果<code>state</code>等于期望值<code>0</code>(代表锁没有被占用)，那么就将<code>state</code>更新为<code>1</code>(代表该线程获取锁成功)，然后执行<code>setExclusiveOwnerThread</code>方法直接将该线程设置成锁的所有者。如果<code>CAS</code>设置<code>state</code>的值失败，即<code>state</code>不等于<code>0</code>，代表锁正在被占领着，则执行<code>acquire(1)</code>，即下面的步骤。</li>
