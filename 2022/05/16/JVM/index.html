@@ -36,8 +36,8 @@
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220520140939077.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223659712-1825753625.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png">
-<meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png">
-<meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png">
+<meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223858262-125394764.png">
+<meta property="og:image" content="http://example.com/2022/05/16/JVM/2128165-20200827223940541-1635130641.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220711174215771.png">
 <meta property="og:image" content="https://uploadfiles.nowcoder.com/images/20211118/363939340_1637165320603/761B181C5781AFC06BE53D95033688DB">
@@ -45,7 +45,7 @@
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220711173346887.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6aOO6KGM5rC05LiKX1pI,size_20,color_FFFFFF,t_70,g_se,x_16.png">
 <meta property="article:published_time" content="2022-05-16T06:46:22.000Z">
-<meta property="article:modified_time" content="2023-04-03T12:08:52.346Z">
+<meta property="article:modified_time" content="2023-04-03T12:34:05.886Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -242,7 +242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-03 20:08:52" itemprop="dateModified" datetime="2023-04-03T20:08:52+08:00">2023-04-03</time>
+                <time title="Modified: 2023-04-03 20:34:05" itemprop="dateModified" datetime="2023-04-03T20:34:05+08:00">2023-04-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -483,14 +483,14 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 
 
 <p>JDK1.7 ：<br>字符串常量池被从方法区拿到了堆中；运行时常量池剩下的东西还在方法区, 也就是hotspot中的永久代。</p>
-<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_2">
+<img src="/2022/05/16/JVM/2128165-20200827223858262-125394764.png" class="" title="9.5_2">
 
 
 
 
 
 <p>JDK1.8 ：<br>hotspot移除了永久代，用元空间(Metaspace) 取而代之。这时候，字符串常量池还在堆,运行时常量池还在方法区, 只不过方法区的实现从永久代变成元空间(Metaspace)。</p>
-<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_3">
+<img src="/2022/05/16/JVM/2128165-20200827223940541-1635130641.png" class="" title="9.5_3">
 
 
 
@@ -504,7 +504,8 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <ol start="2">
 <li>对永久代的调优是很困难的。</li>
 </ol>
-<h4 id="StringTable-为什么要调整？"><a href="#StringTable-为什么要调整？" class="headerlink" title="StringTable 为什么要调整？"></a>StringTable 为什么要调整？</h4><p>jdk7 中将 StringTable 放到了堆空间中。因为永久代的回收效率很低，在 Full GC 的时候才会触发，而 Full GC 是老年代的空间不足、永久代不足时才会触发，这就就导致 StringTable 回收效率不高。而开发中会有大量的字符串被创建，回收效率低，导致永久代不足。放在堆里，能及时回收内存。</p>
+<h4 id="StringTable-为什么要调整？"><a href="#StringTable-为什么要调整？" class="headerlink" title="StringTable 为什么要调整？"></a>StringTable 为什么要调整？</h4><p>在 Java 7 中，<code>StringTable</code> 存储在永久代（PermGen）中，它会随着 JVM 的启动而被初始化，并且大小是固定的，不能动态调整。</p>
+<p>jdk8 中将 StringTable 放到了堆空间中。因为永久代的回收效率很低，在 Full GC 的时候才会触发，而 Full GC 是老年代的空间不足、永久代不足时才会触发，这就就导致 StringTable 回收效率不高。而开发中会有大量的字符串被创建，回收效率低，导致永久代不足。放在堆里，能及时回收内存。</p>
 <img src="/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png" class="" title="img">
 
 <h2 id="类的加载机制"><a href="#类的加载机制" class="headerlink" title="类的加载机制"></a>类的加载机制</h2><h3 id="加载过程"><a href="#加载过程" class="headerlink" title="加载过程"></a>加载过程</h3><img src="/2022/05/16/JVM/image-20220711174215771.png" class="" title="image-20220711174215771">
@@ -718,7 +719,7 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">249k</span>
+    <span title="Symbols count total">250k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>

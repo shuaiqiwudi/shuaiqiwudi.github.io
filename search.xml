@@ -203,14 +203,14 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 
 
 <p>JDK1.7 ：<br>字符串常量池被从方法区拿到了堆中；运行时常量池剩下的东西还在方法区, 也就是hotspot中的永久代。</p>
-<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_2">
+<img src="/2022/05/16/JVM/2128165-20200827223858262-125394764.png" class="" title="9.5_2">
 
 
 
 
 
 <p>JDK1.8 ：<br>hotspot移除了永久代，用元空间(Metaspace) 取而代之。这时候，字符串常量池还在堆,运行时常量池还在方法区, 只不过方法区的实现从永久代变成元空间(Metaspace)。</p>
-<img src="/2022/05/16/JVM/2128165-20200827223822891-1286299930-16575481393884.png" class="" title="9.5_3">
+<img src="/2022/05/16/JVM/2128165-20200827223940541-1635130641.png" class="" title="9.5_3">
 
 
 
@@ -224,7 +224,8 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 <ol start="2">
 <li>对永久代的调优是很困难的。</li>
 </ol>
-<h4 id="StringTable-为什么要调整？"><a href="#StringTable-为什么要调整？" class="headerlink" title="StringTable 为什么要调整？"></a>StringTable 为什么要调整？</h4><p>jdk7 中将 StringTable 放到了堆空间中。因为永久代的回收效率很低，在 Full GC 的时候才会触发，而 Full GC 是老年代的空间不足、永久代不足时才会触发，这就就导致 StringTable 回收效率不高。而开发中会有大量的字符串被创建，回收效率低，导致永久代不足。放在堆里，能及时回收内存。</p>
+<h4 id="StringTable-为什么要调整？"><a href="#StringTable-为什么要调整？" class="headerlink" title="StringTable 为什么要调整？"></a>StringTable 为什么要调整？</h4><p>在 Java 7 中，<code>StringTable</code> 存储在永久代（PermGen）中，它会随着 JVM 的启动而被初始化，并且大小是固定的，不能动态调整。</p>
+<p>jdk8 中将 StringTable 放到了堆空间中。因为永久代的回收效率很低，在 Full GC 的时候才会触发，而 Full GC 是老年代的空间不足、永久代不足时才会触发，这就就导致 StringTable 回收效率不高。而开发中会有大量的字符串被创建，回收效率低，导致永久代不足。放在堆里，能及时回收内存。</p>
 <img src="/2022/05/16/JVM/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTMwOTQwMg==,size_16,color_FFFFFF,t_70.png" class="" title="img">
 
 <h2 id="类的加载机制"><a href="#类的加载机制" class="headerlink" title="类的加载机制"></a>类的加载机制</h2><h3 id="加载过程"><a href="#加载过程" class="headerlink" title="加载过程"></a>加载过程</h3><img src="/2022/05/16/JVM/image-20220711174215771.png" class="" title="image-20220711174215771">
