@@ -46,7 +46,7 @@
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/image-20220711173346887.png">
 <meta property="og:image" content="http://example.com/2022/05/16/JVM/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6aOO6KGM5rC05LiKX1pI,size_20,color_FFFFFF,t_70,g_se,x_16.png">
 <meta property="article:published_time" content="2022-05-16T06:46:22.000Z">
-<meta property="article:modified_time" content="2023-04-06T01:28:48.784Z">
+<meta property="article:modified_time" content="2023-04-11T06:28:34.468Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -243,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-06 09:28:48" itemprop="dateModified" datetime="2023-04-06T09:28:48+08:00">2023-04-06</time>
+                <time title="Modified: 2023-04-11 14:28:34" itemprop="dateModified" datetime="2023-04-11T14:28:34+08:00">2023-04-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -513,9 +513,9 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
 
 <p><strong>1. Loading 加载：</strong> 类的加载主要的职责为将.class文件的二进制字节流读入内存，并在堆内存中为之创建Class对象，作为.class进入内存后的数据的访问入口。在这里只是读入二进制字节流，后续的验证阶段就是要拿二进制字节流来验证.class文件，验证通过，才会将.class文件转为运行时数据结构</p>
 <p><strong>2. Linking 连接：</strong></p>
-<p><strong>校验</strong>：该阶段主要是为了保证加载进来的字节流符合JVM的规范，不会对JVM有安全性问题。其中有对元数据的验证，例如检查类是否继承了被final修饰的类；或者是检查符号引用的权限(private、public)是否符合语法规定等。</p>
-<p><strong>准备：</strong> 准备阶段的主要任务是为类的类变量开辟空间并赋默认值。<br>1、静态变量是基本类型（int、long、short、char、byte、boolean、float、double）的默认值为0<br>2、静态变量是引用类型的，默认值为null<br>3、静态常量默认值为声明时设定的值</p>
-<p><strong>解析：</strong> 该阶段的主要职责为将Class在常量池中的符号引用转变为直接引用，此处针对的是静态方法和私有方法。</p>
+<p><strong>校验</strong>：该阶段主要是为了<u>保证加载进来的字节流符合JVM的规范</u>，不会对JVM有安全性问题。其中有对元数据的验证，例如检查类是否继承了被final修饰的类；或者是检查符号引用的权限(private、public)是否符合语法规定等。</p>
+<p><strong>准备：</strong> 准备阶段的主要任务是为类的<u>静态变量开辟空间并赋默认值</u>。<br>1、静态变量是基本类型（int、long、short、char、byte、boolean、float、double）的默认值为0<br>2、静态变量是引用类型的，默认值为null<br>3、静态常量默认值为声明时设定的值</p>
+<p><strong>解析：</strong> 该阶段的主要职责为将<u>Class在常量池中的符号引用转变为直接引用</u>，此处针对的是静态方法和私有方法。</p>
 <p><strong>3.初始化：</strong></p>
 <p>  该阶段主要是为类的类变量初始化值的，初始化有两种方式：<br>1、在声明类变量时，直接给变量赋值<br>2、在静态初始化块为类变量赋值</p>
 <h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><img src="/2022/05/16/JVM/Center.png" class="" title="img">
@@ -735,13 +735,13 @@ Parallel Old收集器 (标记-整理算法)： 老年代并行收集器，吞吐
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">253k</span>
+    <span title="Symbols count total">254k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:50</span>
+    <span title="Reading time total">3:51</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
