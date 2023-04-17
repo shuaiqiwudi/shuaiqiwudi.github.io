@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-04-17 08:32:28 / Modified: 12:45:15" itemprop="dateCreated datePublished" datetime="2023-04-17T08:32:28+08:00">2023-04-17</time>
+              <time title="Created: 2023-04-17 08:32:28 / Modified: 14:29:32" itemprop="dateCreated datePublished" datetime="2023-04-17T08:32:28+08:00">2023-04-17</time>
             </span>
 
           
@@ -260,154 +260,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h1><img src="/2023/04/17/%E5%88%86%E5%B8%83%E5%BC%8F/20210710220330858.png" class="" title="img">
-
-<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><h3 id="本地事务"><a href="#本地事务" class="headerlink" title="本地事务"></a>本地事务</h3><p>当事务由资源管理器本地管理时被称作本地事务。本地事务的优点就是⽀持严格的ACID特性，⾼效，可靠，状态可以只在资源管理器中维护，⽽且应⽤编程模型简单，隔离的最⼩单位受限于资源管理器。</p>
-<h3 id="全局事务"><a href="#全局事务" class="headerlink" title="全局事务"></a>全局事务</h3><p>当事务由全局事务管理器进⾏全局管理时成为全局事务，事务管理器负责管理全局的事务状态和参与的资源，协同资源的⼀致提交回滚。</p>
-<h2 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h2><p>WEB服务⽆法同时满⾜⼀下3个属性：</p>
-<p><strong>⼀致性(Consistency)</strong> ： ⼀致性是指多个副本之间能否保持⼀致的特性。在⼀致性的需求下，当⼀个系统在数据⼀致的状态下执⾏更新操作后，应该保证系统的数据仍然处理⼀致的状态。</p>
-<p>数据⼀致性分为<strong>强⼀致性、弱⼀致性、最终⼀致性</strong>。</p>
-<p>如果的确能像上⾯描述的那样时刻保证客户端看到的数据都是⼀致的，那么称之为强⼀致性。</p>
-<p>如果允许存在中间状态，只要求经过⼀段时间后，数据最终是⼀致的，则称之为最终⼀致性。</p>
-<p>此外，如果允许存在部分数据不⼀致，那么就称之为弱⼀致性。</p>
-<p><strong>可⽤性(Availability)</strong> ： 系统提供的服务必须⼀直处于可⽤的状态，对于⽤户的每⼀个操作请求总是能够在有限的时间内返回结果。</p>
-<p><strong>分区容错性(Partition tolerance)</strong> ： 即分布式系统在遇到任何⽹络分区故障时，仍然需要能够对外保证提供满⾜⼀致性或可⽤性的服务，除⾮是整个⽹络环境都发⽣了故障。</p>
-<p>任何⼀个分布式系统都⽆法同时满⾜⼀致性、可⽤性和分区容错性，最多只能同时满⾜两项。在互联⽹领域的绝⼤多数的场景中，都需要<strong>牺牲强一致性来换取系统的高可用性</strong>，系统往往只需要保证最终⼀致性。<strong>所以只能在CP和AP之间进行抉择。</strong></p>
-<h3 id="为什么C和A不可以同时存在？"><a href="#为什么C和A不可以同时存在？" class="headerlink" title="为什么C和A不可以同时存在？"></a>为什么C和A不可以同时存在？</h3><p>如果保证了⼀致性（C）：对于节点N1和N2，当往N1⾥写数据时，N2上的操作必须被暂停，只有当N1同步数据到N2时才能对N2进⾏读写请求，在N2被暂停操作期间客户端提交的请求会收到失败或超时。显然，这与可⽤性是相悖的。</p>
-<p>如果保证了可⽤性（A）：那就不能暂停N2的读写操作，但同时N1在写数据的话，这就违背了⼀致性的要求。</p>
-<h2 id="BASE"><a href="#BASE" class="headerlink" title="BASE"></a>BASE</h2><p>CAP是分布式系统设计理论，BASE是CAP理论中<strong>AP⽅案</strong>的延伸，对于C我们采⽤的⽅式和策略就是保证最终⼀致性；</p>
-<p><strong>Basically Available（基本可⽤）、Soft state（软状态）和Eventually consistent（最终⼀致性）</strong></p>
-<p>BASE的三个短语的缩写。BASE基于CAP定理演化⽽来，核⼼思想是即时⽆法做到强⼀致性，但每个应⽤都可以根据⾃身业务特点，采⽤适当的⽅式来使系统达到最终⼀致性。</p>
-<h3 id="Basically-Available（基本可⽤）"><a href="#Basically-Available（基本可⽤）" class="headerlink" title="Basically Available（基本可⽤）"></a><strong>Basically Available（基本可⽤）</strong></h3><p>基本可⽤是指分布式系统在出现不可预知的故障的时候，允许损失部分可⽤性，但不等于系统不可⽤</p>
-<ol>
-<li>响应时间上的损失：当出现故障时，响应时间增加</li>
-<li>功能上的损失：当流量⾼峰期时，屏蔽⼀些功能的使⽤以保证系统稳定性（服务降级）</li>
-</ol>
-<h3 id="Soft-state（软状态）"><a href="#Soft-state（软状态）" class="headerlink" title="Soft state（软状态）"></a>Soft state（软状态）</h3><p>指允许系统中的数据存在中间状态，并认为该中间状态的存在不会影响系统的整体可⽤性。</p>
-<p>即是指允许系统中的数据存在中间状态，并认为该中间状态的存在不会影响系统的整体可⽤性，即允许系统在不同节点的数据副本之间进⾏数据同步的过程存在延时。</p>
-<h3 id="Eventually-consistent（最终⼀致性）"><a href="#Eventually-consistent（最终⼀致性）" class="headerlink" title="Eventually consistent（最终⼀致性）"></a>Eventually consistent（最终⼀致性）</h3><p>强调系统中所有的数据副本，在经过⼀段时间的同步后，最终能够达到⼀个⼀致的状态。其本质是需要系统保证最终数据能够达到⼀致，⽽不需要实时保证系统数据的强⼀致性。</p>
-<p>最终⼀致性可分为如下⼏种：</p>
-<p>（1）因果⼀致性（Causal consistency）</p>
-<p>即进程A在更新完数据后通知进程B，那么之后进程B对该项数据的范围都是进程A更新后的最新值。 当流量⾼峰期时，屏蔽⼀些功能的使⽤以保证系统稳定性（服务降级）最终⼀致性可分为如下⼏种：</p>
-<p>（2）读⼰之所写（Read your writes）</p>
-<p>进程A更新⼀项数据后，它⾃⼰总是能访问到⾃⼰更新过的最新值。</p>
-<p>（3）会话⼀致性（Session consistency）</p>
-<p>将数据⼀致性框定在会话当中，在⼀个会话当中实现读⼰之所写的⼀致性。即执⾏更新后，客户端在同⼀个会话中始终能读到该项数据的最新值</p>
-<p>（4）单调读⼀致性（Monotonic read consistency）</p>
-<p>如果⼀个进程从系统中读取出⼀个数据项的某个值后，那么系统对于该进程后续的任何数据访问都不应该返回更旧的值。</p>
-<p>（5）单调写⼀致性（Monotoic write consistency）</p>
-<p>⼀个系统需要保证来⾃同⼀个进程的写操作被顺序执⾏。</p>
-<h2 id="2PC"><a href="#2PC" class="headerlink" title="2PC"></a>2PC</h2><p>为了使得基于分布式架构的所有节点可以在进⾏事务处理时能够保持原⼦性和⼀致性。绝⼤部分关系型数据库，都是基于2PC完成分布式的事务处理。</p>
-<p>顾名思义，2PC分为两个阶段处理：</p>
-<p>阶段⼀：提交事务请求<br>阶段⼆：执⾏事务提交; 如果阶段⼀超时或者出现异常，2PC的阶段⼆：中断事务</p>
-<h3 id="阶段⼀：提交事务请求"><a href="#阶段⼀：提交事务请求" class="headerlink" title="阶段⼀：提交事务请求"></a><strong>阶段⼀：提交事务请求</strong></h3><ol>
-<li><p>事务询问。协调者向所有参与者发送事务内容，询问是否可以执⾏提交操作，并开始等待各参与者进⾏响应；</p>
-</li>
-<li><p>执⾏事务。各参与者节点，执⾏事务操作，并将Undo和Redo操作计⼊本机事务⽇志；</p>
-</li>
-<li><p>各参与者向协调者反馈事务问询的响应。成功执⾏返回Yes，否则返回No</p>
-</li>
-</ol>
-<h3 id="阶段⼆：执⾏事务提交"><a href="#阶段⼆：执⾏事务提交" class="headerlink" title="阶段⼆：执⾏事务提交"></a><strong>阶段⼆：执⾏事务提交</strong></h3><p>协调者在阶段⼆决定是否最终执⾏事务提交操作。这⼀阶段包含两种情形：</p>
-<h4 id="执⾏事务提交"><a href="#执⾏事务提交" class="headerlink" title="执⾏事务提交"></a><strong>执⾏事务提交</strong></h4><p>所有参与者reply Yes，那么执⾏事务提交。</p>
-<ol>
-<li><p>发送提交请求。协调者向所有参与者发送Commit请求；</p>
-</li>
-<li><p>事务提交。参与者收到Commit请求后，会<strong>正式执⾏事务提交操作</strong>，并在完成提交操作之后，释放在整个事务执⾏期间占⽤的资源；</p>
-</li>
-<li><p>反馈事务提交结果。参与者在完成事务提交后，写协调者发送Ack消息确认；</p>
-</li>
-<li><p>完成事务。协调者在收到所有参与者的Ack后，完成事务。</p>
-</li>
-</ol>
-<img src="/2023/04/17/%E5%88%86%E5%B8%83%E5%BC%8F/692462-20190407131001597-1193625164.png" class="" title="img">
-
-<h3 id="阶段⼆：中断事务"><a href="#阶段⼆：中断事务" class="headerlink" title="阶段⼆：中断事务"></a><strong>阶段⼆：中断事务</strong></h3><p>事情总会出现意外，当存在某⼀参与者向协调者发送No响应，或者等待超时。协调者只要⽆法收到所有参与者的Yes响应，就会中断事务。</p>
-<ol>
-<li><p>发送回滚请求。协调者向所有参与者发送Rollback请求；</p>
-</li>
-<li><p>回滚。参与者收到请求后，利⽤本机Undo信息，执⾏Rollback操作。并在回滚结束后释放该事务所占⽤的系统资源；</p>
-</li>
-<li><p>反馈回滚结果。参与者在完成回滚操作后，向协调者发送Ack消息；</p>
-</li>
-<li><p>中断事务。协调者收到所有参与者的回滚Ack消息后，完成事务中断</p>
-</li>
-</ol>
-<img src="/2023/04/17/%E5%88%86%E5%B8%83%E5%BC%8F/692462-20190407131017854-1201369651.png" class="" title="img">
-
-<h3 id="关于2PC"><a href="#关于2PC" class="headerlink" title="关于2PC"></a>关于2PC</h3><p>两阶段提交在处理分布式事务时分为两个阶段：voting（投票阶段，有的地⽅会叫做prepare阶段）和commit阶段。2pc中存在两个⻆⾊，<strong>事务协调者</strong>（seata、atomikos、lcn（都是些框架））和<strong>事务参与者</strong>，事务参与者通常是指应⽤的数据库。</p>
-<img src="/2023/04/17/%E5%88%86%E5%B8%83%E5%BC%8F/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t1c2VkZXhpbmdmdQ==,size_16,color_FFFFFF,t_70.png" class="" title="img">
-
-<h3 id="2PC优缺点"><a href="#2PC优缺点" class="headerlink" title="2PC优缺点"></a>2PC优缺点</h3><p>优点主要体现在实现原理简单；</p>
-<p>缺点⽐较多：</p>
-<p>2PC的提交在执⾏过程中，所有参与事务操作的逻辑都处于阻塞状态，也就是说，各个参与者都在等待其他参与者响应，⽆法进⾏其他操作；</p>
-<p>协调者是个单点，⼀旦出现问题，其他参与者将⽆法释放事务资源，也⽆法完成事务操作；</p>
-<p>数据不⼀致。当执⾏事务提交过程中，如果协调者向所有参与者发送Commit请求后，发⽣局部⽹络异常或者协调者在尚未发送完Commit请求，即出现崩溃，最终导致只有部分参与者收到、执⾏请求。于是整个系统将会出现数据不⼀致的情形；</p>
-<p>效率保守。2PC没有完善的容错机制，当参与者出现故障时，协调者⽆法快速得知这⼀失败，只能严格依赖超时设置来决定是否进⼀步的执⾏提交还是中断事务</p>
-<h2 id="3PC"><a href="#3PC" class="headerlink" title="3PC"></a>3PC</h2><p>针对2PC的缺点，研究者提出了3PC，即Three-Phase Commit。</p>
-<p>作为2PC的改进版，3PC将原有的两阶段过程，重新划分为<strong>can_commit，pre_commit，do_commit</strong>三个阶段。</p>
-<img src="/2023/04/17/%E5%88%86%E5%B8%83%E5%BC%8F/692462-20190407142856081-1418301502.png" class="" title="img">
-
-
-
-<p><strong>阶段⼀：CanCommit</strong></p>
-<ol>
-<li><p>事务询问。协调者向所有参与者发送包含事务内容的canCommit的请求，询问是否可以执⾏事务提交，并等待应答；</p>
-</li>
-<li><p>各参与者反馈事务询问。正常情况下，如果参与者认为可以顺利执⾏事务，则返回Yes，否则返回No。</p>
-</li>
-</ol>
-<p><strong>阶段⼆：PreCommit</strong></p>
-<p>在本阶段，协调者会根据上⼀阶段的反馈情况来决定是否可以执⾏事务的PreCommit操作。有以下两种可能：</p>
-<p><strong>执⾏事务预提交</strong></p>
-<ol>
-<li><p>发送预提交请求。协调者向所有节点发出PreCommit请求，并进⼊prepared阶段；</p>
-</li>
-<li><p>事务预提交。参与者收到PreCommit请求后，会执⾏事务操作，并将Undo和Redo⽇志写⼊本机事务⽇志；</p>
-</li>
-<li><p>各参与者成功执⾏事务操作，同时将反馈以Ack响应形式发送给协调者，同事等待最终的Commit或Abort指令。</p>
-</li>
-</ol>
-<p><strong>中断事务</strong></p>
-<p>加⼊任意⼀个参与者向协调者发送No响应，或者等待超时，协调者在没有得到所有参与者响应时，即可以中断事务：</p>
-<ol>
-<li><p>发送中断请求。 协调者向所有参与者发送Abort请求；</p>
-</li>
-<li><p>中断事务。⽆论是收到协调者的Abort请求，还是等待协调者请求过程中出现超时，参与者都会中断事务；</p>
-</li>
-</ol>
-<p><strong>阶段三：doCommit</strong></p>
-<p>在这个阶段，会真正的进⾏事务提交，同样存在两种可能。</p>
-<p><strong>执⾏提交</strong></p>
-<ol>
-<li><p>发送提交请求。假如协调者收到了所有参与者的Ack响应，那么将从预提交转换到提交状态，并向所有参与者，发送doCommit请求；</p>
-</li>
-<li><p>事务提交。参与者收到doCommit请求后，会正式执⾏事务提交操作，并在完成提交操作后释放占⽤资源；</p>
-</li>
-<li><p>反馈事务提交结果。参与者将在完成事务提交后，向协调者发送Ack消息；</p>
-</li>
-<li><p>完成事务。协调者接收到所有参与者的Ack消息后，完成事务。</p>
-</li>
-</ol>
-<p><strong>中断事务</strong>在该阶段，假设正常状态的协调者接收到任⼀个参与者发送的No响应，或在超时时间内，仍旧没收到反馈消息，就会中断事务：</p>
-<ol>
-<li><p>发送中断请求。协调者向所有的参与者发送abort请求；</p>
-</li>
-<li><p>事务回滚。参与者收到abort请求后，会利⽤阶段⼆中的Undo消息执⾏事务回滚，并在完成回滚后释放占⽤资源；</p>
-</li>
-<li><p>反馈事务回滚结果。参与者在完成回滚后向协调者发送Ack消息；</p>
-</li>
-<li><p>中端事务。协调者接收到所有参与者反馈的Ack消息后，完成事务中断。</p>
-</li>
-</ol>
-<img src="/2023/04/17/%E5%88%86%E5%B8%83%E5%BC%8F/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2t1c2VkZXhpbmdmdQ==,size_16,color_FFFFFF,t_70-16816948943496.png" class="" title="img">
-
-<p>在doCommit阶段，如果参与者⽆法及时接收到来⾃协调者的doCommit或者abort请求时，会在等待超时之后，继续进⾏事务的提交。（其实这个应该是基于概率来决定的，当进⼊第三阶段时，说明参与者在第⼆阶段已经收到了PreCommit请求，那么协调者产⽣PreCommit请求的前提条件是他在第⼆阶段开始之前，收到所有参与者的CanCommit响应都是Yes。（⼀旦参与者收到了PreCommit，意味他知道⼤家其实都同意修改了）所以，⼀句话概括就是，当进⼊第三阶段时， <strong>由于⽹络超时等原因，虽然参与者<strong><strong>没有收到</strong></strong>commit<strong><strong>或者</strong></strong>abort<strong><strong>响应，但是他有理由相信：成功提交的⼏率很</strong></strong>⼤</strong>。 ）</p>
-<h3 id="2PC和3PC的区别："><a href="#2PC和3PC的区别：" class="headerlink" title="2PC和3PC的区别："></a><strong>2PC</strong>和3PC的区别：</h3><p>三阶段提交协议在协调者和参与者中都引⼊ <strong>超时机制</strong>，并且把两阶段提交协议的第⼀个阶段拆分成了两步：询问，然后再锁资源，最后真正提交。</p>
-<p>3PC有效降低了2PC带来的参与者阻塞范围，并且能够在出现单点故障后继续达成⼀致；但3PC带来了新的问题，在参与者收到preCommit消息后，如果⽹络出现分区，协调者和参与者⽆法进⾏后续的通信，这种情况下，参与者在等待超时后，依旧会执⾏事务提交，这样会导致数据的不⼀致。</p>
-<h3 id="“3PC相对于2PC⽽⾔到底优化了什么地⽅呢-”"><a href="#“3PC相对于2PC⽽⾔到底优化了什么地⽅呢-”" class="headerlink" title="“3PC相对于2PC⽽⾔到底优化了什么地⽅呢?”"></a><strong>“3PC相对于2PC⽽⾔到底优化了什么地⽅呢?”</strong></h3><p>相⽐较2PC⽽⾔，3PC对于协调者（Coordinator）和参与者（Partcipant）都设置了超时时间，⽽2PC只有协调者才拥有超时机制。这解决了⼀个什么问题呢？这个优化点，主要是避免了参与者在⻓时间⽆法与协调者节点通讯（协调者挂掉了）的情况下，⽆法释放资源的问题，因为参与者⾃身拥有超时机制会在超时后，⾃动进⾏本地commit从⽽进⾏释放资源。⽽这种机制也侧⾯降低了整个事务的阻塞时间和范围。</p>
-<p>另外，通过CanCommit、PreCommit、DoCommit三个阶段的设计，相较于2PC⽽⾔，多设置了⼀个缓冲阶段保证了在最后提交阶段之前各参与节点的状态是⼀致的。以上就是3PC相对于2PC的⼀个提⾼（相对缓解了2PC中的前两个问题），但是3PC依然没有完全解决数据不⼀致的问题。假如在 DoCommit过程，参与者A⽆法接收协调者的通信，那么参与者A会⾃动提交，但是提交失败了，其他参与者成功了，此时数据就会不⼀致。</p>
-
+          <h1 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/17/%E5%88%86%E5%B8%83%E5%BC%8F/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
