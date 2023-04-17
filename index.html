@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-04-17 08:32:28 / Modified: 09:31:19" itemprop="dateCreated datePublished" datetime="2023-04-17T08:32:28+08:00">2023-04-17</time>
+              <time title="Created: 2023-04-17 08:32:28 / Modified: 12:45:15" itemprop="dateCreated datePublished" datetime="2023-04-17T08:32:28+08:00">2023-04-17</time>
             </span>
 
           
@@ -358,8 +358,8 @@
 </li>
 </ol>
 <p><strong>阶段⼆：PreCommit</strong></p>
-<p>在本阶段，协调者会根据上⼀阶段的反馈情况来决定是否可以执⾏事务的</p>
-<p>PreCommit操作。有以下两种可能：<strong>执⾏事务预提交</strong></p>
+<p>在本阶段，协调者会根据上⼀阶段的反馈情况来决定是否可以执⾏事务的PreCommit操作。有以下两种可能：</p>
+<p><strong>执⾏事务预提交</strong></p>
 <ol>
 <li><p>发送预提交请求。协调者向所有节点发出PreCommit请求，并进⼊prepared阶段；</p>
 </li>
@@ -369,8 +369,7 @@
 </li>
 </ol>
 <p><strong>中断事务</strong></p>
-<p>加⼊任意⼀个参与者向协调者发送No响应，或者等待超时，协调者在没有</p>
-<p>得到所有参与者响应时，即可以中断事务：</p>
+<p>加⼊任意⼀个参与者向协调者发送No响应，或者等待超时，协调者在没有得到所有参与者响应时，即可以中断事务：</p>
 <ol>
 <li><p>发送中断请求。 协调者向所有参与者发送Abort请求；</p>
 </li>
