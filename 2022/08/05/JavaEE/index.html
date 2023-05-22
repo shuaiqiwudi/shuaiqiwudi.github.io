@@ -31,7 +31,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/08/05/JavaEE/20200226214858667.png">
 <meta property="article:published_time" content="2022-08-05T07:54:09.000Z">
-<meta property="article:modified_time" content="2023-04-17T06:22:17.797Z">
+<meta property="article:modified_time" content="2023-04-21T00:45:17.630Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -228,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-17 14:22:17" itemprop="dateModified" datetime="2023-04-17T14:22:17+08:00">2023-04-17</time>
+                <time title="Modified: 2023-04-21 08:45:17" itemprop="dateModified" datetime="2023-04-21T08:45:17+08:00">2023-04-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,14 +267,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.3k</span>
+              <span>5k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
+              <span>5 mins.</span>
             </span>
 
         </div>
@@ -382,9 +382,15 @@
 
 <p>StringBuffer的速度是低于和StringBuilder的 ， 但是StringBuffer的安全性是有保障的，经过测试，实际上StringBuffer的速度并不逊色于StringBuilder很多，所以实际上是<strong>没有必要</strong>为了一点点的性能提升而舍弃安全性去选StringBuilder。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kaka_buka/article/details/78296217">StringBuffer和StringBuilder的性能对比_黑风风的博客-CSDN博客_stringbuilder stringbuffer 性能</a></p>
-<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hongdada/p/13993251.html">Java 泛型擦除 - hongdada - 博客园 (cnblogs.com)</a></p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>Java的泛型是伪泛型，这是因为Java在<strong>编译期</strong>间，所有的泛型信息都会被擦掉，正确理解泛型概念的首要前提是理解类型擦除。Java的泛型基本上都是在编译器这个层次上实现的，在生成的字节码中是不包含泛型中的类型信息的，使用泛型的时候加上类型参数，在编译器编译的时候会去掉，这个过程成为类型擦除。<br>例如：<code>List&lt;String&gt;</code> 和 <code>List&lt;Integer&gt;</code> 在编译后都变成 <code>List</code></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hongdada/p/13993251.html">Java 泛型擦除 - hongdada - 博客园 (cnblogs.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/346486993">Java泛型中的类型擦除详解 - 知乎 (zhihu.com)</a></p>
-<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>对于try-catch-finally的理解：</p>
+<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>Java中的异常处理是一种机制，用于在程序执行期间处理错误或异常情况，</p>
+<p><strong>当程序执行遇到错误或异常情况时，将会抛出一个异常对象。如果这个异常对象没有被捕获和处理，那么程序将会终止，并给出相应的错误信息。</strong></p>
+<p>Java的异常分为两类：<strong>检查异常，非检查异常</strong>。</p>
+<p>检查异常是指编译器在编译Java代码时就会检查出来的异常，这些异常必须要被捕获和处理，否则程序将无法通过<strong>编译</strong>。</p>
+<p>非检查异常则是指在运行时才会发生的异常，如空指针异常和数组越界异常等。对于这些异常，可以选择捕获并处理，也可以直接让程序崩溃并抛出错误信息。</p>
+<p>对于try-catch-finally的理解：</p>
 <p>通常来讲，我们一个java程序中，有三个线程：主线程main()，异常线程，垃圾回收线程gc()。</p>
 <p>当我们的main程序运行的时候，</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[]=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    System.out.println(arr[<span class="number">5</span>]);</span><br><span class="line">&#125;<span class="keyword">catch</span> (ArrayIndexOutOfBoundsException e)&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;处理数组越界异常&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;finally&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;last word speak&quot;</span>);</span><br></pre></td></tr></table></figure>
@@ -393,28 +399,23 @@
 <figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">处理数组越界异常</span><br><span class="line">finally</span><br><span class="line">last word speak</span><br></pre></td></tr></table></figure>
 
 <p>这说明 我们的try-catch结构中 异常线程对出现异常的位置进行了响应异常的catch捕捉，并反馈给主线程，该异常已经被处理，主线程继续运行，直到结束。try-catch结构对主线程进行了关于异常方面的保护，所以主线程能够顺利运行，也是一种保护java程序的手段。</p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><ul>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><ul>
 <li>工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪个类。</li>
 <li>抽象工厂模式：提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</li>
 <li>单例模式：确保一个类只有一个实例，并提供一个全局访问点。</li>
 <li>建造者模式：将一个复杂对象的构建和表示分离，使得同样的构建过程可以创建不同的表示。</li>
 <li>原型模式：通过复制已经存在的实例来创建新的实例。</li>
 <li>策略模式：定义一系列算法，将每个算法都封装起来，并让它们可以相互替换。(到达相同地点 使用不同交通方式的路径算法)</li>
+<li>观察者模式：将观察者和被观察者代码解耦。观察者模式的应用场景非常广泛，小到代码层面的解耦，大到架构层面的系统解耦，再或者一些产品的设计思路，都有这种模式的影子，比如，邮件订阅、RSS Feeds，本质上都是观察者模式。</li>
 </ul>
-<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>Java反射是Java语言提供的一种运行时机制，它提供了在运行时检查和操作Java类和对象的能力。Java反射在一些框架和库中得到广泛应用，它<strong>允许我们在运行时获取类的信息，并可以实例化对象、调用方法和访问属性等</strong>。</p>
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>Java反射是Java语言提供的一种运行时机制，它提供了在运行时检查和操作Java类和对象的能力。Java反射在一些框架和库中得到广泛应用，它<strong>允许我们在运行时获取类的信息，并可以实例化对象、调用方法和访问属性等</strong>。</p>
 <p>反射在某些情况下非常有用，例如我们需要动态地加载类，创建对象，获取类的元数据，判断一个对象是否是某个类的实例，动态修改类的成员等，Java反射可以胜任这些任务。</p>
-<h3 id="反射机制-以及可以实现哪些功能"><a href="#反射机制-以及可以实现哪些功能" class="headerlink" title="反射机制 以及可以实现哪些功能"></a>反射机制 以及可以实现哪些功能</h3><p>Java的反射机制指的是在运行时获取和操作类的属性、方法、构造器等信息的能力。在Java中，每个类都有一个Class对象，可以使用反射机制来获取这个Class对象，并<strong>通过Class对象获取类的各种属性和方法等信息</strong>。</p>
+<h2 id="反射机制-以及可以实现哪些功能"><a href="#反射机制-以及可以实现哪些功能" class="headerlink" title="反射机制 以及可以实现哪些功能"></a>反射机制 以及可以实现哪些功能</h2><p>Java的反射机制指的是在运行时获取和操作类的属性、方法、构造器等信息的能力。在Java中，每个类都有一个Class对象，可以使用反射机制来获取这个Class对象，并<strong>通过Class对象获取类的各种属性和方法等信息</strong>。</p>
 <p>例如，可以使用**Class.forName()**方法来获取类的对象</p>
 <p>使用getFields()、getDeclaredFields()等方法获取类的成员变量</p>
 <p>使用getMethods()、getDeclaredMethods()等方法获取类的成员方法等。</p>
 <p>在运行时修改类的属性值和方法行为，即利用反射改变类的状态和行为，比如动态代理和AOP等技术。</p>
-<h2 id="异常-1"><a href="#异常-1" class="headerlink" title="异常"></a>异常</h2><p>Java中的异常处理是一种机制，用于在程序执行期间处理错误或异常情况，</p>
-<p><strong>当程序执行遇到错误或异常情况时，将会抛出一个异常对象。如果这个异常对象没有被捕获和处理，那么程序将会终止，并给出相应的错误信息。</strong></p>
-<p>Java的异常分为两类：<strong>检查异常，非检查异常</strong>。</p>
-<p>检查异常是指编译器在编译Java代码时就会检查出来的异常，这些异常必须要被捕获和处理，否则程序将无法通过<strong>编译</strong>。</p>
-<p>非检查异常则是指在运行时才会发生的异常，如空指针异常和数组越界异常等。对于这些异常，可以选择捕获并处理，也可以直接让程序崩溃并抛出错误信息。</p>
-<p>try-catch-finally</p>
-<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>Java中的线程池是一种线程管理机制，它用于实现线程的复用和管理，从而提高线程的利用率和效率。</p>
+<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p>Java中的线程池是一种线程管理机制，它用于实现线程的复用和管理，从而提高线程的利用率和效率。</p>
 <p>Java中提供了两种线程池：<strong>ThreadPoolExecutor和ScheduledThreadPoolExecutor</strong>。</p>
 <p>ThreadPoolExecutor是最基本的线程池，用于执行一些没有时间限制的线程任务。</p>
 <p>ScheduledThreadPoolExecutor则是用于执行一些有时间限制的定时任务，可以设置线程启动的时间和任务执行周期等。</p>
@@ -426,13 +427,13 @@
 <p>Java中的线程池使用<strong>Executor和Future两个核心接口实现多线程的池化，Executor用于管理线程池，Future用于获取线程的执行结果。</strong></p>
 <p><strong>callable接口和Future接口</strong></p>
 <p>这两个接口线程可以执行带返回的任务，用submit方法来向ExecutorService提交任务</p>
-<h2 id="四种权限修饰符"><a href="#四种权限修饰符" class="headerlink" title="四种权限修饰符"></a>四种权限修饰符</h2><ul>
+<h1 id="四种权限修饰符"><a href="#四种权限修饰符" class="headerlink" title="四种权限修饰符"></a>四种权限修饰符</h1><ul>
 <li>public：修饰的成员变量、成员方法和类可以被任意的类访问，包括不同的包和类。</li>
 <li>protected：修饰的成员变量、成员方法和类可以被同一包内的类和不同包中的子类访问，但不能被其他的类访问。</li>
 <li>default（默认）：如果不加访问修饰符，则表示该成员变量、成员方法和类仅在同一个包内可见，不能被其他包访问。</li>
 <li>private：修饰的成员变量、成员方法只能被所属类的对象、方法或构造器访问，其他类是不能访问的。</li>
 </ul>
-<h2 id="抽象类和接口有什么不同"><a href="#抽象类和接口有什么不同" class="headerlink" title="抽象类和接口有什么不同"></a>抽象类和接口有什么不同</h2><p><strong>相同点：</strong></p>
+<h1 id="抽象类和接口有什么不同"><a href="#抽象类和接口有什么不同" class="headerlink" title="抽象类和接口有什么不同"></a>抽象类和接口有什么不同</h1><p><strong>相同点：</strong></p>
 <p>1.抽象类和接口都不能被<strong>实例化</strong>，但可以定义抽象类和接口类型的引用。</p>
 <p>2.一个类如果继承了抽象类或接口，<strong>必须要对其中的抽象方法全部实现</strong>。（接口中方法默认的是public abstract修饰的）否则该类仍然需要被声明为抽象类。</p>
 <p><strong>不同点：</strong></p>
@@ -442,13 +443,21 @@
 <p>　　接口中的成员全部都是public的。</p>
 <p>3、抽象类可以 定义成员变量。</p>
 <p>　　接口中定义的成员变量其实都是常量。（<strong>接口中的成员变量默认是public static final 修饰的</strong> ）</p>
-<h2 id="Java中finalize-方法的作用"><a href="#Java中finalize-方法的作用" class="headerlink" title="Java中finalize()方法的作用"></a>Java中finalize()方法的作用</h2><ol>
+<h1 id="Java中finalize-方法的作用"><a href="#Java中finalize-方法的作用" class="headerlink" title="Java中finalize()方法的作用"></a>Java中finalize()方法的作用</h1><ol>
 <li>当对象不再被任何对象引用时，GC会调用该对象的finalize()方法</li>
 <li><strong>finalize()是Object的方法</strong>，子类可以覆盖这个方法来做一些系统资源的释放或者数据的清理</li>
 <li><strong>当finalize被调用之后，JVM会再一次检测这个对象是否能被存活的线程访问得到</strong>，如果不是，则清除该对象。也就是finalize只能被调用一次；也就是说，<strong>覆盖了finalize方法的对象需要经过两个GC周期才能被清除</strong>。</li>
 </ol>
 <p>finalize()方法是Java中的一个重要的垃圾回收机制。当某个对象不再被任何引用所指向时，它就成为了Java虚拟机中的垃圾。在垃圾回收器对垃圾进行回收之前，JVM会调用该对象的finalize()方法，以完成一些必要的清理和资源回收操作。通常情况下，我们在finalize()方法中进行的操作包括释放该对象所占用的系统资源、断开该对象与其他对象之间的引用关系等。在finalize()方法执行后，该对象所占用的内存空间就可以被Java虚拟机回收。</p>
-<h2 id="Java中的静态代理和动态代理"><a href="#Java中的静态代理和动态代理" class="headerlink" title="Java中的静态代理和动态代理"></a>Java中的静态代理和动态代理</h2><p>&#x2F;&#x2F;TODO</p>
+<h1 id="Java中的静态代理和动态代理"><a href="#Java中的静态代理和动态代理" class="headerlink" title="Java中的静态代理和动态代理"></a>Java中的静态代理和动态代理</h1><p>&#x2F;&#x2F;TODO</p>
+<h1 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h1><p>Serialization（序列化）是一种将对象以一连串的字节描述的过程；反序列化deserialization是一种将这些字节重建成一个对象的过程。将程序中的对象，放入文件中保存就是序列化，将文件中的字节码重新转成对象就是反序列化。</p>
+<p>Serialization（序列化）是一种将对象以一连串的字节描述的过程；反序列化deserialization是一种将这些字节重建成一个对象的过程。将程序中的对象，放入文件中保存就是序列化，将文件中的字节码重新转成对象就是反序列化。</p>
+<h2 id="序列化的必要条件"><a href="#序列化的必要条件" class="headerlink" title="序列化的必要条件"></a>序列化的必要条件</h2><ol>
+<li>只有实现了Serializable或Externalizable接口的类的对象才能被序列化，否则抛出异常。</li>
+<li>必须是同包，同名。</li>
+<li>serialVersionUID必须一致。有时候两个类的属性稍微不一致的时候，可以通过将此属性写死值，实现序列化和反序列化。</li>
+</ol>
+<p>	</p>
 
     </div>
 
@@ -530,7 +539,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">JAVA基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">Java数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String%E7%B1%BB%E5%9E%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84"><span class="nav-number">3.</span> <span class="nav-text">String类型为什么是不可变的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StringBuilder%E5%92%8CStringBuffer"><span class="nav-number">4.</span> <span class="nav-text">StringBuilder和StringBuffer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-number">6.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">7.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.1.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84"><span class="nav-number">7.2.</span> <span class="nav-text">反射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6-%E4%BB%A5%E5%8F%8A%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%93%AA%E4%BA%9B%E5%8A%9F%E8%83%BD"><span class="nav-number">7.2.1.</span> <span class="nav-text">反射机制 以及可以实现哪些功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8-1"><span class="nav-number">7.3.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">7.4.</span> <span class="nav-text">线程池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">7.5.</span> <span class="nav-text">四种权限修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C"><span class="nav-number">7.6.</span> <span class="nav-text">抽象类和接口有什么不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E4%B8%ADfinalize-%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">7.7.</span> <span class="nav-text">Java中finalize()方法的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">7.8.</span> <span class="nav-text">Java中的静态代理和动态代理</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">JAVA基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">Java数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String%E7%B1%BB%E5%9E%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84"><span class="nav-number">3.</span> <span class="nav-text">String类型为什么是不可变的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StringBuilder%E5%92%8CStringBuffer"><span class="nav-number">4.</span> <span class="nav-text">StringBuilder和StringBuffer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-number">6.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84"><span class="nav-number">8.</span> <span class="nav-text">反射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6-%E4%BB%A5%E5%8F%8A%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%93%AA%E4%BA%9B%E5%8A%9F%E8%83%BD"><span class="nav-number">8.1.</span> <span class="nav-text">反射机制 以及可以实现哪些功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">9.</span> <span class="nav-text">线程池</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">10.</span> <span class="nav-text">四种权限修饰符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C"><span class="nav-number">11.</span> <span class="nav-text">抽象类和接口有什么不同</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E4%B8%ADfinalize-%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">12.</span> <span class="nav-text">Java中finalize()方法的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">13.</span> <span class="nav-text">Java中的静态代理和动态代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">14.</span> <span class="nav-text">序列化和反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">14.1.</span> <span class="nav-text">序列化的必要条件</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -544,7 +553,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -592,13 +601,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">261k</span>
+    <span title="Symbols count total">262k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:57</span>
+    <span title="Reading time total">3:58</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>

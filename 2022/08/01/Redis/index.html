@@ -36,9 +36,9 @@
 <meta property="og:image" content="http://example.com/2022/08/01/Redis/Redis/image-20230402083041358.png">
 <meta property="og:image" content="http://example.com/2022/08/01/Redis/image-20230402090042790.png">
 <meta property="og:image" content="http://example.com/2022/08/01/Redis/image-20230402094740867.png">
-<meta property="og:image" content="http://example.com/2022/08/01/Redis/Redis/image-20230402095613142-16816522060981.png">
-<meta property="og:image" content="http://example.com/2022/08/01/Redis/Redis/image-20230402104903724-16817132858108.png">
-<meta property="og:image" content="http://example.com/2022/08/01/Redis/image-20230416213730301.png">
+<meta property="og:image" content="http://example.com/2022/08/01/Redis/image-20230421085757842.png">
+<meta property="og:image" content="http://example.com/2022/08/01/Redis/Redis/image-20230402104903724-16817132858108-16820386888601.png">
+<meta property="og:image" content="http://example.com/2022/08/01/Redis/image-20230416213730301-16817132949599.png">
 <meta property="og:image" content="http://example.com/2022/08/01/Redis/image-20230416213751549.png">
 <meta property="og:image" content="http://example.com/2022/08/01/Redis/image-20230403105812988.png">
 <meta property="og:image" content="http://example.com/2022/08/01/Redis/image-20230416213817686.png">
@@ -58,7 +58,7 @@
 <meta property="og:image" content="http://example.com/2022/08/01/Redis/image-20220915095422162.png">
 <meta property="og:image" content="http://example.com/2022/08/01/Redis/SouthEast.png">
 <meta property="article:published_time" content="2022-08-01T01:15:09.000Z">
-<meta property="article:modified_time" content="2023-04-17T06:34:50.192Z">
+<meta property="article:modified_time" content="2023-04-21T00:58:31.250Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -255,7 +255,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-17 14:34:50" itemprop="dateModified" datetime="2023-04-17T14:34:50+08:00">2023-04-17</time>
+                <time title="Modified: 2023-04-21 08:58:31" itemprop="dateModified" datetime="2023-04-21T08:58:31+08:00">2023-04-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -445,7 +445,7 @@
 <li><p>RDB+AOF：</p>
 </li>
 </ol>
-<h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><img src="Redis/image-20230402095613142-16816522060981.png" alt="image-20230402095613142" style="zoom:50%;" />
+<h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3><img src="/2022/08/01/Redis/image-20230421085757842.png" class="" title="image-20230421085757842">
 
 <p>rdb生成快照文件的时间条件：redis6和redis7中时机不同 （在redis.conf里配置的snapshot）</p>
 <p>redis6： 每隔<strong>900s（15分钟）</strong> 如果有1个key发生变化 重新写一份rdb文件   </p>
@@ -462,7 +462,7 @@
 <h5 id="手动触发："><a href="#手动触发：" class="headerlink" title="手动触发："></a>手动触发：</h5><p>对于主动想进行数据备份的操作 两个命令:  save，bgsave 相当于创建出一个子进程去生成rdb文件</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 在主程序中会执行阻塞当前redis服务器 直到持久化结束 </span><br></pre></td></tr></table></figure>
 
-<img src="Redis/image-20230402104903724-16817132858108.png" alt="image-20230402104903724"  />
+<img src="Redis/image-20230402104903724-16817132858108-16820386888601.png" alt="image-20230402104903724"  />
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bgsave (会在后台异步进行快照操作 不阻塞 会fork一个子进程 由它进行持久化操作 推荐使用！！！！)</span><br></pre></td></tr></table></figure>
 
@@ -473,7 +473,7 @@
 <h4 id="如何检查和修复rdb文件："><a href="#如何检查和修复rdb文件：" class="headerlink" title="如何检查和修复rdb文件："></a>如何检查和修复rdb文件：</h4><p>redis中存在redis-check-rdb命令  使用该命令可以修复rdb文件</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-check-rdb /myredis/dump.rdb</span><br></pre></td></tr></table></figure>
 
-<h4 id="触发快照的几种方式"><a href="#触发快照的几种方式" class="headerlink" title="触发快照的几种方式"></a>触发快照的几种方式</h4><img src="/2022/08/01/Redis/image-20230416213730301.png" class="" title="image-20230416213730301">
+<h4 id="触发快照的几种方式"><a href="#触发快照的几种方式" class="headerlink" title="触发快照的几种方式"></a>触发快照的几种方式</h4><img src="/2022/08/01/Redis/image-20230416213730301-16817132949599.png" class="" title="image-20230416213730301">
 
 
 
@@ -792,7 +792,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -840,13 +840,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">261k</span>
+    <span title="Symbols count total">262k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:57</span>
+    <span title="Reading time total">3:58</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>

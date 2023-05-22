@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://example.com/2022/08/01/MQ/image-20220803151312628.png">
 <meta property="og:image" content="http://example.com/2022/08/01/MQ/image-20220803151434118.png">
 <meta property="article:published_time" content="2022-08-01T01:17:52.000Z">
-<meta property="article:modified_time" content="2022-08-29T05:16:47.038Z">
+<meta property="article:modified_time" content="2023-04-20T12:57:31.976Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-29 13:16:47" itemprop="dateModified" datetime="2022-08-29T13:16:47+08:00">2022-08-29</time>
+                <time title="Modified: 2023-04-20 20:57:31" itemprop="dateModified" datetime="2023-04-20T20:57:31+08:00">2023-04-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,7 +272,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7.7k</span>
+              <span>7.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -331,7 +331,7 @@ AMQP，Advanced Message Queuing Protocol（高级消息队列协议），一个�
 MQTT，Message Queuing Telemetry Transport（消息队列遥测传输），是IBM开发的一个即时通讯协议，是一种二进制协议，主要用于服务器和低功耗IoT（物联网）设备间的通信。该协议支持所有平台，几乎可以把所有联网物品和外部连接起来，被用来当做传感器和致动器的通信协议。 RabbitMQ通过插件可以支持该协议</br>
 
 
-<h2 id="各种MQ产品"><a href="#各种MQ产品" class="headerlink" title="各种MQ产品"></a>各种MQ产品</h2><p><strong>1. RocketMQ</strong></p>
+<h2 id="MQ产品"><a href="#MQ产品" class="headerlink" title="MQ产品"></a>MQ产品</h2><p><strong>1. RocketMQ</strong></p>
 <p>阿里系下开源的一款分布式、队列模型的消息中间件，原名Metaq，3.0版本名称改为<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=RocketMQ&spm=1001.2101.3001.7020">RocketMQ</a>，是阿里参照kafka设计思想使用java实现的一套mq。同时将阿里系内部多款mq产品（Notify、metaq）进行整合，只维护核心功能，去除了所有其他运行时依赖，保证核心功能最简化，在此基础上配合阿里上述其他开源产品实现不同场景下mq的架构，目前主要多用于订单交易系统。</p>
 <p>具有以下特点：</p>
 <ul>
@@ -364,10 +364,15 @@ MQTT，Message Queuing Telemetry Transport（消息队列遥测传输），是IB
 <p>RocketMQ是由阿里捐赠给Apache的一款<strong>低延迟、高并发、高可用、高可靠</strong>的分布式消息中间件。经历了淘宝<strong>双十一</strong>的洗礼。RocketMQ既可为分布式应用系统提供异步解耦和削峰填谷的能力，同时也具备互联网应用所需的海量消息堆积、高吞吐、可靠重试等特性。</p>
 <h2 id="基本组成及其概念"><a href="#基本组成及其概念" class="headerlink" title="基本组成及其概念"></a>基本组成及其概念</h2><ol>
 <li><p><strong>消息Message</strong></p>
+<p>就是要传输的信息。</p>
+<p>一条消息必须有一个主题（Topic），主题可以看做是你的信件要邮寄的地址。</p>
+<p>一条消息也可以拥有一个可选的标签（Tag）和额处的键值对，它们可以用于设置一个业务 Key 并在 Broker 上查找此消息以便在开发期间查找问题。</p>
 </li>
 <li><p><strong>主题Topic</strong></p>
-<p>Topic表示一类消息的集合，每个主题包含若干条消息，每条消息只能属于一个主题，是RocketMQ进行消息订阅的基本单位。 topic:message 1:n message:topic 1:1</p>
-<p>一个生产者可以同时发送多种Topic的消息；而一个消费者只对某种特定的Topic感兴趣，即只可以订阅和消费一种Topic的消息。 producer:topic 1:n consumer:topic 1:1</p>
+<p>Topic表示一类Message的集合，每个主题包含若干条消息，每条消息只能属于一个主题，是RocketMQ进行消息订阅的基本单位。 topic:message &#x3D;1:n </p>
+<p>message:topic &#x3D;1:1</p>
+<p>一个生产者可以同时发送多种Topic的消息；而一个消费者只对某种特定的Topic感兴趣，即只可以订阅和消费一种Topic的消息。 producer:topic &#x3D;1:n </p>
+<p>consumer:topic &#x3D;1:1</p>
 </li>
 <li><p><strong>标签Tag</strong></p>
 <p>为消息设置的标签，用于同一主题下区分不同类型的消息。来自同一业务单元的消息，可以根据不同业务目的在同一主题下设置不同标签。标签能够有效地保持代码的清晰度和连贯性，并优化RocketMQ提供的查询系统。消费者可以根据Tag实现对不同子主题的不同消费逻辑，实现更好的扩展性。</p>
@@ -546,7 +551,7 @@ MQTT，Message Queuing Telemetry Transport（消息队列遥测传输），是IB
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MQ"><span class="nav-number">1.</span> <span class="nav-text">MQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">1.1.</span> <span class="nav-text">MQ的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ%E7%9A%84%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.2.</span> <span class="nav-text">MQ的常见协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%A7%8DMQ%E4%BA%A7%E5%93%81"><span class="nav-number">1.3.</span> <span class="nav-text">各种MQ产品</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RocketMQ"><span class="nav-number">2.</span> <span class="nav-text">RocketMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E5%8F%8A%E5%85%B6%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">基本组成及其概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">系统架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Producer"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. Producer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Consumer"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. Consumer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Name-Server"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. Name Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Borker"><span class="nav-number">2.2.4.</span> <span class="nav-text">4. Borker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E7%BB%84%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84%EF%BC%88ProducerGroup-amp-ConsumerGroup%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">生产者组和消费者组（ProducerGroup&amp;ConsumerGroup）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">操作和使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4"><span class="nav-number">2.5.</span> <span class="nav-text">集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%88%B7%E7%9B%98%E7%AD%96%E7%95%A5"><span class="nav-number">2.5.1.</span> <span class="nav-text">1 数据复制与刷盘策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Broker%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.5.2.</span> <span class="nav-text">2 Broker集群模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KafKa"><span class="nav-number">3.</span> <span class="nav-text">KafKa</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MQ"><span class="nav-number">1.</span> <span class="nav-text">MQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">1.1.</span> <span class="nav-text">MQ的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ%E7%9A%84%E5%B8%B8%E8%A7%81%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.2.</span> <span class="nav-text">MQ的常见协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ%E4%BA%A7%E5%93%81"><span class="nav-number">1.3.</span> <span class="nav-text">MQ产品</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RocketMQ"><span class="nav-number">2.</span> <span class="nav-text">RocketMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E5%8F%8A%E5%85%B6%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">基本组成及其概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">系统架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Producer"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. Producer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Consumer"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. Consumer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Name-Server"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. Name Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Borker"><span class="nav-number">2.2.4.</span> <span class="nav-text">4. Borker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E7%BB%84%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E7%BB%84%EF%BC%88ProducerGroup-amp-ConsumerGroup%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">生产者组和消费者组（ProducerGroup&amp;ConsumerGroup）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">操作和使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4"><span class="nav-number">2.5.</span> <span class="nav-text">集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6%E4%B8%8E%E5%88%B7%E7%9B%98%E7%AD%96%E7%95%A5"><span class="nav-number">2.5.1.</span> <span class="nav-text">1 数据复制与刷盘策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Broker%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.5.2.</span> <span class="nav-text">2 Broker集群模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KafKa"><span class="nav-number">3.</span> <span class="nav-text">KafKa</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -560,7 +565,7 @@ MQTT，Message Queuing Telemetry Transport（消息队列遥测传输），是IB
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -608,13 +613,13 @@ MQTT，Message Queuing Telemetry Transport（消息队列遥测传输），是IB
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">261k</span>
+    <span title="Symbols count total">262k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:57</span>
+    <span title="Reading time total">3:58</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
