@@ -30,8 +30,9 @@
 <meta property="og:description" content="JAVA基础知识基础不牢地动山摇，这部分的知识零碎又重要。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/08/05/JavaEE/20200226214858667.png">
+<meta property="og:image" content="http://example.com/2022/08/05/JavaEE/image-20230530095059751.png">
 <meta property="article:published_time" content="2022-08-05T07:54:09.000Z">
-<meta property="article:modified_time" content="2023-04-21T00:45:17.630Z">
+<meta property="article:modified_time" content="2023-05-30T02:05:21.639Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -228,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-21 08:45:17" itemprop="dateModified" datetime="2023-04-21T08:45:17+08:00">2023-04-21</time>
+                <time title="Modified: 2023-05-30 10:05:21" itemprop="dateModified" datetime="2023-05-30T10:05:21+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,14 +268,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5k</span>
+              <span>6.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
+              <span>6 mins.</span>
             </span>
 
         </div>
@@ -296,43 +297,28 @@
 <tr>
 <th>类型</th>
 <th>所占空间</th>
-<th></th>
+<th>缓存区域</th>
 </tr>
 </thead>
 <tbody><tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><strong>int</strong></td>
 <td>32位&#x2F;4字节	[-2^31,2^31-1]即[-2147483648,2147483647],</td>
-<td></td>
+<td>-128~127</td>
 </tr>
 <tr>
 <td><strong>short</strong></td>
 <td>16位&#x2F;2字节	[-2^15,2^15-1]即[-32768,32767]</td>
-<td></td>
+<td>-128~127</td>
 </tr>
 <tr>
 <td><strong>long</strong></td>
 <td>64位&#x2F;8字节	[-2^63,2^63-1]</td>
-<td></td>
+<td>-128~127</td>
 </tr>
 <tr>
 <td><strong>byte</strong></td>
 <td>8位&#x2F;1字节	[-128,127]</td>
-<td></td>
+<td>-128~127</td>
 </tr>
 </tbody></table>
 </li>
@@ -368,15 +354,32 @@
 </li>
 <li><p>boolean类型</p>
 <p> boolean类型表示逻辑判断有<code>true</code>和<code>false</code>两个值</p>
-</li>
+<h2 id="装箱和拆箱"><a href="#装箱和拆箱" class="headerlink" title="装箱和拆箱"></a>装箱和拆箱</h2></li>
 </ol>
-<h1 id="String类型为什么是不可变的"><a href="#String类型为什么是不可变的" class="headerlink" title="String类型为什么是不可变的"></a>String类型为什么是不可变的</h1><ol>
-<li>只有当字符串是不可变的，字符串池才有可能实现。字符串池的实现可以在运行时节约很多heap空间，因为不同的字符串变量都指向池中的同一个字符串。如果字符串是可变的，那么String interning将不能实现(String interning是指对不同的字符串仅仅只保存一个，即不会保存多个相同的字符串)，因为这样的话，如果变量改变了它的值，那么其它指向这个值的变量的值也会一起改变。</li>
-<li>如果字符串是可变的，那么会引起很严重的安全问题。譬如，数据库的用户名、密码都是以字符串的形式传入来获得数据库的连接，或者在socket编程中，主机名和端口都是以字符串的形式传入。 因为字符串是不可变的，所以它的值是不可改变的，否则黑客们可以钻到空子，改变字符串指向的对象的值，造成安全漏洞。</li>
-<li>因为字符串是不可变的，所以是多线程安全的，同一个字符串实例可以被多个线程共享。这样便不用因为线程安全问题而使用同步。字符串自己便是线程安全的。</li>
-<li>因为字符串是不可变的，所以在它创建的时候hashcode就被缓存了，不需要重新计算。这就使得字符串很适合作为Map中的键，字符串的处理速度要快过其它的键对象。这就是HashMap中的键往往都使用字符串。</li>
+<p><strong>装箱</strong>：将基本类型用它们对应的引用类型包装起来；</p>
+<p><strong>拆箱</strong>：将包装类型转换为基本数据类型；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span>; <span class="comment">//装箱</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> i; <span class="comment">//拆箱</span></span><br></pre></td></tr></table></figure>
+
+<p>装箱调用了 包装类的 valueOf() 方法</p>
+<p>拆箱调用了 xxxValue() 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">10</span> 	等价于 <span class="type">Integer</span> <span class="variable">i</span> <span class="operator">=</span> Integer.valueOf(<span class="number">10</span>)</span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> i 		等价于 <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> i.intValue() ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于缓存（常量池）"><a href="#关于缓存（常量池）" class="headerlink" title="关于缓存（常量池）"></a>关于缓存（常量池）</h2><p>Java 基本类型的包装类的大部分都实现了常量池技术。</p>
+<p>Byte , Short , Integer , Long 这 4 种包装类默认创建了数值 <strong>[-128，127]</strong> 的相应类型的缓存数据， Character 创建了数值在[0,127]范围的缓存数据， Boolean 直接返回 True or False 。</p>
+<p>两种浮点数类型的包装类 Float , Double 并没有实现常量池技术。</p>
+<p><strong>注意：所有整型包装类对象之间值的比较，全部使用</strong> <strong>equals</strong> <strong>方法比较</strong></p>
+<p>比如Integer，因为在[-128,127]的区间内赋值，会直接从 IntegerCache.cache 生成，会复用已有的对象，地址值相同，可以使用&#x3D;&#x3D;进行比较判断，但是超过这个缓存范围的，不是在常量池中进行比较的，而是在堆内存中进行生成， 所以不管是在哪个范围，都要使用equals进行比较。</p>
+<h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><h2 id="String类型为什么是不可变的"><a href="#String类型为什么是不可变的" class="headerlink" title="String类型为什么是不可变的"></a>String类型为什么是不可变的</h2><p>当使用final修饰基本类型变量时，不能对基本类型变量重新赋值，因此基本类型变量不能被改变。但对于引用类型变量而言，它保存的仅仅是一个引用，<strong>final只保证这个引用变量所引用的地址不会改变</strong>，即一直引用同一个对象，但这个对象完全可以发生改变。</p>
+<p>String类的两个主要成员变量，其中value指向的是一个字符串数组，字符串中的字符就是用这个value<strong>变量存储起来的</strong>，并且用final修饰，也就是说value一旦赋予初始值之后，value指向的地址就不能再改变了。虽然value指向的数组是可以改变的，但是String也没有提供相应的方法让我们去修改value指向的数组的元素。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="type">char</span> value[];</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> hash; <span class="comment">// Default to 0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="可变的话会怎么样"><a href="#可变的话会怎么样" class="headerlink" title="可变的话会怎么样"></a>可变的话会怎么样</h3><ol>
+<li>只有当字符串是不可变的，字符串池才有可能实现。字符串池的实现可以在运行时节约很多heap空间，<strong>因为不同的字符串变量都指向池中的同一个字符串</strong>。如果字符串是可变的，那么String interning将不能实现(String interning是指对不同的字符串仅仅只保存一个，即不会保存多个相同的字符串)，因为这样的话，如果变量改变了它的值，那么其它指向这个值的变量的值也会一起改变。</li>
+<li>如果字符串是可变的，那么会引起<strong>很严重的安全问题</strong>。譬如，<strong>数据库的用户名、密码</strong>都是以字符串的形式传入来获得数据库的连接，或者在socket编程中，主机名和端口都是以字符串的形式传入。 因为字符串是不可变的，所以它的值是不可改变的，否则黑客们可以钻到空子，改变字符串指向的对象的值，造成安全漏洞。</li>
+<li>因为字符串是不可变的，所以是<strong>多线程安全的</strong>，同一个字符串实例可以被多个线程共享。这样便不用因为线程安全问题而使用同步。字符串自己便是线程安全的。</li>
+<li>因为字符串是不可变的，所以在它创建的时候<strong>hashcode就被缓存了</strong>，不需要重新计算。这就使得字符串很适合作为<strong>Map中的键</strong>，字符串的处理速度要快过其它的键对象。这就是HashMap中的键往往都使用字符串。</li>
 </ol>
-<h1 id="StringBuilder和StringBuffer"><a href="#StringBuilder和StringBuffer" class="headerlink" title="StringBuilder和StringBuffer"></a>StringBuilder和StringBuffer</h1><img src="/2022/08/05/JavaEE/20200226214858667.png" class="" title="在这里插入图片描述">
+<h2 id="StringBuilder和StringBuffer"><a href="#StringBuilder和StringBuffer" class="headerlink" title="StringBuilder和StringBuffer"></a>StringBuilder和StringBuffer</h2><img src="/2022/08/05/JavaEE/20200226214858667.png" class="" title="在这里插入图片描述">
 
 
 
@@ -399,6 +402,18 @@
 <figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">处理数组越界异常</span><br><span class="line">finally</span><br><span class="line">last word speak</span><br></pre></td></tr></table></figure>
 
 <p>这说明 我们的try-catch结构中 异常线程对出现异常的位置进行了响应异常的catch捕捉，并反馈给主线程，该异常已经被处理，主线程继续运行，直到结束。try-catch结构对主线程进行了关于异常方面的保护，所以主线程能够顺利运行，也是一种保护java程序的手段。</p>
+<h1 id="静态"><a href="#静态" class="headerlink" title="静态"></a>静态</h1><p>所有由static关键字声明的静态的内容，都是在类加载的时候就会分配内存</p>
+<h2 id="在一个静态方法内调用一个非静态成员为什么是非法的"><a href="#在一个静态方法内调用一个非静态成员为什么是非法的" class="headerlink" title="在一个静态方法内调用一个非静态成员为什么是非法的?"></a>在一个静态方法内调用一个非静态成员为什么是非法的?</h2><p>静态方法是属于类的，在类加载的时候就会分配内存，可以通过类名直接访问。而非静态成员属于实例对象，只有在对象实例化之后才存在，然后通过类的实例对象去访问。</p>
+<p>在类的非静态成员不存在的时候静态成员就已经存在了，此时调用在内存中还不存在的非静态成员，属于非法操作。</p>
+<h2 id="Java只有值传递"><a href="#Java只有值传递" class="headerlink" title="Java只有值传递"></a>Java只有值传递</h2><p>修改java内容的时候，地址值是不改变的，但是修改后，值改变了，所以传递的只是值。</p>
+<h2 id="深拷贝和前拷贝"><a href="#深拷贝和前拷贝" class="headerlink" title="深拷贝和前拷贝"></a>深拷贝和前拷贝</h2><ol>
+<li><p><strong>浅拷贝</strong>：对基本数据类型进行值传递，对引用数据类型进行引用传递般的拷贝，此为浅拷贝。</p>
+</li>
+<li><p><strong>深拷贝</strong>：对基本数据类型进行值传递，对引用数据类型，创建一个新的对象，并复制其内容，此为深拷贝。</p>
+</li>
+</ol>
+<img src="/2022/08/05/JavaEE/image-20230530095059751.png" class="" title="image-20230530095059751">
+
 <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><ul>
 <li>工厂模式：定义一个用于创建对象的接口，让子类决定实例化哪个类。</li>
 <li>抽象工厂模式：提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。</li>
@@ -410,11 +425,18 @@
 </ul>
 <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>Java反射是Java语言提供的一种运行时机制，它提供了在运行时检查和操作Java类和对象的能力。Java反射在一些框架和库中得到广泛应用，它<strong>允许我们在运行时获取类的信息，并可以实例化对象、调用方法和访问属性等</strong>。</p>
 <p>反射在某些情况下非常有用，例如我们需要动态地加载类，创建对象，获取类的元数据，判断一个对象是否是某个类的实例，动态修改类的成员等，Java反射可以胜任这些任务。</p>
-<h2 id="反射机制-以及可以实现哪些功能"><a href="#反射机制-以及可以实现哪些功能" class="headerlink" title="反射机制 以及可以实现哪些功能"></a>反射机制 以及可以实现哪些功能</h2><p>Java的反射机制指的是在运行时获取和操作类的属性、方法、构造器等信息的能力。在Java中，每个类都有一个Class对象，可以使用反射机制来获取这个Class对象，并<strong>通过Class对象获取类的各种属性和方法等信息</strong>。</p>
+<h2 id="反射机制-以及可以实现哪些功能"><a href="#反射机制-以及可以实现哪些功能" class="headerlink" title="反射机制 以及可以实现哪些功能"></a>反射机制 以及可以实现哪些功能</h2><p>Java的反射机制指的是在<strong>运行时</strong>获取和<strong>操作类的属性、方法、构造器</strong>等信息的能力。在Java中，每个类都有一个Class对象，可以使用反射机制来获取这个Class对象，并<strong>通过Class对象获取类的各种属性和方法等信息</strong>。</p>
 <p>例如，可以使用**Class.forName()**方法来获取类的对象</p>
 <p>使用getFields()、getDeclaredFields()等方法获取类的成员变量</p>
 <p>使用getMethods()、getDeclaredMethods()等方法获取类的成员方法等。</p>
 <p>在运行时修改类的属性值和方法行为，即利用反射改变类的状态和行为，比如动态代理和AOP等技术。</p>
+<h2 id="反射的优缺点"><a href="#反射的优缺点" class="headerlink" title="反射的优缺点"></a>反射的优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>反射提高了程序的<strong>灵活性和扩展性</strong>，降低耦合性，提高自适应能力，<strong>无需提前硬编码目标类</strong></p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>1.性能问题</p>
+<p>使用<strong>反射基本上是一种解释操作</strong>，用于字段和方法接入时要远慢于直接代码。因此Java反射机制主要应用在对灵活性和扩展性要求很高的系统框架上,普通程序不建议使用。</p>
+<p>2.使用反射会<strong>模糊程序内部逻辑</strong></p>
+<p>程序人员希望在源代码中看到程序的逻辑，反射等绕过了源代码的技术，因而会带来维护问题。反射代码比相应的直接代码更复杂。</p>
+<p>3.安全问题</p>
+<p>使用反射技术要求程序必须在一个没有安全限制的环境中运行。比如可以无视泛型参数的安全检查（泛型参数的安全检查发生在编译时）。</p>
 <h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p>Java中的线程池是一种线程管理机制，它用于实现线程的复用和管理，从而提高线程的利用率和效率。</p>
 <p>Java中提供了两种线程池：<strong>ThreadPoolExecutor和ScheduledThreadPoolExecutor</strong>。</p>
 <p>ThreadPoolExecutor是最基本的线程池，用于执行一些没有时间限制的线程任务。</p>
@@ -427,7 +449,7 @@
 <p>Java中的线程池使用<strong>Executor和Future两个核心接口实现多线程的池化，Executor用于管理线程池，Future用于获取线程的执行结果。</strong></p>
 <p><strong>callable接口和Future接口</strong></p>
 <p>这两个接口线程可以执行带返回的任务，用submit方法来向ExecutorService提交任务</p>
-<h1 id="四种权限修饰符"><a href="#四种权限修饰符" class="headerlink" title="四种权限修饰符"></a>四种权限修饰符</h1><ul>
+<h2 id="创建线程池的方式"><a href="#创建线程池的方式" class="headerlink" title="创建线程池的方式"></a>创建线程池的方式</h2><h1 id="四种权限修饰符"><a href="#四种权限修饰符" class="headerlink" title="四种权限修饰符"></a>四种权限修饰符</h1><ul>
 <li>public：修饰的成员变量、成员方法和类可以被任意的类访问，包括不同的包和类。</li>
 <li>protected：修饰的成员变量、成员方法和类可以被同一包内的类和不同包中的子类访问，但不能被其他的类访问。</li>
 <li>default（默认）：如果不加访问修饰符，则表示该成员变量、成员方法和类仅在同一个包内可见，不能被其他包访问。</li>
@@ -450,14 +472,28 @@
 </ol>
 <p>finalize()方法是Java中的一个重要的垃圾回收机制。当某个对象不再被任何引用所指向时，它就成为了Java虚拟机中的垃圾。在垃圾回收器对垃圾进行回收之前，JVM会调用该对象的finalize()方法，以完成一些必要的清理和资源回收操作。通常情况下，我们在finalize()方法中进行的操作包括释放该对象所占用的系统资源、断开该对象与其他对象之间的引用关系等。在finalize()方法执行后，该对象所占用的内存空间就可以被Java虚拟机回收。</p>
 <h1 id="Java中的静态代理和动态代理"><a href="#Java中的静态代理和动态代理" class="headerlink" title="Java中的静态代理和动态代理"></a>Java中的静态代理和动态代理</h1><p>&#x2F;&#x2F;TODO</p>
-<h1 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h1><p>Serialization（序列化）是一种将对象以一连串的字节描述的过程；反序列化deserialization是一种将这些字节重建成一个对象的过程。将程序中的对象，放入文件中保存就是序列化，将文件中的字节码重新转成对象就是反序列化。</p>
-<p>Serialization（序列化）是一种将对象以一连串的字节描述的过程；反序列化deserialization是一种将这些字节重建成一个对象的过程。将程序中的对象，放入文件中保存就是序列化，将文件中的字节码重新转成对象就是反序列化。</p>
+<h1 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h1><p><strong>序列化</strong>： 将数据结构或对象转换成二进制字节流的过程</p>
+<p><strong>反序列化</strong>：将在序列化过程中所生成的二进制字节流的过程转换成数据结构或者对象的过程</p>
+<p><strong>序列化的主要目的是通过网络传输对象或者说是将对象存储到文件系统、数据库、内存中。</strong></p>
 <h2 id="序列化的必要条件"><a href="#序列化的必要条件" class="headerlink" title="序列化的必要条件"></a>序列化的必要条件</h2><ol>
 <li>只有实现了Serializable或Externalizable接口的类的对象才能被序列化，否则抛出异常。</li>
 <li>必须是同包，同名。</li>
 <li>serialVersionUID必须一致。有时候两个类的属性稍微不一致的时候，可以通过将此属性写死值，实现序列化和反序列化。</li>
 </ol>
 <p>	</p>
+<h2 id="Java-序列化中如果有些字段不想进行序列化，怎么办？"><a href="#Java-序列化中如果有些字段不想进行序列化，怎么办？" class="headerlink" title="Java 序列化中如果有些字段不想进行序列化，怎么办？"></a><strong>Java</strong> <strong>序列化中如果有些字段不想进行序列化，怎么办？</strong></h2><p>对于不想进行序列化的变量，使用 transient 关键字修饰。</p>
+<p>transient 关键字的作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复。</p>
+<p>关于 transient 还有几点<strong>注意</strong>：</p>
+<ol>
+<li><p>transient 只能修饰变量，不能修饰类和方法。</p>
+</li>
+<li><p>transient 修饰的变量，在<strong>反序列化后变量值将会被置成类型的默认值</strong>。例如，如果是修饰 int类型，那么反序列后结果就是 0 。</p>
+</li>
+<li><p>static 变量因为不属于任何对象(Object)，所以无论有没有 transient 关键字修饰，均不会被序列化。</p>
+</li>
+</ol>
+<h1 id="巨人的肩膀"><a href="#巨人的肩膀" class="headerlink" title="巨人的肩膀"></a>巨人的肩膀</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/osillto/article/details/119811207">(143条消息) 反射的优缺点_osillto的博客-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dearKundy/article/details/82355019">https://blog.csdn.net/dearKundy/article/details/82355019</a></p>
 
     </div>
 
@@ -539,7 +575,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">JAVA基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">Java数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String%E7%B1%BB%E5%9E%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84"><span class="nav-number">3.</span> <span class="nav-text">String类型为什么是不可变的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StringBuilder%E5%92%8CStringBuffer"><span class="nav-number">4.</span> <span class="nav-text">StringBuilder和StringBuffer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-number">6.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84"><span class="nav-number">8.</span> <span class="nav-text">反射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6-%E4%BB%A5%E5%8F%8A%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%93%AA%E4%BA%9B%E5%8A%9F%E8%83%BD"><span class="nav-number">8.1.</span> <span class="nav-text">反射机制 以及可以实现哪些功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">9.</span> <span class="nav-text">线程池</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">10.</span> <span class="nav-text">四种权限修饰符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C"><span class="nav-number">11.</span> <span class="nav-text">抽象类和接口有什么不同</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E4%B8%ADfinalize-%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">12.</span> <span class="nav-text">Java中finalize()方法的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">13.</span> <span class="nav-text">Java中的静态代理和动态代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">14.</span> <span class="nav-text">序列化和反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">14.1.</span> <span class="nav-text">序列化的必要条件</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">JAVA基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">Java数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%85%E7%AE%B1%E5%92%8C%E6%8B%86%E7%AE%B1"><span class="nav-number">2.1.</span> <span class="nav-text">装箱和拆箱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%BC%93%E5%AD%98%EF%BC%88%E5%B8%B8%E9%87%8F%E6%B1%A0%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">关于缓存（常量池）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">3.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String%E7%B1%BB%E5%9E%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E5%8F%98%E7%9A%84"><span class="nav-number">3.1.</span> <span class="nav-text">String类型为什么是不可变的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E7%9A%84%E8%AF%9D%E4%BC%9A%E6%80%8E%E4%B9%88%E6%A0%B7"><span class="nav-number">3.1.1.</span> <span class="nav-text">可变的话会怎么样</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StringBuilder%E5%92%8CStringBuffer"><span class="nav-number">3.2.</span> <span class="nav-text">StringBuilder和StringBuffer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-number">5.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%99%E6%80%81"><span class="nav-number">6.</span> <span class="nav-text">静态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E5%86%85%E8%B0%83%E7%94%A8%E4%B8%80%E4%B8%AA%E9%9D%9E%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%9E%E6%B3%95%E7%9A%84"><span class="nav-number">6.1.</span> <span class="nav-text">在一个静态方法内调用一个非静态成员为什么是非法的?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92"><span class="nav-number">6.2.</span> <span class="nav-text">Java只有值传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E5%89%8D%E6%8B%B7%E8%B4%9D"><span class="nav-number">6.3.</span> <span class="nav-text">深拷贝和前拷贝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84"><span class="nav-number">8.</span> <span class="nav-text">反射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6-%E4%BB%A5%E5%8F%8A%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%93%AA%E4%BA%9B%E5%8A%9F%E8%83%BD"><span class="nav-number">8.1.</span> <span class="nav-text">反射机制 以及可以实现哪些功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">8.2.</span> <span class="nav-text">反射的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">8.2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">8.2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">9.</span> <span class="nav-text">线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">9.1.</span> <span class="nav-text">创建线程池的方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">10.</span> <span class="nav-text">四种权限修饰符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C"><span class="nav-number">11.</span> <span class="nav-text">抽象类和接口有什么不同</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E4%B8%ADfinalize-%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">12.</span> <span class="nav-text">Java中finalize()方法的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">13.</span> <span class="nav-text">Java中的静态代理和动态代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">14.</span> <span class="nav-text">序列化和反序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">14.1.</span> <span class="nav-text">序列化的必要条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%AD%E5%A6%82%E6%9E%9C%E6%9C%89%E4%BA%9B%E5%AD%97%E6%AE%B5%E4%B8%8D%E6%83%B3%E8%BF%9B%E8%A1%8C%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%8C%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">14.2.</span> <span class="nav-text">Java 序列化中如果有些字段不想进行序列化，怎么办？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A8%E4%BA%BA%E7%9A%84%E8%82%A9%E8%86%80"><span class="nav-number">15.</span> <span class="nav-text">巨人的肩膀</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -601,13 +637,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">262k</span>
+    <span title="Symbols count total">264k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3:58</span>
+    <span title="Reading time total">4:01</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
