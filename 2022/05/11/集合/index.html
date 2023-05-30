@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://example.com/2022/05/11/%E9%9B%86%E5%90%88/webp.webp">
 <meta property="og:image" content="http://example.com/2022/05/11/%E9%9B%86%E5%90%88/image-20220516110334299.png">
 <meta property="article:published_time" content="2022-05-11T02:06:47.000Z">
-<meta property="article:modified_time" content="2023-04-03T11:48:05.554Z">
+<meta property="article:modified_time" content="2023-05-30T11:29:14.213Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-03 19:48:05" itemprop="dateModified" datetime="2023-04-03T19:48:05+08:00">2023-04-03</time>
+                <time title="Modified: 2023-05-30 19:29:14" itemprop="dateModified" datetime="2023-05-30T19:29:14+08:00">2023-05-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -380,7 +380,7 @@
 <li><p>使用final函数，并采用合适的equals()方法和hashCode方法</p>
 </li>
 </ol>
-<p><strong>HashMap</strong> <strong>的长度为什么是2的幂次方</strong></p>
+<p><strong>HashMap</strong> <strong>的长度为什么是2的幂次方</strong>!</p>
 <p>为了能让 HashMap 存取高效，尽量较少碰撞，也就是要尽量把数据分配均匀，每个链表&#x2F;红黑树长度大致相同。这个实现就是把数据存到哪个链表&#x2F;红黑树中的算法。我们首先可能会想到采用%取余的操作来实现。但是，重点来了：“取余(%)操作中如果除数是2的幂次则等价于与其除数减一的与(&amp;)操作（也就是说hash%length&#x3D;&#x3D;hash&amp;(length-1)的前提是 length 是2的 n 次方；）。” 并且 采用二进制位操作 &amp;，相对于%能够提高运算效率，这就解释了 HashMap 的长度为什么是2的幂次方。</p>
 <p>那为什么是两次扰动呢？答：这样就是加大哈希值低位的随机性，使得分布更均匀，从而提高对应数组</p>
 <p>存储下标位置的随机性&amp;均匀性， 终减少Hash冲突，两次就够了，已经达到了高位低位同时参与运算的目的</p>
@@ -406,7 +406,7 @@
 <p>所以ConcurrentHashMap也分为1.7和1.8两个jdk版本的不同</p>
 <p>1.7</p>
 <p>首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据时，其他段的数据也能被其他线程访问。在JDK1.7中，ConcurrentHashMap采用Segment + HashEntry的方式进行实现。</p>
-<p>一个 ConcurrentHashMap 里包含一个 Segment 数组。Segment 的结构和 HashMap类似，是一种数组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每个 Segment 守护着一个 HashEntry数组里的元素，当对 HashEntry 数组的数据进行修改时，必须首先获得对应的 Segment的锁。</p>
+<p>一个 ConcurrentHashMap 里包含一个 Segment 数组。Segment 的结构和 HashMap类似，是一种数组和链表结构，一个 Segment 包含一个 HashEntry 数组，每个 HashEntry 是一个链表结构的元素，每个 Segment 守护着一个 HashEntry数组里的元素，当对HashEntry 数组的数据进行修改时，必须首先获得对应的 Segment的锁。</p>
 <img src="/2022/05/11/%E9%9B%86%E5%90%88/webp.webp" class="" title="img">
 
 <p>1.8</p>
@@ -481,9 +481,8 @@
 <li>Comparable称为元素的自然顺序，或者叫做默认顺序。</li>
 <li>Comparator称为元素定制排序。</li>
 </ol>
-<p>​	</p>
-<p>巨人的肩膀：</p>
-<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1873182">ConcurrentHashMap（JDK8） - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
+<h3 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h3><p>此过程主要由LinkedHashSet.class中重写超类的两个addEntry和createEntry 实现双向链表的结构。保证数据已我们录入的顺序遍历输出</p>
+<h1 id="巨人的肩膀："><a href="#巨人的肩膀：" class="headerlink" title="巨人的肩膀："></a>巨人的肩膀：</h1><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1873182">ConcurrentHashMap（JDK8） - 腾讯云开发者社区-腾讯云 (tencent.com)</a></p>
 <p>​	<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yanzige/p/8392142.html">深入理解HashMap的扩容机制 - 颜子歌 - 博客园 (cnblogs.com)</a></p>
 
     </div>
@@ -566,7 +565,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">Collection：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-number">2.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ArrayList%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">1.ArrayList：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.1.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-LinkedList"><span class="nav-number">2.2.</span> <span class="nav-text">2.LinkedList:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Vertor"><span class="nav-number">2.3.</span> <span class="nav-text">3.Vertor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-number">3.</span> <span class="nav-text">Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-HashMap"><span class="nav-number">3.1.</span> <span class="nav-text">1.HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.1.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6%EF%BC%9A"><span class="nav-number">3.1.2.</span> <span class="nav-text">扩容机制：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java7"><span class="nav-number">3.1.3.</span> <span class="nav-text">java7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java8"><span class="nav-number">3.1.4.</span> <span class="nav-text">java8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E6%89%A9%E5%AE%B9%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="nav-number">3.1.5.</span> <span class="nav-text">触发扩容的条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%A0%91%E5%8C%96%E5%92%8C%E6%89%A9%E5%AE%B9"><span class="nav-number">3.1.6.</span> <span class="nav-text">关于树化和扩容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81"><span class="nav-number">3.1.7.</span> <span class="nav-text">哈希冲突</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ConcurrentHashMap"><span class="nav-number">3.2.</span> <span class="nav-text">2.ConcurrentHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-TreeMap"><span class="nav-number">3.3.</span> <span class="nav-text">3.TreeMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-HashTable"><span class="nav-number">3.4.</span> <span class="nav-text">4.HashTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-LinkedListMap"><span class="nav-number">3.5.</span> <span class="nav-text">5.LinkedListMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-number">4.</span> <span class="nav-text">Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashSet"><span class="nav-number">4.1.</span> <span class="nav-text">HashSet</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="nav-number">4.1.0.1.</span> <span class="nav-text">添加元素</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TreeSet"><span class="nav-number">4.2.</span> <span class="nav-text">TreeSet</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.0.1.</span> <span class="nav-text">两种实现方式</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">Collection：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-number">2.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-ArrayList%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">1.ArrayList：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.1.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-LinkedList"><span class="nav-number">2.2.</span> <span class="nav-text">2.LinkedList:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Vertor"><span class="nav-number">2.3.</span> <span class="nav-text">3.Vertor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-number">3.</span> <span class="nav-text">Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-HashMap"><span class="nav-number">3.1.</span> <span class="nav-text">1.HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.1.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6%EF%BC%9A"><span class="nav-number">3.1.2.</span> <span class="nav-text">扩容机制：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java7"><span class="nav-number">3.1.3.</span> <span class="nav-text">java7</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java8"><span class="nav-number">3.1.4.</span> <span class="nav-text">java8</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A6%E5%8F%91%E6%89%A9%E5%AE%B9%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="nav-number">3.1.5.</span> <span class="nav-text">触发扩容的条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%A0%91%E5%8C%96%E5%92%8C%E6%89%A9%E5%AE%B9"><span class="nav-number">3.1.6.</span> <span class="nav-text">关于树化和扩容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81"><span class="nav-number">3.1.7.</span> <span class="nav-text">哈希冲突</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-ConcurrentHashMap"><span class="nav-number">3.2.</span> <span class="nav-text">2.ConcurrentHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-TreeMap"><span class="nav-number">3.3.</span> <span class="nav-text">3.TreeMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-HashTable"><span class="nav-number">3.4.</span> <span class="nav-text">4.HashTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-LinkedListMap"><span class="nav-number">3.5.</span> <span class="nav-text">5.LinkedListMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-number">4.</span> <span class="nav-text">Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashSet"><span class="nav-number">4.1.</span> <span class="nav-text">HashSet</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="nav-number">4.1.0.1.</span> <span class="nav-text">添加元素</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TreeSet"><span class="nav-number">4.2.</span> <span class="nav-text">TreeSet</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.0.1.</span> <span class="nav-text">两种实现方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedHashSet"><span class="nav-number">4.3.</span> <span class="nav-text">LinkedHashSet</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A8%E4%BA%BA%E7%9A%84%E8%82%A9%E8%86%80%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">巨人的肩膀：</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -628,13 +627,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">264k</span>
+    <span title="Symbols count total">270k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">4:01</span>
+    <span title="Reading time total">4:05</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
