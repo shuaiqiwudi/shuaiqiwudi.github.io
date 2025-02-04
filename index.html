@@ -193,6 +193,410 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/01/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zh-CN">
+      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shuaiqiwudi blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/01/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-01-14 09:34:31 / Modified: 11:28:10" itemprop="dateCreated datePublished" datetime="2025-01-14T09:34:31+08:00">2025-01-14</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2025/01/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2025/01/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>736</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>K近邻算法：</p>
+<p><img src="https://picx.zhimg.com/70/v2-c3f1d2553e7467d7da5f9cd538d2b49a_1440w.image?source=172ae18b&biz_tag=Post" alt="一文搞懂k近邻（k-NN）算法（一）"></p>
+<p>本篇文章只讨论<strong>分类</strong>问题的k近邻法：</p>
+<p>K近邻算法，即是给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例<strong>最邻近</strong>的K个实例，<strong>这K个实例的多数属于某个类</strong>，就把该输入实例分类到这个类中。（<strong>根据身边的成分判断他本身未知的成分</strong>）</p>
+<ul>
+<li>如果K&#x3D;3，绿色圆点的最邻近的3个点是2个红色和1个蓝色，<strong>少数从属于多数，</strong>判定绿色的这个待分类点属于红色的一类。</li>
+<li>如果K&#x3D;5，绿色圆点的最邻近的5个邻居是2个红色和3个蓝色，<strong>还是少数从属于多数，</strong>判定绿色的这个待分类点属于蓝色的一类。</li>
+</ul>
+<p><strong>k怎么确定的，k为多少效果最好呢？所谓的最近邻又是如何来判断给定呢？</strong></p>
+<h2 id="k近邻算法中k的选取以及特征归一化的重要性"><a href="#k近邻算法中k的选取以及特征归一化的重要性" class="headerlink" title="k近邻算法中k的选取以及特征归一化的重要性"></a><strong>k近邻算法中k的选取以及特征归一化的重要性</strong></h2><ol>
+<li><p>假设我们选取<strong>k&#x3D;1</strong>这个极端情况，怎么就使得模型变得复杂，又<strong>过拟合</strong>了呢？</p>
+<p>过拟合就是在训练集上准确率非常高，而在测试集上准确率低。</p>
+</li>
+</ol>
+<p><img src="https://pic4.zhimg.com/v2-6911dd1ce577c9fd6842cbd2ee68a309_1440w.png" alt="img"></p>
+<p>如果k太小了，比如等于1，那么模型就太复杂了，<strong>我们很容易学习到噪声</strong></p>
+<p>经过上例，我们可以得到k太小会导致<strong>过拟合</strong>，<strong>很容易将一些噪声（如上图离五边形很近的黑色圆点）学习到模型中，而忽略了数据真实的分布！</strong></p>
+<ol start="2">
+<li>如果我们选取<strong>较大的k值</strong>，就相当于用较大邻域中的训练数据进行预测，这时与<strong>输入实例较远</strong>的（不相似）训练实例也会对预测起作用，使预测发生错误，<strong>k值的增大意味着整体模型变得简单</strong>。</li>
+</ol>
+<p><img src="https://pic1.zhimg.com/v2-e79d46a56c426061a9494091f8fac068_1440w.png" alt="img"></p>
+<p>如果<strong>k&#x3D;N（N为训练样本的个数）</strong>,那么无论输入实例是什么，都将简单地预测它属于在训练实例中最多的类。这时，模型是不是非常简单，这相当于你压根就没有训练模型。这个图中，K&#x3D;N 则会将红色判断为黑色类别，明显错误。</p>
+<ol start="3">
+<li><p><strong>k值既不能过大，也不能过小</strong></p>
+<p><img src="https://pic1.zhimg.com/v2-b7dc18ee84e5c099c21fbaa175a7b9c6_1440w.png" alt="img"></p>
+</li>
+</ol>
+<p>能达到图中的效果是最好的</p>
+<p><strong>选取k值很重要的关键是实验调参，类似于神经网络选取多少层这种，通过调整超参数来得到一个较好的结果</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zh-CN">
+      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shuaiqiwudi blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-04-06 10:27:54 / Modified: 10:44:53" itemprop="dateCreated datePublished" datetime="2024-04-06T10:27:54+08:00">2024-04-06</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2024/04/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2024/04/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>109</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-线性回归"><a href="#1-线性回归" class="headerlink" title="1. 线性回归"></a>1. 线性回归</h3><h4 id="回归方程"><a href="#回归方程" class="headerlink" title="回归方程"></a>回归方程</h4><p>假设场景是去银行贷款 银行看重两个参数：1.工资水平 2. 年龄大小 根据这两个因素决定—-&gt;贷款金额</p>
+<img src="/2024/04/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20240406103644677.png" class="" title="image-20240406103644677">
+
+<p>θ1 θ2 为权重参数</p>
+<p>将方程转化为矩阵，新添加x0列 其中数据都为1 （目的：整合为矩阵 方便整合计算）</p>
+<h4 id="误差"><a href="#误差" class="headerlink" title="误差"></a>误差</h4><img src="/2024/04/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/image-20240406104432153.png" class="" title="image-20240406104432153">
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zh-CN">
+      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shuaiqiwudi blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-04-05 20:10:39" itemprop="dateCreated datePublished" datetime="2024-04-05T20:10:39+08:00">2024-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-04-06 10:03:24" itemprop="dateModified" datetime="2024-04-06T10:03:24+08:00">2024-04-06</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2024/04/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2024/04/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>304</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><h2 id="1-机器学习的概念"><a href="#1-机器学习的概念" class="headerlink" title="1.机器学习的概念"></a>1.机器学习的概念</h2><p>涉及概率论，统计学，逼近论，算法复杂度理论等多门学科。专门研究计算机怎么模拟或实现人类的学习行为，以获取新的知识或技能。</p>
+<p>定位：人工智能的核心 主要使用归纳 综合</p>
+<p>定义：探究和开发一系列的算法来如何使计算机不需要外部的指示，可以自己通过数据来学习，建模，并利用好建模和新的输入来进行预测的学科。</p>
+<h2 id="1-深度学习的概念"><a href="#1-深度学习的概念" class="headerlink" title="1.深度学习的概念"></a>1.深度学习的概念</h2><p>deep Learning 是机器学习的一个分支 是一种以人工神经网络为架构 对数据进行特征学习的算法</p>
+<p>机器学习 手动进行数据提取 </p>
+<p>深度学习 帮助自动进行数据提取</p>
+<h2 id="2-深度学习和机器学习的区别"><a href="#2-深度学习和机器学习的区别" class="headerlink" title="2. 深度学习和机器学习的区别"></a>2. 深度学习和机器学习的区别</h2><p>机器学习是需要人工选取数据进行下一轮的数据输入</p>
+<p>深度学习采用智能方式自动提取数据进行特征值的选取，加强训练</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/15/vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="zh-CN">
+      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shuaiqiwudi blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/15/vue/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-07-15 16:57:24 / Modified: 20:38:46" itemprop="dateCreated datePublished" datetime="2023-07-15T16:57:24+08:00">2023-07-15</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2023/07/15/vue/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/07/15/vue/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>59</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h1><h1 id="Vue的启动"><a href="#Vue的启动" class="headerlink" title="Vue的启动"></a>Vue的启动</h1><ol>
+<li>初始化vue项目</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init vue@lastest</span><br></pre></td></tr></table></figure>
+
+<p>运行项目</p>
+<p>npm install</p>
+<p>npm run dev</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/09/yolov5%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -817,469 +1221,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/01/MQ/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zh-CN">
-      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shuaiqiwudi blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/01/MQ/" class="post-title-link" itemprop="url">MQ</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-08-01 09:17:52" itemprop="dateCreated datePublished" datetime="2022-08-01T09:17:52+08:00">2022-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-20 20:57:31" itemprop="dateModified" datetime="2023-04-20T20:57:31+08:00">2023-04-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">消息队列</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2022/08/01/MQ/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/01/MQ/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>7 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="MQ"><a href="#MQ" class="headerlink" title="MQ"></a>MQ</h1><p>MQ 是message queue ,消息队列，也叫消息中间件，遵守JMS（java message service）规范的一种软件。是类似于数据库一样需要独立部署在服务器上的一种应用，提供接口给其他系统调用。</p>
-<p>主要用于各个系统之间通信的解耦。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/01/MQ/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/01/Redis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zh-CN">
-      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shuaiqiwudi blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/01/Redis/" class="post-title-link" itemprop="url">Redis</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-08-01 09:15:09" itemprop="dateCreated datePublished" datetime="2022-08-01T09:15:09+08:00">2022-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-21 08:58:31" itemprop="dateModified" datetime="2023-04-21T08:58:31+08:00">2023-04-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2022/08/01/Redis/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/01/Redis/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>7.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>7 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p><a target="_blank" rel="noopener" href="https://redis.io/">Redis</a></p>
-<img src="/2022/08/01/Redis/image-20230326184927282.png" class="" title="image-20230326184927282">
-
-<p>7.0版本后不再出现重大bug 推荐7.0</p>
-<h3 id="使用文档："><a href="#使用文档：" class="headerlink" title="使用文档："></a>使用文档：</h3><p><a target="_blank" rel="noopener" href="https://redis.io/commands/?alpha=s">Commands | Redis</a>  官方文档 各种命令的解释和使用</p>
-<h1 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lin443514407lin/article/details/124997940">(109条消息) Linux系统下安装Redis-7.0.0_lin502的博客-CSDN博客</a></p>
-<p>在linux中下载</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-<span class="number">7</span>.<span class="number">0</span>.<span class="number">0</span>.tar.gz</span><br></pre></td></tr></table></figure>
-
-<p>使用位置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin</span><br></pre></td></tr></table></figure>
-
-<p>下载位置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/root/redis-7.0.0</span><br></pre></td></tr></table></figure>
-
-<p>启动服务</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /myredis/redis7.conf (设置读取的配置文件)</span><br></pre></td></tr></table></figure>
-
-<p>进入客户端</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -a &quot;zsr413413&quot; (进入客户端需要登录密码-requirepass 在server读取文件中可以设置)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/01/Redis/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/11/%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zh-CN">
-      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shuaiqiwudi blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/11/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-07-11 09:30:06" itemprop="dateCreated datePublished" datetime="2022-07-11T09:30:06+08:00">2022-07-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-17 12:59:35" itemprop="dateModified" datetime="2023-04-17T12:59:35+08:00">2023-04-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2022/07/11/%E7%AE%97%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/11/%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>711</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="最懒的人就是整天忙得没时间学习、反思、成长的人。"><a href="#最懒的人就是整天忙得没时间学习、反思、成长的人。" class="headerlink" title="最懒的人就是整天忙得没时间学习、反思、成长的人。"></a><strong>最懒的人就是整天忙得没时间学习、反思、成长的人。</strong></h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/11/%E7%AE%97%E6%B3%95/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="zh-CN">
-      <meta itemprop="description" content="The Blog Which Owned Shuaiqiwudi">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shuaiqiwudi blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">中间件及容器管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-07-08 16:01:33" itemprop="dateCreated datePublished" datetime="2022-07-08T16:01:33+08:00">2022-07-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-04-17 13:15:47" itemprop="dateModified" datetime="2023-04-17T13:15:47+08:00">2023-04-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8A%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">项目环境搭建及中间件</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><img src="/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/image-20230416140654506.png" class="" title="image-20230416140654506">
-
-<p>Sender拉取消息的两个条件只需要<strong>满足其中一个</strong>：</p>
-<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p><img src="https://sjwx.easydoc.xyz/46901064/files/kv7rlicu.png" alt="img"></p>
-<p><a target="_blank" rel="noopener" href="https://docs.docker.com/get-started/overview/">Docker overview | Docker Documentation</a></p>
-<h2 id="Docker三要素"><a href="#Docker三要素" class="headerlink" title="Docker三要素"></a>Docker三要素</h2><p>镜像</p>
-<p>容器:容器是具体镜像文件的运行环境</p>
-<p>仓库:集中存放镜像的地方</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/08/%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1349,7 +1290,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1387,7 +1328,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1397,13 +1338,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">270k</span>
+    <span title="Symbols count total">271k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">4:05</span>
+    <span title="Reading time total">4:06</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
