@@ -5202,8 +5202,8 @@ count=100
 ]]></content>
   </entry>
   <entry>
-    <title></title>
-    <url>/2024/04/05/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</url>
+    <title>机器学习</title>
+    <url>/2025/02/04/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><h2 id="1-机器学习的概念"><a href="#1-机器学习的概念" class="headerlink" title="1.机器学习的概念"></a>1.机器学习的概念</h2><p>涉及概率论，统计学，逼近论，算法复杂度理论等多门学科。专门研究计算机怎么模拟或实现人类的学习行为，以获取新的知识或技能。</p>
 <p>定位：人工智能的核心 主要使用归纳 综合</p>
 <p>定义：探究和开发一系列的算法来如何使计算机不需要外部的指示，可以自己通过数据来学习，建模，并利用好建模和新的输入来进行预测的学科。</p>
@@ -5213,6 +5213,9 @@ count=100
 <h2 id="2-深度学习和机器学习的区别"><a href="#2-深度学习和机器学习的区别" class="headerlink" title="2. 深度学习和机器学习的区别"></a>2. 深度学习和机器学习的区别</h2><p>机器学习是需要人工选取数据进行下一轮的数据输入</p>
 <p>深度学习采用智能方式自动提取数据进行特征值的选取，加强训练</p>
 ]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
   </entry>
   <entry>
     <title>留言页</title>
@@ -5223,17 +5226,20 @@ count=100
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2025/01/14/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<p>K近邻算法：</p>
+    <title>深度学习入门</title>
+    <url>/2025/02/04/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>算法举例</p>
+<p>K近邻算法：</p>
 <p><img src="https://picx.zhimg.com/70/v2-c3f1d2553e7467d7da5f9cd538d2b49a_1440w.image?source=172ae18b&biz_tag=Post" alt="一文搞懂k近邻（k-NN）算法（一）"></p>
-<p>本篇文章只讨论<strong>分类</strong>问题的k近邻法：</p>
+<p>只讨论<strong>分类</strong>问题的k近邻法：</p>
 <p>K近邻算法，即是给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例<strong>最邻近</strong>的K个实例，<strong>这K个实例的多数属于某个类</strong>，就把该输入实例分类到这个类中。（<strong>根据身边的成分判断他本身未知的成分</strong>）</p>
 <ul>
 <li>如果K&#x3D;3，绿色圆点的最邻近的3个点是2个红色和1个蓝色，<strong>少数从属于多数，</strong>判定绿色的这个待分类点属于红色的一类。</li>
 <li>如果K&#x3D;5，绿色圆点的最邻近的5个邻居是2个红色和3个蓝色，<strong>还是少数从属于多数，</strong>判定绿色的这个待分类点属于蓝色的一类。</li>
 </ul>
 <p><strong>k怎么确定的，k为多少效果最好呢？所谓的最近邻又是如何来判断给定呢？</strong></p>
+<span id="more"></span>
+
 <h2 id="k近邻算法中k的选取以及特征归一化的重要性"><a href="#k近邻算法中k的选取以及特征归一化的重要性" class="headerlink" title="k近邻算法中k的选取以及特征归一化的重要性"></a><strong>k近邻算法中k的选取以及特征归一化的重要性</strong></h2><ol>
 <li><p>假设我们选取<strong>k&#x3D;1</strong>这个极端情况，怎么就使得模型变得复杂，又<strong>过拟合</strong>了呢？</p>
 <p>过拟合就是在训练集上准确率非常高，而在测试集上准确率低。</p>
@@ -5255,6 +5261,9 @@ count=100
 <p>能达到图中的效果是最好的</p>
 <p><strong>选取k值很重要的关键是实验调参，类似于神经网络选取多少层这种，通过调整超参数来得到一个较好的结果</strong></p>
 ]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
   </entry>
   <entry>
     <title>算法</title>
@@ -5366,7 +5375,8 @@ count=100
 <p>二者对比：</p>
 <p>&#x2F;&#x2F;TODO</p>
 <h2 id="分组交换中的时延，丢包和吞吐量"><a href="#分组交换中的时延，丢包和吞吐量" class="headerlink" title="分组交换中的时延，丢包和吞吐量"></a>分组交换中的时延，丢包和吞吐量</h2><p>因为在理想状态下，我们可以随心所欲的在端到端进行数据的传输。可现实中，计算机网络必定要限制在端系统之间的吞吐量（每秒能够传输的数据量），在端系统之间引入时延的概念，并且实际上也会丢失分组。</p>
-<h3 id="节点时延"><a href="#节点时延" class="headerlink" title="节点时延"></a>节点时延</h3><p>分组从一台主机出发，通过一系列路由器传输，在另一条主机中结束他的历程。当分组从一个节点（主机或路由器）沿着这条路径到后继结点（主机或路由器），该分组在沿途的每个节点经受了几种不同类型的时延。这些时延最为重要的是节点处理时延（nodlal processing delay）、排队时延（queuing delay）、传输时延（transmission delay）和传播时延（propagation delay），这些时延总体累加起来是<strong>节点总时延</strong>（total nodal delay）。</p>
+<h3 id="节点时延"><a href="#节点时延" class="headerlink" title="节点时延"></a>节点时延</h3><p>分组从一台主机出发，通过一系列路由器传输，在另一条主机中结束他的历程。</p>
+<p>当分组从一个节点（主机或路由器）沿着这条路径到后继结点（主机或路由器），该分组在沿途的每个节点经受了几种不同类型的时延。这些时延最为重要的是节点处理时延（nodlal processing delay）、排队时延（queuing delay）、传输时延（transmission delay）和传播时延（propagation delay），这些时延总体累加起来是<strong>节点总时延</strong>（total nodal delay）。</p>
 <img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20220831124803715.png" class="" title="image-20220831124803715">
 
 <h4 id="1-处理时延"><a href="#1-处理时延" class="headerlink" title="1. 处理时延"></a>1. 处理时延</h4><p>检查分组首部和决定将该分组导向何处所需要的时间是处理时延的一部分。</p>
@@ -5466,7 +5476,7 @@ count=100
 <p>当用户在浏览器的地址栏里输入 Web 页的 URL 后，HTTP 的处理就开始了。<strong>HTTP</strong> 默认使用 80 端口。它的工作机制，<em>首先是客户端向服务器的 80 端口建立一个 TCP 连接，然后在这个 TCP 连接上进行请求和应答以及数据报文的发送。</em></p>
 <img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/20190509224724959.png" class="" title="img">
 
-<p>HTTP 中常用的有两个版本，一个是 <strong>HTTP 1.0</strong> ，另一个是 <strong>HTTP 1.1</strong> 。在HTTP 1.0 中每一个命令和应答都会触发一次 TCP 连接的建立和断开，非持续连接有一些缺点。第一，必须为每一个请求的对象建立和维护一个全新的连接。对于每个这样的连接，在客户和服务器中都要分配TCP的缓冲区和保持TCP变量，这给Web服务器带来了严重的负担，第二，，每一个对象经受两倍RTT（往返时间）的交付时延，即一个RTT用于创建TCP，另一个RTT用于请求和接收一个对象。而从 HTTP 1.1 开始，允许在一个 TCP 连接上发送多个命令和应答，这种方式也叫<strong>持续连接</strong>（ keep-alive ）。可以大量减少 TCP 连接的建立和断开操作，提高传输效率。</p>
+<p>HTTP 中常用的有两个版本，一个是 <strong>HTTP 1.0</strong> ，另一个是 <strong>HTTP 1.1</strong> 。在HTTP 1.0 中每一个命令和应答都会触发一次 TCP 连接的建立和断开，非持续连接有一些缺点。第一，必须为每一个请求的对象建立和维护一个全新的连接。对于每个这样的连接，在客户和服务器中都要分配TCP的缓冲区和保持TCP变量，这给Web服务器带来了严重的负担，第二，每一个对象经受两倍RTT（往返时间）的交付时延，即一个RTT用于创建TCP，另一个RTT用于请求和接收一个对象。而从 HTTP 1.1 开始，允许在一个 TCP 连接上发送多个命令和应答，这种方式也叫<strong>持续连接</strong>（ keep-alive ）。可以大量减少 TCP 连接的建立和断开操作，提高传输效率。</p>
 <img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/v2-3c1a52d9036fd7bbb3e060125c6bf1a8_r.jpg" class="" title="preview">
 
 <p>详解 Connection：</p>
@@ -5653,8 +5663,7 @@ count=100
 <li><p><strong>TCP的连接</strong><br>TCP连接就是由协议软件所提供的一种抽象。表示一条可通信的链路。每条TCP连接有且仅有两个端点，表示通信的双方。且双发在任意时刻都可以作为发送者和接收者。<br>TCP连接的端点叫做套接字或插口。<br>套接字 socket &#x3D;（IP地址:端口号）。<br>因此，TCP连接 ::&#x3D;（套接字1，套接字2）&#x3D;{(IP1:端口号1)，(IP2:端口号2)}</p>
 </li>
 </ol>
-<h4 id="TCP报文段首部"><a href="#TCP报文段首部" class="headerlink" title="TCP报文段首部"></a>TCP报文段首部</h4><p><img src="https://img-blog.csdnimg.cn/20190531105135488.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppbmppbmlhbzE=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/2019-03-21-05-16613875284723.gif" class="" title="img">
+<h4 id="TCP报文段首部"><a href="#TCP报文段首部" class="headerlink" title="TCP报文段首部"></a>TCP报文段首部</h4><img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/2019-03-21-05-16613875284723.gif" class="" title="img">
 
 
 
@@ -5791,7 +5800,70 @@ count=100
 
 
 <p>在某一时刻 , 每个入端输入端口都到达了一个分组 每个分组都是发往最上侧 的输出端口。假定线路速度相同，交换机以3倍于线路速度的速度运行， 一个时间单位（即接收或发送 个分组所需的时间）以后，所有三个初始分组都被传送到输出端口，并排 等待传 在下一个时间单位中，这三个分组中的一个将通过输出链路发送出去。在这个例子中，又有两个新分组已到达交换机的入端；这些分组之一要发往最上侧的输出端 这样的后果是，输出端口 的<strong>分组调度</strong> 在这些排队分组中选择一个分组来传输 。</p>
-<h3 id="分组调度"><a href="#分组调度" class="headerlink" title="分组调度"></a>分组调度</h3><h2 id="网际协议：-1Pv4-、寻址、-1Pv6-及其他"><a href="#网际协议：-1Pv4-、寻址、-1Pv6-及其他" class="headerlink" title="网际协议： 1Pv4 、寻址、 1Pv6 及其他"></a>网际协议： 1Pv4 、寻址、 1Pv6 及其他</h2><h1 id="网络层：控制平面"><a href="#网络层：控制平面" class="headerlink" title="网络层：控制平面"></a>网络层：控制平面</h1><h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="1-HTTP和HTTPS的区别："><a href="#1-HTTP和HTTPS的区别：" class="headerlink" title="1. HTTP和HTTPS的区别："></a>1. HTTP和HTTPS的区别：</h2><p>HTTP（HyperText Transfer Protocol：超文本传输协议）是一种用于分布式、协作式和超媒体信息系统的应用层协议。 简单来说就是一种发布和接收 HTML 页面的方法，被用于在 Web 浏览器和网站服务器之间传递信息。HTTP 默认工作在 TCP 协议 80 端口，用户访问网站 http:&#x2F;&#x2F; 打头的都是标准 HTTP 服务。</p>
+<h3 id="分组调度"><a href="#分组调度" class="headerlink" title="分组调度"></a>分组调度</h3><h2 id="网际协议：-1Pv4-、寻址、-1Pv6-及其他"><a href="#网际协议：-1Pv4-、寻址、-1Pv6-及其他" class="headerlink" title="网际协议： 1Pv4 、寻址、 1Pv6 及其他"></a>网际协议： 1Pv4 、寻址、 1Pv6 及其他</h2><h1 id="网络层：控制平面"><a href="#网络层：控制平面" class="headerlink" title="网络层：控制平面"></a>网络层：控制平面</h1><h1 id="数据链路层："><a href="#数据链路层：" class="headerlink" title="数据链路层："></a>数据链路层：</h1><img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250209093722075.png" class="" title="image-20250209093722075">
+
+<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250209094403255.png" class="" title="image-20250209094403255">
+
+<h2 id="组帧："><a href="#组帧：" class="headerlink" title="组帧："></a>组帧：</h2><p>帧的传输需要考虑如何界定数据的大小确定帧的界限，还需要考虑如何让接收方识别帧。</p>
+<img src="计算机网络/image-20250209105416852.png" alt="image-20250209105416852"  />
+
+<h3 id="帧的组成方法"><a href="#帧的组成方法" class="headerlink" title="帧的组成方法"></a>帧的组成方法</h3><h4 id="1-字符计数法"><a href="#1-字符计数法" class="headerlink" title="1. 字符计数法"></a>1. 字符计数法</h4><p>在帧的前面添加一个定长的<strong>计数字段</strong>表示帧长。</p>
+<img src="计算机网络/image-20250209105840158.png" alt="image-20250209105840158" style="zoom:33%;" />
+
+<p>缺点：如果<strong>计数字段</strong>出现错误，则后续所有帧的界限都会错误。</p>
+<h4 id="2-字节填充法"><a href="#2-字节填充法" class="headerlink" title="2. 字节填充法"></a>2. 字节填充法</h4><p>使用两个特殊的<strong>控制字符</strong>分别表示帧的开头和结束标志。</p>
+<img src="计算机网络/image-20250209110845702.png" alt="image-20250209110845702" style="zoom:33%;" />
+
+<p>问题：如果帧中出现同控制字符的信息？导致错误的帧界定。</p>
+<p>解决：使用<strong>转义字符ESC</strong>，插入到数据中包含<strong>控制字符</strong>之前的位置，<strong>识别到转义字符esc，则删除，将后面识别为数据。</strong></p>
+<img src="计算机网络/image-20250209110810022.png" alt="image-20250209110810022" style="zoom:33%;" />
+
+<p>问题：如果数据中包含转义字符？导致会删除数据</p>
+<p>解决：在转义字符ESC之前再插入一个转义字符，于是就可以将同转义字符的数据识别为真实数据。</p>
+<h4 id="3-零比特传输法"><a href="#3-零比特传输法" class="headerlink" title="3.零比特传输法"></a>3.零比特传输法</h4><p>使用<strong>特殊比特串</strong>表示帧的开始和结束：都是01111110 （0+6个1+0）</p>
+<p>在帧发送组装的过程中，处理数据中的<strong>可能出现的特殊比特串</strong>，</p>
+<p>处理方法：</p>
+<ol>
+<li>发送方每当遇见连续的5个1，就在后面插入一个0</li>
+<li>接收方每当遇见连续的5个1，就在后面删除一个0</li>
+</ol>
+<img src="计算机网络/image-20250209112348755.png" alt="image-20250209112348755" style="zoom:50%;" />
+
+<p>数据链路层的HDLC，PPP这两个协议使用的都是这个传输方法。</p>
+<h1 id="物理层：通信原理"><a href="#物理层：通信原理" class="headerlink" title="物理层：通信原理"></a>物理层：通信原理</h1><h4 id="通信原理中一些基本概念："><a href="#通信原理中一些基本概念：" class="headerlink" title="通信原理中一些基本概念："></a>通信原理中一些基本概念：</h4><img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250205145706765.png" class="" title="image-20250205145706765">
+
+<p><strong>码元</strong>：每个信号就是一个码元，既在一个周期内，可能出现几种信号就对应几种码元。</p>
+<p>用数字信号设计4进制码元：</p>
+<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250205150859460.png" class="" title="image-20250205150859460">
+
+<p>如果一个码元（一个信号）可能有4种状态，那么可以称为4进制码元（一个码元携带2bit的数据 —00 01 10 11）</p>
+<p>类似的，如果一个码元（即一个信号）可能有8种状态，那么就称之为8进制码元（一个码元携带3bit数据）。 </p>
+<p>一个码元能够携带多少比特数据？</p>
+<p>如果一个周期内有K种可能的信号</p>
+<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250205201452266.png" class="" title="image-20250205201452266">
+
+<p>例如：一个周期内有8种可能的信号，则有8个码元，其中1码元&#x3D;3bit</p>
+<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250205201905923.png" class="" title="image-20250205201905923">
+
+<p>信号传输的速率：</p>
+<p>两个计量单位：1.<strong>波特率</strong>（码元&#x2F;秒）2.<strong>比特率</strong>（比特&#x2F;秒）</p>
+<p>带宽</p>
+<h3 id="奈奎斯特定理"><a href="#奈奎斯特定理" class="headerlink" title="奈奎斯特定理"></a>奈奎斯特定理</h3><p>前提条件：在一个理想的<strong>没有噪声</strong>的，带宽有限的信道。</p>
+<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250205202538485.png" class="" title="image-20250205202538485">
+
+<h3 id="香农定理"><a href="#香农定理" class="headerlink" title="香农定理"></a>香农定理</h3><p>前提条件：有噪音的情况下</p>
+<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250205203216591.png" class="" title="image-20250205203216591">
+
+
+
+<p>信噪比S&#x2F;N的两种表示方法：</p>
+<img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250205203657532.png" class="" title="image-20250205203657532">
+
+<p>根据两个定理的总结和公式的说明 得出的结论：信道中是有限的码元，能够携带的比特的数量是也有限的。</p>
+<h3 id="信号在物理层上传输的方式："><a href="#信号在物理层上传输的方式：" class="headerlink" title="信号在物理层上传输的方式："></a>信号在物理层上传输的方式：</h3><img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/image-20250205205118274.png" class="" title="image-20250205205118274">
+
+<p>信源A通过将二进制数据转化为数字信号或者模拟信号到信道上，信号到信宿B后通过反变换器，将数字信号和模拟信号转化为二进制数据。</p>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="1-HTTP和HTTPS的区别："><a href="#1-HTTP和HTTPS的区别：" class="headerlink" title="1. HTTP和HTTPS的区别："></a>1. HTTP和HTTPS的区别：</h2><p>HTTP（HyperText Transfer Protocol：超文本传输协议）是一种用于分布式、协作式和超媒体信息系统的应用层协议。 简单来说就是一种发布和接收 HTML 页面的方法，被用于在 Web 浏览器和网站服务器之间传递信息。HTTP 默认工作在 TCP 协议 80 端口，用户访问网站 http:&#x2F;&#x2F; 打头的都是标准 HTTP 服务。</p>
 <p><strong>HTTP 协议以明文方式发送内容</strong>，不提供任何方式的数据加密，如果攻击者截取了Web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息，因此，HTTP协议不适合传输一些敏感信息，比如：信用卡号、密码等支付信息。</p>
 <p><strong>HTTPS</strong>（Hypertext Transfer Protocol Secure：超文本传输安全协议）是一种透过计算机网络进行安全通信的传输协议。HTTPS 经由 HTTP 进行通信，但利用 SSL&#x2F;TLS 来加密数据包。HTTPS 开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。既使用<strong>SSL&#x2F;TLS+HTTP</strong>。</p>
 <img src="/2022/08/04/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/v2-9556fa61ac7262a18bc639db29362669_720w.jpg" class="" title="img">
@@ -5850,7 +5922,6 @@ count=100
 <li><p>Nginx负载均衡服务器将网页传递给filters链处理，之后发回给我们的浏览器。</p>
 </li>
 </ol>
-<p><img src="https://img-blog.csdnimg.cn/20190402234727661.png" alt="在这里插入图片描述"></p>
 <p><strong>6、浏览器解析渲染页面</strong></p>
 <p>浏览器是一个边解析边渲染的过程。</p>
 <ol>
