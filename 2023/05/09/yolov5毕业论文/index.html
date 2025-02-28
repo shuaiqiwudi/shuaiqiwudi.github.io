@@ -24,15 +24,18 @@
 
   <meta name="description" content="基于卷积神经网络的2022世界杯 法国vs摩洛哥">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yolov5">
+<meta property="og:title" content="yolo">
 <meta property="og:url" content="http://example.com/2023/05/09/yolov5%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/index.html">
 <meta property="og:site_name" content="shuaiqiwudi blog">
 <meta property="og:description" content="基于卷积神经网络的2022世界杯 法国vs摩洛哥">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/05/09/yolov5%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/wps1-16847559295141.png">
 <meta property="og:image" content="http://example.com/2023/05/09/yolov5%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/wps2.jpg">
+<meta property="og:image" content="http://example.com/2023/05/09/yolov5%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/cropped_image.jpg">
+<meta property="og:image" content="http://example.com/2023/05/09/yolov5%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/yolov5毕业论文/image-20250215210706325.png">
+<meta property="og:image" content="http://example.com/2023/05/09/yolov5%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/yolov5毕业论文/image-20250215214136352.png">
 <meta property="article:published_time" content="2023-05-09T05:29:50.898Z">
-<meta property="article:modified_time" content="2023-05-30T06:33:45.403Z">
+<meta property="article:modified_time" content="2025-02-19T11:06:55.211Z">
 <meta property="article:author" content="zh-CN">
 <meta property="article:tag" content="zsr">
 <meta name="twitter:card" content="summary">
@@ -51,7 +54,7 @@
   };
 </script>
 
-  <title>yolov5 | shuaiqiwudi blog</title>
+  <title>yolo | shuaiqiwudi blog</title>
   
 
 
@@ -212,7 +215,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          yolov5
+          yolo
         </h1>
 
         <div class="post-meta">
@@ -229,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-05-30 14:33:45" itemprop="dateModified" datetime="2023-05-30T14:33:45+08:00">2023-05-30</time>
+                <time title="Modified: 2025-02-19 19:06:55" itemprop="dateModified" datetime="2025-02-19T19:06:55+08:00">2025-02-19</time>
               </span>
 
           
@@ -259,14 +262,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>544</span>
+              <span>5.4k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>5 mins.</span>
             </span>
 
         </div>
@@ -303,6 +306,77 @@
 <li>修改这个坐标的分类为对应颜色球员</li>
 <li>将更改过的labels内容进行train训练</li>
 </ol>
+<h1 id="Football-Analysis-Project"><a href="#Football-Analysis-Project" class="headerlink" title="Football_Analysis Project"></a>Football_Analysis Project</h1><p><a target="_blank" rel="noopener" href="https://github.com/roboflow/supervision">roboflow&#x2F;supervision: We write your reusable computer vision tools. 💜</a></p>
+<h2 id="2-player-color-assignment"><a href="#2-player-color-assignment" class="headerlink" title="2.player_color assignment"></a>2.player_color assignment</h2><p>interpretation</p>
+<h3 id="根据球衣颜色分派球队"><a href="#根据球衣颜色分派球队" class="headerlink" title="根据球衣颜色分派球队"></a>根据球衣颜色分派球队</h3><p>根据bounding_box截取部分球员</p>
+<img src="/2023/05/09/yolov5%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/cropped_image.jpg" class="" title="cropped_image">
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> track_id,player <span class="keyword">in</span> tracks[<span class="string">&#x27;players&#x27;</span>][<span class="number">0</span>].items():</span><br><span class="line">         bbox = player[<span class="string">&#x27;bbox&#x27;</span>]</span><br><span class="line">         frame = video_frames[<span class="number">0</span>]</span><br><span class="line">         cropped_image = frame[<span class="built_in">int</span>(bbox[<span class="number">1</span>]):<span class="built_in">int</span>(bbox[<span class="number">3</span>]),<span class="built_in">int</span>(bbox[<span class="number">0</span>]):<span class="built_in">int</span>(bbox[<span class="number">2</span>])]</span><br><span class="line"></span><br><span class="line">         cv2.imwrite(<span class="string">&#x27;output_video/cropped_image.jpg&#x27;</span>,cropped_image)</span><br><span class="line">         <span class="keyword">break</span><span class="comment"># 只截取第一帧的第一个球员</span></span><br></pre></td></tr></table></figure>
+
+<details>
+<summary>tracks格式 根据类别分组 再按照帧记录每个被追踪track_id的bbox </summary>
+    'players': [
+        {
+            1: {
+                'bbox': [
+                    851.585693359375,
+                    634.2647094726562,
+                    900.7504272460938,
+                    720.003662109375
+                ]
+            },
+            2: {
+                'bbox': [
+                    872.85888671875,
+                    361.4696960449219,
+                    905.4822387695312,
+                    423.5545349121094
+                ]
+            },
+        }
+    ]
+</details>
+
+<p>获取球员的上半部分</p>
+<img src="yolov5毕业论文/image-20250215210706325.png" alt="image-20250215210706325" style="zoom:33%;" />
+
+<p>但是有很多背景的像素影响识别球员衣服的颜色，我们可以将图象分为两个cluster，其中一个代表background_cluster,另一个代表player_shirt_cluster,我们就可以平均各自cluster的颜色</p>
+<p>导入KMeans 进行分簇</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans </span><br><span class="line"></span><br><span class="line">img_2d = top_half_img.reshape(-<span class="number">1</span>, <span class="number">3</span>)<span class="comment"># 将图像转换为2D数组 更改维数，-1表示不指定行数，3表示列数:RGB</span></span><br><span class="line"></span><br><span class="line">kmeans = KMeans(n_clusters=<span class="number">2</span>, random_state=<span class="number">0</span>) <span class="comment"># 使用KMeans算法将图像分为2个簇 cluster的id不是0 就是1</span></span><br><span class="line">kmeans.fit(img_2d) <span class="comment"># 使用KMeans算法拟合数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取cluster的label</span></span><br><span class="line">labels = kmeans.labels_</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据lables的分类重塑到原始图像的像素位置</span></span><br><span class="line"><span class="comment"># shape[0]是行数，shape[1]是列数</span></span><br><span class="line">clustered_img = labels.reshape(top_half_img.shape[<span class="number">0</span>], top_half_img.shape[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示clustered image</span></span><br><span class="line">plt.imshow(clustered_img)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<img src="yolov5毕业论文/image-20250215214136352.png" alt="image-20250215214136352" style="zoom:33%;" />
+
+<p>但是仍然不知道background的cluster代表的编号是什么，但是通常背景都在四个角落的位置，可以获取他们的cluster分类的id序号</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取左上角，右上角，左下角和右下角的cluster</span></span><br><span class="line">corner_cluster = [clustered_img[<span class="number">0</span>, <span class="number">0</span>], clustered_img[<span class="number">0</span>, -<span class="number">1</span>], clustered_img[-<span class="number">1</span>, <span class="number">0</span>], clustered_img[-<span class="number">1</span>, -<span class="number">1</span>]]</span><br><span class="line">non_player_cluster = <span class="built_in">max</span>(*<span class="built_in">set</span>*(corner_cluster), *key*=corner_cluster.count)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Non player cluster: &quot;</span>, non_player_cluster) </span><br><span class="line"><span class="comment"># 由于只分了两个cluster，所以只有0和1两个id，所以另一个cluster就是1-非player cluster</span></span><br><span class="line">player_cluster = <span class="number">1</span> - non_player_cluster</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Player cluster: &quot;</span>, player_cluster)</span><br></pre></td></tr></table></figure>
+
+<p>由此就可以获得对应的player_cluster_id,background_cluster_id,于是就可以使用kmeans获取对应cluster的质心 即球员的T恤颜色</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kmeans.cluster_centers_[player_cluster] <span class="comment">#output:array([171.08026316, 235.21052632, 142.74473684])  获得了平均颜色</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
+<li><p>首先根据第一帧的所有球员颜色，再使用Kmean++进行颜色分类，将player的球衣颜色分为两个颜色，存储到team_colors[]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">assign_team_color</span>(<span class="params">self, frame, player_decetions</span>):    </span><br><span class="line">        player_colors = []</span><br><span class="line">        <span class="comment">#获取了第一帧的所有球员的RGB颜色添加到player_colors[]中</span></span><br><span class="line">        <span class="keyword">for</span> _,player_detection <span class="keyword">in</span> player_decetions.items():</span><br><span class="line">            bbox = player_detection[<span class="string">&quot;bbox&quot;</span>]</span><br><span class="line">            player_color = self.get_player_color(frame, bbox)</span><br><span class="line">            player_colors.append(player_color)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#print(&quot;player_colors&quot;,player_colors)</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#再使用kmeans++算法对player_colors[]添加的RGB颜色分为两类</span></span><br><span class="line">        kmeans = KMeans(n_clusters=<span class="number">2</span>, init=<span class="string">&quot;k-means++&quot;</span>,n_init=<span class="number">1</span>)</span><br><span class="line">        kmeans.fit(player_colors)</span><br><span class="line"></span><br><span class="line">        self.kmeans = kmeans</span><br><span class="line"></span><br><span class="line">        <span class="comment">#将获取到的两个队伍的颜色存储到team_colors[]中</span></span><br><span class="line">        self.team_colors[<span class="number">1</span>]=kmeans.cluster_centers_[<span class="number">0</span>]</span><br><span class="line">        self.team_colors[<span class="number">2</span>]=kmeans.cluster_centers_[<span class="number">1</span>] </span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;team_colors&quot;</span>,self.team_colors)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写一个识别每个球员颜色的方法，即上述的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_player_color</span>(<span class="params">self, frame, bbox</span>):</span><br><span class="line">        image = frame[<span class="built_in">int</span>(bbox[<span class="number">1</span>]):<span class="built_in">int</span>(bbox[<span class="number">3</span>]),<span class="built_in">int</span>(bbox[<span class="number">0</span>]):<span class="built_in">int</span>(bbox[<span class="number">2</span>])]<span class="comment">#裁剪出bbox区域</span></span><br><span class="line">        top_half_image = image[:<span class="built_in">int</span>(image.shape[<span class="number">0</span>]/<span class="number">2</span>)]</span><br><span class="line">        kmeans = self.get_clustering_model(top_half_image)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取每个像素点的聚类标签</span></span><br><span class="line">        labels = kmeans.labels_</span><br><span class="line">        </span><br><span class="line">        clustered_image = labels.reshape(top_half_image.shape[<span class="number">0</span>],top_half_image.shape[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># get the player cluster </span></span><br><span class="line">        corner_clusters = [clustered_image[<span class="number">0</span>,<span class="number">0</span>],clustered_image[<span class="number">0</span>,-<span class="number">1</span>],clustered_image[-<span class="number">1</span>,<span class="number">0</span>],clustered_image[-<span class="number">1</span>,-<span class="number">1</span>]]</span><br><span class="line">        non_player_cluster = <span class="built_in">max</span>(<span class="built_in">set</span>(corner_clusters), key=corner_clusters.count)</span><br><span class="line">        player_cluster = <span class="number">1</span> - non_player_cluster</span><br><span class="line"></span><br><span class="line">        player_color = kmeans.cluster_centers_[player_cluster]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> player_color</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>识别每个球员，使用kmeans.predict方法预测球员属于的队伍，并记录在player_teams_dict[]中，方便下次直接读取</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_player_team</span>(<span class="params">self,frame,player_bbox,player_id</span>):</span><br><span class="line">        <span class="comment"># 如果已经分配过队伍，直接返回</span></span><br><span class="line">        <span class="keyword">if</span> player_id <span class="keyword">in</span> self.player_teams_dict:</span><br><span class="line">            <span class="keyword">return</span> self.player_teams_dict[player_id]</span><br><span class="line">        <span class="comment"># 获取球员的颜色</span></span><br><span class="line">        player_color = self.get_player_color(frame,player_bbox)</span><br><span class="line">        <span class="comment"># 获取球员的队伍</span></span><br><span class="line">        team_id = self.kmeans.predict(player_color.reshape(<span class="number">1</span>,-<span class="number">1</span>))[<span class="number">0</span>]</span><br><span class="line">        team_id += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        self.player_teams_dict[player_id] = team_id</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> team_id </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最后在main方法中，将识别出的team_id和team_color添加到tracks中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> frame_num, player_track <span class="keyword">in</span> <span class="built_in">enumerate</span>(tracks[<span class="string">&#x27;players&#x27;</span>]):</span><br><span class="line">        <span class="keyword">for</span> player_id, track <span class="keyword">in</span> player_track.items():</span><br><span class="line">            team = team_assigner.get_player_team(video_frames[frame_num],   </span><br><span class="line">                                                 track[<span class="string">&#x27;bbox&#x27;</span>],</span><br><span class="line">                                                 player_id)</span><br><span class="line">            tracks[<span class="string">&#x27;players&#x27;</span>][frame_num][player_id][<span class="string">&#x27;team&#x27;</span>] = team </span><br><span class="line">            tracks[<span class="string">&#x27;players&#x27;</span>][frame_num][player_id][<span class="string">&#x27;team_color&#x27;</span>] = team_assigner.team_colors[team]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x27;bbox&#x27;<span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">             <span class="number">851.585693359375</span><span class="punctuation">,</span></span><br><span class="line">             <span class="number">634.2647094726562</span><span class="punctuation">,</span></span><br><span class="line">             <span class="number">900.7504272460938</span><span class="punctuation">,</span></span><br><span class="line">             <span class="number">720.003662109375</span></span><br><span class="line">         <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">&#x27;team&#x27;<span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">&#x27;team_color&#x27;<span class="punctuation">:</span> array(<span class="punctuation">[</span></span><br><span class="line">               <span class="number">141.19</span><span class="punctuation">,</span></span><br><span class="line">               <span class="number">228.12</span><span class="punctuation">,</span></span><br><span class="line">               <span class="number">181.74</span></span><br><span class="line">           <span class="punctuation">]</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>KMeans:<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">KMeans — scikit-learn 1.6.1 documentation</a></p>
+<h2 id="3-Ball-interpolation"><a href="#3-Ball-interpolation" class="headerlink" title="3. Ball interpolation"></a>3. Ball interpolation</h2><p>interpretation：</p>
+<h2 id="4-Camera-Movement-Estimator"><a href="#4-Camera-Movement-Estimator" class="headerlink" title="4. Camera Movement Estimator"></a>4. Camera Movement Estimator</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">		first_frame_grayscale = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)</span><br><span class="line">        <span class="comment"># 按照zero_like的数组结构 复制一个相同结构的全部为0的数组</span></span><br><span class="line">        mask_features = np.zeros_like(first_frame_grayscale)</span><br><span class="line"></span><br><span class="line">        mask_features[:,<span class="number">0</span>:<span class="number">20</span>] = <span class="number">1</span></span><br><span class="line">        mask_features[:,<span class="number">900</span>:<span class="number">1050</span>] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>灰度模式即使用单一色调来表示图像，与位图模式不同，不像位图只有0和1，使用256级的灰度来表示图像，一个像素相当于占用8为一个字节，每个像素值使用0到255的亮度值代表，其中0为黑色，255为白色，相当于从黑-&gt;灰-&gt;白的过度，通常我们所说的黑白照片就是这种模式，与位图模式相比，能表现出一定的细节，占用空间也比位图模式较大</p>
+<h2 id="5-Perspective-Transformer"><a href="#5-Perspective-Transformer" class="headerlink" title="5. Perspective Transformer"></a>5. Perspective Transformer</h2><p>透视变换：<a target="_blank" rel="noopener" href="https://blog.csdn.net/bby1987/article/details/106317354">图像坐标空间变换：透视变换（Perspective Transformation），或称为单应性（Homography）变换_homography 变换-CSDN博客</a></p>
 
     </div>
 
@@ -384,7 +458,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">基于卷积神经网络的</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%86%E5%88%AB%E7%9B%AE%E6%A0%87%E5%9C%A8%E5%9B%BE%E7%89%87%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">识别目标在图片中的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%86%E5%88%AB%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E7%9A%84%E7%9B%AE%E6%A0%87%E9%A2%9C%E8%89%B2"><span class="nav-number">1.2.</span> <span class="nav-text">识别指定位置的目标颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Train-py-%E6%96%87%E4%BB%B6%E7%9A%84%E5%90%84%E4%B8%AA%E5%8F%82%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">Train.py 文件的各个参数</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">基于卷积神经网络的</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%86%E5%88%AB%E7%9B%AE%E6%A0%87%E5%9C%A8%E5%9B%BE%E7%89%87%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">识别目标在图片中的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%86%E5%88%AB%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E7%9A%84%E7%9B%AE%E6%A0%87%E9%A2%9C%E8%89%B2"><span class="nav-number">1.2.</span> <span class="nav-text">识别指定位置的目标颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Train-py-%E6%96%87%E4%BB%B6%E7%9A%84%E5%90%84%E4%B8%AA%E5%8F%82%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">Train.py 文件的各个参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Football-Analysis-Project"><span class="nav-number">2.</span> <span class="nav-text">Football_Analysis Project</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-player-color-assignment"><span class="nav-number">2.1.</span> <span class="nav-text">2.player_color assignment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E7%90%83%E8%A1%A3%E9%A2%9C%E8%89%B2%E5%88%86%E6%B4%BE%E7%90%83%E9%98%9F"><span class="nav-number">2.1.1.</span> <span class="nav-text">根据球衣颜色分派球队</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.1.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Ball-interpolation"><span class="nav-number">2.2.</span> <span class="nav-text">3. Ball interpolation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Camera-Movement-Estimator"><span class="nav-number">2.3.</span> <span class="nav-text">4. Camera Movement Estimator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Perspective-Transformer"><span class="nav-number">2.4.</span> <span class="nav-text">5. Perspective Transformer</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,7 +472,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -446,13 +520,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">272k</span>
+    <span title="Symbols count total">279k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">4:07</span>
+    <span title="Reading time total">4:14</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
