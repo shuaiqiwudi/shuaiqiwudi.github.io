@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Cpp_Basic | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C++学习网 ALL 全流程：  在 Java 中，编译器（javac）只负责把 .java 翻译成半成品 .class（字节码），然后就丢给 JVM 去解释执行了。 预处理（Preprocessing）、编译（Compilation）、汇编（Assembly） 和 链接（Linking）。 1. 预处理 (Preprocessing)  输入：.cpp 源文件 和 .h 头文件 核心任务：处理所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cpp_Basic">
+<meta property="og:url" content="https://shuaiqiwudi.github.io/2026/06/16/Cpp-Basic/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C++学习网 ALL 全流程：  在 Java 中，编译器（javac）只负责把 .java 翻译成半成品 .class（字节码），然后就丢给 JVM 去解释执行了。 预处理（Preprocessing）、编译（Compilation）、汇编（Assembly） 和 链接（Linking）。 1. 预处理 (Preprocessing)  输入：.cpp 源文件 和 .h 头文件 核心任务：处理所">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://shuaiqiwudi.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-06-16T01:39:29.000Z">
+<meta property="article:modified_time" content="2026-06-22T07:05:08.270Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shuaiqiwudi.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Cpp_Basic",
+  "url": "https://shuaiqiwudi.github.io/2026/06/16/Cpp-Basic/",
+  "image": "https://shuaiqiwudi.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-06-16T01:39:29.000Z",
+  "dateModified": "2026-06-22T07:05:08.270Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "John Doe",
+      "url": "https://shuaiqiwudi.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://shuaiqiwudi.github.io/2026/06/16/Cpp-Basic/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Cpp_Basic',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">Cpp_Basic</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Cpp_Basic</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-06-16T01:39:29.000Z" title="Created 2026-06-16 09:39:29">2026-06-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-06-22T07:05:08.270Z" title="Updated 2026-06-22 15:05:08">2026-06-22</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://www.studycpp.cn/">C++学习网</a></p>
+<h1>ALL</h1>
+<h2 id="全流程：">全流程：</h2>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-4305919/0dbbcee8g7.png" alt="img"></p>
+<p>在 Java 中，编译器（<code>javac</code>）只负责把 <code>.java</code> 翻译成半成品 <code>.class</code>（字节码），然后就丢给 JVM 去解释执行了。</p>
+<p><strong>预处理（Preprocessing）</strong>、<strong>编译（Compilation）</strong>、<strong>汇编（Assembly）</strong> 和 <strong>链接（Linking）</strong>。</p>
+<h3 id="1-预处理-Preprocessing">1. 预处理 (Preprocessing)</h3>
+<ul>
+<li><strong>输入</strong>：<code>.cpp</code> 源文件 和 <code>.h</code> 头文件</li>
+<li><strong>核心任务</strong>：处理所有以 <code>#</code> 开头的指令，纯做文本的增删替换。
+<ul>
+<li><strong>复制粘贴</strong>：将 <code>#include</code> 的头文件内容全部原封不动地拷贝进来。</li>
+<li><strong>宏替换</strong>：将 <code>#define</code> 定义的宏替换为实际的数值或代码。</li>
+<li><strong>去注释</strong>：剥离代码中的所有注释内容。</li>
+</ul>
+</li>
+<li><strong>输出</strong>：<code>.i</code> 文件（体积庞大的纯 C++ 源码文件）</li>
+</ul>
+<h3 id="2-编译-Compilation">2. 编译 (Compilation)</h3>
+<ul>
+<li><strong>输入</strong>：<code>.i</code> 文件</li>
+<li><strong>核心任务</strong>：将高级语言降维成底层硬件语言。
+<ul>
+<li><strong>词法/语法分析</strong>：严格检查 C++ 语法是否合法（绝大多数的语法报错在此阶段产生）。</li>
+<li><strong>代码优化</strong>：剔除永远不会执行的死代码，优化计算逻辑（如 <code>constexpr</code> 的预计算就是在这里完成）。</li>
+<li><strong>翻译</strong>：将 C++ 翻译成特定 CPU 架构（如 x86、ARM）能懂的汇编代码。</li>
+</ul>
+</li>
+<li><strong>输出</strong>：<code>.s</code> 文件（汇编语言源文件）</li>
+</ul>
+<h3 id="3-汇编-Assembly">3. 汇编 (Assembly)</h3>
+<ul>
+<li><strong>输入</strong>：<code>.s</code> 文件</li>
+<li><strong>核心任务</strong>：将汇编语言翻译成纯粹的机器语言。
+<ul>
+<li><strong>机械翻译</strong>：把人类还能勉强看懂的汇编指令（如 <code>MOV</code>, <code>ADD</code>），逐条翻译成 CPU 唯一能执行的 <code>0</code> 和 <code>1</code> 二进制机器码。</li>
+</ul>
+</li>
+<li><strong>输出</strong>：<code>.obj</code> (Windows) 或 <code>.o</code> (Linux) 文件（包含了机器指令的目标文件碎片）</li>
+</ul>
+<h3 id="4-链接-Linking">4. 链接 (Linking)</h3>
+<ul>
+<li><strong>输入</strong>：所有单独编译出来的 <code>.obj</code> 碎片 + 系统库或第三方库文件</li>
+<li><strong>核心任务</strong>：地址寻址与物理缝合。
+<ul>
+<li><strong>符号决议</strong>：解决“未解析的外部符号”。根据头文件提供的声明，去其他 <code>.obj</code> 碎片里寻找函数的真正实现，填补内存地址。</li>
+<li><strong>合并封装</strong>：将所有零散的二进制碎片和调用的外部库，像乐高一样严丝合缝地拼装在一起。</li>
+</ul>
+</li>
+<li><strong>输出</strong>：<code>.exe</code> (Windows) 或 <code>.elf</code> (Linux) 文件（最终可双击运行的程序）</li>
+</ul>
+<h2 id="空间分配">空间分配</h2>
+<p><img src="https://i-blog.csdnimg.cn/direct/167294bdd6474c0da49f510f19c4832d.png" alt="img"></p>
+<h3 id="1-代码区">1. 代码区</h3>
+<ul>
+<li><strong>具体工作：</strong> 存放 CPU 正在执行或准备执行的机器指令（也就是你写的 C++ 代码编译后的二进制码）。</li>
+<li><strong>特性：</strong> 它是<strong>只读</strong>的（防止程序意外篡改自己的指令），并且是<strong>共享</strong>的（如果你同时开两个相同的仿真程序，它们在内存里只共用这一份代码指令，节省空间）。</li>
+</ul>
+<h3 id="2-常量区">2. 常量区</h3>
+<ul>
+<li><strong>具体工作：</strong> 专门存放程序中无法修改的常量数据，最典型的就是字符串字面量和某些被 <code>const</code> 修饰的全局变量。</li>
+<li><strong>特性：</strong> 同样是<strong>绝对只读</strong>。如果试图通过强转指针去修改这里的值，程序会直接崩溃（段错误 Segmentation Fault）。</li>
+</ul>
+<h3 id="3-全局-静态区">3. 全局/静态区</h3>
+<ul>
+<li><strong>具体工作：</strong> 存放所有的全局变量和被 <code>static</code> 修饰的变量（无论是全局静态还是局部静态）。</li>
+<li><strong>特性：</strong> 这个区域的生命周期与整个程序“同生共死”。程序启动时它就在，程序结束时它才销毁。在 Java 中，静态变量存在方法区（Method Area / Metaspace），概念非常类似。
+<ul>
+<li><em>细分说明：在底层，它通常又被细分为已初始化数据段（.data）和未初始化数据段（.bss，操作系统会自动将其清零）。</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="4-堆">4. 堆</h3>
+<p><strong>具体工作：</strong> 提供动态内存分配。当你觉得栈空间不够大，或者需要一个对象的生命周期跨越多个函数调用时，就在这里申请空间。</p>
+<ul>
+<li><strong>特性：</strong>  空间极大（通常受限于物理内存大小），由程序员通过 <code>new</code>/<code>malloc</code> 手动申请，必须通过 <code>delete</code>/<code>free</code> 手动释放。如果你忘记释放，就会造成<strong>内存泄漏</strong>。堆的分配地址通常是<strong>向上增长</strong>的（向高地址方向）。</li>
+</ul>
+<h3 id="5-栈">5. 栈</h3>
+<ul>
+<li><strong>具体工作：</strong> 维持函数调用的上下文。专门存放函数内部的局部变量、函数的形参、以及函数执行完的返回地址。</li>
+<li><strong>特性：</strong> <strong>极速但容量极小</strong>（在 Windows 系统下通常默认只有 1MB 左右，Linux 下默认 8MB）。由编译器全自动管理，函数执行完立刻自动释放，绝不发生内存泄漏。栈的分配地址通常是<strong>向下增长</strong>的（向低地址方向）。</li>
+</ul>
+<h1>一.</h1>
+<h2 id="注释">注释</h2>
+<p>单行注释//，多行注释「/*  */」，快捷键Ctrl + Shift + /</p>
+<h3 id="初始化">初始化</h3>
+<p>列表初始化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> width &#123; <span class="number">5</span> &#125;;    <span class="comment">// 直接列表初始化，将变量width设置为 5</span></span><br><span class="line"><span class="type">int</span> height = &#123; ·<span class="number">6</span> &#125;; <span class="comment">// 拷贝列表初始化，将变量height设置为6</span></span><br><span class="line"><span class="type">int</span> depth &#123;&#125;;       <span class="comment">// 值初始化</span></span><br></pre></td></tr></table></figure>
+<p>不允许“缩小转换范围”。意味着，如果尝试使用变量不能安全保存的值，编译器将产生错误。例如：</p>
+<p>int width { 4.5 }; // error: int类型无法装下分数</p>
+<h3 id="isoteam库">isoteam库</h3>
+<ol>
+<li>«与std::cout一起使用，并显示数据移动的方向（如果std::cout表示控制台，则输出数据从变量移动到控制台）。std::cout « 4将值4移动到控制台</li>
+<li>&gt;&gt;与std::cin一起使用，并显示数据移动的方向（如果std::cin表示键盘，则输入数据从键盘移动到变量）。std::cin » x将用户输入值从键盘移动到x中</li>
+</ol>
+<h1>二.</h1>
+<h2 id="命名冲突与名称简介">命名冲突与名称简介</h2>
+<p>命名空间是一个区域，在其中声明名称以消除歧义。命名空间为其内部声明的名称提供了一个作用域区域（称为命名空间作用域）——意味着在命名空间内声明的任何名称都不会与其他作用域中的相同名称混淆。</p>
+<p>在同一命名空间中，所有名称必须唯一，否则将导致命名冲突。</p>
+<h2 id="std命名空间">std命名空间</h2>
+<p>std::cout实际上就是cout，而std是标识符cout所属的命名空间名称。因为cout是在std命名空间中定义的，所以名称cout不会与在全局命名空间中创建的名为cout的对象或函数冲突。</p>
+<p>类似地，当访问在命名空间中定义的标识符（例如std::cout）时，需要告诉编译器我们要找的是在命名空间（std）内定义的标识符。</p>
+<h3 id="using-namespace">using namespace</h3>
+<p>访问命名空间内标识符的另一种方法是使用using指令语句。下面是最初“Hello world”程序，带有using指令：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std; <span class="comment">// 这条语句允许之后的代码，直接访问std命名空间中的符号，而不用加限定符</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello world!&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="头文件">头文件</h3>
+<p>.h就是头文件</p>
+<p>头文件是怎么将两个.cpp文件结合到一起的？</p>
+<p><img src="https://www.studycpp.cn/basic/chapter2/header-file/IncludeHeader.webp" alt="img"></p>
+<p>一开始只是加了引用，在<strong>链接阶段</strong>才找到函数的主体.cpp文件</p>
+<p><strong>独立编译（cpp到compile 两条线）：</strong></p>
+<ul>
+<li>左边：<code>add.cpp</code> 拿着自己的代码，可能也引用了 <code>add.h</code> 核对了一下接口，然后独自被编译器（Compile）变成了机器码碎片 <strong><code>add.o</code></strong>（obj）。</li>
+<li>右边：<code>main.cpp</code> 里面调用了 <code>add.cpp</code> 写的函数。但是编译器每次只能看一个文件，它根本不知道 <code>add.cpp</code> 的存在。此时，<code>#include &quot;add.h&quot;</code> 发挥作用了。它把函数的“声明（长什么样）”拷贝到了 <code>main.cpp</code> 里。编译器一看：“哦，虽然我不知道具体怎么算，但格式对得上，放行！”于是 <code>main.cpp</code> 也独自被编译成了 <strong><code>main.o</code></strong>。</li>
+</ul>
+<p><strong>物理缝合（图中的 Link 节点）：</strong></p>
+<ul>
+<li>真正把两个文件联系在一起的，是底部的 <strong>链接器（Linker）</strong>。</li>
+<li>它就像一个拼图大师，把 <code>add.o</code>（真实的函数逻辑）、<code>main.o</code>（调用者的指令）以及标准库（如 <code>iostream</code> 底层的 <code>Standard Runtime Library</code>）硬生生地拼接在一起，最终输出了完整的 <code>main.exe</code>。</li>
+</ul>
+<blockquote>
+<p>为避免函数不匹配，包含add方法的add.cpp文件都要添加上#include&quot;add.h&quot;</p>
+</blockquote>
+<h3 id="pragma-once">#pragma once</h3>
+<p>避免头文件中被其他头文件包含后，头文件中的内容被重复编译，导致多个相同函数，添加#pragma once使得函数不会在其他头文件中在此编译。（该语法来自现代编译器）</p>
+<h1>四</h1>
+<h2 id="科学技术法">科学技术法</h2>
+<p>1.2 x 10^4 写为1.2e4而5.9736 x 10^24 写为5.9736e24。</p>
+<p>开始: 0.0078900 小数点右滑3位: 0007.8900e-3 删除前导0: 7.8900e-3 保留尾部的0: 7.8900e-3 (5 个有效位)</p>
+<h2 id="类型转换和static-cast">类型转换和static_cast</h2>
+<p>要执行显式类型转换，在大多数情况下我们会使用static_cast操作符。其语法看起来有点特别：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">static_cast</span>&lt;新类型&gt;(表达式) `</span><br></pre></td></tr></table></figure>
+<p>static_cast将表达式的值作为输入，并返回转换为newtype所指定类型的值（例如int、bool、char、double）。</p>
+<p>举例说明：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; x &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">print</span>( <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(<span class="number">5.5</span>) ); <span class="comment">// 显示的将 double 值 5.5 转换为 int</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> ch&#123; <span class="number">97</span> &#125;; <span class="comment">// 97 是 ASCII 码 &#x27;a&#x27;</span></span><br><span class="line">    std::cout &lt;&lt; ch &lt;&lt; <span class="string">&quot; has value &quot;</span> &lt;&lt; <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(ch) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>; <span class="comment">// 将 ch 转换为 int</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">输出：</span><br><span class="line">a has value <span class="number">97</span></span><br></pre></td></tr></table></figure>
+<h1>五</h1>
+<h2 id="常量const">常量const</h2>
+<p><code>const</code> 只是编译器给你加的一把“权限锁”，它决定了你能不能修改这块内存</p>
+<h3 id="全局常变量-静态常变量-——-全局生命周期">全局常变量 / 静态常变量 —— 全局生命周期</h3>
+<p>如果你在所有函数之外定义了一个常变量，或者在函数内部用 <code>static</code> 修饰了它，它的生命周期就是<strong>整个程序的运行期</strong>。</p>
+<ul>
+<li><strong>存储位置：</strong> 常量区（<code>.rodata</code>）或全局/静态区。</li>
+<li><strong>生命周期：</strong> 在 <code>main()</code> 函数开始执行前就已经分配好内存并初始化，直到程序完全关闭时才被系统销毁。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 全局常变量</span></span><br><span class="line"><span class="type">const</span> <span class="type">double</span> PI = <span class="number">3.1415926</span>; <span class="comment">// 存在【常量区】，生命周期：全局</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 2. 局部静态常变量</span></span><br><span class="line">    <span class="type">static</span> <span class="type">const</span> <span class="type">int</span> MAX_RETRIES = <span class="number">5</span>; <span class="comment">// 存在【常量区/静态区】，生命周期：全局</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-局部常变量-——-栈的生命周期">2. 局部常变量 —— 栈的生命周期</h3>
+<p>这是最容易被误解的一种。如果你在一个普通函数内部定义了一个普通的 <code>const</code> 变量，<strong>它根本不会进入常量区，而是直接被压入【栈区】。</strong></p>
+<ul>
+<li><strong>存储位置：</strong> 栈区（Stack）。</li>
+<li><strong>生命周期：</strong> 当代码执行到这一行时诞生，当执行流程离开它所在的大括号 <code>{}</code> 时，它会随着栈帧的弹出而<strong>瞬间灰飞烟灭</strong>。</li>
+</ul>
+<p>C++</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">calculateDynamics</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 这是一个局部常变量！</span></span><br><span class="line">    <span class="type">const</span> <span class="type">double</span> current_mass = <span class="number">50.5</span>; <span class="comment">// 存在【栈区】！</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ... 物理计算 ...</span></span><br><span class="line">    </span><br><span class="line">&#125; <span class="comment">// &lt;--- 函数结束，current_mass 的内存立刻被回收销毁。</span></span><br></pre></td></tr></table></figure>
+<h2 id="constexpr-关键字">constexpr 关键字</h2>
+<p>constexpr（是“constant expression”的缩写）</p>
+<p>当使用 const 关键字声明 const 变量时，编译器会隐式地跟踪它是运行时常量还是编译时常量。在大多数情况下，这个区别除了影响优化之外并不重要，但在某些场景下 C++ 需要常量表达式，而常量表达式中只能使用编译时常量。</p>
+<p>由于编译时常量还允许更好的优化（且几乎没有缺点），因此我们通常希望尽可能多地使用编译时常量,尽早在编译阶段就发现问题。</p>
+<p>使用 const 时，变量到底是编译时常量还是运行时常量，取决于其初始值是否为编译时常量表达式。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x &#123; <span class="number">5</span> &#125;;       <span class="comment">// 非 const</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> y &#123; x &#125;; <span class="comment">// 运行时常量 (因为使用非 const 变量初始化)</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> z &#123; <span class="number">5</span> &#125;; <span class="comment">// 编译时常量</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> w &#123; <span class="built_in">getValue</span>() &#125;; <span class="comment">// 不容易判断</span></span><br></pre></td></tr></table></figure>
+<p>constexpr使得变量只能是编译时常量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> myAge &#123; age &#125;;      <span class="comment">// 编译报错: age 不是常量表达式</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> f &#123; <span class="built_in">five</span>() &#125;;       <span class="comment">// 编译报错: five() 的返回值不是常量表达式</span></span><br></pre></td></tr></table></figure>
+<p>任何在初始化之后不会修改、并且初始值在编译时就能确定的变量，都应声明为 constexpr。</p>
+<p>任何在初始化之后不会修改、但<strong>初始值在编译时无法确定的变量</strong>，则应声明为 const。</p>
+<p>与 constexpr 不兼容的类型（包括 std::string、std::vector 等使用动态内存分配的类型）。对于这些类型的常量对象，请改用 const。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> BASE_FORCE = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">calculateTotal</span><span class="params">(<span class="type">int</span> multiplier)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 编译器看到这里，直接把汇编指令写成： return multiplier * 1000;</span></span><br><span class="line">    <span class="comment">// BASE_FORCE 作为一个变量，在运行期物理上被抹除了。</span></span><br><span class="line">    <span class="keyword">return</span> multiplier * BASE_FORCE; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="std-string和std-string-view">std::string和std::string_view</h2>
+<p>相当于java的string，但是需要引入string库，进行标准化输出std::string</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::string name&#123; <span class="string">&quot;Alex&quot;</span> &#125;;</span><br><span class="line">    std::cout &lt;&lt; name &lt;&lt; <span class="string">&quot; has &quot;</span> &lt;&lt; name.<span class="built_in">length</span>() &lt;&lt; <span class="string">&quot; characters\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当你需要一个只读字符串时，尤其是作为函数参数时，优先使用 std::string_view 而非 std::string。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string_view&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// str 提供了对传入实参的只读访问能力</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printSV</span><span class="params">(std::string_view str)</span> <span class="comment">// str 现在是 std::string_view</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; str &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::string_view s&#123; <span class="string">&quot;Hello, world!&quot;</span> &#125;; <span class="comment">// s 现在是 std::string_view</span></span><br><span class="line">    <span class="built_in">printSV</span>(s);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>十一</h1>
+<h2 id="模板">模板</h2>
+<p>在C++中，模板系统旨在简化创建能够处理不同数据类型的函数（或类）的过程。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 声明这是一个模板，T 是一个“占位符”类型</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">get_max</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a &gt; b) ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 2. 使用时，编译器会进行“类型推导（Type Deduction）”</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 编译器看到参数是 10 和 20 (int)，自动推导出 T 是 int</span></span><br><span class="line">    <span class="type">int</span> result1 = <span class="built_in">get_max</span>(<span class="number">10</span>, <span class="number">20</span>); </span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 编译器看到参数是 double，推导出 T 是 double</span></span><br><span class="line">    <span class="type">double</span> result2 = <span class="built_in">get_max</span>(<span class="number">15.5</span>, <span class="number">2.3</span>); </span><br><span class="line">    </span><br><span class="line">    std::cout &lt;&lt; result1 &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; result2 &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>template &lt;typename T&gt; T get_max(...)</code> <strong>本身并不是一个函数</strong>。它只是一张图纸，是不占用代码区（Code Segment）内存的。</p>
+<p>当你真正在代码里调用 <code>get_max(10, 20)</code> 时，它悄悄地帮你<strong>真正写出了一个新的函数</strong>，并把它编译进了最终的机器码里。这个过程叫做<strong>模板实例化</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print_pair</span><span class="params">(T1 first, T2 second)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;First: &quot;</span> &lt;&lt; first &lt;&lt; <span class="string">&quot;, Second: &quot;</span> &lt;&lt; second &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 自动推导：T1 是 int, T2 是 const char*</span></span><br><span class="line">    <span class="built_in">print_pair</span>(<span class="number">42</span>, <span class="string">&quot;Simulation Node&quot;</span>); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://shuaiqiwudi.github.io">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://shuaiqiwudi.github.io/2026/06/16/Cpp-Basic/">https://shuaiqiwudi.github.io/2026/06/16/Cpp-Basic/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/05/16/%E7%8E%B0%E4%BB%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9F%BA%E7%A1%80/" title="现代机器人基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">现代机器人基础</div></div><div class="info-2"><div class="info-item-1">点乘： 向量点积（数量积）：                    #mjx-7d8d143{         display:contents;         mjx-assistive-mml {           user-select: text !important;           clip: auto !important;           color: rgba(0,0,0,0);         }          mjx-container[jax="SVG"] {   direction: ltr; }  mjx-container[jax="SVG"] > svg {   overflow: visible;   min-height: 1px;   min-width: 1px; }  mjx-container[jax="SVG"] > svg a {   fill: blue;   stroke: blue; }  mjx-assistive-mml {   position: absolute !important;   top: 0...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">ALL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">全流程：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A2%84%E5%A4%84%E7%90%86-Preprocessing"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 预处理 (Preprocessing)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BC%96%E8%AF%91-Compilation"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 编译 (Compilation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B1%87%E7%BC%96-Assembly"><span class="toc-number">1.1.3.</span> <span class="toc-text">3. 汇编 (Assembly)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%93%BE%E6%8E%A5-Linking"><span class="toc-number">1.1.4.</span> <span class="toc-text">4. 链接 (Linking)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%88%86%E9%85%8D"><span class="toc-number">1.2.</span> <span class="toc-text">空间分配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%A3%E7%A0%81%E5%8C%BA"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 代码区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B8%B8%E9%87%8F%E5%8C%BA"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 常量区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%85%A8%E5%B1%80-%E9%9D%99%E6%80%81%E5%8C%BA"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 全局&#x2F;静态区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%A0%86"><span class="toc-number">1.2.4.</span> <span class="toc-text">4. 堆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%A0%88"><span class="toc-number">1.2.5.</span> <span class="toc-text">5. 栈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">一.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">2.1.</span> <span class="toc-text">注释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.1.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isoteam%E5%BA%93"><span class="toc-number">2.1.2.</span> <span class="toc-text">isoteam库</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">二.</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E5%86%B2%E7%AA%81%E4%B8%8E%E5%90%8D%E7%A7%B0%E7%AE%80%E4%BB%8B"><span class="toc-number">3.1.</span> <span class="toc-text">命名冲突与名称简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="toc-number">3.2.</span> <span class="toc-text">std命名空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#using-namespace"><span class="toc-number">3.2.1.</span> <span class="toc-text">using namespace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">3.2.2.</span> <span class="toc-text">头文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pragma-once"><span class="toc-number">3.2.3.</span> <span class="toc-text">#pragma once</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">四</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E6%8A%80%E6%9C%AF%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">科学技术法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%92%8Cstatic-cast"><span class="toc-number">4.2.</span> <span class="toc-text">类型转换和static_cast</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">五</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E9%87%8Fconst"><span class="toc-number">5.1.</span> <span class="toc-text">常量const</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%B8%B8%E5%8F%98%E9%87%8F-%E9%9D%99%E6%80%81%E5%B8%B8%E5%8F%98%E9%87%8F-%E2%80%94%E2%80%94-%E5%85%A8%E5%B1%80%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">5.1.1.</span> <span class="toc-text">全局常变量 &#x2F; 静态常变量 —— 全局生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B1%80%E9%83%A8%E5%B8%B8%E5%8F%98%E9%87%8F-%E2%80%94%E2%80%94-%E6%A0%88%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">5.1.2.</span> <span class="toc-text">2. 局部常变量 —— 栈的生命周期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constexpr-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">5.2.</span> <span class="toc-text">constexpr 关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#std-string%E5%92%8Cstd-string-view"><span class="toc-number">5.3.</span> <span class="toc-text">std::string和std::string_view</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">十一</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF"><span class="toc-number">6.1.</span> <span class="toc-text">模板</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/16/Cpp-Basic/" title="Cpp_Basic">Cpp_Basic</a><time datetime="2026-06-16T01:39:29.000Z" title="Created 2026-06-16 09:39:29">2026-06-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/16/%E7%8E%B0%E4%BB%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%9F%BA%E7%A1%80/" title="现代机器人基础">现代机器人基础</a><time datetime="2026-05-16T02:21:52.000Z" title="Created 2026-05-16 10:21:52">2026-05-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/20/%E5%88%86%E6%9E%90%E5%8A%9B%E5%AD%A6/" title="分析力学">分析力学</a><time datetime="2026-04-20T02:23:39.000Z" title="Created 2026-04-20 10:23:39">2026-04-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/07/%E5%BC%B9%E5%A1%91%E6%80%A7%E5%8A%9B%E5%AD%A6/" title="弹塑性力学">弹塑性力学</a><time datetime="2026-04-07T12:54:01.000Z" title="Created 2026-04-07 20:54:01">2026-04-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/31/essay-theory/" title="essay theory">essay theory</a><time datetime="2026-03-31T08:35:01.000Z" title="Created 2026-03-31 16:35:01">2026-03-31</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By John Doe</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5"></script><script src="/js/main.js?v=5.5.5"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
